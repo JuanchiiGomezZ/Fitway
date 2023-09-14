@@ -1,7 +1,8 @@
 import React from "react";
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView } from "react-native";
 import Navigation from "./src/navigation/Navigation";
 import { StatusBar } from "expo-status-bar";
+import i18next from './src/services/i18n'
 
 
 const App = () => {

@@ -1,7 +1,13 @@
 {
-    "change-language": "Change language",
-    "welcome": "Welcome",
-    "search": "search",
-    "continue-with": "Continue with "
-  }
-  
+  "change-language": "Change language",
+  "welcome": "Welcome",
+  "search": "search",
+  "continue-with": "Continue with ",
+  "measurements": "Measurements",
+  "my-exercises": "My Exercises",
+  "settings": "Settings",
+  "log-out": "Log Out",
+  "weight": "Weight",
+  "height": "Height",
+  "age": "Age"
+}

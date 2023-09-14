@@ -10,7 +10,8 @@ export default HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text>{t('change-language')}</Text>
+            <Text style={{ color: 'white' }}>{t('change-language')}</Text>
+            
         </View>
     )
 }
