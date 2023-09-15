@@ -3,11 +3,30 @@
   "welcome": "Welcome",
   "search": "search",
   "continue-with": "Continue with ",
-  "measurements": "Measurements",
-  "my-exercises": "My Exercises",
-  "settings": "Settings",
-  "log-out": "Log Out",
-  "weight": "Weight",
-  "height": "Height",
-  "age": "Age"
+
+  "profile": {
+    "measurements": "Measurements",
+    "my-exercises": "My Exercises",
+    "settings": "Settings",
+    "log-out": "Log Out",
+    "weight": "Weight",
+    "height": "Height",
+    "age": "Age"
+  },
+
+  "home": {
+    "title": "Workouts",
+    "new-workout": "New workout",
+    "my-routines": "My routines"
+  },
+
+  "weekdays": {
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
+  }
 }

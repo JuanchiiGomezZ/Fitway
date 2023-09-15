@@ -1,22 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import { useFonts } from "expo-font";
 import { whiteColor } from "../styles/styles";
+import { useFonts } from "expo-font";
 
-export default LogoFitway = () => {
+export default ComponentName = ({ title }) => {
   const [fontsLoaded] = useFonts({
     Fugaz: require("../assets/fonts/Fugaz.ttf"),
   });
-
+  
   if (!fontsLoaded) return null;
-  return <Text style={styles.logo}>FITWAY</Text>;
+  return <Text style={styles.title}>{title}</Text>;
 };
 
 const styles = StyleSheet.create({
-  logo: {
-    fontSize: 50,
+  title: {
     color: whiteColor,
-    fontFamily: "Fugaz",
-    marginTop: 15,
+    fontSize: 40,
+    fontWeight: "800",
   },
 });

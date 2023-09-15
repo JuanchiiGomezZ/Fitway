@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 /* Screens */
-import Home from "../screens/home/index";
-import Profile from "../screens/profile/index";
-import Discover from "../screens/discover/index";
-import WorkoutLog from "../screens/workoutLog/index";
+import Home from "../screens/Home/index";
+import Profile from "../screens/Profile/index";
+import Discover from "../screens/Discover/index";
+import WorkoutLog from "../screens/WorkoutLog/index";
 
 /* Navigation */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -32,7 +32,7 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ color, focused }) => (
             <FontAwesome5 name="dumbbell" size={25} color={focused ? "white" : "#151515"} style={styles.centerButton} />
-          ),
+          )
         }}
       />
       <Tab.Screen
@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
     borderRadius: 90,
   },
   navBar: {
-    position: "absolute",
     backgroundColor: backgroundColor,
     height: 60,
     borderTopWidth: 0.55,
     borderTopColor: "#474747",
+
   },
 });

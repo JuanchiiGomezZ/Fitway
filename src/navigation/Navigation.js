@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./TabNavigator";
 
 /* SCREENS */
-import StartScreen from "../screens/start/index";
+import StartScreen from "../screens/Start/index";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
