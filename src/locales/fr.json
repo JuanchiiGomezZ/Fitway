@@ -1,4 +1,32 @@
 {
   "change-language": "Changer la langue",
-  "welcome": "Accueillir"
+  "welcome": "Bienvenue",
+  "search": "recherche",
+  "continue-with": "Continuer avec ",
+
+  "profile": {
+    "measurements": "Mesures",
+    "my-exercises": "Mes exercices",
+    "settings": "Paramètres",
+    "log-out": "Se déconnecter",
+    "weight": "Poids",
+    "height": "Taille",
+    "age": "Âge"
+  },
+
+  "home": {
+    "title": "Entraînements",
+    "new-workout": "Nouvel entraînement",
+    "my-routines": "Mes routines"
+  },
+
+  "weekdays": {
+    "sunday": "Dimanche",
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday": "Samedi"
+  }
 }

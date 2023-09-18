@@ -2,5 +2,31 @@
   "change-language": "Cambiar idioma",
   "welcome": "Bienvenido",
   "search": "buscar",
-  "continue-with": "Continue with "
+  "continue-with": "Continuar con ",
+
+  "profile": {
+    "measurements": "Mediciones",
+    "my-exercises": "Mis Ejercicios",
+    "settings": "Ajustes",
+    "log-out": "Cerrar Sesión",
+    "weight": "Peso",
+    "height": "Altura",
+    "age": "Edad"
+  },
+
+  "home": {
+    "title": "Entrenamientos",
+    "new-workout": "Nuevo entrenamiento",
+    "my-routines": "Mis rutinas"
+  },
+
+  "weekdays": {
+    "sunday": "Domingo",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado"
+  }
 }

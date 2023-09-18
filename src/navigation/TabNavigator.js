@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 /* Screens */
-import Home from "../screens/Home/index";
-import Profile from "../screens/Profile/index";
-import Discover from "../screens/Discover/index";
-import WorkoutLog from "../screens/WorkoutLog/index";
+import Home from "../screens/home/index";
+import Profile from "../screens/profile/index";
+import Discover from "../screens/discover/index";
+import WorkoutLog from "../screens/workoutLog/index";
 
 /* Navigation */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -31,7 +31,7 @@ const TabNavigator = () => {
         component={Home}
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome5 name="dumbbell" size={25} color={focused ? "white" : "#151515"} style={styles.centerButton} />
+            <FontAwesome5 name="home" size={25} color={focused ? "white" : "#151515"} style={styles.centerButton} />
           )
         }}
       />

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
-import { backgroundColor, boxBackgroundColor, grayLightColor, orangeColor, whiteColor } from "../../../styles/styles";
+import { backgroundColor, borderRadius, boxBackgroundColor, grayLightColor, orangeColor, whiteColor } from "../../../styles/styles";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
 
 export default WorkoutCard = ({ name, muscles, toggleBottomSheet }) => {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     width: "100%",
     backgroundColor: boxBackgroundColor,
-    borderRadius: 10,
+    borderRadius: borderRadius,
     paddingHorizontal: 10,
     paddingTop: 10,
     minHeight: 70,
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     color: whiteColor,
     fontSize: 22,
     fontWeight: "500",
-    width: "67%",
     marginBottom: 10,
     width: "100%",
   },
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
   config: {
     position: "absolute",
     top: 10,
-    right: 10,
+    right: 5,
   },
   trainingButton: {
     width: 50,
@@ -89,6 +88,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: "89%",
+    width: "91.5%",
   },
 });

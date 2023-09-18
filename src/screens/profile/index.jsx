@@ -9,7 +9,7 @@ import InfoContainer from "./components/InfoContainer";
 import ProfileOption from "./components/ProfileOption";
 
 /* STYLES */
-import { backgroundColor, containerPaddingHorizontal, orangeColor, whiteColor } from "../../styles/styles";
+import { backgroundColor, containerPaddingHorizontal, grayLightColor, orangeColor, whiteColor } from "../../styles/styles";
 
 export default ProfileScreen = () => {
   const { t } = useTranslation();
@@ -23,16 +23,23 @@ export default ProfileScreen = () => {
             src={"https://www.si.com/.image/t_share/MTk0NTM2MzQyMzg5MDA3OTgy/imago1020532436h.jpg"}
           />
         </View>
-
-        <Text style={styles.name}>Juan Manuel Gomez Omil</Text>
+        <View style={styles.namesContainer}>
+          <Text style={styles.name}>Juan Manuel Gomez Omil</Text>
+          <Text style={styles.username}>Juanchii</Text>
+        </View>
 
         <InfoContainer weight={60} height={180} />
 
         <View style={styles.optionsContainer}>
-          <ProfileOption optionName={t("measurements")} iconType={"Ionicons"} iconName={"body"} showArrow={true} />
-          <ProfileOption optionName={t("my-exercises")} iconType={"FontAwesome5"} iconName={"clipboard-list"} showArrow={true} />
-          <ProfileOption optionName={t("settings")} iconType={"FontAwesome"} iconName={"gear"} showArrow={true} />
-          <ProfileOption optionName={t("log-out")} iconType={"Feather"} iconName={"log-out"} showArrow={false} />
+          <ProfileOption optionName={t("profile.measurements")} iconType={"Ionicons"} iconName={"body"} showArrow={true} />
+          <ProfileOption
+            optionName={t("profile.my-exercises")}
+            iconType={"FontAwesome5"}
+            iconName={"clipboard-list"}
+            showArrow={true}
+          />
+          <ProfileOption optionName={t("profile.settings")} iconType={"FontAwesome"} iconName={"gear"} showArrow={true} />
+          <ProfileOption optionName={t("profile.log-out")} iconType={"Feather"} iconName={"log-out"} showArrow={false} />
         </View>
       </View>
     </View>
@@ -69,7 +76,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     marginTop: 70,
-    marginBottom: 30,
+  },
+  username: {
+    color: grayLightColor,
+    fontSize: 16,
+    fontWeight: "400",
+    textAlign: "left",
   },
   optionsContainer: {
     width: "100%",
@@ -81,5 +93,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 25,
     top: 20,
+  },
+  namesContainer: {
+    marginBottom: 15,
   },
 });

@@ -20,6 +20,14 @@
     "my-routines": "My routines"
   },
 
+  "routines": {
+    "title": "My Routines",
+    "filter": "Filters",
+    "new-routine": "New Routine",
+    "level": "Level",
+    "workouts": "Workouts"
+  },
+
   "weekdays": {
     "sunday": "Sunday",
     "monday": "Monday",

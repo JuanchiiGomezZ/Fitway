@@ -5,9 +5,11 @@ import { grayLightColor } from "../../../styles/styles";
 import TitleScreen from "../../../components/TitleScreen";
 import { FontAwesome } from "@expo/vector-icons";
 import { HomeButton } from "../../../components/Buttons";
+import { useNavigation } from "@react-navigation/native";
 
 export default HeaderHome = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
 
   return (
     <View style={styles.head}>
@@ -15,7 +17,7 @@ export default HeaderHome = () => {
       <Text style={styles.routineName}>Routine name</Text>
       <View style={styles.buttonsContainer}>
         <HomeButton text={t("home.new-workout")} icon={"clipboard-text"} />
-        <HomeButton text={t("home.my-routines")} icon={"bookmark"} />
+        <HomeButton text={t("home.my-routines")} icon={"bookmark"} task={() => navigation.navigate("Routines")} />
       </View>
     </View>
   );

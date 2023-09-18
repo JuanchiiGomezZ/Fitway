@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Dimensions, Pressable, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
-import { backdropColor, backgroundColor, orangeColor, redColor, whiteColor } from "../../../styles/styles";
-import { Feather, MaterialIcons } from "@expo/vector-icons";
+import { backdropColor, backgroundColor, greenColor, orangeColor, redColor, whiteColor } from "../../../styles/styles";
+import { Feather, MaterialIcons, AntDesign } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
 
-export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
+export default ConfigRoutineModal = ({ toggleBottomSheet, id }) => {
   const { t } = useTranslation();
-  console.log(workoutId);
+
   return (
     <>
       <Pressable style={styles.backdrop} onPress={() => toggleBottomSheet()} entering={FadeIn} exiting={FadeOut} />
       <Animated.View style={styles.bottomSheetContainer} entering={SlideInDown.damping(15)} exiting={SlideOutDown.damping(15)}>
         <View style={styles.optionsContainer}>
+          <TouchableOpacity style={styles.option}>
+            <AntDesign name="checkcircleo" size={24} color={greenColor} />
+            <Text style={[styles.optionText, { color: greenColor }]}>Set as active</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity style={styles.option}>
             <Feather name="edit-2" size={24} color={whiteColor} />
             <Text style={styles.optionText}>Edit workout</Text>
@@ -52,7 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 20,
+    gap: 10,
     backgroundColor: backgroundColor,
     borderRadius: 10,
   },
