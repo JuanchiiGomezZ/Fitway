@@ -13,11 +13,11 @@ export default HeaderHome = () => {
 
   return (
     <View style={styles.head}>
-      <TitleScreen title={t("home.title")} />
+      <TitleScreen title={t("Home.title")} />
       <Text style={styles.routineName}>Routine name</Text>
       <View style={styles.buttonsContainer}>
-        <HomeButton text={t("home.new-workout")} icon={"clipboard-text"} />
-        <HomeButton text={t("home.my-routines")} icon={"bookmark"} task={() => navigation.navigate("Routines")} />
+        <HomeButton text={t("Home.new-workout")} icon={"clipboard-text"} />
+        <HomeButton text={t("Home.my-routines")} icon={"bookmark"} task={() => navigation.navigate("Routines")} />
       </View>
     </View>
   );

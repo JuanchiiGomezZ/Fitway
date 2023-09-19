@@ -34,6 +34,22 @@ export const HomeButton = ({ task, icon, text }) => {
   );
 };
 
+export const ClassicButtonSmall = ({ task, text }) => {
+  return (
+    <TouchableOpacity style={[styles.button, styles.classicButtonSmall]} onPress={task}>
+      <Text style={styles.classicButtonSmallText}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+
+export const DisabledButtonSmall = ({ task, text }) => {
+  return (
+    <TouchableOpacity style={[styles.button, styles.classicButtonSmall, { backgroundColor: "grey" }]} onPress={task}>
+      <Text style={styles.classicButtonSmallText}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
   button: {
     width: "100%",
@@ -66,5 +82,15 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     width: "45%",
     gap: 7,
+  },
+
+  classicButtonSmall: {
+    backgroundColor: orangeColor,
+    height: 35,
+  },
+  classicButtonSmallText: {
+    color: whiteColor,
+    fontSize: 14,
+    fontWeight: "500",
   },
 });

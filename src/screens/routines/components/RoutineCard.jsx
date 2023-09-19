@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { borderRadius, boxBackgroundColor, grayLightColor, orangeColor, whiteColor } from "../../../styles/styles";
-import { Feather, FontAwesome5 } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 export default RoutineCard = ({ data, toggleBottomSheet }) => {
   const { t } = useTranslation();
@@ -13,11 +13,11 @@ export default RoutineCard = ({ data, toggleBottomSheet }) => {
       <Text style={styles.routineName}>{name}</Text>
       <View>
         <View style={styles.row}>
-          <Text style={styles.rowTitle}>{t("routines.level") + ": "}</Text>
+          <Text style={styles.rowTitle}>{t("Routines.level") + ": "}</Text>
           <Text style={[styles.rowTitle, { color: orangeColor }]}>{level}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.rowTitle}>{t("routines.workouts") + ": "}</Text>
+          <Text style={styles.rowTitle}>{t("Routines.workouts") + ": "}</Text>
           <Text style={[styles.rowTitle, { color: orangeColor }]}>{workoutsNumber}</Text>
         </View>
       </View>

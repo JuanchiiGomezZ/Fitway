@@ -13,23 +13,30 @@ export default ConfigRoutineModal = ({ toggleBottomSheet, id }) => {
       <Pressable style={styles.backdrop} onPress={() => toggleBottomSheet()} entering={FadeIn} exiting={FadeOut} />
       <Animated.View style={styles.bottomSheetContainer} entering={SlideInDown.damping(15)} exiting={SlideOutDown.damping(15)}>
         <View style={styles.optionsContainer}>
-          <TouchableOpacity style={styles.option}>
-            <AntDesign name="checkcircleo" size={24} color={greenColor} />
-            <Text style={[styles.optionText, { color: greenColor }]}>Set as active</Text>
-          </TouchableOpacity>
+          {id != 2 ? (
+            <TouchableOpacity style={styles.option}>
+              <AntDesign name="checkcircleo" size={24} color={greenColor} />
+              <Text style={[styles.optionText, { color: greenColor }]}>{t("configModal.set-as-active")}</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.option}>
+              <AntDesign name="closecircleo" size={24} color={orangeColor} />
+              <Text style={[styles.optionText, { color: orangeColor }]}>{t("configModal.remove-as-active")}</Text>
+            </TouchableOpacity>
+          )}
 
           <TouchableOpacity style={styles.option}>
             <Feather name="edit-2" size={24} color={whiteColor} />
-            <Text style={styles.optionText}>Edit workout</Text>
+            <Text style={styles.optionText}>{t("configModal.edit-routine")}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.option}>
             <MaterialIcons name="delete-outline" size={26} color={redColor} />
-            <Text style={[styles.optionText, { color: redColor }]}>Delete workout</Text>
+            <Text style={[styles.optionText, { color: redColor }]}>{t("configModal.delete-routine")}</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.option} onPress={() => toggleBottomSheet()}>
-          <Text style={styles.optionText}>Cancel</Text>
+          <Text style={styles.optionText}>{t("configModal.cancel")}</Text>
         </TouchableOpacity>
       </Animated.View>
     </>

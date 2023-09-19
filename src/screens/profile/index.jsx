@@ -31,15 +31,15 @@ export default ProfileScreen = () => {
         <InfoContainer weight={60} height={180} />
 
         <View style={styles.optionsContainer}>
-          <ProfileOption optionName={t("profile.measurements")} iconType={"Ionicons"} iconName={"body"} showArrow={true} />
+          <ProfileOption optionName={t("Profile.measurements")} iconType={"Ionicons"} iconName={"body"} showArrow={true} />
           <ProfileOption
-            optionName={t("profile.my-exercises")}
+            optionName={t("Profile.my-exercises")}
             iconType={"FontAwesome5"}
             iconName={"clipboard-list"}
             showArrow={true}
           />
-          <ProfileOption optionName={t("profile.settings")} iconType={"FontAwesome"} iconName={"gear"} showArrow={true} />
-          <ProfileOption optionName={t("profile.log-out")} iconType={"Feather"} iconName={"log-out"} showArrow={false} />
+          <ProfileOption optionName={t("Profile.settings")} iconType={"FontAwesome"} iconName={"gear"} showArrow={true} />
+          <ProfileOption optionName={t("Profile.log-out")} iconType={"Feather"} iconName={"log-out"} showArrow={false} />
         </View>
       </View>
     </View>

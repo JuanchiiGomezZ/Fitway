@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Dimensions, Pressable, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Pressable, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import { backdropColor, backgroundColor, orangeColor, redColor, whiteColor } from "../../../styles/styles";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
@@ -7,7 +7,7 @@ import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-nati
 
 export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
   const { t } = useTranslation();
-  console.log(workoutId);
+
   return (
     <>
       <Pressable style={styles.backdrop} onPress={() => toggleBottomSheet()} entering={FadeIn} exiting={FadeOut} />
@@ -15,16 +15,16 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
         <View style={styles.optionsContainer}>
           <TouchableOpacity style={styles.option}>
             <Feather name="edit-2" size={24} color={whiteColor} />
-            <Text style={styles.optionText}>Edit workout</Text>
+            <Text style={styles.optionText}>{t("configModal.edit-workout")}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.option}>
             <MaterialIcons name="delete-outline" size={26} color={redColor} />
-            <Text style={[styles.optionText, { color: redColor }]}>Delete workout</Text>
+            <Text style={[styles.optionText, { color: redColor }]}>{t("configModal.delete-workout")}</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.option} onPress={() => toggleBottomSheet()}>
-          <Text style={styles.optionText}>Cancel</Text>
+          <Text style={styles.optionText}>{t("configModal.cancel")}</Text>
         </TouchableOpacity>
       </Animated.View>
     </>

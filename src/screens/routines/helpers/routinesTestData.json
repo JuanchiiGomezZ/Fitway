@@ -1,20 +1,20 @@
 [
   {
-    "name": "RC-4",
+    "name": "RC-1",
     "level": "Intermediate",
     "workoutsNumber": 4,
     "active": false,
     "id": 1
   },
   {
-    "name": "RC-4",
+    "name": "RC-2",
     "level": "Intermediate",
     "workoutsNumber": 4,
     "active": false,
     "id": 2
   },
   {
-    "name": "RC-4",
+    "name": "RC-3",
     "level": "Intermediate",
     "workoutsNumber": 4,
     "active": false,
@@ -28,21 +28,21 @@
     "id": 4
   },
   {
-    "name": "RC-8",
+    "name": "RC-5",
     "level": "Intermediate",
     "workoutsNumber": 4,
     "active": true,
     "id": 5
   },
   {
-    "name": "RC-8",
+    "name": "RC-6",
     "level": "Intermediate",
     "workoutsNumber": 4,
     "active": false,
     "id": 6
   },
   {
-    "name": "RC-8",
+    "name": "RC-7",
     "level": "Intermediate",
     "workoutsNumber": 4,
     "active": false,

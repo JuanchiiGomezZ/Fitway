@@ -10,6 +10,8 @@ import { HomeButton } from "../../components/Buttons";
 import RoutineCard from "./components/RoutineCard";
 import Separator from "./components/Separator";
 import ConfigRoutineModal from "./components/ConfigRoutineModal";
+import NewRoutineModal from "./components/NewRoutineModal";
+import { Cla } from "../../components/Buttons";
 
 //STYLES
 import { backgroundColor, containerPaddingHorizontal, containerPaddingTop, grayLightColor } from "../../styles/styles";
@@ -21,21 +23,25 @@ export default RoutinesScreen = () => {
   const { t } = useTranslation();
   const [configRoutineModal, setConfigRoutineModal] = useState(false);
   const [routineId, setroutineId] = useState(null);
+  const [newRoutineModal, setNewRoutineModal] = useState(false);
 
   const toggleBottomSheet = (id) => {
     id && setroutineId(id);
     setConfigRoutineModal(!configRoutineModal);
+  };
+  const toggleNewRoutineModal = () => {
+    setNewRoutineModal(!newRoutineModal);
   };
 
   const activeRoutine = routinesTestData.find((item) => item.id == 2);
 
   return (
     <View style={styles.container}>
-      <Header title={t("routines.title")} />
+      <Header title={t("Routines.title")} />
       <ScrollView>
         <View style={styles.buttonsContainer}>
-          <HomeButton text={t("routines.filter")} icon={"filter-variant-plus"} />
-          <HomeButton text={t("routines.new-routine")} icon={"plus-circle"} />
+          <HomeButton text={t("Routines.filter")} icon={"filter-variant-plus"} />
+          <HomeButton text={t("Routines.new-routine")} icon={"plus-circle"} task={toggleNewRoutineModal}/>
         </View>
         <View style={styles.routinesContainer}>
           <Separator title={"Active"} />
@@ -43,12 +49,13 @@ export default RoutinesScreen = () => {
           <Separator title={"All"} />
           <View style={styles.allRoutines}>
             {routinesTestData.map(
-              (item) => !item.active && <RoutineCard key={item.id} data={item} toggleBottomSheet={toggleBottomSheet} />,
+              (item) => item.id != 2 && <RoutineCard key={item.id} data={item} toggleBottomSheet={toggleBottomSheet} />,
             )}
           </View>
         </View>
       </ScrollView>
       {configRoutineModal && <ConfigRoutineModal toggleBottomSheet={toggleBottomSheet} id={routineId} />}
+      {newRoutineModal && <NewRoutineModal toggleNewRoutineModal={toggleNewRoutineModal} />}
     </View>
   );
 };

@@ -4,7 +4,7 @@
   "search": "search",
   "continue-with": "Continue with ",
 
-  "profile": {
+  "Profile": {
     "measurements": "Measurements",
     "my-exercises": "My Exercises",
     "settings": "Settings",
@@ -14,18 +14,28 @@
     "age": "Age"
   },
 
-  "home": {
+  "Home": {
     "title": "Workouts",
     "new-workout": "New workout",
     "my-routines": "My routines"
   },
 
-  "routines": {
+  "Routines": {
     "title": "My Routines",
     "filter": "Filters",
     "new-routine": "New Routine",
     "level": "Level",
     "workouts": "Workouts"
+  },
+
+  "configModal": {
+    "set-as-active": "Set as active",
+    "remove-as-active": "Remove as active",
+    "edit-routine": "Edit routine",
+    "delete-routine": "Delete routine",
+    "edit-workout": "Edit workout",
+    "delete-workout": "Delete workout",
+    "cancel": "Cancel"
   },
 
   "weekdays": {
