@@ -56,7 +56,6 @@ export default MyRoutinesScreen = () => {
         </View>
       </ScrollView>
       {configRoutineModal && <ConfigRoutineModal toggleBottomSheet={toggleBottomSheet} id={routineId} />}
-     {/*  {newRoutineModal && <NewRoutineModal toggleNewRoutineModal={toggleNewRoutineModal} />} */}
     </View>
   );
 };

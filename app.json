@@ -22,9 +22,23 @@
         "backgroundColor": "#ffffff"
       }
     },
-    "experiments":{
+    "experiments": {
       "typedRoutes": true
     },
-    "plugins": ["expo-localization"]
+    "plugins": [
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Allow Fitway to access camera."
+        }
+      ],
+      "expo-localization"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8129cdd7-4d9c-4bc0-b14c-6e7326beb3fa"
+      }
+    },
+    "owner": "juanchiigomezz"
   }
 }

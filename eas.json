@@ -1,0 +1,21 @@
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://fitway.onrender.com/api/",
+        "EXPO_PUBLIC_WEB_CLIENT_ID": "790792192744-30ipq5vq965cji1ekkgnj1th42lp81ig.apps.googleusercontent.com"
+      }
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        /* "EXPO_PUBLIC_API_URL": "https://fitway.onrender.com/api/",
+        "EXPO_PUBLIC_WEB_CLIENT_ID": "790792192744-30ipq5vq965cji1ekkgnj1th42lp81ig.apps.googleusercontent.com" */
+      }
+    }
+  }
+}

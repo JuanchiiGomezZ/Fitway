@@ -9,6 +9,7 @@ import TabNavigator from "./TabNavigator";
 import StartScreen from "../screens/start/index";
 import MyRoutinesScreen from "../screens/my-routines/index";
 import AllRoutinesScreen from "../screens/routines/index";
+import BarCodeScannerScreen from "../helpers/BarCodeScannerScreen";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -37,6 +38,13 @@ export default Navigation = () => {
         <Stack.Screen
           name="AllRoutines"
           component={AllRoutinesScreen}
+          options={{
+            animation: "slide_from_right",
+          }}
+        />
+        <Stack.Screen
+          name="BarCodeScanner"
+          component={BarCodeScannerScreen}
           options={{
             animation: "slide_from_right",
           }}

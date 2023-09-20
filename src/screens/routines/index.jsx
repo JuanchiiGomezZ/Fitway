@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 //HOOKS & HELPERS
 import { useTranslation } from "react-i18next";
 import routinesTest from "./helper/routinesTest.json";
+import { useNavigation } from "@react-navigation/native";
 
 //COMPONENTS
 import Header from "../../components/Header";
@@ -18,6 +19,7 @@ import Separator from "../../components/Separator";
 
 export default AllRoutinesScreen = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const [newRoutineModal, setNewRoutineModal] = useState(false);
 
   const toggleNewRoutineModal = () => {
@@ -29,11 +31,11 @@ export default AllRoutinesScreen = () => {
       <View style={styles.head}>
         <Header title={t("Routines.title")} />
         <View style={{ marginBottom: 13 }}>
-          <TransparentButtonRounded text={"Create routine"} icon={"plus"} task={toggleNewRoutineModal}/>
+          <TransparentButtonRounded text={"Create routine"} icon={"plus"} task={toggleNewRoutineModal} />
         </View>
       </View>
       <ScrollView>
-        <SearchBar />
+        <SearchBar/>
         <Separator title={"FITWAY"} />
         <View style={styles.cardsContainer}>
           {routinesTest.map((item) => (
@@ -41,6 +43,7 @@ export default AllRoutinesScreen = () => {
           ))}
         </View>
       </ScrollView>
+
       {newRoutineModal && <NewRoutineModal toggleNewRoutineModal={toggleNewRoutineModal} />}
     </View>
   );
