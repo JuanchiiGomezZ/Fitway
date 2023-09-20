@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { grayLightColor, whiteColor } from "../../../styles/styles";
+import { grayLightColor, whiteColor } from "../styles/styles";
 
 export default Separator = ({ title }) => {
   return (
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   separatorLine: {
-    flex: 1, // Toma el espacio restante disponible
+    flex: 1,
     height: 1,
     backgroundColor: grayLightColor,
     marginTop: 2.5,

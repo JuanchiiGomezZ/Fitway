@@ -25,11 +25,19 @@ export const FacebookButton = ({ task }) => {
   );
 };
 
-export const HomeButton = ({ task, icon, text }) => {
+export const TransparentButton = ({ task, icon, text }) => {
   return (
-    <TouchableOpacity style={[styles.homeButton]} onPress={task}>
+    <TouchableOpacity style={[styles.transparentButton]} onPress={task}>
       <MaterialCommunityIcons name={icon} size={20} color={whiteColor} />
-      <Text style={{ color: whiteColor, fontSize: 15 }}>{text}</Text>
+      <Text style={styles.classicButtonSmallText}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+export const TransparentButtonRounded = ({ task, icon, text }) => {
+  return (
+    <TouchableOpacity style={[styles.transparentBtnRounded]} onPress={task}>
+      <MaterialCommunityIcons name={icon} size={20} color={whiteColor} />
+      <Text style={styles.classicButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -50,6 +58,14 @@ export const DisabledButtonSmall = ({ task, text }) => {
   );
 };
 
+export const ClassicButton = ({ task, text }) => {
+  return (
+    <TouchableOpacity style={[styles.button]} onPress={task}>
+      <Text style={styles.textButton}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
   button: {
     width: "100%",
@@ -58,6 +74,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 5,
     backgroundColor: orangeColor,
+    fontSize: 18,
+  },
+
+  textButton: {
+    color: whiteColor,
+    fontSize: 16,
+    fontWeight: 600,
   },
 
   googleButton: {
@@ -71,7 +94,7 @@ const styles = StyleSheet.create({
     height: 22,
   },
 
-  homeButton: {
+  transparentButton: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -80,8 +103,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 8,
-    width: "45%",
+    width: "48%",
     gap: 7,
+  },
+
+  transparentBtnRounded: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 2,
+    borderColor: orangeColor,
+    borderWidth: 1,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderRadius: 20,
   },
 
   classicButtonSmall: {

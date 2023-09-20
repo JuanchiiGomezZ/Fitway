@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { borderRadius, boxBackgroundColor, orangeColor, whiteColor } from "../../../styles/styles";
+import { borderRadius, boxBackgroundColor, grayLightColor, orangeColor, whiteColor } from "../../../styles/styles";
+import { Feather } from "@expo/vector-icons";
 
-
-export default RoutineCard = ({ data, toggleBottomSheet }) => {
+export default MyRoutineCard = ({ data, toggleBottomSheet }) => {
   const { t } = useTranslation();
 
-  const { id, name, level, workoutsNumber, owner } = data;
+  const { id, name, level, workoutsNumber } = data;
   return (
     <TouchableOpacity style={styles.cardContainer}>
       <Text style={styles.routineName}>{name}</Text>
-      <View style={styles.label}>
-        <Text style={styles.labelText}>Fitway</Text>
-      </View>
       <View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>
@@ -24,6 +21,9 @@ export default RoutineCard = ({ data, toggleBottomSheet }) => {
           <Text style={[styles.rowTitle, { color: orangeColor }]}>{workoutsNumber}</Text>
         </View>
       </View>
+      <TouchableOpacity style={styles.config} onPress={() => toggleBottomSheet(id)}>
+        <Feather name="more-vertical" size={25} color={grayLightColor} />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
@@ -50,19 +50,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "500",
   },
-  label: {
+  config: {
     position: "absolute",
-    right: 0,
-    top: 0,
-    borderColor: orangeColor,
-    borderWidth: 1,
-    paddingVertical: 3,
-    borderTopRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-    width: "30%",
-  },
-  labelText: {
-    color: orangeColor,
-    textAlign: "center",
+    top: 10,
+    right: 5,
   },
 });

@@ -7,7 +7,8 @@ import { NavigationContainer } from "@react-navigation/native";
 /* SCREENS */
 import TabNavigator from "./TabNavigator";
 import StartScreen from "../screens/start/index";
-import RoutineScreen from "../screens/routines/index";
+import MyRoutinesScreen from "../screens/my-routines/index";
+import AllRoutinesScreen from "../screens/routines/index";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -27,10 +28,17 @@ export default Navigation = () => {
           }}
         />
         <Stack.Screen
-          name="Routines"
-          component={RoutineScreen}
+          name="MyRoutines"
+          component={MyRoutinesScreen}
           options={{
             animation: "slide_from_bottom",
+          }}
+        />
+        <Stack.Screen
+          name="AllRoutines"
+          component={AllRoutinesScreen}
+          options={{
+            animation: "slide_from_right",
           }}
         />
         {/* NOT-AUTHENTICATED */}

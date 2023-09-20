@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { grayLightColor } from "../../../styles/styles";
 import TitleScreen from "../../../components/TitleScreen";
 import { FontAwesome } from "@expo/vector-icons";
-import { HomeButton } from "../../../components/Buttons";
+import { TransparentButton } from "../../../components/Buttons";
 import { useNavigation } from "@react-navigation/native";
 
 export default HeaderHome = () => {
@@ -16,8 +16,8 @@ export default HeaderHome = () => {
       <TitleScreen title={t("Home.title")} />
       <Text style={styles.routineName}>Routine name</Text>
       <View style={styles.buttonsContainer}>
-        <HomeButton text={t("Home.new-workout")} icon={"clipboard-text"} />
-        <HomeButton text={t("Home.my-routines")} icon={"bookmark"} task={() => navigation.navigate("Routines")} />
+        <TransparentButton text={t("Home.new-workout")} icon={"clipboard-text"} />
+        <TransparentButton text={t("Home.my-routines")} icon={"bookmark"} task={() => navigation.navigate("MyRoutines")} />
       </View>
     </View>
   );

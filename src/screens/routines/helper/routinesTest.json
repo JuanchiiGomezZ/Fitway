@@ -1,0 +1,66 @@
+[
+  {
+    "name": "RC-1",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": false,
+    "id": 1,
+    "owner": "Pedro"
+  },
+  {
+    "name": "RC-4",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": false,
+    "id": 4,
+    "owner": "Mariaslove"
+  },
+  {
+    "name": "RC-5",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": true,
+    "id": 5,
+    "owner": "Petero3001"
+  },
+  {
+    "name": "RC-6",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": false,
+    "id": 6,
+    "owner": "JamieRodie"
+  },
+  {
+    "name": "RC-7",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": false,
+    "id": 7,
+    "owner": "Marcus"
+  },
+  {
+    "name": "RC-5",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": true,
+    "id": 8,
+    "owner": "Petero3001"
+  },
+  {
+    "name": "RC-6",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": false,
+    "id": 9,
+    "owner": "JamieRodie"
+  },
+  {
+    "name": "RC-7",
+    "level": "Intermediate",
+    "workoutsNumber": 4,
+    "active": false,
+    "id": 10,
+    "owner": "Marcus"
+  }
+]

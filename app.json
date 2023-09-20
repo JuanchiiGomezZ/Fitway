@@ -25,6 +25,6 @@
     "experiments":{
       "typedRoutes": true
     },
-    "plugins": ["expo-localization", "expo-router"]
+    "plugins": ["expo-localization"]
   }
 }

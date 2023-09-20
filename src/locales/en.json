@@ -20,12 +20,16 @@
     "my-routines": "My routines"
   },
 
-  "Routines": {
+  "MyRoutines": {
     "title": "My Routines",
     "filter": "Filters",
-    "new-routine": "New Routine",
+    "add-routine": "Add Routine",
     "level": "Level",
     "workouts": "Workouts"
+  },
+  "Routines": {
+    "title": "Routines",
+    "new-routine":"Create Routine"
   },
 
   "configModal": {
