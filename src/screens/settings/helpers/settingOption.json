@@ -1,0 +1,32 @@
+[
+  {
+    "route": "",
+    "title": "Settings.profile",
+    "icon": "account",
+    "id": 1
+  },
+  {
+    "route": "",
+    "title": "Settings.account",
+    "icon": "lock",
+    "id": 2
+  },
+  {
+    "route": "",
+    "title": "Settings.notifications",
+    "icon": "bell",
+    "id": 3
+  },
+  {
+    "route": "ChangeLanguage",
+    "title": "Settings.languages",
+    "icon": "flag",
+    "id": 4
+  },
+  {
+    "route": "",
+    "title": "Settings.theme",
+    "icon": "theme-light-dark",
+    "id": 5
+  }
+]

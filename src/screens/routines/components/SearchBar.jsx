@@ -4,7 +4,7 @@ import { MaterialIcons, Entypo } from "@expo/vector-icons";
 import { SearchInput } from "../../../components/Inputs";
 import { useNavigation } from "@react-navigation/native";
 
-export default SearchBar = () => {
+export default SearchBar = ({toggleFilterModal}) => {
   const navigation = useNavigation();
   const [querySearch, setQerySearch] = useState("");
 
@@ -19,7 +19,7 @@ export default SearchBar = () => {
         }}
       />
       <SearchInput placeholder={"Search..."} inputChange={querySearch} setInputChange={setQerySearch} />
-      <Entypo name="sound-mix" size={26} color="white" style={{ transform: [{ rotate: "90deg" }] }} />
+      <Entypo name="sound-mix" size={26} color="white" style={{ transform: [{ rotate: "90deg" }] }} onPress={toggleFilterModal} />
     </View>
   );
 };

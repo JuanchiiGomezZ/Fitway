@@ -1,0 +1,71 @@
+{
+  "continue-with": "Continuar com",
+
+  "Profile": {
+    "measurements": "Medições",
+    "my-exercises": "Meus Exercícios",
+    "settings": "Configurações",
+    "log-out": "Sair",
+    "weight": "Peso",
+    "height": "Altura",
+    "age": "Idade"
+  },
+
+  "Home": {
+    "title": "Treinos",
+    "new-workout": "Novo treino",
+    "my-routines": "Minhas rotinas"
+  },
+
+  "MyRoutines": {
+    "title": "Minhas Rotinas",
+    "filter": "Filtros",
+    "add-routine": "Adicionar Rotina",
+    "level": "Nível",
+    "workouts": "Exercícios"
+  },
+  "Routines": {
+    "title": "Rotinas",
+    "create-routine": "Criar Rotina",
+    "FilterRoutineModal": {
+      "title": "Filtrar",
+      "days": "Dias (exercícios)",
+      "difficulty": "Dificuldade",
+      "creator": "Criador",
+      "apply": "Aplicar",
+      "clear-filters": "Limpar filtros"
+    },
+    "NewRoutineModal": {
+      "title": "Nova rotina",
+      "choose-difficulty": "Escolher dificuldade",
+      "choose-visibility": "Escolher visibilidade"
+    }
+  },
+  "Settings": {
+    "profile": "Perfil",
+    "account": "Conta",
+    "notifications": "Notificações",
+    "languages": "Idiomas",
+    "theme": "Tema"
+  },
+
+  "configModal": {
+    "set-as-active": "Definir como ativo",
+    "remove-as-active": "Remover como ativo",
+    "edit-routine": "Editar rotina",
+    "delete-routine": "Excluir rotina",
+    "edit-workout": "Editar exercício",
+    "delete-workout": "Excluir exercício",
+    "cancel": "Cancelar"
+  },
+
+  "weekdays": {
+    "sunday": "Domingo",
+    "monday": "Segunda-feira",
+    "tuesday": "Terça-feira",
+    "wednesday": "Quarta-feira",
+    "thursday": "Quinta-feira",
+    "friday": "Sexta-feira",
+    "saturday": "Sábado"
+  }
+}

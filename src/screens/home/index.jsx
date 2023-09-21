@@ -3,18 +3,20 @@ import { Button, StyleSheet, Text, View } from "react-native";
 
 /* HOOKS */
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 /* COMPONENTS */
 import Weekdays from "./components/Weekdays";
 import HeaderHome from "./components/HeaderHome";
-import WorkoutCardsList from "./components/WorkoutCardsList";
 import ConfigWorkoutModal from "./components/ConfigWorkoutModal";
 
 /* STYLES */
 import { backgroundColor, containerPaddingHorizontal, containerPaddingTop, grayLightColor } from "../../styles/styles";
+import WorkoutCard from "./components/WorkoutCard";
 
 export default HomeScreen = () => {
   const { t } = useTranslation();
+  const { workouts } = useSelector((state) => state.workouts);
 
   const [configWorkoutModal, setConfigWorkoutModal] = useState(false);
   const [workoutId, setWorkoutId] = useState(null);
@@ -28,7 +30,9 @@ export default HomeScreen = () => {
     <View style={styles.container}>
       <Weekdays />
       <HeaderHome />
-      <WorkoutCardsList toggleBottomSheet={toggleBottomSheet} />
+      {workouts.map((item, index) => (
+        <WorkoutCard key={index} data={item} toggleBottomSheet={toggleBottomSheet} />
+      ))}
       {configWorkoutModal && <ConfigWorkoutModal toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />}
     </View>
   );

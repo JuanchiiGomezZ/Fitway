@@ -1,23 +1,65 @@
 {
   "change-language": "Changer la langue",
   "welcome": "Bienvenue",
-  "search": "recherche",
-  "continue-with": "Continuer avec ",
+  "search": "rechercher",
+  "continue-with": "Continuer avec",
 
-  "profile": {
+  "Profile": {
     "measurements": "Mesures",
-    "my-exercises": "Mes exercices",
+    "my-exercises": "Mes Exercices",
     "settings": "Paramètres",
-    "log-out": "Se déconnecter",
+    "log-out": "Déconnexion",
     "weight": "Poids",
     "height": "Taille",
     "age": "Âge"
   },
 
-  "home": {
+  "Home": {
     "title": "Entraînements",
     "new-workout": "Nouvel entraînement",
     "my-routines": "Mes routines"
+  },
+
+  "MyRoutines": {
+    "title": "Mes Rutinas",
+    "filter": "Filtres",
+    "add-routine": "Ajouter une routine",
+    "level": "Niveau",
+    "workouts": "Exercices"
+  },
+  "Routines": {
+    "title": "Rutinas",
+    "create-routine": "Créer Rutina",
+    "FilterRoutineModal": {
+      "title": "Filtrer",
+      "days": "Jours (exercices)",
+      "difficulty": "Difficulté",
+      "creator": "Créateur",
+      "apply": "Appliquer",
+      "clear-filters": "Effacer les filtres"
+    },
+    "NewRoutineModal": {
+      "title": "Nouvelle rutina",
+      "choose-difficulty": "Choisir dificulté",
+      "choose-visibility": "Choisir visibilité"
+    }
+  },
+  "Settings": {
+    "profile": "Profil",
+    "account": "Compte",
+    "notifications": "Notifications",
+    "languages": "Langues",
+    "theme": "Thème"
+  },
+
+  "configModal": {
+    "set-as-active": "Définir comme actif",
+    "remove-as-active": "Retirer comme actif",
+    "edit-routine": "Modifier rutina",
+    "delete-routine": "Supprimer rutina",
+    "edit-workout": "Modifier ejercicio",
+    "delete-workout": "Supprimer ejercicio",
+    "cancel": "Annuler"
   },
 
   "weekdays": {

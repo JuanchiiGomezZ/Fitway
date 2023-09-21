@@ -4,7 +4,7 @@ import { StyleSheet, ImageBackground, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { containerPaddingHorizontal, containerPaddingTop, grayLightColor, orangeColor } from "../../styles/styles";
-import { GoogleButton, FacebookButton, ClassicButton } from "../../components/Buttons";
+import { GoogleButton, FacebookButton, OrangeButton } from "../../components/Buttons";
 import LogoFitway from "../../components/LogoFitway";
 
 export default StartScreen = () => {
@@ -23,7 +23,7 @@ export default StartScreen = () => {
       >
         <LogoFitway />
         <View style={styles.bottomContainer}>
-          <ClassicButton text={"Login"} />
+          <OrangeButton text={"Login"} />
 {/*           <FacebookButton /> */}
           <GoogleButton />
           <View>

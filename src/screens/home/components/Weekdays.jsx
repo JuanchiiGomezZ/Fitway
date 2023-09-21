@@ -25,8 +25,8 @@ export default Weekdays = () => {
 
   return (
     <View style={styles.daysContainer}>
-      {initialWeekDaysArr.map((item) => (
-        <View style={styles.dayContainer} key={item.name}>
+      {initialWeekDaysArr.map((item, index) => (
+        <View style={styles.dayContainer} key={index}>
           <View style={[styles.day, item.today && styles.activeDay]}>
             <Text style={styles.dayText}>{item.name}</Text>
           </View>
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: screenWidth * 0.02,
     marginTop: 20,
-    marginBottom: 10,
   },
   day: {
     height: screenWidth * 0.11,

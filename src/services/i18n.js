@@ -4,6 +4,7 @@ import en from "../locales/en.json";
 import es from "../locales/es.json";
 import fr from "../locales/fr.json";
 import kr from "../locales/kr.json";
+import pt from "../locales/pt.json";
 import * as Localization from "expo-localization";
 
 export const languageResources = {
@@ -11,6 +12,7 @@ export const languageResources = {
   es: { translation: es },
   fr: { translation: fr },
   kr: { translation: kr },
+  pt: { translation: pt },
 };
 
 i18next.use(initReactI18next).init({

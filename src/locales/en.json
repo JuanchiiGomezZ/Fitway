@@ -29,7 +29,27 @@
   },
   "Routines": {
     "title": "Routines",
-    "new-routine":"Create Routine"
+    "create-routine": "Create Routine",
+    "FilterRoutineModal": {
+      "title": "Filter",
+      "days": "Days (workouts)",
+      "difficulty": "Difficulty",
+      "creator": "Creator",
+      "apply": "Apply",
+      "clear-filters": "Clear filters"
+    },
+    "NewRoutineModal": {
+      "title": "New routine",
+      "choose-difficulty": "Choose difficulty",
+      "choose-visibility": "Choose visibility"
+    }
+  },
+  "Settings": {
+    "profile": "Profile",
+    "account": "Account",
+    "notifications": "Notifications",
+    "languages": "Languages",
+    "theme": "Theme"
   },
 
   "configModal": {

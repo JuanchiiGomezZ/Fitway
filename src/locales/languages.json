@@ -1,0 +1,27 @@
+[
+  {
+    "name": "English",
+    "abbreviation": "en",
+    "icon": "🇬🇧"
+  },
+  {
+    "name": "Español",
+    "abbreviation": "es",
+    "icon": "🇪🇸"
+  },
+  {
+    "name": "Français",
+    "abbreviation": "fr",
+    "icon": "🇫🇷"
+  },
+  {
+    "name": "한국어",
+    "abbreviation": "kr",
+    "icon": "🇰🇷"
+  },
+  {
+    "name": "Português",
+    "abbreviation": "pt",
+    "icon": "🇵🇹"
+  }
+]

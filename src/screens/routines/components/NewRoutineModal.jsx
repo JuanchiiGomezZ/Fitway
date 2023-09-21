@@ -5,6 +5,7 @@ import {
   backdropColor,
   backgroundColor,
   borderRadius,
+  grayLightColor,
   orangeColor,
   orangeDarkColor,
   redColor,
@@ -13,7 +14,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOut, FadeInRight, FadeOutRight } from "react-native-reanimated";
 import { ClassicInput } from "../../../components/Inputs";
-import { ClassicButtonSmall, DisabledButtonSmall } from "../../../components/Buttons";
+import { OrangeButtonSmall, DisabledButtonSmall, CloseModalIcon } from "../../../components/Buttons";
 
 export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
   const { t } = useTranslation();
@@ -34,16 +35,14 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
 
       <Animated.View style={styles.modalContainer} entering={FadeInRight} exiting={FadeOutRight}>
         <View style={styles.header}>
-          <Text style={styles.title}>New routine</Text>
-          <TouchableOpacity onPress={toggleNewRoutineModal}>
-            <MaterialCommunityIcons style={styles.icon} name="close-thick" />
-          </TouchableOpacity>
+          <Text style={styles.title}>{t("Routines.NewRoutineModal.title")}</Text>
+          <CloseModalIcon task={toggleNewRoutineModal}/>
         </View>
 
         <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />
 
         <View>
-          <Text style={styles.subtitle}>Choose difficulty</Text>
+          <Text style={styles.subtitle}>{t("Routines.NewRoutineModal.choose-difficulty")}:</Text>
           <View style={styles.tagsContainer}>
             {difficulties.map((item) => (
               <TouchableHighlight
@@ -62,7 +61,7 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
         </View>
 
         <View>
-          <Text style={styles.subtitle}>Choose visibilitty</Text>
+          <Text style={styles.subtitle}>{t("Routines.NewRoutineModal.choose-visibility")}:</Text>
           <View style={styles.tagsContainer}>
             {visibilities.map((item) => (
               <TouchableHighlight
@@ -83,7 +82,7 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
         {name.trim() < 1 || difficulty == null ? (
           <DisabledButtonSmall text={"Continue"} />
         ) : (
-          <ClassicButtonSmall text={"Continue"} />
+          <OrangeButtonSmall text={"Continue"} />
         )}
       </Animated.View>
     </>
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius,
     paddingHorizontal: "5%",
     paddingTop: 10,
-    paddingBottom:15,
+    paddingBottom: 15,
     zIndex: 4,
     gap: 25,
   },

@@ -1,9 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
-import { backgroundColor, borderRadius, boxBackgroundColor, grayLightColor, orangeColor, whiteColor } from "../../../styles/styles";
+import {
+  backgroundColor,
+  borderRadius,
+  boxBackgroundColor,
+  grayLightColor,
+  orangeColor,
+  whiteColor,
+} from "../../../styles/styles";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
 
-export default WorkoutCard = ({ name, muscles, toggleBottomSheet }) => {
+export default WorkoutCard = ({ data, toggleBottomSheet }) => {
+  const { muscles, name } = data;
   return (
     <TouchableOpacity style={styles.cardContainer}>
       <TouchableOpacity

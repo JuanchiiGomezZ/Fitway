@@ -12,6 +12,7 @@ import { TransparentButtonRounded } from "../../components/Buttons";
 import SearchBar from "./components/SearchBar";
 import RoutineCard from "./components/RoutineCard";
 import NewRoutineModal from "./components/NewRoutineModal";
+import FilterRoutineModal from "./components/FilterRoutineModal";
 
 //MORE
 import { backgroundColor, containerPaddingHorizontal, containerPaddingTop } from "../../styles/styles";
@@ -21,9 +22,14 @@ export default AllRoutinesScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [newRoutineModal, setNewRoutineModal] = useState(false);
+  const [filterModal, setFilterModal] = useState(false);
 
   const toggleNewRoutineModal = () => {
     setNewRoutineModal(!newRoutineModal);
+  };
+
+  const toggleFilter = () => {
+    setFilterModal(!filterModal);
   };
 
   return (
@@ -31,11 +37,11 @@ export default AllRoutinesScreen = () => {
       <View style={styles.head}>
         <Header title={t("Routines.title")} />
         <View style={{ marginBottom: 13 }}>
-          <TransparentButtonRounded text={"Create routine"} icon={"plus"} task={toggleNewRoutineModal} />
+          <TransparentButtonRounded text={t("Routines.create-routine")} icon={"plus"} task={toggleNewRoutineModal} />
         </View>
       </View>
       <ScrollView>
-        <SearchBar/>
+        <SearchBar toggleFilterModal={toggleFilter} />
         <Separator title={"FITWAY"} />
         <View style={styles.cardsContainer}>
           {routinesTest.map((item) => (
@@ -45,6 +51,7 @@ export default AllRoutinesScreen = () => {
       </ScrollView>
 
       {newRoutineModal && <NewRoutineModal toggleNewRoutineModal={toggleNewRoutineModal} />}
+      {filterModal && <FilterRoutineModal toggleModal={toggleFilter} />}
     </View>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 /* HOOKS */
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
 /* COMPONENTS */
 import InfoContainer from "./components/InfoContainer";
@@ -13,6 +14,7 @@ import { backgroundColor, containerPaddingHorizontal, grayLightColor, orangeColo
 
 export default ProfileScreen = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
 
   return (
     <View style={styles.background}>
@@ -38,7 +40,13 @@ export default ProfileScreen = () => {
             iconName={"clipboard-list"}
             showArrow={true}
           />
-          <ProfileOption optionName={t("Profile.settings")} iconType={"FontAwesome"} iconName={"gear"} showArrow={true} />
+          <ProfileOption
+            optionName={t("Profile.settings")}
+            iconType={"FontAwesome"}
+            iconName={"gear"}
+            showArrow={true}
+            task={() => navigation.navigate("Settings")}
+          />
           <ProfileOption optionName={t("Profile.log-out")} iconType={"Feather"} iconName={"log-out"} showArrow={false} />
         </View>
       </View>
