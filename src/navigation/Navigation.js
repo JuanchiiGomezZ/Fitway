@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 /* NAVIGATION */
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 /* HOOKS */
 import { useSelector } from "react-redux";
+import useAuthStore from "../hooks/redux/useAuthStore";
 
 /* SCREENS */
 import TabNavigator from "./TabNavigator";
@@ -19,6 +20,11 @@ import ChangeLanguage from "../screens/settings/views/ChangeLanguage";
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
   const { status } = useSelector((state) => state.auth);
+  const { checkAuthToken } = useAuthStore();
+
+  useEffect(() => {
+    checkAuthToken();
+  }, []);
 
   return (
     <NavigationContainer>

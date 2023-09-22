@@ -4,6 +4,8 @@ import React, { useState } from "react";
 /* HOOKS */
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
+import { storage } from "../../helpers/storage";
+import useAuthStore from "../../hooks/redux/useAuthStore";
 
 /* COMPONENTS */
 import InfoContainer from "./components/InfoContainer";
@@ -15,7 +17,7 @@ import { backgroundColor, containerPaddingHorizontal, grayLightColor, orangeColo
 export default ProfileScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-
+  const { signOut } = useAuthStore();
   return (
     <View style={styles.background}>
       <View style={styles.container}>
@@ -33,7 +35,12 @@ export default ProfileScreen = () => {
         <InfoContainer weight={60} height={180} />
 
         <View style={styles.optionsContainer}>
-          <ProfileOption optionName={t("Profile.measurements")} iconType={"Ionicons"} iconName={"body"} showArrow={true} />
+          <ProfileOption
+            optionName={t("Profile.measurements")}
+            iconType={"Ionicons"}
+            iconName={"body"}
+            showArrow={true}
+          />
           <ProfileOption
             optionName={t("Profile.my-exercises")}
             iconType={"FontAwesome5"}
@@ -47,7 +54,13 @@ export default ProfileScreen = () => {
             showArrow={true}
             task={() => navigation.navigate("Settings")}
           />
-          <ProfileOption optionName={t("Profile.log-out")} iconType={"Feather"} iconName={"log-out"} showArrow={false} />
+          <ProfileOption
+            optionName={t("Profile.log-out")}
+            iconType={"Feather"}
+            iconName={"log-out"}
+            showArrow={false}
+            task={signOut}
+          />
         </View>
       </View>
     </View>

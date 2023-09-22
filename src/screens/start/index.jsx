@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { StyleSheet, ImageBackground, View, Text } from "react-native";
 
+/* HOOKS & HELPERS */
 import { LinearGradient } from "expo-linear-gradient";
+import { useSelector } from "react-redux";
+import { storage } from "../../helpers/storage";
 
-import { containerPaddingHorizontal, grayLightColor, orangeColor } from "../../styles/styles";
+/* COMPONENTS */
 import { GoogleButton, FacebookButton, OrangeButton } from "../../components/Buttons";
 import LogoFitway from "../../components/LogoFitway";
 import Loader from "../../components/Loader";
-
 import useAuthStore from "../../hooks/redux/useAuthStore";
-import { useSelector } from "react-redux";
 
+import { containerPaddingHorizontal, grayLightColor, orangeColor } from "../../styles/styles";
 export default StartScreen = () => {
   const { signIn, signOut } = useAuthStore();
   const { isLoading } = useSelector((state) => state.auth);
-
 
   return (
     <>
@@ -35,7 +36,12 @@ export default StartScreen = () => {
           >
             <LogoFitway />
             <View style={styles.bottomContainer}>
-              <OrangeButton text={"Login"} task={signOut}/>
+              <OrangeButton
+                text={"Login"}
+                task={() => {
+                  console.log(storage.getString("token"));
+                }}
+              />
               {/*           <FacebookButton /> */}
               <GoogleButton task={signIn} />
               <View>

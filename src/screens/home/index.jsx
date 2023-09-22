@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, ScrollView } from "react-native";
 
 /* HOOKS */
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,7 @@ export default HomeScreen = () => {
   const { t } = useTranslation();
   const { workouts } = useSelector((state) => state.workouts);
 
+
   const [configWorkoutModal, setConfigWorkoutModal] = useState(false);
   const [workoutId, setWorkoutId] = useState(null);
 
@@ -27,14 +28,14 @@ export default HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Weekdays />
       <HeaderHome />
       {workouts.map((item, index) => (
         <WorkoutCard key={index} data={item} toggleBottomSheet={toggleBottomSheet} />
       ))}
       {configWorkoutModal && <ConfigWorkoutModal toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />}
-    </View>
+    </ScrollView>
   );
 };
 

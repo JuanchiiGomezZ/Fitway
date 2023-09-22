@@ -11,13 +11,13 @@ import {
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
 
 export default WorkoutCard = ({ data, toggleBottomSheet }) => {
-  const { muscles, name } = data;
+  const { muscles, name, id } = data;
   return (
     <TouchableOpacity style={styles.cardContainer}>
       <TouchableOpacity
         style={styles.config}
         onPress={() => {
-          toggleBottomSheet(name);
+          toggleBottomSheet(id);
         }}
       >
         <Feather name="more-vertical" size={24} color={grayLightColor} />

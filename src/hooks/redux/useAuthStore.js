@@ -2,9 +2,10 @@ import { onLogin, onChecking, onLogout } from "../../store/slices/authSlice";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
+import { storage } from "../../helpers/storage";
 
 GoogleSignin.configure({
-  androidClientId: "504051196188-o0vgg6adqo7rsqa0r78cp51oa74iag7r.apps.googleusercontent.com",
+  androidClientId: process.env.EXPO_PUBLIC_ANDROID_CLIENT_ID,
 });
 
 export default useAuthStore = () => {
@@ -15,31 +16,36 @@ export default useAuthStore = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
-      //const tokens = await GoogleSignin.getTokens();
-      const idToken = userInfo.idToken;
-      dispatch(onLogin(idToken));
+      storage.set("token", userInfo.user.id);
+      storage.set("user", JSON.stringify(userInfo.user)); //PROVISIONAL
+      checkAuthToken();
     } catch (error) {
-      /*       dispatch(onLogout(error)); */
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-      } else {
-        console.log(error);
-      }
+      dispatch(onLogout(error));
+      console.log(error);
     }
   };
 
   const signOut = async () => {
     try {
       await GoogleSignin.signOut();
+      dispatch(onLogout());
     } catch (error) {
       console.error(error);
     }
   };
 
-  return { signIn, signOut };
+  const checkAuthToken = async () => {
+    dispatch(onChecking());
+    const token = storage.getString("token");
+    if (!token) return dispatch(onLogout());
+    try {
+      const userData = JSON.parse(storage.getString("user")); //PROVISIONAL
+      dispatch(onLogin(userData));
+    } catch (error) {
+      console.log(error);
+      dispatch(onLogout(error));
+    }
+  };
+
+  return { signIn, signOut, checkAuthToken };
 };

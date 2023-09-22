@@ -1,14 +1,22 @@
 [
   {
-    "name": "Legs day",
-    "muscles": ["Quadriceps", "Chest", "Biceps"]
+    "name": "Shoulders",
+    "muscles": ["Shoulders"],
+    "id":1
   },
   {
     "name": "Legs day",
-    "muscles": ["Quadriceps", "Chest", "Biceps"]
+    "muscles": ["Quadriceps", "Chest", "Biceps"],
+    "id":2
   },
   {
-    "name": "Legs day",
-    "muscles": ["Quadriceps", "Chest", "Biceps"]
+    "name": "Back",
+    "muscles": ["Upper back"],
+    "id":3
+  },
+  {
+    "name": "Chest day",
+    "muscles": [ "Chest", "Biceps"],
+    "id":4
   }
 ]
