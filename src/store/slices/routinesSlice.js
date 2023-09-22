@@ -15,7 +15,6 @@ export const routinesSlice = createSlice({
     onChecking: (state, { payload }) => {
       (state.isLoading = true), (state.errorMessage = null);
     },
-
     onError: (state, { payload }) => {
       (state.isLoading = false), (state.errorMessage = payload);
     },

@@ -3,11 +3,17 @@ import { StyleSheet, ImageBackground, View, Text } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 
-import { containerPaddingHorizontal, containerPaddingTop, grayLightColor, orangeColor } from "../../styles/styles";
+
+import { containerPaddingHorizontal, grayLightColor, orangeColor } from "../../styles/styles";
 import { GoogleButton, FacebookButton, OrangeButton } from "../../components/Buttons";
 import LogoFitway from "../../components/LogoFitway";
 
+import useAuthStore from "../../hooks/redux/useAuthStore";
+import { UseSelector } from "react-redux";
+
 export default StartScreen = () => {
+  const { signIn } = useGoogleAuth();
+
   return (
     <ImageBackground source={require("../../assets/images/homeBackground.jpg")} style={{ flex: 1 }}>
       <LinearGradient

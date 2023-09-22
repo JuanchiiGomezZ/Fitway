@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   textButton: {
     color: whiteColor,
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: "600",
   },
 
   googleButton: {

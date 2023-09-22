@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "560255737033",
+    "project_id": "fitway-5300a",
+    "storage_bucket": "fitway-5300a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560255737033:android:6094eecf906d233bf18118",
+        "android_client_info": {
+          "package_name": "com.juanchiigomezz.Fitway"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC03ri6MPQXnQ_jVfRs3BFMucHa9dk5Jbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
