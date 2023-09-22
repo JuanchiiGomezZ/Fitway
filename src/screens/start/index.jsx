@@ -3,44 +3,50 @@ import { StyleSheet, ImageBackground, View, Text } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 
-
 import { containerPaddingHorizontal, grayLightColor, orangeColor } from "../../styles/styles";
 import { GoogleButton, FacebookButton, OrangeButton } from "../../components/Buttons";
 import LogoFitway from "../../components/LogoFitway";
+import Loader from "../../components/Loader";
 
 import useAuthStore from "../../hooks/redux/useAuthStore";
 import { useSelector } from "react-redux";
 
 export default StartScreen = () => {
-  const { signIn } = useAuthStore();
+  const { signIn, signOut } = useAuthStore();
   const { isLoading } = useSelector((state) => state.auth);
-  console.log(isLoading);
+
 
   return (
-    <ImageBackground source={require("../../assets/images/homeBackground.jpg")} style={{ flex: 1 }}>
-      <LinearGradient
-        colors={[
-          "rgba(0, 0, 0, 1)",
-          "rgba(0, 0, 0, 0.5)",
-          "transparent",
-          "transparent",
-          "rgba(0, 0, 0, 0.5)",
-          "rgba(0, 0, 0, 1)",
-        ]}
-        style={styles.gradient}
-      >
-        <LogoFitway />
-        <View style={styles.bottomContainer}>
-          <OrangeButton text={"Login"} />
-{/*           <FacebookButton /> */}
-          <GoogleButton task={signIn}/>
-          <View>
-            <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>
-            <Text style={[styles.privacyGeneral, { color: orangeColor }]}>Privacy, Policy and Terms of Use</Text>
-          </View>
-        </View>
-      </LinearGradient>
-    </ImageBackground>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ImageBackground source={require("../../assets/images/homeBackground.jpg")} style={{ flex: 1 }}>
+          <LinearGradient
+            colors={[
+              "rgba(0, 0, 0, 1)",
+              "rgba(0, 0, 0, 0.5)",
+              "transparent",
+              "transparent",
+              "rgba(0, 0, 0, 0.5)",
+              "rgba(0, 0, 0, 1)",
+            ]}
+            style={styles.gradient}
+          >
+            <LogoFitway />
+            <View style={styles.bottomContainer}>
+              <OrangeButton text={"Login"} task={signOut}/>
+              {/*           <FacebookButton /> */}
+              <GoogleButton task={signIn} />
+              <View>
+                <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>
+                <Text style={[styles.privacyGeneral, { color: orangeColor }]}>Privacy, Policy and Terms of Use</Text>
+              </View>
+            </View>
+          </LinearGradient>
+        </ImageBackground>
+      )}
+    </>
   );
 };
 

@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 
 GoogleSignin.configure({
-  androidClientId: "504051196188-fnni84loib9qtvstdgb9u1h36pljf1tm.apps.googleusercontent.com",
-  offlineAccess: true,
+  androidClientId: "504051196188-o0vgg6adqo7rsqa0r78cp51oa74iag7r.apps.googleusercontent.com",
 });
 
 export default useAuthStore = () => {
