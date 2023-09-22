@@ -3,15 +3,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 
-
-  GoogleSignin.configure({
-    webClientId: "504051196188-fnni84loib9qtvstdgb9u1h36pljf1tm.apps.googleusercontent.com",
-    offlineAccess: true,
-  });
+GoogleSignin.configure({
+  androidClientId: "504051196188-fnni84loib9qtvstdgb9u1h36pljf1tm.apps.googleusercontent.com",
+  offlineAccess: true,
+});
 
 export default useAuthStore = () => {
   const dispatch = useDispatch();
-
 
   const signIn = async () => {
     dispatch(onChecking());
@@ -23,9 +21,8 @@ export default useAuthStore = () => {
       const idToken = userInfo.idToken;
       dispatch(onLogin(idToken));
     } catch (error) {
-      dispatch(onLogout(error));
-      console.log(error);
-      /* if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      /*       dispatch(onLogout(error)); */
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
@@ -33,7 +30,7 @@ export default useAuthStore = () => {
         // play services not available or outdated
       } else {
         console.log(error);
-      } */
+      }
     }
   };
 

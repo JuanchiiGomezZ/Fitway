@@ -9,10 +9,12 @@ import { GoogleButton, FacebookButton, OrangeButton } from "../../components/But
 import LogoFitway from "../../components/LogoFitway";
 
 import useAuthStore from "../../hooks/redux/useAuthStore";
-import { UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default StartScreen = () => {
-  const { signIn } = useGoogleAuth();
+  const { signIn } = useAuthStore();
+  const { isLoading } = useSelector((state) => state.auth);
+  console.log(isLoading);
 
   return (
     <ImageBackground source={require("../../assets/images/homeBackground.jpg")} style={{ flex: 1 }}>
@@ -31,7 +33,7 @@ export default StartScreen = () => {
         <View style={styles.bottomContainer}>
           <OrangeButton text={"Login"} />
 {/*           <FacebookButton /> */}
-          <GoogleButton />
+          <GoogleButton task={signIn}/>
           <View>
             <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>
             <Text style={[styles.privacyGeneral, { color: orangeColor }]}>Privacy, Policy and Terms of Use</Text>

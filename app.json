@@ -21,7 +21,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.juanchiigomezz.Fitway"
+      "package": "com.juanchiigomezz.fitway"
     },
     "experiments": {
       "typedRoutes": true
