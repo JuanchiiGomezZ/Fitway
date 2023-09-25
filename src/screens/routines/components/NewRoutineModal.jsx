@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TouchableOpacity, Keyboard, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, View, Keyboard, TouchableHighlight } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
   backdropColor,
   backgroundColor,
   borderRadius,
-  grayLightColor,
   orangeColor,
   orangeDarkColor,
-  redColor,
-  whiteColor,
+
 } from "../../../styles/styles";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import Animated, { FadeIn, FadeOut, FadeInRight, FadeOutRight } from "react-native-reanimated";
 import { ClassicInput } from "../../../components/Inputs";
 import { OrangeButtonSmall, DisabledButtonSmall, CloseModalIcon } from "../../../components/Buttons";
+import BackdropModals from "../../../components/BackdropModals";
 
 export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
   const { t } = useTranslation();
@@ -31,12 +30,11 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
 
   return (
     <>
-      <Pressable style={styles.backdrop} onPress={toggleNewRoutineModal} entering={FadeIn} exiting={FadeOut} />
-
+      <BackdropModals toggleModal={toggleNewRoutineModal} />
       <Animated.View style={styles.modalContainer} entering={FadeInRight} exiting={FadeOutRight}>
         <View style={styles.header}>
           <Text style={styles.title}>{t("Routines.NewRoutineModal.title")}</Text>
-          <CloseModalIcon task={toggleNewRoutineModal}/>
+          <CloseModalIcon task={toggleNewRoutineModal} />
         </View>
 
         <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />
@@ -90,12 +88,7 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
 };
 
 const styles = StyleSheet.create({
-  backdrop: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: backdropColor,
-    position: "absolute",
-    zIndex: 3,
-  },
+ 
   modalContainer: {
     minHeight: 200,
     width: "100%",

@@ -42,7 +42,7 @@ export default StartScreen = () => {
                   console.log(storage.getString("token"));
                 }}
               />
-              {/*           <FacebookButton /> */}
+              {/*<FacebookButton /> */}
               <GoogleButton task={signIn} />
               <View>
                 <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>

@@ -72,6 +72,13 @@ export const OrangeButton = ({ task, text }) => {
     </TouchableOpacity>
   );
 };
+export const OrangeButtonLarge = ({ task, text }) => {
+  return (
+    <TouchableOpacity style={[styles.button, styles.largeButton]} onPress={task}>
+      <Text style={styles.textButton}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
 
 export const CloseModalIcon = ({ task }) => {
   return (
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
   textButton: {
     color: whiteColor,
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "500",
   },
 
   googleButton: {
@@ -147,5 +154,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 5,
     right: 5,
+  },
+  largeButton: {
+    width: "110%",
+    position: "relative",
+    left: "-5%",
+    height: 50,
+    bottom: 1,
+    borderRadius: 0,
   },
 });

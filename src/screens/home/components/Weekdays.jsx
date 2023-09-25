@@ -45,9 +45,10 @@ const styles = StyleSheet.create({
   daysContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
     gap: screenWidth * 0.02,
-    marginTop: 20,
+    marginTop: 10,
+    height:65
   },
   day: {
     height: screenWidth * 0.11,

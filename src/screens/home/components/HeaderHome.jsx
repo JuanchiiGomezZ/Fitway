@@ -5,23 +5,17 @@ import { grayLightColor } from "../../../styles/styles";
 import TitleScreen from "../../../components/TitleScreen";
 import { TransparentButton } from "../../../components/Buttons";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
 
-export default HeaderHome = () => {
+export default HeaderHome = ({ toggleNewWorkoutModal }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { status } = useSelector((state) => state.auth);
 
   return (
     <View style={styles.head}>
       <TitleScreen title={t("Home.title")} />
       <Text style={styles.routineName}>Routine name</Text>
       <View style={styles.buttonsContainer}>
-        <TransparentButton
-          text={t("Home.new-workout")}
-          icon={"clipboard-text"}
-          task={()=>{console.log(status);}}
-        />
+        <TransparentButton text={t("Home.new-workout")} icon={"clipboard-text"} task={toggleNewWorkoutModal} />
         <TransparentButton text={t("Home.my-routines")} icon={"bookmark"} task={() => navigation.navigate("MyRoutines")} />
       </View>
     </View>
@@ -30,7 +24,8 @@ export default HeaderHome = () => {
 
 const styles = StyleSheet.create({
   head: {
-    marginVertical: 20,
+    height: 170,
+    justifyContent: "center",
   },
   title: {
     flexDirection: "row",

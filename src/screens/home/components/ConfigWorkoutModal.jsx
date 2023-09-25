@@ -1,16 +1,26 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import { backdropColor, backgroundColor, orangeColor, redColor, whiteColor } from "../../../styles/styles";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
-import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
+import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
+import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
+import BackdropModals from "../../../components/BackdropModals";
+
+
 
 export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
   const { t } = useTranslation();
+  const { delteWorkout } = useWorkoutsStore();
+
+  const handleDeleteWorkout = () => {
+    delteWorkout(workoutId);
+    toggleBottomSheet();
+  };
 
   return (
     <>
-      <Pressable style={styles.backdrop} onPress={() => toggleBottomSheet()} entering={FadeIn} exiting={FadeOut} />
+      <BackdropModals toggleModal={toggleBottomSheet} />
       <Animated.View style={styles.bottomSheetContainer} entering={SlideInDown.damping(15)} exiting={SlideOutDown.damping(15)}>
         <View style={styles.optionsContainer}>
           <TouchableOpacity style={styles.option}>
@@ -18,7 +28,7 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
             <Text style={styles.optionText}>{t("configModal.edit-workout")}</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.option}>
+          <TouchableOpacity style={styles.option} onPress={handleDeleteWorkout}>
             <MaterialIcons name="delete-outline" size={26} color={redColor} />
             <Text style={[styles.optionText, { color: redColor }]}>{t("configModal.delete-workout")}</Text>
           </TouchableOpacity>
@@ -32,10 +42,7 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
 };
 
 const styles = StyleSheet.create({
-  backdrop: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: backdropColor,
-  },
+
   bottomSheetContainer: {
     position: "absolute",
     bottom: 10,

@@ -2,16 +2,16 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 /* Screens */
-import Home from "../screens/home/index";
-import Profile from "../screens/profile/index";
-import Discover from "../screens/discover/index";
-import WorkoutLog from "../screens/workoutLog/index";
+import Home from "../screens/home/Home";
+import Profile from "../screens/profile/Profile";
+import Discover from "../screens/discover/Discover";
+import WorkoutLog from "../screens/workoutLog/WorkoutLogs";
 
 /* Navigation */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 /* Icons */
-import { FontAwesome5, MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { backgroundColor, orangeColor } from "../styles/styles";
 
 const Tab = createBottomTabNavigator();
@@ -39,7 +39,7 @@ const TabNavigator = () => {
         name="Discover"
         component={Discover}
         options={{
-          tabBarIcon: ({ color }) => <FontAwesome name="search" size={30} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="robot" size={35} color={color} />,
         }}
       />
       <Tab.Screen

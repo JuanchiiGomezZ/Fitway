@@ -10,11 +10,11 @@ import useAuthStore from "../hooks/redux/useAuthStore";
 
 /* SCREENS */
 import TabNavigator from "./TabNavigator";
-import StartScreen from "../screens/start/index";
-import MyRoutinesScreen from "../screens/my-routines/index";
-import AllRoutinesScreen from "../screens/routines/index";
+import StartScreen from "../screens/start/Start";
+import MyRoutinesScreen from "../screens/my-routines/MyRoutines";
+import AllRoutinesScreen from "../screens/routines/Routines";
 import BarCodeScannerScreen from "../helpers/BarCodeScannerScreen";
-import Settings from "../screens/settings";
+import Settings from "../screens/settings/Settings";
 import ChangeLanguage from "../screens/settings/views/ChangeLanguage";
 
 const Stack = createNativeStackNavigator();

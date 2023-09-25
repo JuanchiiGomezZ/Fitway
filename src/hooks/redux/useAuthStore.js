@@ -28,9 +28,10 @@ export default useAuthStore = () => {
   const signOut = async () => {
     try {
       await GoogleSignin.signOut();
+      storage.clearAll();
       dispatch(onLogout());
     } catch (error) {
-      console.error(error);
+      dispatch(onLogout(error));
     }
   };
 

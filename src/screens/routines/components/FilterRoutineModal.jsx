@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TouchableOpacity, Dimensions, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
-import { backdropColor, backgroundColor, borderRadius, grayLightColor, whiteColor } from "../../../styles/styles";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
+import { backdropColor, backgroundColor, borderRadius, whiteColor } from "../../../styles/styles";
+import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import FilterOptionComponent from "./FilterOptionComponent";
 import { OrangeButtonSmall, WhiteButtonSmall, CloseModalIcon } from "../../../components/Buttons";
+import BackdropModals from "../../../components/BackdropModals";
 
 const width = Dimensions.get("screen").width;
 export default FilterRoutineModal = ({ toggleModal }) => {
@@ -20,7 +20,7 @@ export default FilterRoutineModal = ({ toggleModal }) => {
 
   return (
     <>
-      <Pressable style={styles.backdrop} onPress={toggleModal} entering={FadeIn} exiting={FadeOut} />
+      <BackdropModals toggleModal={toggleModal} />
 
       <Animated.View style={styles.modalContainer} entering={SlideInDown} exiting={SlideOutDown}>
         <View style={styles.head}>
@@ -28,9 +28,24 @@ export default FilterRoutineModal = ({ toggleModal }) => {
           <CloseModalIcon task={toggleModal} />
         </View>
 
-        <FilterOptionComponent data={days} state={selectedDay} setState={setSelectedDay} title={t("Routines.FilterRoutineModal.days")} />
-        <FilterOptionComponent data={difficulties} state={difficulty} setState={setDifficulty} title={t("Routines.FilterRoutineModal.difficulty")} />
-        <FilterOptionComponent data={creators} state={creator} setState={setCreator} title={t("Routines.FilterRoutineModal.creator")} />
+        <FilterOptionComponent
+          data={days}
+          state={selectedDay}
+          setState={setSelectedDay}
+          title={t("Routines.FilterRoutineModal.days")}
+        />
+        <FilterOptionComponent
+          data={difficulties}
+          state={difficulty}
+          setState={setDifficulty}
+          title={t("Routines.FilterRoutineModal.difficulty")}
+        />
+        <FilterOptionComponent
+          data={creators}
+          state={creator}
+          setState={setCreator}
+          title={t("Routines.FilterRoutineModal.creator")}
+        />
 
         <View style={styles.buttonsContainer}>
           <View style={{ width: "65%" }}>
@@ -46,12 +61,7 @@ export default FilterRoutineModal = ({ toggleModal }) => {
 };
 
 const styles = StyleSheet.create({
-  backdrop: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: backdropColor,
-    position: "absolute",
-    zIndex: 3,
-  },
+ 
   modalContainer: {
     minHeight: 300,
     width: width,

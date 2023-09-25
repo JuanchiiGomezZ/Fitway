@@ -21,7 +21,8 @@
         "foregroundImage": "./src/assets/images/icon.png",
         "backgroundColor": "#131313"
       },
-      "package": "com.juanchiigomezz.fitway"
+      "package": "com.juanchiigomezz.fitway",
+      "softwareKeyboardLayoutMode": "pan"
     },
     "experiments": {
       "typedRoutes": true

@@ -10,10 +10,13 @@ import {
 } from "../../../styles/styles";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
 
+import Animated, { FadeInDown, FadeOutLeft } from "react-native-reanimated";
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 export default WorkoutCard = ({ data, toggleBottomSheet }) => {
   const { muscles, name, id } = data;
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <AnimatedTouchable style={styles.cardContainer} entering={FadeInDown.delay(250)}>
       <TouchableOpacity
         style={styles.config}
         onPress={() => {
@@ -37,7 +40,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet }) => {
           <FontAwesome5 name="dumbbell" size={24} color={backgroundColor} />
         </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </AnimatedTouchable>
   );
 };
 

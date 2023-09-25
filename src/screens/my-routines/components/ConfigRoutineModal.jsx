@@ -4,13 +4,14 @@ import { useTranslation } from "react-i18next";
 import { backdropColor, backgroundColor, greenColor, orangeColor, redColor, whiteColor } from "../../../styles/styles";
 import { Feather, MaterialIcons, AntDesign } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
+import BackdropModals from "../../../components/BackdropModals";
 
 export default ConfigRoutineModal = ({ toggleBottomSheet, id }) => {
   const { t } = useTranslation();
 
   return (
     <>
-      <Pressable style={styles.backdrop} onPress={() => toggleBottomSheet()} entering={FadeIn} exiting={FadeOut} />
+      <BackdropModals toggleModal={toggleBottomSheet}/>
       <Animated.View style={styles.bottomSheetContainer} entering={SlideInDown.damping(15)} exiting={SlideOutDown.damping(15)}>
         <View style={styles.optionsContainer}>
           {id != 2 ? (
@@ -44,10 +45,6 @@ export default ConfigRoutineModal = ({ toggleBottomSheet, id }) => {
 };
 
 const styles = StyleSheet.create({
-  backdrop: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: backdropColor,
-  },
   bottomSheetContainer: {
     position: "absolute",
     bottom: 10,

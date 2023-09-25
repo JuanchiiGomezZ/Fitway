@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Pressable, Dimensions } from "react-native";
+import { StyleSheet, Text, View,Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
-  backdropColor,
   backgroundColor,
   borderRadius,
   grayLightColor,
   orangeColor,
-  orangeDarkColor,
-  redColor,
   whiteColor,
 } from "../styles/styles";
-import { AntDesign, FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-import Animated, { FadeIn, FadeOut, FadeInLeft, FadeOutLeft } from "react-native-reanimated";
+import { AntDesign,MaterialCommunityIcons } from "@expo/vector-icons";
+import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 import QRCode from "react-native-qrcode-svg";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Clipboard from "expo-clipboard";
+import BackdropModals from "../components/BackdropModals";
 
 export default QrModal = ({ toggleModal }) => {
   const width = Dimensions.get("screen").width;
@@ -27,10 +25,15 @@ export default QrModal = ({ toggleModal }) => {
 
   return (
     <>
-      <Pressable style={styles.backdrop} onPress={toggleModal} entering={FadeIn} exiting={FadeOut} />
-
+      <BackdropModals toggleModal={toggleModal} />
       <Animated.View style={styles.modalContainer} entering={FadeInLeft} exiting={FadeOutLeft}>
-        <MaterialCommunityIcons style={styles.closeIcon} name="close-thick" color={grayLightColor} size={20} onPress={toggleModal} />
+        <MaterialCommunityIcons
+          style={styles.closeIcon}
+          name="close-thick"
+          color={grayLightColor}
+          size={20}
+          onPress={toggleModal}
+        />
         <Text style={styles.title}>Code sharer</Text>
         <Text style={styles.textSentence}>Scan it on explore screen to share the routine</Text>
         <View style={styles.qrContainer}>
@@ -50,12 +53,7 @@ export default QrModal = ({ toggleModal }) => {
 };
 
 const styles = StyleSheet.create({
-  backdrop: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: backdropColor,
-    position: "absolute",
-    zIndex: 3,
-  },
+ 
   modalContainer: {
     minHeight: 200,
     width: "100%",
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
   codeText: {
     color: grayLightColor,
     fontSize: 22,
-     fontWeight: "500",
+    fontWeight: "500",
   },
   copyBtn: {
     backgroundColor: orangeColor,

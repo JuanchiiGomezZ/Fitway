@@ -6,18 +6,17 @@ export const workoutsSlice = createSlice({
   initialState: {
     workouts: dataWorkouts,
     isLoading: false,
-    errorMessage: null,
+    error: null,
   },
   reducers: {
-    saveWorkouts: (state, { payload }) => {
-      (state.isLoading = false), (state.routines = payload), (state.errorMessage = null);
-    },
     onChecking: (state, { payload }) => {
-      (state.isLoading = true), (state.errorMessage = null);
+      (state.isLoading = true), (state.error = null);
     },
-
+    saveWorkouts: (state, { payload }) => {
+      (state.isLoading = false), (state.workouts = payload);
+    },
     onError: (state, { payload }) => {
-      (state.isLoading = false), (state.errorMessage = payload);
+      (state.isLoading = false), (state.error = payload || null);
     },
   },
 });

@@ -6,17 +6,17 @@ export const routinesSlice = createSlice({
   initialState: {
     routines: dataRoutine,
     isLoading: false,
-    errorMessage: null,
+    error: null,
   },
   reducers: {
-    saveRoutines: (state, { payload }) => {
-      (state.isLoading = false), (state.routines = payload), (state.errorMessage = null);
-    },
     onChecking: (state, { payload }) => {
-      (state.isLoading = true), (state.errorMessage = null);
+      (state.isLoading = true), (state.error = null);
+    },
+    saveRoutines: (state, { payload }) => {
+      (state.isLoading = false), (state.routines = payload);
     },
     onError: (state, { payload }) => {
-      (state.isLoading = false), (state.errorMessage = payload);
+      (state.isLoading = false), (state.error = payload || null);
     },
   },
 });
