@@ -1,29 +1,39 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import {
-  backgroundColor,
-  borderRadius,
-  boxBackgroundColor,
-  grayLightColor,
-  orangeColor,
-  whiteColor,
+  BACKGROUND_COLOR,
+  BORDER_RADIUS,
+  BOX_COLOR,
+  GRAY_COLOR,
+  ORANGE_COLOR,
+  WHITE_COLOR,
 } from "../../../styles/styles";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
-
-import Animated, { FadeInDown, FadeOutLeft } from "react-native-reanimated";
+import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
-export default WorkoutCard = ({ data, toggleBottomSheet }) => {
+
+export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
   const { muscles, name, id } = data;
+  const initialMode = useRef(true);
+  useEffect(() => {
+    initialMode.current = false;
+  }, []);
+
   return (
-    <AnimatedTouchable style={styles.cardContainer} entering={FadeInDown.delay(250)}>
+    <AnimatedTouchable
+      style={styles.cardContainer}
+      entering={initialMode.current ? FadeInDown.delay(100 * index) : FadeInDown.delay(250)}
+      exiting={FadeOutLeft}
+      layout={Layout.delay(200)}
+    >
       <TouchableOpacity
         style={styles.config}
         onPress={() => {
           toggleBottomSheet(id);
         }}
       >
-        <Feather name="more-vertical" size={24} color={grayLightColor} />
+        <Feather name="more-vertical" size={24} color={GRAY_COLOR} />
       </TouchableOpacity>
       <View style={styles.contentContainer}>
         <View style={{ width: "83%" }}>
@@ -37,7 +47,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet }) => {
           </View>
         </View>
         <TouchableOpacity style={styles.trainingButton}>
-          <FontAwesome5 name="dumbbell" size={24} color={backgroundColor} />
+          <FontAwesome5 name="dumbbell" size={24} color={BACKGROUND_COLOR} />
         </TouchableOpacity>
       </View>
     </AnimatedTouchable>
@@ -47,8 +57,8 @@ export default WorkoutCard = ({ data, toggleBottomSheet }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     width: "100%",
-    backgroundColor: boxBackgroundColor,
-    borderRadius: borderRadius,
+    backgroundColor: BOX_COLOR,
+    borderRadius: BORDER_RADIUS,
     paddingHorizontal: 10,
     paddingTop: 10,
     minHeight: 70,
@@ -56,7 +66,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   workoutName: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 22,
     fontWeight: "500",
     marginBottom: 10,
@@ -70,7 +80,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   muscle: {
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
     borderRadius: 10,
     borderWidth: 1,
     paddingHorizontal: 7,
@@ -79,7 +89,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   muscleName: {
-    color: orangeColor,
+    color: ORANGE_COLOR,
     fontSize: 13,
   },
   config: {
@@ -90,7 +100,7 @@ const styles = StyleSheet.create({
   trainingButton: {
     width: 50,
     height: 50,
-    backgroundColor: orangeColor,
+    backgroundColor: ORANGE_COLOR,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",

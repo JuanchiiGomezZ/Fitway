@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { grayLightColor } from "../../../styles/styles";
+import { GRAY_COLOR, } from "../../../styles/styles";
 import TitleScreen from "../../../components/TitleScreen";
 import { TransparentButton } from "../../../components/Buttons";
 import { useNavigation } from "@react-navigation/native";
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   routineName: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 16,
   },
   buttonsContainer: {

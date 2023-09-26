@@ -12,7 +12,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 /* Icons */
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { backgroundColor, orangeColor } from "../styles/styles";
+import { BACKGROUND_COLOR, ORANGE_COLOR } from "../styles/styles";
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
@@ -64,13 +64,13 @@ export default TabNavigator;
 
 const styles = StyleSheet.create({
   centerButton: {
-    backgroundColor: orangeColor,
+    backgroundColor: ORANGE_COLOR,
     paddingHorizontal: 8,
     paddingVertical: 9,
     borderRadius: 90,
   },
   navBar: {
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     height: 60,
     borderTopWidth: 0.55,
     borderTopColor: "#474747",

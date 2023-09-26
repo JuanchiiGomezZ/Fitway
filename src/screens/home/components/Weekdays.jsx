@@ -4,9 +4,8 @@
  * @returns {React.Component} The rendered component.
  */
 import { StyleSheet, Text, View, Dimensions } from "react-native";
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { boxBackgroundColor, orangeColor, backgroundColor, whiteColor, greenColor } from "../../../styles/styles";
+import { BOX_COLOR, ORANGE_COLOR, BACKGROUND_COLOR, WHITE_COLOR, GREEN_COLOR } from "../../../styles/styles";
 import { FontAwesome } from "@expo/vector-icons";
 
 const screenWidth = Dimensions.get("window").width;
@@ -31,9 +30,9 @@ export default Weekdays = () => {
             <Text style={styles.dayText}>{item.name}</Text>
           </View>
           {!item.active ? (
-            <FontAwesome name="check" size={20} color={greenColor} />
+            <FontAwesome name="check" size={20} color={GREEN_COLOR} />
           ) : (
-            <FontAwesome name="circle-o" size={20} color={orangeColor} />
+            <FontAwesome name="circle-o" size={20} color={ORANGE_COLOR} />
           )}
         </View>
       ))}
@@ -54,24 +53,24 @@ const styles = StyleSheet.create({
     height: screenWidth * 0.11,
     width: screenWidth * 0.11,
     borderRadius: 25,
-    backgroundColor: boxBackgroundColor,
+    backgroundColor: BOX_COLOR,
     alignItems: "center",
     justifyContent: "center",
   },
   dayText: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 18,
     fontWeight: "800",
   },
   activeDay: {
-    backgroundColor: orangeColor,
+    backgroundColor: ORANGE_COLOR,
   },
   statusPoint: {
     width: 10,
     height: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     borderWidth: 2,
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
     borderRadius: 5,
   },
   dayContainer: {

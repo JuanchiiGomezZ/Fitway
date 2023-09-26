@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { FontAwesome5, Ionicons, FontAwesome, Feather, SimpleLineIcons } from "@expo/vector-icons";
-import { grayLightColor, redColor } from "../../../styles/styles";
+import { GRAY_COLOR, RED_COLOR } from "../../../styles/styles";
 
 export default ProfileOption = ({ iconType, iconName, optionName, showArrow, task }) => {
   const renderIcon = () => {
@@ -41,28 +41,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 25,
     marginRight: 10,
     width: 30,
   },
   nameOption: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 16,
   },
   arrow: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 20,
   },
 
   iconLogout: {
     fontSize: 25,
     marginRight: 10,
-    color: redColor,
+    color: RED_COLOR,
     width: 30,
   },
   nameOptionLogout: {
-    color: redColor,
+    color: RED_COLOR,
     fontSize: 16,
   },
 });

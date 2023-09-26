@@ -1,11 +1,11 @@
 import { View, ActivityIndicator } from "react-native";
 import React from "react";
-import { orangeColor, backgroundColor } from "../styles/styles";
+import { ORANGE_COLOR, backgroundColor } from "../styles/styles";
 
 const Loader = () => {
   return (
     <View style={{ alignItems: "center", justifyContent: "center", flex: 1, backgroundColor: backgroundColor }}>
-      <ActivityIndicator size="large" color={orangeColor} />
+      <ActivityIndicator size="large" color={ORANGE_COLOR} />
     </View>
   );
 };

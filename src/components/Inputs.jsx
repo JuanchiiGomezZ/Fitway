@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
-import { grayLightColor, orangeColor, orangeDarkColor, whiteColor } from "../styles/styles";
+import { GRAY_COLOR, ORANGE_COLOR, ORANGE_DARK_COLOR, WHITE_COLOR } from "../styles/styles";
 import { Foundation } from "@expo/vector-icons";
 
 export const ClassicInput = ({ setInputChange, placeholder, inputChange }) => {
@@ -9,7 +9,7 @@ export const ClassicInput = ({ setInputChange, placeholder, inputChange }) => {
       style={styles.input}
       value={inputChange}
       placeholder={placeholder}
-      placeholderTextColor={grayLightColor}
+      placeholderTextColor={GRAY_COLOR}
       onChangeText={(e) => {
         setInputChange(e);
       }}
@@ -24,7 +24,7 @@ export const GrayInput = ({ setInputChange, placeholder, inputChange, label }) =
         style={styles.grayInput}
         value={inputChange}
         placeholder={placeholder}
-        placeholderTextColor={grayLightColor}
+        placeholderTextColor={GRAY_COLOR}
         onChangeText={(e) => {
           setInputChange(e);
         }}
@@ -39,7 +39,7 @@ export const SearchInput = ({ inputChange, setInputChange, placeholder, onEnterP
         style={styles.searchInput}
         value={inputChange}
         placeholder={placeholder}
-        placeholderTextColor={grayLightColor}
+        placeholderTextColor={GRAY_COLOR}
         onChangeText={(e) => setInputChange(e)}
         onSubmitEditing={onEnterPress}
       />
@@ -56,20 +56,20 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     width: "100%",
     borderBottomWidth: 1.5,
-    borderColor: orangeDarkColor,
+    borderColor: ORANGE_DARK_COLOR,
   },
 
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
     position: "relative",
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
     borderWidth: 1,
     width: "75%",
     borderRadius: 20,
   },
   searchInput: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 18,
     paddingLeft: 15,
     paddingRight: 5,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   iconSearch: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 23,
   },
 
@@ -87,12 +87,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#282828",
     paddingLeft: 10,
     fontSize: 18,
-    color: whiteColor,
+    color: WHITE_COLOR,
     borderRadius: 5,
     fontWeight: "500",
   },
   labelText: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 18,
     marginLeft: 5,
     fontWeight: "600",

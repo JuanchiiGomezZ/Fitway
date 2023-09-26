@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
-import { backdropColor, backgroundColor, borderRadius, whiteColor } from "../../../styles/styles";
+import {BACKGROUND_COLOR, BORDER_RADIUS, WHITE_COLOR } from "../../../styles/styles";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import FilterOptionComponent from "./FilterOptionComponent";
 import { OrangeButtonSmall, WhiteButtonSmall, CloseModalIcon } from "../../../components/Buttons";
@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
     minHeight: 300,
     width: width,
     position: "absolute",
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     bottom: 0,
-    borderRadius: borderRadius,
+    borderRadius: BORDER_RADIUS,
     paddingHorizontal: "5%",
     paddingTop: 10,
     paddingBottom: 15,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   headText: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 25,
     fontWeight: "700",
   },

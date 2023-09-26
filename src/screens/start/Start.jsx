@@ -12,7 +12,7 @@ import LogoFitway from "../../components/LogoFitway";
 import Loader from "../../components/Loader";
 import useAuthStore from "../../hooks/redux/useAuthStore";
 
-import { containerPaddingHorizontal, grayLightColor, orangeColor } from "../../styles/styles";
+import { PADDING_HORIZONTAL, GRAY_COLOR, ORANGE_COLOR } from "../../styles/styles";
 export default StartScreen = () => {
   const { signIn, signOut } = useAuthStore();
   const { isLoading } = useSelector((state) => state.auth);
@@ -46,7 +46,7 @@ export default StartScreen = () => {
               <GoogleButton task={signIn} />
               <View>
                 <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>
-                <Text style={[styles.privacyGeneral, { color: orangeColor }]}>Privacy, Policy and Terms of Use</Text>
+                <Text style={[styles.privacyGeneral, { color: ORANGE_COLOR }]}>Privacy, Policy and Terms of Use</Text>
               </View>
             </View>
           </LinearGradient>
@@ -59,7 +59,7 @@ export default StartScreen = () => {
 const styles = StyleSheet.create({
   gradient: {
     flex: 1,
-    paddingHorizontal: containerPaddingHorizontal,
+    paddingHorizontal: PADDING_HORIZONTAL,
     paddingBottom: "5%",
     paddingTop: "10%",
     justifyContent: "space-between",
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   privacyGeneral: {
     fontSize: 14,
     fontWeight: "400",
-    color: grayLightColor,
+    color: GRAY_COLOR,
     textAlign: "center",
   },
 

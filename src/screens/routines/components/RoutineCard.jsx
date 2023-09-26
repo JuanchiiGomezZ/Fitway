@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { borderRadius, boxBackgroundColor, orangeColor, whiteColor } from "../../../styles/styles";
+import { BORDER_RADIUS, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 
 
 export default RoutineCard = ({ data, toggleBottomSheet }) => {
@@ -17,11 +17,11 @@ export default RoutineCard = ({ data, toggleBottomSheet }) => {
       <View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>
-          <Text style={[styles.rowTitle, { color: orangeColor }]}>{level}</Text>
+          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{level}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.workouts") + ": "}</Text>
-          <Text style={[styles.rowTitle, { color: orangeColor }]}>{workoutsNumber}</Text>
+          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutsNumber}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -31,13 +31,13 @@ export default RoutineCard = ({ data, toggleBottomSheet }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     width: "100%",
-    backgroundColor: boxBackgroundColor,
-    borderRadius: borderRadius,
+    backgroundColor: BOX_COLOR,
+    borderRadius: BORDER_RADIUS,
     padding: 10,
     gap: 5,
   },
   routineName: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 22,
     fontWeight: "500",
   },
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   rowTitle: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 17,
     fontWeight: "500",
   },
@@ -54,15 +54,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     top: 0,
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
     borderWidth: 1,
     paddingVertical: 3,
-    borderTopRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    borderTopRightRadius: BORDER_RADIUS,
+    borderBottomLeftRadius: BORDER_RADIUS,
     width: "30%",
   },
   labelText: {
-    color: orangeColor,
+    color: ORANGE_COLOR,
     textAlign: "center",
   },
 });

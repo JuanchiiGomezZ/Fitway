@@ -10,7 +10,7 @@ import Header from "../../components/Header";
 import SettingCard from "./components/SettingCard";
 
 //STYLES
-import { backgroundColor, containerPaddingHorizontal, containerPaddingTop } from "../../styles/styles";
+import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 
 export default Settings = () => {
   const { t } = useTranslation();
@@ -29,8 +29,8 @@ export default Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: backgroundColor,
-    paddingHorizontal: containerPaddingHorizontal,
-    paddingTop: containerPaddingTop,
+    backgroundColor: BACKGROUND_COLOR,
+    paddingHorizontal: PADDING_HORIZONTAL,
+    paddingTop: PADDING_TOP,
   },
 });

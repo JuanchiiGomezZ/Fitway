@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Dimensions, Pressable, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View,TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
-import { backdropColor, backgroundColor, greenColor, orangeColor, redColor, whiteColor } from "../../../styles/styles";
+import {BACKGROUND_COLOR, GREEN_COLOR, ORANGE_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { Feather, MaterialIcons, AntDesign } from "@expo/vector-icons";
-import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
+import Animated, {SlideInDown, SlideOutDown } from "react-native-reanimated";
 import BackdropModals from "../../../components/BackdropModals";
 
 export default ConfigRoutineModal = ({ toggleBottomSheet, id }) => {
@@ -16,24 +16,24 @@ export default ConfigRoutineModal = ({ toggleBottomSheet, id }) => {
         <View style={styles.optionsContainer}>
           {id != 2 ? (
             <TouchableOpacity style={styles.option}>
-              <AntDesign name="checkcircleo" size={24} color={greenColor} />
-              <Text style={[styles.optionText, { color: greenColor }]}>{t("configModal.set-as-active")}</Text>
+              <AntDesign name="checkcircleo" size={24} color={GREEN_COLOR} />
+              <Text style={[styles.optionText, { color: GREEN_COLOR }]}>{t("configModal.set-as-active")}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={styles.option}>
-              <AntDesign name="closecircleo" size={24} color={orangeColor} />
-              <Text style={[styles.optionText, { color: orangeColor }]}>{t("configModal.remove-as-active")}</Text>
+              <AntDesign name="closecircleo" size={24} color={ORANGE_COLOR} />
+              <Text style={[styles.optionText, { color: ORANGE_COLOR }]}>{t("configModal.remove-as-active")}</Text>
             </TouchableOpacity>
           )}
 
           <TouchableOpacity style={styles.option}>
-            <Feather name="edit-2" size={24} color={whiteColor} />
+            <Feather name="edit-2" size={24} color={WHITE_COLOR} />
             <Text style={styles.optionText}>{t("configModal.edit-routine")}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.option}>
-            <MaterialIcons name="delete-outline" size={26} color={redColor} />
-            <Text style={[styles.optionText, { color: redColor }]}>{t("configModal.delete-routine")}</Text>
+            <MaterialIcons name="delete-outline" size={26} color={RED_COLOR} />
+            <Text style={[styles.optionText, { color: RED_COLOR }]}>{t("configModal.delete-routine")}</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.option} onPress={() => toggleBottomSheet()}>
@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     borderRadius: 10,
   },
   optionText: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 18,
   },
 });

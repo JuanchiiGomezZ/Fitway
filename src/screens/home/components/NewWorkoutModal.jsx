@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
-import { backdropColor, backgroundColor, borderRadius } from "../../../styles/styles";
+import { BACKGROUND_COLOR, BORDER_RADIUS } from "../../../styles/styles";
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 import { ClassicInput } from "../../../components/Inputs";
 import { OrangeButtonSmall, DisabledButtonSmall, CloseModalIcon } from "../../../components/Buttons";
@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: "100%",
     position: "absolute",
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     top: heightScren * 0.3,
     left: "5%",
-    borderRadius: borderRadius,
+    borderRadius: BORDER_RADIUS,
     paddingHorizontal: "5%",
     paddingTop: 10,
     paddingBottom: 15,

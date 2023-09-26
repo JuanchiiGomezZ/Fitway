@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { borderRadius, boxBackgroundColor, grayLightColor, orangeColor, whiteColor } from "../../../styles/styles";
+import { BORDER_RADIUS, BOX_COLOR, GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { Feather } from "@expo/vector-icons";
 
 export default MyRoutineCard = ({ data, toggleBottomSheet }) => {
@@ -14,15 +14,15 @@ export default MyRoutineCard = ({ data, toggleBottomSheet }) => {
       <View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>
-          <Text style={[styles.rowTitle, { color: orangeColor }]}>{level}</Text>
+          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{level}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.workouts") + ": "}</Text>
-          <Text style={[styles.rowTitle, { color: orangeColor }]}>{workoutsNumber}</Text>
+          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutsNumber}</Text>
         </View>
       </View>
       <TouchableOpacity style={styles.config} onPress={() => toggleBottomSheet(id)}>
-        <Feather name="more-vertical" size={25} color={grayLightColor} />
+        <Feather name="more-vertical" size={25} color={GRAY_COLOR} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -31,13 +31,13 @@ export default MyRoutineCard = ({ data, toggleBottomSheet }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     width: "100%",
-    backgroundColor: boxBackgroundColor,
-    borderRadius: borderRadius,
+    backgroundColor: BOX_COLOR,
+    borderRadius: BORDER_RADIUS,
     padding: 10,
     gap: 5,
   },
   routineName: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 22,
     fontWeight: "500",
   },
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   rowTitle: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 17,
     fontWeight: "500",
   },

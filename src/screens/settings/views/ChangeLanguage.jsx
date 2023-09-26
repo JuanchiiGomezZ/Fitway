@@ -11,11 +11,11 @@ import languages from "../../../locales/languages.json";
 
 //STYLES
 import {
-  backgroundColor,
-  containerPaddingHorizontal,
-  containerPaddingTop,
-  grayLightColor,
-  whiteColor,
+  BACKGROUND_COLOR,
+  PADDING_HORIZONTAL,
+  PADDING_TOP,
+  GRAY_COLOR,
+  WHITE_COLOR,
 } from "../../../styles/styles";
 
 export default ChangeLanguage = () => {
@@ -39,20 +39,20 @@ export default ChangeLanguage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: backgroundColor,
-    paddingHorizontal: containerPaddingHorizontal,
-    paddingTop: containerPaddingTop,
+    backgroundColor: BACKGROUND_COLOR,
+    paddingHorizontal: PADDING_HORIZONTAL,
+    paddingTop: PADDING_TOP,
   },
   langagueCard: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
     paddingVertical: 15,
-    borderColor: grayLightColor,
+    borderColor: GRAY_COLOR,
     borderBottomWidth: 0.5,
   },
   langagueName: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 20,
   },
 });

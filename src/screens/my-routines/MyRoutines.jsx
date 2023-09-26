@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 //HOOKS
 import { useTranslation } from "react-i18next";
@@ -13,7 +13,7 @@ import ConfigRoutineModal from "./components/ConfigRoutineModal";
 
 
 //STYLES
-import { backgroundColor, containerPaddingHorizontal, containerPaddingTop, grayLightColor } from "../../styles/styles";
+import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 
 //OTHER
 import routinesTestData from "./helpers/routinesTestData.json";
@@ -63,9 +63,9 @@ export default MyRoutinesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: backgroundColor,
-    paddingHorizontal: containerPaddingHorizontal,
-    paddingTop: containerPaddingTop,
+    backgroundColor: BACKGROUND_COLOR,
+    paddingHorizontal: PADDING_HORIZONTAL,
+    paddingTop: PADDING_TOP,
   },
   buttonsContainer: {
     flexDirection: "row",

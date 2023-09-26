@@ -12,7 +12,7 @@ import InfoContainer from "./components/InfoContainer";
 import ProfileOption from "./components/ProfileOption";
 
 /* STYLES */
-import { backgroundColor, containerPaddingHorizontal, grayLightColor, orangeColor, whiteColor } from "../../styles/styles";
+import { BACKGROUND_COLOR, PADDING_HORIZONTAL, GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../styles/styles";
 
 export default ProfileScreen = () => {
   const { t } = useTranslation();
@@ -68,14 +68,14 @@ export default ProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  background: { flex: 1, backgroundColor: orangeColor, justifyContent: "flex-end" },
+  background: { flex: 1, backgroundColor: ORANGE_COLOR, justifyContent: "flex-end" },
   container: {
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     height: "84%",
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
     alignItems: "center",
-    paddingHorizontal: containerPaddingHorizontal,
+    paddingHorizontal: PADDING_HORIZONTAL,
   },
   imageContainer: {
     width: 110,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 110,
     position: "absolute",
     top: "-7.9%",
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
     borderRadius: 103,
   },
   name: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 18,
     fontWeight: "600",
     marginTop: 70,
   },
   username: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 16,
     fontWeight: "400",
     textAlign: "left",

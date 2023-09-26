@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { grayLightColor, whiteColor } from "../styles/styles";
+import { GRAY_COLOR } from "../styles/styles";
 
 export default Separator = ({ title }) => {
   return (
@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
   separatorLine: {
     flex: 1,
     height: 1,
-    backgroundColor: grayLightColor,
+    backgroundColor: GRAY_COLOR,
     marginTop: 2.5,
   },
   separatorTitle: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     paddingRight: 8,
     fontSize: 16,
   },

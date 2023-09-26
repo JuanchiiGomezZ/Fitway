@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
-import { whiteColor } from "../styles/styles";
+import { WHITE_COLOR } from "../styles/styles";
 
 export default LogoFitway = () => {
   const [fontsLoaded] = useFonts({
@@ -15,7 +15,7 @@ export default LogoFitway = () => {
 const styles = StyleSheet.create({
   logo: {
     fontSize: 50,
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontFamily: "Fugaz",
     marginTop: 15,
   },

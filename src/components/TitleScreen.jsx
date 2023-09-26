@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import { whiteColor } from "../styles/styles";
+import { StyleSheet, Text } from "react-native";
+import { WHITE_COLOR } from "../styles/styles";
 import { useFonts } from "expo-font";
 
 export default ComponentName = ({ title }) => {
@@ -14,7 +13,7 @@ export default ComponentName = ({ title }) => {
 
 const styles = StyleSheet.create({
   title: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 40,
     fontWeight: "800",
   },

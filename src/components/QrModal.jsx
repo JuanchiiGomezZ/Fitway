@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View,Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
-  backgroundColor,
+  BACKGROUND_COLOR,
   borderRadius,
-  grayLightColor,
-  orangeColor,
-  whiteColor,
+  GRAY_COLOR,
+  ORANGE_COLOR,
+  WHITE_COLOR,
 } from "../styles/styles";
 import { AntDesign,MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
@@ -30,14 +30,14 @@ export default QrModal = ({ toggleModal }) => {
         <MaterialCommunityIcons
           style={styles.closeIcon}
           name="close-thick"
-          color={grayLightColor}
+          color={GRAY_COLOR}
           size={20}
           onPress={toggleModal}
         />
         <Text style={styles.title}>Code sharer</Text>
         <Text style={styles.textSentence}>Scan it on explore screen to share the routine</Text>
         <View style={styles.qrContainer}>
-          <QRCode value={"asda"} size={width * 0.55} backgroundColor="black" color={whiteColor} />
+          <QRCode value={"asda"} size={width * 0.55} backgroundColor="black" color={WHITE_COLOR} />
         </View>
         <TouchableOpacity style={styles.copyContainer} onPress={copyRoutineID}>
           <View style={styles.codeContainer}>
@@ -58,10 +58,10 @@ const styles = StyleSheet.create({
     minHeight: 200,
     width: "100%",
     position: "absolute",
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     top: "30%",
     left: "5%",
-    borderRadius: borderRadius,
+    borderRadius: BORDER_RADIUS,
     paddingHorizontal: "5%",
     paddingTop: 10,
     paddingBottom: 15,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     top: 10,
   },
   title: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 30,
     fontWeight: "600",
     textAlign: "center",
@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
     width: "90%",
   },
   textSentence: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 16,
     fontWeight: "500",
     marginTop: 5,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: "68%",
     borderWidth: 1,
-    borderColor: grayLightColor,
+    borderColor: GRAY_COLOR,
     paddingLeft: 10,
     borderBottomLeftRadius: 5,
     borderTopLeftRadius: 5,
@@ -113,12 +113,12 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
   },
   codeText: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontSize: 22,
     fontWeight: "500",
   },
   copyBtn: {
-    backgroundColor: orangeColor,
+    backgroundColor: ORANGE_COLOR,
     height: 40,
     justifyContent: "center",
     paddingHorizontal: 3,

@@ -1,7 +1,6 @@
 import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { whiteColor, orangeColor, orangeDarkColor, grayLightColor } from "../styles/styles";
-import { useTransition } from "react";
+import { WHITE_COLOR, ORANGE_COLOR, GRAY_COLOR, } from "../styles/styles";
 import { useTranslation } from "react-i18next";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -20,7 +19,7 @@ export const FacebookButton = ({ task }) => {
   return (
     <TouchableOpacity style={[styles.button, styles.googleButton, { backgroundColor: "#1877f2" }]} onPress={task}>
       <Image source={require("../assets/images/facebookIcon.png")} style={styles.icon} />
-      <Text style={{ fontWeight: "600", color: whiteColor }}>{t("continue-with")} Facebook</Text>
+      <Text style={{ fontWeight: "600", color: WHITE_COLOR }}>{t("continue-with")} Facebook</Text>
     </TouchableOpacity>
   );
 };
@@ -28,7 +27,7 @@ export const FacebookButton = ({ task }) => {
 export const TransparentButton = ({ task, icon, text }) => {
   return (
     <TouchableOpacity style={[styles.transparentButton]} onPress={task}>
-      <MaterialCommunityIcons name={icon} size={20} color={whiteColor} />
+      <MaterialCommunityIcons name={icon} size={20} color={WHITE_COLOR} />
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
@@ -36,7 +35,7 @@ export const TransparentButton = ({ task, icon, text }) => {
 export const TransparentButtonRounded = ({ task, icon, text }) => {
   return (
     <TouchableOpacity style={[styles.transparentBtnRounded]} onPress={task}>
-      <MaterialCommunityIcons name={icon} size={20} color={whiteColor} />
+      <MaterialCommunityIcons name={icon} size={20} color={WHITE_COLOR} />
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
@@ -51,8 +50,8 @@ export const OrangeButtonSmall = ({ task, text }) => {
 };
 export const WhiteButtonSmall = ({ task, text }) => {
   return (
-    <TouchableOpacity style={[styles.button, styles.OrangeButtonSmall, { backgroundColor: whiteColor }]} onPress={task}>
-      <Text style={[styles.OrangeButtonSmallText, { color: orangeColor }]}>{text}</Text>
+    <TouchableOpacity style={[styles.button, styles.OrangeButtonSmall, { backgroundColor: WHITE_COLOR }]} onPress={task}>
+      <Text style={[styles.OrangeButtonSmallText, { color: ORANGE_COLOR }]}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -83,7 +82,7 @@ export const OrangeButtonLarge = ({ task, text }) => {
 export const CloseModalIcon = ({ task }) => {
   return (
     <TouchableOpacity style={styles.closeIcon} onPress={task}>
-      <MaterialCommunityIcons name="close-thick" color={grayLightColor} size={16} />
+      <MaterialCommunityIcons name="close-thick" color={GRAY_COLOR} size={16} />
     </TouchableOpacity>
   );
 };
@@ -95,18 +94,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    backgroundColor: orangeColor,
+    backgroundColor: ORANGE_COLOR,
     fontSize: 18,
   },
 
   textButton: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 16,
     fontWeight: "500",
   },
 
   googleButton: {
-    backgroundColor: whiteColor,
+    backgroundColor: WHITE_COLOR,
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 10,
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 2,
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
     borderWidth: 1,
     paddingVertical: 8,
     paddingHorizontal: 10,
@@ -141,11 +140,11 @@ const styles = StyleSheet.create({
   },
 
   OrangeButtonSmall: {
-    backgroundColor: orangeColor,
+    backgroundColor: ORANGE_COLOR,
     height: 35,
   },
   OrangeButtonSmallText: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 14,
     fontWeight: "500",
   },

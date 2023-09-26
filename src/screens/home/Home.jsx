@@ -12,7 +12,7 @@ import ConfigWorkoutModal from "./components/ConfigWorkoutModal";
 import NewWorkoutModal from "./components/NewWorkoutModal";
 
 /* STYLES */
-import { backgroundColor, containerPaddingHorizontal, containerPaddingTop, grayLightColor } from "../../styles/styles";
+import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP, GRAY_COLOR, } from "../../styles/styles";
 import WorkoutCard from "./components/WorkoutCard";
 
 export default HomeScreen = () => {
@@ -39,7 +39,7 @@ export default HomeScreen = () => {
         <HeaderHome toggleNewWorkoutModal={toggleNewWorkoutModal} />
         <View>
           {workouts.map((item, index) => (
-            <WorkoutCard key={index} data={item} toggleBottomSheet={toggleBottomSheet} />
+            <WorkoutCard key={item.id} data={item} index={index} toggleBottomSheet={toggleBottomSheet} />
           ))}
         </View>
       </ScrollView>
@@ -52,8 +52,8 @@ export default HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: backgroundColor,
-    paddingHorizontal: containerPaddingHorizontal,
-    paddingTop: containerPaddingTop,
+    backgroundColor: BACKGROUND_COLOR,
+    paddingHorizontal: PADDING_HORIZONTAL,
+    paddingTop: PADDING_TOP,
   },
 });

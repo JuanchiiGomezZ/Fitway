@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
-import { grayLightColor, orangeColor, orangeDarkColor, whiteColor } from "../../../styles/styles";
+import { GRAY_COLOR,ORANGE_COLOR, ORANGE_DARK_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { AntDesign } from "@expo/vector-icons";
 
 export default FilterOptionComponent = ({ data, setState, state, title }) => {
@@ -10,14 +10,14 @@ export default FilterOptionComponent = ({ data, setState, state, title }) => {
       <View style={[styles.optionsContainer]}>
         {data.map((item) => (
           <TouchableHighlight
-            style={[styles.option, item == state && { borderColor: orangeColor }]}
+            style={[styles.option, item == state && { borderColor: ORANGE_COLOR }]}
             key={item}
             onPress={() => setState(item)}
           >
-            <Text style={[styles.optionText, item == state && { color: orangeColor }]}>{item}</Text>
+            <Text style={[styles.optionText, item == state && { color: ORANGE_COLOR }]}>{item}</Text>
           </TouchableHighlight>
         ))}
-        {state != null && <AntDesign name="closecircleo" size={20} color={grayLightColor} onPress={() => setState(null)} />}
+        {state != null && <AntDesign name="closecircleo" size={20} color={GRAY_COLOR} onPress={() => setState(null)} />}
       </View>
     </View>
   );
@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   optionName: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 20,
     fontWeight: "600",
   },
   option: {
-    borderColor: orangeDarkColor,
+    borderColor: ORANGE_DARK_COLOR,
     borderWidth: 1.3,
     paddingHorizontal: 12,
     borderRadius: 10,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   optionText: {
-    color: orangeDarkColor,
+    color: ORANGE_DARK_COLOR,
     fontSize: 15,
     fontWeight: "500",
   },

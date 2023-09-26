@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Keyboard, TouchableHighlight } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
-  backdropColor,
-  backgroundColor,
-  borderRadius,
-  orangeColor,
-  orangeDarkColor,
+  BACKGROUND_COLOR,
+  BORDER_RADIUS,
+  ORANGE_COLOR,
+  ORANGE_DARK_COLOR,
 
 } from "../../../styles/styles";
 
@@ -93,10 +92,10 @@ const styles = StyleSheet.create({
     minHeight: 200,
     width: "100%",
     position: "absolute",
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     top: "30%",
     left: "5%",
-    borderRadius: borderRadius,
+    borderRadius: BORDER_RADIUS,
     paddingHorizontal: "5%",
     paddingTop: 10,
     paddingBottom: 15,
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
   },
   tagContainer: {
     borderWidth: 1,
-    borderColor: orangeDarkColor,
+    borderColor: ORANGE_DARK_COLOR,
     borderRadius: 10,
     paddingHorizontal: 5,
     justifyContent: "center",
@@ -140,14 +139,14 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
   },
   tagText: {
-    color: orangeDarkColor,
+    color: ORANGE_DARK_COLOR,
     fontSize: 15,
     fontWeight: "400",
   },
   activeTagContainer: {
-    borderColor: orangeColor,
+    borderColor: ORANGE_COLOR,
   },
   activeTagText: {
-    color: orangeColor,
+    color: ORANGE_COLOR,
   },
 });

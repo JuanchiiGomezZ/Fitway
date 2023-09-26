@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
-import { backdropColor, backgroundColor, orangeColor, redColor, whiteColor } from "../../../styles/styles";
+import { BACKGROUND_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
@@ -24,13 +24,13 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
       <Animated.View style={styles.bottomSheetContainer} entering={SlideInDown.damping(15)} exiting={SlideOutDown.damping(15)}>
         <View style={styles.optionsContainer}>
           <TouchableOpacity style={styles.option}>
-            <Feather name="edit-2" size={24} color={whiteColor} />
+            <Feather name="edit-2" size={24} color={WHITE_COLOR} />
             <Text style={styles.optionText}>{t("configModal.edit-workout")}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.option} onPress={handleDeleteWorkout}>
-            <MaterialIcons name="delete-outline" size={26} color={redColor} />
-            <Text style={[styles.optionText, { color: redColor }]}>{t("configModal.delete-workout")}</Text>
+            <MaterialIcons name="delete-outline" size={26} color={RED_COLOR} />
+            <Text style={[styles.optionText, { color: RED_COLOR }]}>{t("configModal.delete-workout")}</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.option} onPress={() => toggleBottomSheet()}>
@@ -42,7 +42,6 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
 };
 
 const styles = StyleSheet.create({
-
   bottomSheetContainer: {
     position: "absolute",
     bottom: 10,
@@ -60,11 +59,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 20,
-    backgroundColor: backgroundColor,
+    backgroundColor: BACKGROUND_COLOR,
     borderRadius: 10,
   },
   optionText: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontSize: 18,
   },
 });

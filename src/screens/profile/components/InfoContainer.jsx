@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { grayLightColor, whiteColor } from "../../../styles/styles";
+import { GRAY_COLOR,WHITE_COLOR } from "../../../styles/styles";
 import ageCalculator from "../helpers/ageCalculator";
 
 export default InfoContainer = ({ weight, height, birthdate }) => {
@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   infoTitle: {
-    color: grayLightColor,
+    color: GRAY_COLOR,
     fontWeight: "500",
   },
   infoValue: {
-    color: whiteColor,
+    color: WHITE_COLOR,
     fontWeight: "500",
   },
   line: {

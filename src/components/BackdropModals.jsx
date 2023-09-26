@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import Animated,{ FadeIn, FadeOut } from "react-native-reanimated";
-import { backdropColor } from "../styles/styles";
+import { BACKDROP_COLOR } from "../styles/styles";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -12,6 +12,6 @@ export default BackdropModals = ({ toggleModal }) => {
 const styles = StyleSheet.create({
   backdrop: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: backdropColor,
+    backgroundColor: BACKDROP_COLOR,
   },
 });
