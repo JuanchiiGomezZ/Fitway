@@ -1,14 +1,23 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
-import Countdown from "./components/Countdown";
+import { useNavigation } from "@react-navigation/native";
 
 export default DiscoverScreen = () => {
   const { t } = useTranslation();
-  return <View style={styles.container}>
-    <Countdown/>
-  </View>;
+  const { navigate } = useNavigation();
+
+  return (
+    <View style={styles.container}>
+      <Button
+        title="Countdown"
+        onPress={() => {
+          navigate("Training");
+        }}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

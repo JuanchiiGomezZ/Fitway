@@ -1,20 +1,61 @@
-import React, { useState, useEffect } from "react";
+/**
+ * A custom React hook that manages a countdown timer.
+ * @returns {Object} An object containing the countdown timer state and functions.
+ */
+import { useState, useEffect } from "react";
 
-export default useCountdown = () => {
+export default function useCountdown() {
   const [secondsLeft, setSecondsLeft] = useState(0);
+  const [isPaused, setIsPaused] = useState(true);
+  const [isTimeOver, setIsTimeOver] = useState(false);
 
   useEffect(() => {
-    if (secondsLeft <= 0) return;
+    if (isPaused || secondsLeft <= 0) {
+      if (!isPaused) setIsTimeOver(secondsLeft <= 0);
+      return;
+    }
 
     const timeout = setTimeout(() => {
-      setSecondsLeft(secondsLeft - 1);
+      setSecondsLeft((prev) => prev - 1);
     }, 1000);
-    return () => clearTimeout(timeout);
-  }, [secondsLeft]);
 
+    return () => clearTimeout(timeout);
+  }, [secondsLeft, isPaused]);
+
+  /**
+   * Starts or pauses the countdown timer.
+   * @param {number} seconds - The number of seconds to start the countdown timer with.
+   */
   const start = (seconds) => {
-    setSecondsLeft(seconds);
+    if (isPaused && secondsLeft === 0) {
+      setSecondsLeft(seconds);
+      setIsPaused(false);
+    } else if (isPaused && secondsLeft !== 0) {
+      setIsPaused(false);
+    } else {
+      setIsPaused(true);
+    }
+    setIsTimeOver(false); // Reset the isTimeOver state
   };
 
-  return { secondsLeft, start };
-};
+  /**
+   * Adds extra seconds to the countdown timer.
+   * @param {number} extraSeconds - The number of extra seconds to add.
+   */
+  const addTime = (extraSeconds) => {
+    if (!isPaused) {
+      setSecondsLeft((prevSeconds) => prevSeconds + extraSeconds);
+    }
+  };
+
+  /**
+   * Skips to a specific time in the countdown timer.
+   */
+  const skipTime = () => {
+    if (!isPaused) {
+      setSecondsLeft(4);
+    }
+  };
+
+  return { secondsLeft, start, isPaused, isTimeOver, addTime, skipTime };
+}

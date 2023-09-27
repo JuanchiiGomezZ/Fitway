@@ -7,8 +7,6 @@ import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
 import BackdropModals from "../../../components/BackdropModals";
 
-
-
 export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
   const { t } = useTranslation();
   const { delteWorkout } = useWorkoutsStore();
@@ -21,7 +19,11 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
   return (
     <>
       <BackdropModals toggleModal={toggleBottomSheet} />
-      <Animated.View style={styles.bottomSheetContainer} entering={SlideInDown.damping(15)} exiting={SlideOutDown.damping(15)}>
+      <Animated.View
+        style={styles.bottomSheetContainer}
+        entering={SlideInDown}
+        exiting={SlideOutDown}
+      >
         <View style={styles.optionsContainer}>
           <TouchableOpacity style={styles.option}>
             <Feather name="edit-2" size={24} color={WHITE_COLOR} />
@@ -30,7 +32,9 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
 
           <TouchableOpacity style={styles.option} onPress={handleDeleteWorkout}>
             <MaterialIcons name="delete-outline" size={26} color={RED_COLOR} />
-            <Text style={[styles.optionText, { color: RED_COLOR }]}>{t("configModal.delete-workout")}</Text>
+            <Text style={[styles.optionText, { color: RED_COLOR }]}>
+              {t("configModal.delete-workout")}
+            </Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.option} onPress={() => toggleBottomSheet()}>
