@@ -37,7 +37,7 @@ export default AllRoutinesScreen = () => {
       <View style={styles.head}>
         <Header title={t("Routines.title")} />
         <View style={{ marginBottom: 13 }}>
-          <TransparentButtonRounded text={t("Routines.create-routine")} icon={"plus"} task={toggleNewRoutineModal} />
+          <TransparentButtonRounded text={t("Routines.create-routine")} icon={"plus"} action={toggleNewRoutineModal} />
         </View>
       </View>
       <ScrollView>

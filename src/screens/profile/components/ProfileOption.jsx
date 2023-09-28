@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { FontAwesome5, Ionicons, FontAwesome, Feather, SimpleLineIcons } from "@expo/vector-icons";
 import { GRAY_COLOR, RED_COLOR } from "../../../styles/styles";
 
-export default ProfileOption = ({ iconType, iconName, optionName, showArrow, task }) => {
+export default ProfileOption = ({ iconType, iconName, optionName, showArrow, action }) => {
   const renderIcon = () => {
     switch (iconType) {
       case "FontAwesome5":
@@ -19,7 +19,7 @@ export default ProfileOption = ({ iconType, iconName, optionName, showArrow, tas
   };
 
   return (
-    <TouchableOpacity style={styles.option} onPress={task}>
+    <TouchableOpacity style={styles.option} onPress={action}>
       <View style={styles.iconAndName}>
         {renderIcon()}
         <Text style={iconType === "Feather" ? styles.nameOptionLogout : styles.nameOption}>{optionName}</Text>

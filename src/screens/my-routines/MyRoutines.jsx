@@ -42,12 +42,12 @@ export default MyRoutinesScreen = () => {
       <ScrollView>
         <View style={styles.buttonsContainer}>
           <TransparentButton text={t("MyRoutines.filter")} icon={"filter-variant-plus"} />
-          <TransparentButton text={t("MyRoutines.add-routine")} icon={"plus-circle"} task={()=> navigation.navigate("AllRoutines")} />
+          <TransparentButton text={t("MyRoutines.add-routine")} icon={"plus-circle"} action={()=> navigation.navigate("AllRoutines")} />
         </View>
         <View style={styles.routinesContainer}>
-          <Separator title={"Active"} />
+          <Separator title={t("MyRoutines.active")} />
           <RoutineCard key={activeRoutine.id} data={activeRoutine} toggleBottomSheet={toggleBottomSheet} />
-          <Separator title={"All"} />
+          <Separator title={t("MyRoutines.all")} />
           <View style={styles.allRoutines}>
             {routinesTestData.map(
               (item) => item.id != 2 && <RoutineCard key={item.id} data={item} toggleBottomSheet={toggleBottomSheet} />,

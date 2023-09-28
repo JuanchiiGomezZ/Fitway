@@ -52,14 +52,14 @@ export default ProfileScreen = () => {
             iconType={"FontAwesome"}
             iconName={"gear"}
             showArrow={true}
-            task={() => navigation.navigate("Settings")}
+            action={() => navigation.navigate("Settings")}
           />
           <ProfileOption
             optionName={t("Profile.log-out")}
             iconType={"Feather"}
             iconName={"log-out"}
             showArrow={false}
-            task={signOut}
+            action={signOut}
           />
         </View>
       </View>

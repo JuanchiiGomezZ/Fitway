@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Circle, Svg } from "react-native-svg";
+import { Circle, Svg, G } from "react-native-svg";
 import {
   BACKGROUND_COLOR,
   BOX_COLOR,
@@ -9,10 +9,11 @@ import {
   WHITE_COLOR,
 } from "../../../styles/styles";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
-import useCountdown from "../../../hooks/useCountdown";
+import useCountdown from "../hooks/useCountdown";
 import CountdownControlers from "./CountdownControlers";
 import BackdropModals from "../../../components/BackdropModals";
 import { convertToMinutesSeconds } from "../helper/timeFormater";
+import { useFonts } from "expo-font";
 
 const RADIUS = 45;
 const CIRCUMFERENCE = RADIUS * 2 * Math.PI;
@@ -20,7 +21,11 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default Countdown = ({ toggleModal, restTime }) => {
   const countdown = useCountdown();
-  const { secondsLeft, isTimeOver } = countdown;
+  const { secondsLeft, isTimeOver, start } = countdown;
+  const [fontsLoaded] = useFonts({
+    Fugaz: require("../../../assets/fonts/Fugaz.ttf"),
+  });
+
   const [time, setTime] = useState(restTime);
 
   useEffect(() => {
@@ -32,6 +37,11 @@ export default Countdown = ({ toggleModal, restTime }) => {
     }
   }, [isTimeOver]);
 
+  useEffect(() => {
+    start(time);
+  }, []);
+
+  if (!fontsLoaded) return null;
   return (
     <>
       <BackdropModals />
@@ -41,7 +51,12 @@ export default Countdown = ({ toggleModal, restTime }) => {
           <Text style={styles.restText}>Rest Time</Text>
         </View>
 
-        <Svg height="55%" width="100%" viewBox="0 0 100 100">
+        <Svg
+          height="55%"
+          width="100%"
+          viewBox="0 0 100 100"
+          style={{ transform: [{ rotateZ: "-90deg" }] }}
+        >
           <Circle
             cx="50"
             cy="50"
@@ -50,6 +65,7 @@ export default Countdown = ({ toggleModal, restTime }) => {
             strokeWidth="5"
             fill={BACKGROUND_COLOR}
           />
+
           <AnimatedCircle
             cx="50"
             cy="50"
@@ -77,15 +93,14 @@ const styles = StyleSheet.create({
   },
   progressText: {
     color: WHITE_COLOR,
-    fontSize: 70,
-    fontWeight: "bold",
+    fontSize: 65,
     textAlign: "center",
+    fontFamily: "Fugaz",
   },
   countdownCounter: {
     textAlign: "center",
     position: "absolute",
-    top: "34%",
-    gap: 30,
+    top: "35%",
     zIndex: 10,
   },
   restText: {

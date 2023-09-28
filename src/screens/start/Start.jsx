@@ -38,12 +38,12 @@ export default StartScreen = () => {
             <View style={styles.bottomContainer}>
               <OrangeButton
                 text={"Login"}
-                task={() => {
+                action={() => {
                   console.log(storage.getString("token"));
                 }}
               />
               {/*<FacebookButton /> */}
-              <GoogleButton task={signIn} />
+              <GoogleButton action={signIn} />
               <View>
                 <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>
                 <Text style={[styles.privacyGeneral, { color: ORANGE_COLOR }]}>Privacy, Policy and Terms of Use</Text>

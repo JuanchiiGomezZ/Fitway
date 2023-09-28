@@ -3,11 +3,12 @@ import { StyleSheet, View } from "react-native";
 import { MaterialIcons, Entypo } from "@expo/vector-icons";
 import { SearchInput } from "../../../components/Inputs";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
-export default SearchBar = ({toggleFilterModal}) => {
+export default SearchBar = ({ toggleFilterModal }) => {
   const navigation = useNavigation();
   const [querySearch, setQerySearch] = useState("");
-
+  const { t } = useTranslation();
   return (
     <View style={styles.searchBarContainer}>
       <MaterialIcons
@@ -18,8 +19,18 @@ export default SearchBar = ({toggleFilterModal}) => {
           navigation.navigate("BarCodeScanner");
         }}
       />
-      <SearchInput placeholder={"Search..."} inputChange={querySearch} setInputChange={setQerySearch} />
-      <Entypo name="sound-mix" size={26} color="white" style={{ transform: [{ rotate: "90deg" }] }} onPress={toggleFilterModal} />
+      <SearchInput
+        placeholder={t("global.search")+"..."}
+        inputChange={querySearch}
+        setInputChange={setQerySearch}
+      />
+      <Entypo
+        name="sound-mix"
+        size={26}
+        color="white"
+        style={{ transform: [{ rotate: "90deg" }] }}
+        onPress={toggleFilterModal}
+      />
     </View>
   );
 };

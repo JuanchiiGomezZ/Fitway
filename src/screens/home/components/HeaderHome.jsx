@@ -18,12 +18,12 @@ export default HeaderHome = ({ toggleNewWorkoutModal }) => {
         <TransparentButton
           text={t("Home.new-workout")}
           icon={"clipboard-text"}
-          task={toggleNewWorkoutModal}
+          action={toggleNewWorkoutModal}
         />
         <TransparentButton
           text={t("Home.my-routines")}
           icon={"bookmark"}
-          task={() => navigate("MyRoutines")}
+          action={() => navigate("MyRoutines")}
         />
       </View>
     </View>

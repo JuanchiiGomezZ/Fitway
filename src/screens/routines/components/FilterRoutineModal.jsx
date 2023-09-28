@@ -25,7 +25,7 @@ export default FilterRoutineModal = ({ toggleModal }) => {
       <Animated.View style={styles.modalContainer} entering={SlideInDown} exiting={SlideOutDown}>
         <View style={styles.head}>
           <Text style={styles.headText}>{t("Routines.FilterRoutineModal.title")}</Text>
-          <CloseModalIcon task={toggleModal} />
+          <CloseModalIcon action={toggleModal} />
         </View>
 
         <FilterOptionComponent
@@ -49,7 +49,7 @@ export default FilterRoutineModal = ({ toggleModal }) => {
 
         <View style={styles.buttonsContainer}>
           <View style={{ width: "65%" }}>
-            <OrangeButtonSmall text={t("Routines.FilterRoutineModal.apply")} task={toggleModal} />
+            <OrangeButtonSmall text={t("Routines.FilterRoutineModal.apply")} action={toggleModal} />
           </View>
           <View style={{ width: "32%" }}>
             <WhiteButtonSmall text={t("Routines.FilterRoutineModal.clear-filters")} />

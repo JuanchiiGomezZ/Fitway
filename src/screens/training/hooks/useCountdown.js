@@ -3,11 +3,13 @@
  * @returns {Object} An object containing the countdown timer state and functions.
  */
 import { useState, useEffect } from "react";
+import useElapsedTimeOnBackground from "./useElapsedTimeOnBackground";
 
 export default function useCountdown() {
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [isTimeOver, setIsTimeOver] = useState(false);
+  const { elapsedTime } = useElapsedTimeOnBackground();
 
   useEffect(() => {
     if (isPaused || secondsLeft <= 0) {
@@ -43,9 +45,7 @@ export default function useCountdown() {
    * @param {number} extraSeconds - The number of extra seconds to add.
    */
   const addTime = (extraSeconds) => {
-    if (!isPaused) {
-      setSecondsLeft((prevSeconds) => prevSeconds + extraSeconds);
-    }
+    if (!isPaused) setSecondsLeft((prevSeconds) => prevSeconds + extraSeconds);
   };
 
   /**
@@ -56,6 +56,14 @@ export default function useCountdown() {
       setSecondsLeft(4);
     }
   };
+
+  const updateTimer = (elapsedTime) => {
+    if (!isPaused) setSecondsLeft((prevSeconds) => prevSeconds - elapsedTime);
+  };
+
+  useEffect(() => {
+    updateTimer(elapsedTime);
+  }, [elapsedTime]);
 
   return { secondsLeft, start, isPaused, isTimeOver, addTime, skipTime };
 }

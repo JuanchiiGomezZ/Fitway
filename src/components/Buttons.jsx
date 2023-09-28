@@ -4,22 +4,22 @@ import { WHITE_COLOR, ORANGE_COLOR, GRAY_COLOR, RED_COLOR } from "../styles/styl
 import { useTranslation } from "react-i18next";
 import { MaterialCommunityIcons, FontAwesome5, FontAwesome } from "@expo/vector-icons";
 
-export const GoogleButton = ({ task }) => {
+export const GoogleButton = ({ action }) => {
   const { t } = useTranslation();
   return (
-    <TouchableOpacity style={[styles.button, styles.googleButton]} onPress={task}>
+    <TouchableOpacity style={[styles.button, styles.googleButton]} onPress={action}>
       <Image source={require("../assets/images/googleIcon.png")} style={styles.icon} />
       <Text style={{ fontWeight: "600" }}>{t("continue-with")} Google</Text>
     </TouchableOpacity>
   );
 };
 
-export const FacebookButton = ({ task }) => {
+export const FacebookButton = ({ action }) => {
   const { t } = useTranslation();
   return (
     <TouchableOpacity
       style={[styles.button, styles.googleButton, { backgroundColor: "#1877f2" }]}
-      onPress={task}
+      onPress={action}
     >
       <Image source={require("../assets/images/facebookIcon.png")} style={styles.icon} />
       <Text style={{ fontWeight: "600", color: WHITE_COLOR }}>{t("continue-with")} Facebook</Text>
@@ -27,90 +27,90 @@ export const FacebookButton = ({ task }) => {
   );
 };
 
-export const TransparentButton = ({ task, icon, text }) => {
+export const TransparentButton = ({ action, icon, text }) => {
   return (
-    <TouchableOpacity style={[styles.transparentButton]} onPress={task}>
+    <TouchableOpacity style={[styles.transparentButton]} onPress={action}>
       <MaterialCommunityIcons name={icon} size={20} color={WHITE_COLOR} />
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
 };
-export const TransparentButtonRounded = ({ task, icon, text }) => {
+export const TransparentButtonRounded = ({ action, icon, text }) => {
   return (
-    <TouchableOpacity style={[styles.transparentBtnRounded]} onPress={task}>
+    <TouchableOpacity style={[styles.transparentBtnRounded]} onPress={action}>
       <MaterialCommunityIcons name={icon} size={20} color={WHITE_COLOR} />
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
-export const OrangeButtonSmall = ({ task, text }) => {
+export const OrangeButtonSmall = ({ action, text }) => {
   return (
-    <TouchableOpacity style={[styles.button, styles.OrangeButtonSmall]} onPress={task}>
+    <TouchableOpacity style={[styles.button, styles.OrangeButtonSmall]} onPress={action}>
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
 };
-export const WhiteButtonSmall = ({ task, text }) => {
+export const WhiteButtonSmall = ({ action, text }) => {
   return (
     <TouchableOpacity
       style={[styles.button, styles.OrangeButtonSmall, { backgroundColor: WHITE_COLOR }]}
-      onPress={task}
+      onPress={action}
     >
       <Text style={[styles.OrangeButtonSmallText, { color: ORANGE_COLOR }]}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
-export const DisabledButtonSmall = ({ task, text }) => {
+export const DisabledButtonSmall = ({ action, text }) => {
   return (
     <TouchableOpacity
       style={[styles.button, styles.OrangeButtonSmall, { backgroundColor: "grey" }]}
-      onPress={task}
+      onPress={action}
     >
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
-export const OrangeButton = ({ task, text }) => {
+export const OrangeButton = ({ action, text }) => {
   return (
-    <TouchableOpacity style={[styles.button]} onPress={task}>
+    <TouchableOpacity style={[styles.button]} onPress={action}>
       <Text style={styles.textButton}>{text}</Text>
     </TouchableOpacity>
   );
 };
-export const OrangeButtonLarge = ({ task, text }) => {
+export const OrangeButtonLarge = ({ action, text }) => {
   return (
-    <TouchableOpacity style={[styles.button, styles.largeButton]} onPress={task}>
+    <TouchableOpacity style={[styles.button, styles.largeButton]} onPress={action}>
       <Text style={styles.textButton}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
-export const CloseModalIcon = ({ task }) => {
+export const CloseModalIcon = ({ action }) => {
   return (
-    <TouchableOpacity style={styles.closeIcon} onPress={task}>
+    <TouchableOpacity style={styles.closeIcon} onPress={action}>
       <MaterialCommunityIcons name="close-thick" color={GRAY_COLOR} size={16} />
     </TouchableOpacity>
   );
 };
 
-export const OrangeCircularButton = ({ task, icon }) => {
+export const OrangeCircularButton = ({ action, icon }) => {
   return (
-    <TouchableOpacity style={styles.circularButton} onPress={task}>
+    <TouchableOpacity style={styles.circularButton} onPress={action}>
       <FontAwesome5
         name={icon}
-        size={28}
+        size={25}
         color="white"
         style={icon == "play" && { marginLeft: 5 }}
       />
     </TouchableOpacity>
   );
 };
-export const GrayCircularButton = ({ task, icon, text }) => {
+export const GrayCircularButton = ({ action, icon, text }) => {
   return (
-    <TouchableOpacity style={[styles.circularButton, styles.grayCircularButton]} onPress={task}>
+    <TouchableOpacity style={[styles.circularButton, styles.grayCircularButton]} onPress={action}>
       {text ? (
         <Text style={styles.textButton}>{text}</Text>
       ) : (
@@ -120,13 +120,14 @@ export const GrayCircularButton = ({ task, icon, text }) => {
   );
 };
 
-export const RedCircularButton = ({ task, icon }) => {
+export const CircularButtonSmall = ({ action, icon, color }) => {
+  const Icon = icon == "close" ? FontAwesome : FontAwesome5;
   return (
     <TouchableOpacity
-      style={[styles.circularButton, { backgroundColor: RED_COLOR }]}
-      onPress={task}
+      style={[styles.circularButton, { backgroundColor: color, width: 40, height: 40 }]}
+      onPress={action}
     >
-      <FontAwesome name={icon} size={30} color="white" />
+      <Icon name={icon} size={25} color="white" style={icon == "play" && { marginLeft: 5 }} />
     </TouchableOpacity>
   );
 };
@@ -208,8 +209,8 @@ const styles = StyleSheet.create({
   },
 
   circularButton: {
-    width: 45,
-    height: 45,
+    width: 50,
+    height: 50,
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",

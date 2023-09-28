@@ -33,7 +33,7 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
       <Animated.View style={styles.modalContainer} entering={FadeInRight} exiting={FadeOutRight}>
         <View style={styles.header}>
           <Text style={styles.title}>{t("Routines.NewRoutineModal.title")}</Text>
-          <CloseModalIcon task={toggleNewRoutineModal} />
+          <CloseModalIcon action={toggleNewRoutineModal} />
         </View>
 
         <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />

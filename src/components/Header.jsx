@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { GRAY_COLOR, WHITE_COLOR } from "../styles/styles";
+import {WHITE_COLOR } from "../styles/styles";
 
 export default Header = ({ title }) => {
 
@@ -31,11 +31,5 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     fontSize: 28,
     fontWeight: "700",
-  },
-  subtitle: {
-    color: GRAY_COLOR,
-    fontSize: 14,
-    fontWeight: "700",
-    marginTop: -5,
   },
 });

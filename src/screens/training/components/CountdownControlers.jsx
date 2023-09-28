@@ -17,9 +17,9 @@ export default CountdownControlers = ({ useCountdown, time, setTime }) => {
 
   return (
     <View style={styles.controlsContainer}>
-      <GrayCircularButton text="+15s" task={() => handleAddTime(15)} />
-      <OrangeCircularButton icon={isPaused ? "play" : "pause"} task={handlePlay} />
-      <GrayCircularButton icon="forward" task={skipTime} />
+      <GrayCircularButton text="+15s" action={() => handleAddTime(15)} />
+      <OrangeCircularButton icon={isPaused ? "play" : "pause"} action={handlePlay} />
+      <GrayCircularButton icon="forward" action={skipTime} />
     </View>
   );
 };
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "100%",
+    width: "90%",
     marginTop: 30,
   },
 });

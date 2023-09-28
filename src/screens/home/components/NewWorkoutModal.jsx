@@ -26,16 +26,16 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
 
       <Animated.View style={styles.modalContainer} entering={FadeInLeft} exiting={FadeOutLeft}>
         <View style={styles.header}>
-          <Text style={styles.title}>{t("New Workout")}</Text>
-          <CloseModalIcon task={toggleNewWorkoutModal} />
+          <Text style={styles.title}>{t("Home.new-workout")}</Text>
+          <CloseModalIcon action={toggleNewWorkoutModal} />
         </View>
 
-        <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Workout name"} />
+        <ClassicInput setInputChange={setName} inputChange={name} placeholder={t("Home.workout-name")} />
 
         {name.trim() < 1 ? (
-          <DisabledButtonSmall text={"Continue"} />
+          <DisabledButtonSmall text={t("global.continue")} />
         ) : (
-          <OrangeButtonSmall text={"Continue"} task={handleNewWorkout} />
+          <OrangeButtonSmall text={t("global.continue")} action={handleNewWorkout} />
         )}
       </Animated.View>
     </>

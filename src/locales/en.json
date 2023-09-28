@@ -17,7 +17,8 @@
   "Home": {
     "title": "Workouts",
     "new-workout": "New workout",
-    "my-routines": "My routines"
+    "my-routines": "My routines",
+    "workout-name": "Workout name"
   },
 
   "MyRoutines": {
@@ -25,7 +26,9 @@
     "filter": "Filters",
     "add-routine": "Add Routine",
     "level": "Level",
-    "workouts": "Workouts"
+    "workouts": "Workouts",
+    "active": "Active",
+    "all": "All"
   },
   "Routines": {
     "title": "Routines",
@@ -70,5 +73,10 @@
     "thursday": "Thursday",
     "friday": "Friday",
     "saturday": "Saturday"
+  },
+
+  "global": {
+    "search": "Search",
+    "continue": "Continue"
   }
 }

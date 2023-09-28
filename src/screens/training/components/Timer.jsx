@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
-import useTimer from "../../../hooks/useTimer";
-import { OrangeCircularButton, RedCircularButton } from "../../../components/Buttons";
+import useTimer from "../hooks/useTimer";
+import { CircularButtonSmall } from "../../../components/Buttons";
 import { convertToHourMinutesSeconds } from "../helper/timeFormater";
-import { BACKGROUND_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import { BACKGROUND_COLOR, ORANGE_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { AntDesign } from "@expo/vector-icons";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
+import { useFonts } from "expo-font";
 
 export default Timer = () => {
   const { t } = useTranslation();
   const { pause, seconds, isPaused } = useTimer();
+  const [fontsLoaded] = useFonts({
+    Fugaz: require("../../../assets/fonts/Fugaz.ttf"),
+  });
+
   const [openTimer, setOpenTimer] = useState(true);
 
   const toggleTimer = () => {
     setOpenTimer((prev) => !prev);
   };
+  if (!fontsLoaded) return null;
   return (
     <View style={styles.timerContainer}>
       {!openTimer && (
@@ -31,7 +37,7 @@ export default Timer = () => {
       )}
 
       {openTimer && (
-        <Animated.View entering={SlideInDown} exiting={SlideOutDown}>
+        <Animated.View entering={SlideInDown} exiting={SlideOutDown.duration(300).easing()}>
           <View style={styles.handleIcon}>
             <AntDesign
               name={"caretdown"}
@@ -42,9 +48,13 @@ export default Timer = () => {
             />
           </View>
           <View style={styles.timerContent}>
-            <RedCircularButton icon={"close"} />
+            <CircularButtonSmall icon={"close"} color={RED_COLOR} />
             <Text style={styles.textTimer}>{convertToHourMinutesSeconds(seconds)}</Text>
-            <OrangeCircularButton icon={isPaused ? "play" : "pause"} task={pause} />
+            <CircularButtonSmall
+              icon={isPaused ? "play" : "pause"}
+              action={pause}
+              color={ORANGE_COLOR}
+            />
           </View>
         </Animated.View>
       )}
@@ -66,14 +76,17 @@ const styles = StyleSheet.create({
     borderTopColor: "#474747",
     borderTopWidth: 1,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 7,
+    paddingVertical: 10,
     backgroundColor: BACKGROUND_COLOR,
+    paddingHorizontal: "5%",
   },
   textTimer: {
     color: WHITE_COLOR,
-    fontSize: 35,
+    fontSize: 31, //35
+    fontWeight: "500",
+    fontFamily: "Fugaz",
   },
   handleIcon: {
     alignItems: "center",
