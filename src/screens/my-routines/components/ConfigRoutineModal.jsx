@@ -1,44 +1,76 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View,TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
-import {BACKGROUND_COLOR, GREEN_COLOR, ORANGE_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import {
+  BACKGROUND_COLOR,
+  GREEN_COLOR,
+  ORANGE_COLOR,
+  RED_COLOR,
+  WHITE_COLOR,
+} from "../../../styles/styles";
 import { Feather, MaterialIcons, AntDesign } from "@expo/vector-icons";
-import Animated, {SlideInDown, SlideOutDown } from "react-native-reanimated";
+import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import BackdropModals from "../../../components/BackdropModals";
+import useRoutinesStore from "../../../hooks/redux/useRoutinesStore";
+import { useSelector } from "react-redux";
+import { OptionMenu } from "../../../components/Buttons";
 
-export default ConfigRoutineModal = ({ toggleBottomSheet, id }) => {
+export default ConfigRoutineModal = ({ toggleBottomSheet, id, toggleQrModal }) => {
   const { t } = useTranslation();
+  const { deleteUserRoutine, toggleActiveRoutine } = useRoutinesStore();
+  const { activeRoutineId } = useSelector((state) => state.userRoutines);
+  const handleDeleteRoutine = () => {
+    deleteUserRoutine(id);
+    toggleBottomSheet();
+  };
+
+  const handleToggleActiveRoutine = (isActive) => {
+    toggleActiveRoutine(id, isActive);
+    toggleBottomSheet();
+  };
 
   return (
     <>
-      <BackdropModals toggleModal={toggleBottomSheet}/>
-      <Animated.View style={styles.bottomSheetContainer} entering={SlideInDown.damping(15)} exiting={SlideOutDown.damping(15)}>
+      <BackdropModals toggleModal={() => toggleBottomSheet(null)} />
+      <Animated.View
+        style={styles.bottomSheetContainer}
+        entering={SlideInDown}
+        exiting={SlideOutDown}
+      >
         <View style={styles.optionsContainer}>
-          {id != 2 ? (
-            <TouchableOpacity style={styles.option}>
-              <AntDesign name="checkcircleo" size={24} color={GREEN_COLOR} />
-              <Text style={[styles.optionText, { color: GREEN_COLOR }]}>{t("configModal.set-as-active")}</Text>
-            </TouchableOpacity>
+          {/* ACTIVE BUTTONS */}
+          {id != activeRoutineId ? (
+            <OptionMenu
+              text={t("configModal.set-as-active")}
+              icon="check-circle"
+              color={GREEN_COLOR}
+              action={() => handleToggleActiveRoutine(true)}
+            />
           ) : (
-            <TouchableOpacity style={styles.option}>
-              <AntDesign name="closecircleo" size={24} color={ORANGE_COLOR} />
-              <Text style={[styles.optionText, { color: ORANGE_COLOR }]}>{t("configModal.remove-as-active")}</Text>
-            </TouchableOpacity>
+            <OptionMenu
+              text={t("configModal.remove-as-active")}
+              icon="alert-circle"
+              color={ORANGE_COLOR}
+              action={() => handleToggleActiveRoutine(false)}
+            />
           )}
 
-          <TouchableOpacity style={styles.option}>
-            <Feather name="edit-2" size={24} color={WHITE_COLOR} />
-            <Text style={styles.optionText}>{t("configModal.edit-routine")}</Text>
-          </TouchableOpacity>
+          {/*SHARE BUTTON  */}
+          <OptionMenu text={"Share Routine"} icon="share" action={toggleQrModal} />
 
-          <TouchableOpacity style={styles.option}>
-            <MaterialIcons name="delete-outline" size={26} color={RED_COLOR} />
-            <Text style={[styles.optionText, { color: RED_COLOR }]}>{t("configModal.delete-routine")}</Text>
-          </TouchableOpacity>
+          {/* EDIT BUTTON */}
+          <OptionMenu text={t("configModal.edit-routine")} icon="edit-2" />
+
+          {/* DELETE BUTTON */}
+          <OptionMenu
+            text={t("configModal.delete-routine")}
+            icon="trash"
+            color={RED_COLOR}
+            action={handleDeleteRoutine}
+          />
         </View>
-        <TouchableOpacity style={styles.option} onPress={() => toggleBottomSheet()}>
-          <Text style={styles.optionText}>{t("configModal.cancel")}</Text>
-        </TouchableOpacity>
+
+        <OptionMenu text={t("configModal.cancel")} action={() => toggleBottomSheet(null)} />
       </Animated.View>
     </>
   );

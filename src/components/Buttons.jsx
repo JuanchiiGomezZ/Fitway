@@ -1,8 +1,14 @@
 import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { WHITE_COLOR, ORANGE_COLOR, GRAY_COLOR, RED_COLOR } from "../styles/styles";
+import {
+  WHITE_COLOR,
+  ORANGE_COLOR,
+  GRAY_COLOR,
+  RED_COLOR,
+  BACKGROUND_COLOR,
+} from "../styles/styles";
 import { useTranslation } from "react-i18next";
-import { MaterialCommunityIcons, FontAwesome5, FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome5, FontAwesome, Feather } from "@expo/vector-icons";
 
 export const GoogleButton = ({ action }) => {
   const { t } = useTranslation();
@@ -131,6 +137,21 @@ export const CircularButtonSmall = ({ action, icon, color }) => {
     </TouchableOpacity>
   );
 };
+export const OptionMenu = ({ action, icon, color, text }) => {
+  return (
+    <TouchableOpacity style={styles.option} onPress={action}>
+      {icon && <Feather name={icon} size={24} color={color || WHITE_COLOR} />}
+      <Text style={[styles.optionText, { color: color || WHITE_COLOR }]}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+export const ConfigButton = ({ action}) => {
+  return (
+    <TouchableOpacity style={styles.config} onPress={action}>
+      <Feather name="more-vertical" size={24} color={GRAY_COLOR} />
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -220,5 +241,24 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     backgroundColor: GRAY_COLOR,
+  },
+
+  option: {
+    height: 50,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
+    backgroundColor: BACKGROUND_COLOR,
+    borderRadius: 10,
+  },
+  optionText: {
+    color: WHITE_COLOR,
+    fontSize: 18,
+  },
+  config: {
+    position: "absolute",
+    top: 10,
+    right: 5,
   },
 });

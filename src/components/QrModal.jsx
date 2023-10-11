@@ -3,30 +3,30 @@ import { StyleSheet, Text, View,Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
   BACKGROUND_COLOR,
-  borderRadius,
+  BORDER_RADIUS,
   GRAY_COLOR,
   ORANGE_COLOR,
   WHITE_COLOR,
 } from "../styles/styles";
 import { AntDesign,MaterialCommunityIcons } from "@expo/vector-icons";
-import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
+import Animated, { FadeInRight, FadeOutRight } from "react-native-reanimated";
 import QRCode from "react-native-qrcode-svg";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Clipboard from "expo-clipboard";
 import BackdropModals from "../components/BackdropModals";
 
-export default QrModal = ({ toggleModal }) => {
+export default QrModal = ({ toggleModal, code }) => {
   const width = Dimensions.get("screen").width;
   const { t } = useTranslation();
 
   const copyRoutineID = async () => {
-    await Clipboard.setStringAsync("asdsa");
+    await Clipboard.setStringAsync(code);
   };
 
   return (
     <>
       <BackdropModals toggleModal={toggleModal} />
-      <Animated.View style={styles.modalContainer} entering={FadeInLeft} exiting={FadeOutLeft}>
+      <Animated.View style={styles.modalContainer} entering={FadeInRight} exiting={FadeOutRight}>
         <MaterialCommunityIcons
           style={styles.closeIcon}
           name="close-thick"
@@ -37,11 +37,11 @@ export default QrModal = ({ toggleModal }) => {
         <Text style={styles.title}>Code sharer</Text>
         <Text style={styles.textSentence}>Scan it on explore screen to share the routine</Text>
         <View style={styles.qrContainer}>
-          <QRCode value={"asda"} size={width * 0.55} backgroundColor="black" color={WHITE_COLOR} />
+          <QRCode value={code} size={width * 0.55} backgroundColor="black" color={WHITE_COLOR} />
         </View>
         <TouchableOpacity style={styles.copyContainer} onPress={copyRoutineID}>
           <View style={styles.codeContainer}>
-            <Text style={styles.codeText}>{"aasd"}</Text>
+            <Text style={styles.codeText}>{code}</Text>
           </View>
           <View style={styles.copyBtn}>
             <AntDesign name="copy1" size={25} color="white" />
@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     backgroundColor: BACKGROUND_COLOR,
-    top: "30%",
+    top: "25%",
     left: "5%",
     borderRadius: BORDER_RADIUS,
     paddingHorizontal: "5%",
     paddingTop: 10,
-    paddingBottom: 15,
+    paddingBottom: 20,
     zIndex: 4,
     alignItems: "center",
   },
@@ -106,9 +106,9 @@ const styles = StyleSheet.create({
     width: "68%",
     borderWidth: 1,
     borderColor: GRAY_COLOR,
-    paddingLeft: 10,
-    borderBottomLeftRadius: 5,
-    borderTopLeftRadius: 5,
+    paddingRight: 10,
+    borderBottomRightRadius: 5,
+    borderTopRightRadius: 5,
     justifyContent: "center",
     borderRightWidth: 0,
   },
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     color: GRAY_COLOR,
     fontSize: 22,
     fontWeight: "500",
+    marginLeft:10
   },
   copyBtn: {
     backgroundColor: ORANGE_COLOR,

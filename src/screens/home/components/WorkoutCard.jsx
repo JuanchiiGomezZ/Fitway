@@ -8,46 +8,51 @@ import {
   ORANGE_COLOR,
   WHITE_COLOR,
 } from "../../../styles/styles";
-import { Feather, FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
+import { ConfigButton } from "../../../components/Buttons";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
   const { muscles, name, id } = data;
+  const { navigate } = useNavigation();
   const initialMode = useRef(true);
   useEffect(() => {
     initialMode.current = false;
   }, []);
-
   return (
     <AnimatedTouchable
       style={styles.cardContainer}
       entering={initialMode.current ? FadeInDown.delay(100 * index) : FadeInDown.delay(250)}
       exiting={FadeOutLeft}
       layout={Layout.delay(200)}
+      onPress={() => {
+        navigate("Workout", { workoutId: id });
+      }}
     >
-      <TouchableOpacity
-        style={styles.config}
-        onPress={() => {
-          toggleBottomSheet(id);
-        }}
-      >
-        <Feather name="more-vertical" size={24} color={GRAY_COLOR} />
-      </TouchableOpacity>
+      <ConfigButton action={() => toggleBottomSheet(id)} />
+
       <View style={styles.contentContainer}>
         <View style={{ width: "83%" }}>
           <Text style={styles.workoutName}>{name}</Text>
           <View style={styles.musclesContainer}>
-            {muscles.map((item, index) => (
-              <View style={styles.muscle} key={index}>
-                <Text style={styles.muscleName}>{item}</Text>
-              </View>
-            ))}
+            {muscles && muscles.length > 0 ? (
+              muscles.map((item, index) => (
+                <View style={styles.muscle} key={index}>
+                  <Text style={styles.muscleName}>{item}</Text>
+                </View>
+              ))
+            ) : (
+              <Text style={[styles.muscleName, { color: GRAY_COLOR, fontWeight: "500" }]}>
+                Empty
+              </Text>
+            )}
           </View>
         </View>
         <TouchableOpacity style={styles.trainingButton}>
-          <FontAwesome5 name="dumbbell" size={24} color={BACKGROUND_COLOR} />
+          <FontAwesome5 name="dumbbell" size={22} color={BACKGROUND_COLOR} />
         </TouchableOpacity>
       </View>
     </AnimatedTouchable>
@@ -92,14 +97,9 @@ const styles = StyleSheet.create({
     color: ORANGE_COLOR,
     fontSize: 13,
   },
-  config: {
-    position: "absolute",
-    top: 10,
-    right: 5,
-  },
   trainingButton: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     backgroundColor: ORANGE_COLOR,
     borderRadius: 50,
     justifyContent: "center",

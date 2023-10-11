@@ -4,19 +4,27 @@ import { useTranslation } from "react-i18next";
 import { BACKGROUND_COLOR, BORDER_RADIUS } from "../../../styles/styles";
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 import { ClassicInput } from "../../../components/Inputs";
-import { OrangeButtonSmall, DisabledButtonSmall, CloseModalIcon } from "../../../components/Buttons";
+import {
+  OrangeButtonSmall,
+  DisabledButtonSmall,
+  CloseModalIcon,
+} from "../../../components/Buttons";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
 import BackdropModals from "../../../components/BackdropModals";
+import { useNavigation } from "@react-navigation/native";
 
 const heightScren = Dimensions.get("screen").height;
 
 export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
   const { t } = useTranslation();
   const { newWorkout } = useWorkoutsStore();
+  const { navigate } = useNavigation();
   const [name, setName] = useState("");
 
   const handleNewWorkout = () => {
-    newWorkout(name);
+    newWorkout(name).then((result) => {
+      navigate("Workout", { workoutId: result.id });
+    });
     toggleNewWorkoutModal();
   };
 
@@ -30,7 +38,11 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
           <CloseModalIcon action={toggleNewWorkoutModal} />
         </View>
 
-        <ClassicInput setInputChange={setName} inputChange={name} placeholder={t("Home.workout-name")} />
+        <ClassicInput
+          setInputChange={setName}
+          inputChange={name}
+          placeholder={t("Home.workout-name")}
+        />
 
         {name.trim() < 1 ? (
           <DisabledButtonSmall text={t("global.continue")} />
@@ -43,7 +55,6 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
 };
 
 const styles = StyleSheet.create({
- 
   modalContainer: {
     width: "100%",
     position: "absolute",

@@ -43,7 +43,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Workout"
+        name="WorkoutLog"
         component={WorkoutLog}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="stats-chart" size={30} color={color} />,

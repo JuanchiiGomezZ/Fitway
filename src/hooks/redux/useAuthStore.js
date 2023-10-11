@@ -1,7 +1,10 @@
 import { onLogin, onChecking, onLogout } from "../../store/slices/authSlice";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
+import { saveActiveRoutineId } from "../../store/slices/routinesSlice";
+import API_URL from "../../helpers/API_URL";
+
 import { storage } from "../../helpers/storage";
 
 GoogleSignin.configure({
@@ -16,12 +19,14 @@ export default useAuthStore = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      storage.set("token", userInfo.user.id);
-      storage.set("user", JSON.stringify(userInfo.user)); //PROVISIONAL
+      const { data } = await axios.post(`${API_URL}/user/google/signIn`, {
+        ...userInfo.user,
+        language: "en",
+      });
+      storage.set("token", data);
       checkAuthToken();
     } catch (error) {
       dispatch(onLogout(error));
-      console.log(error);
     }
   };
 
@@ -30,6 +35,7 @@ export default useAuthStore = () => {
       await GoogleSignin.signOut();
       storage.clearAll();
       dispatch(onLogout());
+      dispatch(saveActiveRoutineId(null));
     } catch (error) {
       dispatch(onLogout(error));
     }
@@ -40,11 +46,14 @@ export default useAuthStore = () => {
     const token = storage.getString("token");
     if (!token) return dispatch(onLogout());
     try {
-      const userData = JSON.parse(storage.getString("user")); //PROVISIONAL
-      dispatch(onLogin(userData));
+      const { data } = await axios.get(`${API_URL}/user/token/data`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(onLogin(data));
     } catch (error) {
-      console.log(error);
-      dispatch(onLogout(error));
+      dispatch(onLogout(error.response.data?.message));
     }
   };
 

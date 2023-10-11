@@ -1,61 +1,111 @@
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, StyleSheet, View, RefreshControl } from "react-native";
 
 //HOOKS
 import { useTranslation } from "react-i18next";
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
+
 //COMPONENTS
 import Header from "../../components/Header";
 import { TransparentButton } from "../../components/Buttons";
 import RoutineCard from "./components/MyRoutineCard";
 import Separator from "../../components/Separator";
 import ConfigRoutineModal from "./components/ConfigRoutineModal";
-
+import Loader from "../../components/Loader";
+import QrModal from "../../components/QrModal";
 
 //STYLES
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
-
-//OTHER
-import routinesTestData from "./helpers/routinesTestData.json";
-
+import {
+  BACKGROUND_COLOR,
+  ORANGE_COLOR,
+  PADDING_HORIZONTAL,
+  PADDING_TOP,
+} from "../../styles/styles";
 
 export default MyRoutinesScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const { getUserRoutines } = useRoutinesStore();
+  const { userRoutines, isLoading } = useSelector((state) => state.userRoutines);
   const [configRoutineModal, setConfigRoutineModal] = useState(false);
+  const [qrModal, setQrModal] = useState(false);
   const [routineId, setroutineId] = useState(null);
+  const [qrCode, setQrCode] = useState(null);
+  const { activeRoutine, disabledRoutines } = userRoutines;
 
-
-  const toggleBottomSheet = (id) => {
-    id && setroutineId(id);
-    setConfigRoutineModal(!configRoutineModal);
+  const toggleBottomSheet = (id, qrCode) => {
+    if (id) {
+      setroutineId(id);
+      setQrCode(qrCode);
+    }
+    setConfigRoutineModal((prev) => !prev);
   };
-  const toggleNewRoutineModal = () => {
-    setNewRoutineModal(!newRoutineModal);
-  };
 
-  const activeRoutine = routinesTestData.find((item) => item.id == 2);
+  const toggleQrModal = () => {
+    setConfigRoutineModal(false);
+    setQrModal((prev) => !prev);
+  };
 
   return (
     <View style={styles.container}>
       <Header title={t("MyRoutines.title")} />
-      <ScrollView>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={getUserRoutines}
+            colors={[ORANGE_COLOR]}
+            tintColor={ORANGE_COLOR}
+          />
+        }
+      >
         <View style={styles.buttonsContainer}>
           <TransparentButton text={t("MyRoutines.filter")} icon={"filter-variant-plus"} />
-          <TransparentButton text={t("MyRoutines.add-routine")} icon={"plus-circle"} action={()=> navigation.navigate("AllRoutines")} />
+          <TransparentButton
+            text={t("MyRoutines.add-routine")}
+            icon={"plus-circle"}
+            action={() => navigation.navigate("AllRoutines")}
+          />
         </View>
-        <View style={styles.routinesContainer}>
-          <Separator title={t("MyRoutines.active")} />
-          <RoutineCard key={activeRoutine.id} data={activeRoutine} toggleBottomSheet={toggleBottomSheet} />
-          <Separator title={t("MyRoutines.all")} />
-          <View style={styles.allRoutines}>
-            {routinesTestData.map(
-              (item) => item.id != 2 && <RoutineCard key={item.id} data={item} toggleBottomSheet={toggleBottomSheet} />,
+        {userRoutines.length < 1 ? (
+          ""
+        ) : (
+          <View style={styles.routinesContainer}>
+            <Separator title={t("MyRoutines.active")} />
+            {activeRoutine && (
+              <RoutineCard
+                key={activeRoutine?.id}
+                data={activeRoutine}
+                toggleBottomSheet={toggleBottomSheet}
+              />
             )}
+
+            <Separator title={t("MyRoutines.all")} />
+            <View style={styles.allRoutines}>
+              {disabledRoutines.map((item, index) => (
+                <RoutineCard
+                  key={item?.id}
+                  data={item}
+                  toggleBottomSheet={toggleBottomSheet}
+                  index={index}
+                />
+              ))}
+            </View>
           </View>
-        </View>
+        )}
       </ScrollView>
-      {configRoutineModal && <ConfigRoutineModal toggleBottomSheet={toggleBottomSheet} id={routineId} />}
+      {qrModal && <QrModal toggleModal={toggleQrModal} code={qrCode} />}
+      {configRoutineModal && (
+        <ConfigRoutineModal
+          toggleBottomSheet={toggleBottomSheet}
+          id={routineId}
+          toggleQrModal={toggleQrModal}
+        />
+      )}
     </View>
   );
 };

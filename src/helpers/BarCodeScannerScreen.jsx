@@ -21,8 +21,7 @@ const Scanner = () => {
 
   const handleBarCodeScanned = ({ data }) => {
     setScanned(true);
-    console.log(data);
-    navigation.navigate("Home");
+    navigation.navigate("AllRoutines", { qrQuery: data });
   };
 
   if (hasPermission === null) {
@@ -34,7 +33,10 @@ const Scanner = () => {
 
   return (
     <View style={styles.container}>
-      <BarCodeScanner onBarCodeScanned={scanned ? undefined : handleBarCodeScanned} style={StyleSheet.absoluteFillObject} />
+      <BarCodeScanner
+        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        style={StyleSheet.absoluteFillObject}
+      />
       <View style={styles.borderContainer}>
         <View style={styles.borderTopContainer}>
           <View style={styles.border}></View>

@@ -6,16 +6,23 @@ import {
   BORDER_RADIUS,
   ORANGE_COLOR,
   ORANGE_DARK_COLOR,
-
 } from "../../../styles/styles";
+import useRoutinesStore from "../../../hooks/redux/useRoutinesStore";
+import { useNavigation } from "@react-navigation/native";
 
 import Animated, { FadeIn, FadeOut, FadeInRight, FadeOutRight } from "react-native-reanimated";
 import { ClassicInput } from "../../../components/Inputs";
-import { OrangeButtonSmall, DisabledButtonSmall, CloseModalIcon } from "../../../components/Buttons";
+import {
+  OrangeButtonSmall,
+  DisabledButtonSmall,
+  CloseModalIcon,
+} from "../../../components/Buttons";
 import BackdropModals from "../../../components/BackdropModals";
 
 export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
   const { t } = useTranslation();
+  const { goBack } = useNavigation();
+  const { createNewRoutine } = useRoutinesStore();
   const [name, setName] = useState("");
   const [difficulty, setDifficulty] = useState(null);
   const [visibilitty, setVisibilitty] = useState(true);
@@ -26,6 +33,12 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
   ];
 
   const difficulties = ["Beginer", "Intermediate", "Experienced", "Don´t know"];
+
+  const handleCreateRoutine = () => {
+    createNewRoutine({ name, public: visibilitty, difficulty });
+    toggleNewRoutineModal();
+    goBack();
+  };
 
   return (
     <>
@@ -51,7 +64,9 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
                 }}
                 underlayColor="transparent"
               >
-                <Text style={[styles.tagText, difficulty === item && styles.activeTagText]}>{item}</Text>
+                <Text style={[styles.tagText, difficulty === item && styles.activeTagText]}>
+                  {item}
+                </Text>
               </TouchableHighlight>
             ))}
           </View>
@@ -63,14 +78,19 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
             {visibilities.map((item) => (
               <TouchableHighlight
                 key={item.name}
-                style={[styles.tagContainer, visibilitty == item.value && styles.activeTagContainer]}
+                style={[
+                  styles.tagContainer,
+                  visibilitty == item.value && styles.activeTagContainer,
+                ]}
                 onPress={() => {
                   setVisibilitty(item.value);
                   Keyboard.dismiss();
                 }}
                 underlayColor="transparent"
               >
-                <Text style={[styles.tagText, visibilitty == item.value && styles.activeTagText]}>{item.name}</Text>
+                <Text style={[styles.tagText, visibilitty == item.value && styles.activeTagText]}>
+                  {item.name}
+                </Text>
               </TouchableHighlight>
             ))}
           </View>
@@ -79,7 +99,7 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
         {name.trim() < 1 || difficulty == null ? (
           <DisabledButtonSmall text={"Continue"} />
         ) : (
-          <OrangeButtonSmall text={"Continue"} />
+          <OrangeButtonSmall text={"Continue"} action={handleCreateRoutine} />
         )}
       </Animated.View>
     </>
@@ -87,7 +107,6 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
 };
 
 const styles = StyleSheet.create({
- 
   modalContainer: {
     minHeight: 200,
     width: "100%",

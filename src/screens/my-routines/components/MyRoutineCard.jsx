@@ -1,30 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BORDER_RADIUS, BOX_COLOR, GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
-import { Feather } from "@expo/vector-icons";
+import { BORDER_RADIUS, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import { ConfigButton } from "../../../components/Buttons";
+import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
 
-export default MyRoutineCard = ({ data, toggleBottomSheet }) => {
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+
+export default MyRoutineCard = ({ data, toggleBottomSheet, index }) => {
   const { t } = useTranslation();
-
-  const { id, name, level, workoutsNumber } = data;
+  const { id, name, difficulty, workoutCount, codeShare } = data;
+  const initialMode = useRef(true);
+  useEffect(() => {
+    initialMode.current = false;
+  }, []);
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <AnimatedTouchable
+      style={styles.cardContainer}
+      entering={initialMode.current ? FadeInDown.delay(100 * index) : FadeInDown.delay(250)}
+      exiting={FadeOutLeft}
+      layout={Layout.delay(200)}
+    >
       <Text style={styles.routineName}>{name}</Text>
       <View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>
-          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{level}</Text>
+          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{difficulty}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.workouts") + ": "}</Text>
-          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutsNumber}</Text>
+          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutCount}</Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.config} onPress={() => toggleBottomSheet(id)}>
-        <Feather name="more-vertical" size={25} color={GRAY_COLOR} />
-      </TouchableOpacity>
-    </TouchableOpacity>
+
+      <ConfigButton action={() => toggleBottomSheet(id, codeShare)} />
+    </AnimatedTouchable>
   );
 };
 

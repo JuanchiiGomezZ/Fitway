@@ -10,6 +10,7 @@ import Timer from "./components/Timer";
 import HeaderTraining from "./components/HeaderTraining";
 import ProgressBar from "./components/ProgressBar";
 
+
 //STYLES
 import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 

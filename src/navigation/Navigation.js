@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 /* HOOKS */
 import { useSelector } from "react-redux";
 import useAuthStore from "../hooks/redux/useAuthStore";
+import useRoutinesStore from "../hooks/redux/useRoutinesStore";
 
 /* SCREENS */
 import TabNavigator from "./TabNavigator";
@@ -14,18 +15,21 @@ import StartScreen from "../screens/start/Start";
 import MyRoutinesScreen from "../screens/my-routines/MyRoutines";
 import AllRoutinesScreen from "../screens/routines/Routines";
 import BarCodeScannerScreen from "../helpers/BarCodeScannerScreen";
-import Settings from "../screens/settings/Settings";
-import ChangeLanguage from "../screens/settings/views/ChangeLanguage";
-import TrainingMode from "../screens/training/Training";
+import SettingsScreen from "../screens/settings/Settings";
+import ChangeLanguageScreen from "../screens/settings/views/ChangeLanguage";
+import TrainingScreen from "../screens/training/Training";
+import WorkoutScreen from "../screens/workout/Workout";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
   const { status } = useSelector((state) => state.auth);
   const { checkAuthToken } = useAuthStore();
-
+  const { getRoutines } = useRoutinesStore();
+  const { activeRoutineId } = useSelector((state) => state.userRoutines);
+/* 
   useEffect(() => {
     checkAuthToken();
-  }, []);
+  }, []); */
 
   return (
     <NavigationContainer>
@@ -66,21 +70,28 @@ export default Navigation = () => {
             />
             <Stack.Screen
               name="Settings"
-              component={Settings}
+              component={SettingsScreen}
               options={{
                 animation: "slide_from_right",
               }}
             />
             <Stack.Screen
               name="ChangeLanguage"
-              component={ChangeLanguage}
+              component={ChangeLanguageScreen}
               options={{
                 animation: "slide_from_right",
               }}
             />
             <Stack.Screen
               name="Training"
-              component={TrainingMode}
+              component={TrainingScreen}
+              options={{
+                animation: "slide_from_right",
+              }}
+            />
+            <Stack.Screen
+              name="Workout"
+              component={WorkoutScreen}
               options={{
                 animation: "slide_from_right",
               }}

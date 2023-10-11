@@ -6,18 +6,27 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { storage } from "../../helpers/storage";
 import useAuthStore from "../../hooks/redux/useAuthStore";
+import { useSelector } from "react-redux";
 
 /* COMPONENTS */
 import InfoContainer from "./components/InfoContainer";
 import ProfileOption from "./components/ProfileOption";
 
 /* STYLES */
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../styles/styles";
+import {
+  BACKGROUND_COLOR,
+  PADDING_HORIZONTAL,
+  GRAY_COLOR,
+  ORANGE_COLOR,
+  WHITE_COLOR,
+} from "../../styles/styles";
 
 export default ProfileScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { signOut } = useAuthStore();
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <View style={styles.background}>
       <View style={styles.container}>
@@ -40,6 +49,9 @@ export default ProfileScreen = () => {
             iconType={"Ionicons"}
             iconName={"body"}
             showArrow={true}
+            action={() => {
+              console.log(user.id);
+            }}
           />
           <ProfileOption
             optionName={t("Profile.my-exercises")}

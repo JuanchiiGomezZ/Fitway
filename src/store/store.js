@@ -16,7 +16,7 @@ const testMiddleware = (store) => (next) => (action) => {
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
-    routines: routinesSlice.reducer,
+    userRoutines: routinesSlice.reducer,
     workouts: workoutsSlice.reducer,
   },
   middleware: [testMiddleware],

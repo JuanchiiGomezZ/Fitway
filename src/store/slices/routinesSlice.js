@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import dataRoutine from "../../screens/my-routines/helpers/routinesTestData.json";
 
 export const routinesSlice = createSlice({
-  name: "routines",
+  name: "userRoutines",
   initialState: {
-    routines: dataRoutine,
+    userRoutines: [],
+    activeRoutineId: undefined,
+    activeRoutineDetails: [],
+    activeRoutineWorkouts: undefined,
     isLoading: false,
     error: null,
   },
@@ -13,13 +15,33 @@ export const routinesSlice = createSlice({
       (state.isLoading = true), (state.error = null);
     },
     saveRoutines: (state, { payload }) => {
-      (state.isLoading = false), (state.routines = payload);
+      state.userRoutines = payload;
     },
     onError: (state, { payload }) => {
-      (state.isLoading = false), (state.error = payload || null);
+      console.log(payload), (state.error = payload || null), ((state.isLoading = false));
+    },
+    saveActiveRoutineId: (state, { payload }) => {
+      state.activeRoutineId = payload;
+    },
+    saveActiveRoutineDetails: (state, { payload }) => {
+      state.activeRoutineDetails = payload;
+    },
+    saveActiveRoutineWorkouts: (state, { payload }) => {
+      state.activeRoutineWorkouts = payload;
+    },
+    setLoader: (state, { payload }) => {
+      state.isLoading = false;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { saveRoutines, onChecking, onError } = routinesSlice.actions;
+export const {
+  saveRoutines,
+  onChecking,
+  onError,
+  saveActiveRoutineId,
+  saveActiveRoutineDetails,
+  setLoader,
+  saveActiveRoutineWorkouts,
+} = routinesSlice.actions;

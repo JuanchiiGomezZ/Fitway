@@ -1,19 +1,32 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { GRAY_COLOR } from "../../../styles/styles";
+import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import TitleScreen from "../../../components/TitleScreen";
 import { TransparentButton } from "../../../components/Buttons";
 import { useNavigation } from "@react-navigation/native";
+import { Feather } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
 
-export default HeaderHome = ({ toggleNewWorkoutModal }) => {
+export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
-
+  const { activeRoutineDetails } = useSelector((state) => state.userRoutines);
+  
   return (
     <View style={styles.head}>
-      <TitleScreen title={t("Home.title")} />
-      <Text style={styles.routineName}>Routine name</Text>
+      <View style={styles.title}>
+        <View>
+          <TitleScreen title={t("Home.title")} />
+          <Text style={styles.routineName}>
+            {activeRoutineDetails && activeRoutineDetails.name}
+          </Text>
+        </View>
+        <TouchableOpacity style={styles.shareButton} onPress={toggleQrModal}>
+          <Feather name="share" size={24} color={WHITE_COLOR} />
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.buttonsContainer}>
         <TransparentButton
           text={t("Home.new-workout")}
@@ -49,5 +62,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: 10,
+  },
+  shareButton: {
+    backgroundColor: ORANGE_COLOR,
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    marginRight: 10,
   },
 });

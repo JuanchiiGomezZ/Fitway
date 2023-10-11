@@ -18,8 +18,9 @@ import FilterRoutineModal from "./components/FilterRoutineModal";
 import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 import Separator from "../../components/Separator";
 
-export default AllRoutinesScreen = () => {
+export default AllRoutinesScreen = ({ route }) => {
   const { t } = useTranslation();
+  const { qrQuery } = route.params || "";
   const navigation = useNavigation();
   const [newRoutineModal, setNewRoutineModal] = useState(false);
   const [filterModal, setFilterModal] = useState(false);
@@ -37,11 +38,15 @@ export default AllRoutinesScreen = () => {
       <View style={styles.head}>
         <Header title={t("Routines.title")} />
         <View style={{ marginBottom: 13 }}>
-          <TransparentButtonRounded text={t("Routines.create-routine")} icon={"plus"} action={toggleNewRoutineModal} />
+          <TransparentButtonRounded
+            text={t("Routines.create-routine")}
+            icon={"plus"}
+            action={toggleNewRoutineModal}
+          />
         </View>
       </View>
       <ScrollView>
-        <SearchBar toggleFilterModal={toggleFilter} />
+        <SearchBar toggleFilterModal={toggleFilter} qrQuery={qrQuery} />
         <Separator title={"FITWAY"} />
         <View style={styles.cardsContainer}>
           {routinesTest.map((item) => (

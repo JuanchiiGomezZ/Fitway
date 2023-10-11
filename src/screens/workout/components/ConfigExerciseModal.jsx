@@ -13,8 +13,8 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
   const { deleteWorkout } = useWorkoutsStore();
 
   const handleDeleteWorkout = () => {
-    deleteWorkout(workoutId);
-    toggleBottomSheet();
+    /* deleteWorkout(workoutId); */
+    toggleBottomSheet(null);
   };
 
   return (

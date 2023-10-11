@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import dataWorkouts from "../../screens/home/helpers/workoutDataTest.json";
 
 export const workoutsSlice = createSlice({
   name: "workouts",
   initialState: {
-    workouts: dataWorkouts,
+    activeWorkoutDetails: [],
+    activeWorkoutExercises: null,
     isLoading: false,
     error: null,
   },
@@ -12,14 +12,24 @@ export const workoutsSlice = createSlice({
     onChecking: (state, { payload }) => {
       (state.isLoading = true), (state.error = null);
     },
-    saveWorkouts: (state, { payload }) => {
-      (state.isLoading = false), (state.workouts = payload);
+    saveActiveWorkoutExercises: (state, { payload }) => {
+      (state.activeWorkoutDetails = {
+        routineId: payload.routineId,
+        workoutId: payload.id,
+        name: payload.name,
+      }),
+        (state.activeWorkoutExercises = payload.SuperSets[0]
+          ? {
+              exercises: [...payload.Exercises, payload.SuperSets[0]],
+            }
+          : { exercises: [...payload.Exercises] }),
+        (state.isLoading = false);
     },
     onError: (state, { payload }) => {
-      (state.isLoading = false), (state.error = payload || null);
+      console.log(payload), (state.isLoading = false), (state.error = payload || null);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { saveWorkouts, onChecking, onError } = workoutsSlice.actions;
+export const { saveActiveWorkoutExercises, onChecking, onError } = workoutsSlice.actions;

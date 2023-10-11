@@ -15,14 +15,19 @@ import useAuthStore from "../../hooks/redux/useAuthStore";
 import { PADDING_HORIZONTAL, GRAY_COLOR, ORANGE_COLOR } from "../../styles/styles";
 export default StartScreen = () => {
   const { signIn, signOut } = useAuthStore();
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading, user } = useSelector((state) => state.auth);
+  const { activeRoutineId } = useSelector((state) => state.userRoutines);
+  
 
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <ImageBackground source={require("../../assets/images/homeBackground.jpg")} style={{ flex: 1 }}>
+        <ImageBackground
+          source={require("../../assets/images/homeBackground.jpg")}
+          style={{ flex: 1 }}
+        >
           <LinearGradient
             colors={[
               "rgba(0, 0, 0, 1)",
@@ -36,17 +41,19 @@ export default StartScreen = () => {
           >
             <LogoFitway />
             <View style={styles.bottomContainer}>
-              <OrangeButton
+            <OrangeButton
                 text={"Login"}
                 action={() => {
-                  console.log(storage.getString("token"));
+                  
                 }}
               />
               {/*<FacebookButton /> */}
               <GoogleButton action={signIn} />
               <View>
                 <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>
-                <Text style={[styles.privacyGeneral, { color: ORANGE_COLOR }]}>Privacy, Policy and Terms of Use</Text>
+                <Text style={[styles.privacyGeneral, { color: ORANGE_COLOR }]}>
+                  Privacy, Policy and Terms of Use
+                </Text>
               </View>
             </View>
           </LinearGradient>
