@@ -12,18 +12,13 @@ export const workoutsSlice = createSlice({
     onChecking: (state, { payload }) => {
       (state.isLoading = true), (state.error = null);
     },
-    saveActiveWorkoutExercises: (state, { payload }) => {
-      (state.activeWorkoutDetails = {
-        routineId: payload.routineId,
-        workoutId: payload.id,
-        name: payload.name,
-      }),
-        (state.activeWorkoutExercises = payload.SuperSets[0]
-          ? {
-              exercises: [...payload.Exercises, payload.SuperSets[0]],
-            }
-          : { exercises: [...payload.Exercises] }),
+    saveActiveWorkoutExercisesData: (state, { payload }) => {
+      (state.activeWorkoutDetails = payload.details),
+        (state.activeWorkoutExercises = payload.exercises),
         (state.isLoading = false);
+    },
+    saveActiveWorkoutExercises: (state, { payload }) => {
+      (state.activeWorkoutExercises = { exercises: payload }), (state.isLoading = false);
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
@@ -32,4 +27,5 @@ export const workoutsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { saveActiveWorkoutExercises, onChecking, onError } = workoutsSlice.actions;
+export const { saveActiveWorkoutExercisesData, saveActiveWorkoutExercises, onChecking, onError } =
+  workoutsSlice.actions;

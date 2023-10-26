@@ -1,5 +1,5 @@
 import { onLogin, onChecking, onLogout } from "../../store/slices/authSlice";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 import { saveActiveRoutineId } from "../../store/slices/routinesSlice";
@@ -45,12 +45,14 @@ export default useAuthStore = () => {
     dispatch(onChecking());
     const token = storage.getString("token");
     if (!token) return dispatch(onLogout());
+
     try {
       const { data } = await axios.get(`${API_URL}/user/token/data`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       dispatch(onLogin(data));
     } catch (error) {
       dispatch(onLogout(error.response.data?.message));

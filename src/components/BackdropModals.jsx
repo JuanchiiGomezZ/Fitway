@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
   backdrop: {
     ...StyleSheet.absoluteFill,
     backgroundColor: BACKDROP_COLOR,
-    zIndex: 3,
+    zIndex: 4,
   },
 });

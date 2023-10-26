@@ -44,7 +44,6 @@ export default StartScreen = () => {
             <OrangeButton
                 text={"Login"}
                 action={() => {
-                  
                 }}
               />
               {/*<FacebookButton /> */}

@@ -16,7 +16,7 @@ import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/
 
 export default TrainingMode = () => {
   const { t } = useTranslation();
-  const [countdown, setCountdown] = useState(false);
+  const [countdown, setCountdown] = useState(true);
 
   const toggleCountodwn = () => {
     setCountdown((prev) => !prev);

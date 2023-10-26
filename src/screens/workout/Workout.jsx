@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, RefreshControl, ScrollView } from "react-native";
 
 //HOOKS
 import { useTranslation } from "react-i18next";
@@ -9,18 +9,24 @@ import { useSelector } from "react-redux";
 //COMPONENTS
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
-import { OrangeCircularButton } from "../../components/Buttons";
 import EmptyWorkout from "./components/EmptyWorkout";
-import WorkoutsList from "./components/card/WorkoutsList";
+import ExercisesList from "./components/card/ExercisesList";
 import FloatingMenu from "./components/FloatingMenu";
 import ConfigExerciseModal from "./components/ConfigExerciseModal";
+import ExerciseGIF from "./components/ExerciseGIF";
 
 //STYLES
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
+import {
+  BACKGROUND_COLOR,
+  ORANGE_COLOR,
+  PADDING_HORIZONTAL,
+  PADDING_TOP,
+} from "../../styles/styles";
 
 export default WorkoutScreen = ({ route }) => {
   const { t } = useTranslation();
   const { workoutId } = route.params;
+
   const { getWorkoutsData } = useWorkoutsStore();
   const { activeWorkoutDetails, activeWorkoutExercises, isLoading } = useSelector(
     (state) => state.workouts,
@@ -28,15 +34,25 @@ export default WorkoutScreen = ({ route }) => {
   const { name } = activeWorkoutDetails;
   const [configModal, setConfigModal] = useState(false);
   const [exerciseId, setExerciseId] = useState(null);
+  const [exerciseGIF, setExerciseGIF] = useState(null);
+  const [exerciseGIFModal, setExerciseGIFModal] = useState(false);
 
   useEffect(() => {
-    getWorkoutsData(workoutId);
+    workoutId != activeWorkoutDetails.workoutId && getWorkoutsData(workoutId);
   }, []);
+
+
 
   const toggleConfig = (id, type) => {
     id && setExerciseId({ id, type });
     setConfigModal((prev) => !prev);
   };
+
+  const toggleGIF = (gif) => {
+    gif && setExerciseGIF(gif);
+    setExerciseGIFModal((prev) => !prev);
+  };
+
 
   return (
     <View style={styles.container}>
@@ -44,22 +60,23 @@ export default WorkoutScreen = ({ route }) => {
         <Loader />
       ) : (
         <>
-          <View style={styles.inline}>
-            <Header title={name} />
-    {/*         <OrangeCircularButton icon="dumbbell" /> */}
-          </View>
+          <Header title={name} />
+
           <View style={styles.contentContainer}>
-            {!activeWorkoutExercises?.exercises[0] ? (
+            {!activeWorkoutExercises?.exercises[0]? (
               <EmptyWorkout />
             ) : (
-              <WorkoutsList toggleConfig={toggleConfig} />
+              <ExercisesList toggleConfig={toggleConfig} toggleGIF={toggleGIF} />
             )}
           </View>
           <FloatingMenu />
         </>
       )}
 
-      {configModal && <ConfigExerciseModal toggleBottomSheet={toggleConfig} />}
+      {configModal && (
+        <ConfigExerciseModal toggleBottomSheet={toggleConfig} exerciseId={exerciseId} />
+      )}
+      {exerciseGIFModal && <ExerciseGIF toggleModal={toggleGIF} exerciseGIF={exerciseGIF} />}
     </View>
   );
 };

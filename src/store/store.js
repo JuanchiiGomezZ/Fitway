@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./slices/authSlice";
 import { routinesSlice } from "./slices/routinesSlice";
 import { workoutsSlice } from "./slices/workoutsSlice";
+import { exercisesSlice } from "./slices/exercisesSlice";
 
 const testMiddleware = (store) => (next) => (action) => {
   if (action.type == "auth/onLogout" && action.payload != undefined) {
@@ -18,6 +19,7 @@ export const store = configureStore({
     auth: authSlice.reducer,
     userRoutines: routinesSlice.reducer,
     workouts: workoutsSlice.reducer,
+    exercises: exercisesSlice.reducer,
   },
   middleware: [testMiddleware],
 });

@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     backgroundColor: BACKGROUND_COLOR,
-    top: heightScren * 0.3,
+    top: "35%",
     left: "5%",
     borderRadius: BORDER_RADIUS,
     paddingHorizontal: "5%",

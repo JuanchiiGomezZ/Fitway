@@ -4,16 +4,16 @@ import { useTranslation } from "react-i18next";
 import { BACKGROUND_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
-import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
+import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 import BackdropModals from "../../../components/BackdropModals";
 import { OptionMenu } from "../../../components/Buttons";
 
-export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
+export default ConfigWorkoutModal = ({ toggleBottomSheet, exerciseId }) => {
   const { t } = useTranslation();
-  const { deleteWorkout } = useWorkoutsStore();
+  const { deleteWorkoutExercise } = useExercisesStore();
 
-  const handleDeleteWorkout = () => {
-    /* deleteWorkout(workoutId); */
+  const handleExercise = () => {
+    deleteWorkoutExercise(exerciseId);
     toggleBottomSheet(null);
   };
 
@@ -26,13 +26,13 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, workoutId }) => {
         exiting={SlideOutDown}
       >
         <View style={styles.optionsContainer}>
-          <OptionMenu text={t("configModal.edit-routine")} icon="edit-2" />
+          <OptionMenu text={"Edit exercise"} icon="edit-2" />
 
           <OptionMenu
-            text={t("configModal.delete-routine")}
+            text={"Delete exercise"}
             icon="trash"
             color={RED_COLOR}
-            action={handleDeleteWorkout}
+            action={handleExercise}
           />
         </View>
         <OptionMenu text={t("configModal.cancel")} action={() => toggleBottomSheet(null)} />

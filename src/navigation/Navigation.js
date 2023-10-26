@@ -19,6 +19,7 @@ import SettingsScreen from "../screens/settings/Settings";
 import ChangeLanguageScreen from "../screens/settings/views/ChangeLanguage";
 import TrainingScreen from "../screens/training/Training";
 import WorkoutScreen from "../screens/workout/Workout";
+import CreateExercise from "../screens/createExercise/CreateExercise";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -26,8 +27,8 @@ export default Navigation = () => {
   const { checkAuthToken } = useAuthStore();
   const { getRoutines } = useRoutinesStore();
   const { activeRoutineId } = useSelector((state) => state.userRoutines);
-/* 
-  useEffect(() => {
+
+/*   useEffect(() => {
     checkAuthToken();
   }, []); */
 
@@ -92,6 +93,13 @@ export default Navigation = () => {
             <Stack.Screen
               name="Workout"
               component={WorkoutScreen}
+              options={{
+                animation: "slide_from_right",
+              }}
+            />
+            <Stack.Screen
+              name="CreateExercise"
+              component={CreateExercise}
               options={{
                 animation: "slide_from_right",
               }}

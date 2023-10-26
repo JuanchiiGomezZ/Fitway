@@ -12,21 +12,11 @@ const FloatingMenu = ({ setVisible }) => {
   const icon_2 = useRef(new Animated.Value(20)).current;
   const icon_3 = useRef(new Animated.Value(20)).current;
   const [pop, setPop] = useState(false);
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
-  const pressButton1 = () => {
-    /*     setVisible(true);
-    popOut(); */
-  };
-
-  const pressButton2 = () => {
-    /*     navigation.navigate("OrderEditor");
-    popOut(); */
-  };
-
-  const pressButton3 = () => {
-    /*     console.log("button 3");
-    popOut(); */
+  const handleNavigateNewExercise = () => {
+    navigate("CreateExercise");
+    popOut(false);
   };
 
   const popIn = () => {
@@ -91,7 +81,10 @@ const FloatingMenu = ({ setVisible }) => {
 
         <Animated.View style={[styles.buttonContainer, { bottom: icon_1 }]}>
           <Text style={styles.buttonLabel}>{pop && "Add exercise"}</Text>
-          <Pressable style={[styles.circle, styles.secondCircle]}>
+          <Pressable
+            style={[styles.circle, styles.secondCircle]}
+            onPress={handleNavigateNewExercise}
+          >
             <MaterialIcons name="add" size={40} color={ORANGE_COLOR} />
           </Pressable>
         </Animated.View>
@@ -132,7 +125,7 @@ const styles = StyleSheet.create({
     right: 15,
     bottom: 19,
     position: "absolute",
-    zIndex: 6,
+    zIndex: 4,
   },
   secondCircle: {
     width: 46,
@@ -146,7 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    zIndex: 5,
+    zIndex: 4,
   },
   buttonLabel: {
     color: WHITE_COLOR,

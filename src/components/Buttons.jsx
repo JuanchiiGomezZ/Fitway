@@ -145,7 +145,7 @@ export const OptionMenu = ({ action, icon, color, text }) => {
     </TouchableOpacity>
   );
 };
-export const ConfigButton = ({ action}) => {
+export const ConfigButton = ({ action }) => {
   return (
     <TouchableOpacity style={styles.config} onPress={action}>
       <Feather name="more-vertical" size={24} color={GRAY_COLOR} />
@@ -260,5 +260,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 5,
+    zIndex: 2,
   },
 });

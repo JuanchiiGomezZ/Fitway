@@ -1,4 +1,8 @@
-import { onChecking, onError, saveActiveWorkoutExercises } from "../../store/slices/workoutsSlice";
+import {
+  onChecking,
+  onError,
+  saveActiveWorkoutExercisesData,
+} from "../../store/slices/workoutsSlice";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import API_URL from "../../helpers/API_URL";
@@ -20,6 +24,7 @@ export default useWorkoutsStore = () => {
     try {
       const { data } = await axios.post(`${API_URL}/workout/newWorkout/${activeRoutineId}`, {
         name,
+        order: activeRoutineWorkouts.length,
       });
       dispatch(saveActiveRoutineWorkouts([...activeRoutineWorkouts, data]));
       return data;
@@ -44,7 +49,19 @@ export default useWorkoutsStore = () => {
     dispatch(onChecking());
     try {
       const { data } = await axios.get(`${API_URL}/workout/${workoutId}`);
-      dispatch(saveActiveWorkoutExercises(data));
+      const details = {
+        routineId: data.RoutineId,
+        workoutId: data.id,
+        name: data.name,
+        order: data.order,
+      };
+      const exercises = data.supersets.length != 0
+        ? {
+            exercises: [...data.exercises, ...data.supersets],
+          }
+        : { exercises: [...data.exercises] };
+    
+        dispatch(saveActiveWorkoutExercisesData({ details, exercises }));
     } catch (error) {
       dispatch(onError(error.response.data?.message));
     }

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Pressable } from "react-native";
 import React, { useRef, useEffect } from "react";
 import {
   BACKGROUND_COLOR,
@@ -13,7 +13,7 @@ import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimat
 import { useNavigation } from "@react-navigation/native";
 import { ConfigButton } from "../../../components/Buttons";
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 
 export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
   const { muscles, name, id } = data;
@@ -32,29 +32,31 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
         navigate("Workout", { workoutId: id });
       }}
     >
-      <ConfigButton action={() => toggleBottomSheet(id)} />
+      <>
+        <ConfigButton action={() => toggleBottomSheet(id)} />
 
-      <View style={styles.contentContainer}>
-        <View style={{ width: "83%" }}>
-          <Text style={styles.workoutName}>{name}</Text>
-          <View style={styles.musclesContainer}>
-            {muscles && muscles.length > 0 ? (
-              muscles.map((item, index) => (
-                <View style={styles.muscle} key={index}>
-                  <Text style={styles.muscleName}>{item}</Text>
-                </View>
-              ))
-            ) : (
-              <Text style={[styles.muscleName, { color: GRAY_COLOR, fontWeight: "500" }]}>
-                Empty
-              </Text>
-            )}
+        <View style={styles.contentContainer}>
+          <View style={{ width: "83%" }}>
+            <Text style={styles.workoutName}>{name}</Text>
+            <View style={styles.musclesContainer}>
+              {muscles && muscles.length > 0 ? (
+                muscles.map((item, index) => (
+                  <View style={styles.muscle} key={index}>
+                    <Text style={styles.muscleName}>{item}</Text>
+                  </View>
+                ))
+              ) : (
+                <Text style={[styles.muscleName, { color: GRAY_COLOR, fontWeight: "500" }]}>
+                  Empty
+                </Text>
+              )}
+            </View>
           </View>
+          <TouchableOpacity style={styles.trainingButton}>
+            <FontAwesome5 name="dumbbell" size={22} color={BACKGROUND_COLOR} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.trainingButton}>
-          <FontAwesome5 name="dumbbell" size={22} color={BACKGROUND_COLOR} />
-        </TouchableOpacity>
-      </View>
+      </>
     </AnimatedTouchable>
   );
 };
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
   muscle: {
     borderColor: ORANGE_COLOR,
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth: 1.3,
     paddingHorizontal: 7,
     alignContent: "center",
     justifyContent: "center",
@@ -96,6 +98,7 @@ const styles = StyleSheet.create({
   muscleName: {
     color: ORANGE_COLOR,
     fontSize: 13,
+    fontWeight: "500",
   },
   trainingButton: {
     width: 45,
