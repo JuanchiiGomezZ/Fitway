@@ -8,7 +8,13 @@ import {
   BACKGROUND_COLOR,
 } from "../styles/styles";
 import { useTranslation } from "react-i18next";
-import { MaterialCommunityIcons, FontAwesome5, FontAwesome, Feather } from "@expo/vector-icons";
+import {
+  MaterialCommunityIcons,
+  FontAwesome5,
+  FontAwesome,
+  Feather,
+  Entypo,
+} from "@expo/vector-icons";
 
 export const GoogleButton = ({ action }) => {
   const { t } = useTranslation();
@@ -153,6 +159,15 @@ export const ConfigButton = ({ action }) => {
   );
 };
 
+export const CameraButton = ({ action, icon, text }) => {
+  return (
+    <TouchableOpacity style={styles.pictureButton} onPress={action}>
+      <Text style={styles.textButton}>{text}</Text>
+      <Entypo name={icon} size={24} color="white" />
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
   button: {
     width: "100%",
@@ -261,5 +276,14 @@ const styles = StyleSheet.create({
     top: 10,
     right: 5,
     zIndex: 2,
+  },
+
+  pictureButton: {
+    backgroundColor: "black",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
+    paddingVertical: 12,
   },
 });
