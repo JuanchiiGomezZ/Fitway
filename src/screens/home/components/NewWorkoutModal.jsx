@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BACKGROUND_COLOR, BORDER_RADIUS } from "../../../styles/styles";
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
-import { ClassicInput } from "../../../components/Inputs";
+import { ClassicInput, Te } from "../../../components/Inputs";
 import {
   OrangeButtonSmall,
   DisabledButtonSmall,

@@ -48,6 +48,42 @@ export const SearchInput = ({ inputChange, setInputChange, placeholder, onEnterP
   );
 };
 
+export const ClassicInputWithLabel = ({ setInputChange, placeholder, inputChange, label }) => {
+  return (
+    <View>
+      <Text style={styles.labelText}>{label}</Text>
+      <TextInput
+        style={styles.input}
+        value={inputChange}
+        placeholder={placeholder}
+        placeholderTextColor={GRAY_COLOR}
+        onChangeText={(e) => {
+          setInputChange(e);
+        }}
+      />
+    </View>
+  );
+};
+export const TextAreaWithLabel = ({ setInputChange, placeholder, inputChange, label }) => {
+  return (
+    <View>
+      <Text style={styles.labelText}>{label}</Text>
+      <TextInput
+        style={[styles.input, styles.textArea]}
+        value={inputChange}
+        placeholder={placeholder}
+        placeholderTextColor={GRAY_COLOR}
+        multiline={true}
+        numberOfLines={3}
+        textAlignVertical="top"
+        onChangeText={(e) => {
+          setInputChange(e);
+        }}
+      />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   input: {
     borderColor: "transparent",
@@ -94,7 +130,13 @@ const styles = StyleSheet.create({
   labelText: {
     color: WHITE_COLOR,
     fontSize: 18,
-    marginLeft: 5,
     fontWeight: "600",
+  },
+  textArea: {
+    borderWidth: 1.5,
+    borderColor: ORANGE_DARK_COLOR,
+    paddingLeft: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
   },
 });

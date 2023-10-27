@@ -20,7 +20,7 @@ import ChangeLanguageScreen from "../screens/settings/views/ChangeLanguage";
 import TrainingScreen from "../screens/training/Training";
 import WorkoutScreen from "../screens/workout/Workout";
 import CreateExercise from "../screens/createExercise/CreateExercise";
-import Camera from "../screens/createExercise/components/Camera";
+
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -105,13 +105,7 @@ export default Navigation = () => {
                 animation: "slide_from_right",
               }}
             />
-            <Stack.Screen
-              name="Camera"
-              component={Camera}
-              options={{
-                animation: "slide_from_right",
-              }}
-            />
+
           </>
         ) : (
           <Stack.Screen

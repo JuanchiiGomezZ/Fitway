@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Other",
+    "img": "https://i.postimg.cc/zf8bBgfC/Other.png"
+  },
+  {
+    "name": "Abdominals",
+    "img": "https://i.postimg.cc/jddgYdhd/Abdominales.jpg"
+  },
+  {
+    "name": "Abductors",
+    "img": "https://i.postimg.cc/gkzgvkXb/Aductor.jpg"
+  },
+  {
+    "name": "Adductors",
+    "img": "https://i.postimg.cc/ZYFfByqL/Abductors.jpg"
+  },
+  {
+    "name": "Biceps",
+    "img": "https://i.postimg.cc/YCvdjnV5/Biceps.jpg"
+  },
+  {
+    "name": "Calves",
+    "img": "https://i.postimg.cc/761N2pqL/Calves.jpg"
+  },
+  {
+    "name": "Cardio",
+    "img": "https://i.postimg.cc/4yX8dJkP/Cardio.jpg"
+  },
+  {
+    "name": "Chest",
+    "img": "https://i.postimg.cc/JnLx61n8/Chest.jpg"
+  },
+  {
+    "name": "Deltoids",
+    "img": "https://i.postimg.cc/wxkfrsLG/Deltoid.jpg"
+  },
+  {
+    "name": "Forearms",
+    "img": "https://i.postimg.cc/q73wkNYy/Forearms.jpg"
+  },
+  {
+    "name": "Full body",
+    "img": "https://i.postimg.cc/gjD4f177/FullBody.jpg"
+  },
+  {
+    "name": "Glutes",
+    "img": "https://i.postimg.cc/GhXqzwG8/Glutes.jpg"
+  },
+  {
+    "name": "Hamstrings",
+    "img": "https://i.postimg.cc/TwV7fKSh/Hamstrings.jpg"
+  },
+  {
+    "name": "Lats muscle",
+    "img": "https://i.postimg.cc/dVXnP2WJ/Lats-Muscle.jpg"
+  },
+  {
+    "name": "Obliques",
+    "img": "https://i.postimg.cc/prks5gPH/Obliques.jpg"
+  },
+
+  {
+    "name": "Quadriceps",
+    "img": "https://i.postimg.cc/85gHs1Q3/Quadriceps.jpg"
+  },
+  {
+    "name": "Shoulders",
+    "img": "https://i.postimg.cc/rw7Q4G2K/Shoulders.jpg"
+  },
+  {
+    "name": "Trapezius",
+    "img": "https://i.postimg.cc/Hkj3hZ9S/Trapezius.jpg"
+  },
+  {
+    "name": "Triceps",
+    "img": "https://i.postimg.cc/k58wvV7w/Triceps.jpg"
+  },
+  {
+    "name": "Upper back",
+    "img": "https://i.postimg.cc/kX1jJ3jN/Upper-Back.jpg"
+  }
+]

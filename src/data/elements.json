@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Nothing",
+    "img": "https://i.postimg.cc/zf8bBgfC/Other.png"
+  },
+  {
+    "name": "Dumbell",
+    "img": "https://i.postimg.cc/zBfywYK3/Dumbell.webp"
+  },
+  {
+    "name": "Olympic bar",
+    "img": "https://i.postimg.cc/fbFjLKQ7/Olympic-Bar.webp"
+  },
+  {
+    "name": "Ez bar",
+    "img": "https://i.postimg.cc/9FVPr0Kk/EzBar.webp"
+  },
+  {
+    "name": "Fixed bar",
+    "img": "https://i.postimg.cc/y8p0QPxq/FixedBar.webp"
+  },
+  {
+    "name": "Hex bar",
+    "img": "https://i.postimg.cc/90PGLHR1/HexBar.webp"
+  },
+  {
+    "name": "Roman bar",
+    "img": "https://i.postimg.cc/XJCKyCnR/RomanBar.webp"
+  },
+  {
+    "name": "Straight bar",
+    "img": "https://i.postimg.cc/GtnFPm2H/Straight-Bar.webp"
+  },
+  {
+    "name": "Kettlebell",
+    "img": "https://i.postimg.cc/zf7LRGL9/Kettlebell.webp"
+  },
+  {
+    "name": "Machine",
+    "img": "https://i.postimg.cc/5yYjG5PV/Machine.webp"
+  },
+
+  {
+    "name": "Pulleys",
+    "img": "https://i.postimg.cc/Hs2w5HCk/Pulleys.webp"
+  },
+  {
+    "name": "Resistance band",
+    "img": "https://i.postimg.cc/hvkhqJw7/Resistance-Band.webp"
+  },
+
+  {
+    "name": "Suspension band",
+    "img": "https://i.postimg.cc/yxKshwD2/Suspesion-Band.jpg"
+  },
+  {
+    "name": "Weight discs",
+    "img": "https://i.postimg.cc/QdFG7X6H/Weight-Discs.jpg"
+  },
+  {
+    "name": "Medicine",
+    "img": "https://i.postimg.cc/L88z37HB/medicine.webp"
+  },
+  {
+    "name": "Other",
+    "img": "https://i.postimg.cc/zf8bBgfC/Other.png"
+  }
+]
