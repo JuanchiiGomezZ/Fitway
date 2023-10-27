@@ -25,7 +25,7 @@ export default CameraScreen = () => {
 
   useEffect(() => {
     (async () => {
-      MediaLibrary.requestPermissionsAsync();
+      //MediaLibrary.requestPermissionsAsync();
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
       setHasCammeraPermission(cameraStatus.status === "granted");
     })();
@@ -51,7 +51,7 @@ export default CameraScreen = () => {
   const savePicture = async () => {
     if (image) {
       try {
-        await MediaLibrary.createAssetAsync(image);
+       // await MediaLibrary.createAssetAsync(image);
         setImage(null);
         goBack();
       } catch (error) {

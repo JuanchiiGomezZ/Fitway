@@ -35,8 +35,16 @@
         }
       ],
       "expo-localization",
-      "@react-native-google-signin/google-signin"
+      "@react-native-google-signin/google-signin",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends.",
+          "cameraPermission": "Allow Fitway to access your camera."
+        }
+      ]
     ],
+
     "extra": {
       "eas": {
         "projectId": "8129cdd7-4d9c-4bc0-b14c-6e7326beb3fa"
