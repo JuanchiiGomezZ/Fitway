@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import musclesData from "../../data/muscles.json";
 import elementsData from "../../data/elements.json";
+import { useNavigation } from "@react-navigation/native";
 
 //COMPONENTS
 import Header from "../../components/Header";
@@ -25,6 +26,7 @@ import {
 
 export default CreateExercise = () => {
   const { t } = useTranslation();
+  const { navigate } = useNavigation();
   const [bottomsheet, setBottomsheet] = useState(false);
   const [pickerMuscle, setPickerMuscle] = useState(false);
   const [pickerElement, setPickerElement] = useState(false);
@@ -89,7 +91,7 @@ export default CreateExercise = () => {
           <ElementCard icon="human-handsup" name={null} title="Exercise type" />
         </View>
       </View>
-      <OrangeButton text="Continue" />
+      <OrangeButton text="Continue" action={() => navigate("CreateExerciseSecond")} />
       {pickerMuscle && (
         <PickerModal
           data={musclesData}

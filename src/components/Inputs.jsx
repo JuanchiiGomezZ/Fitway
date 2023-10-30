@@ -69,7 +69,7 @@ export const TextAreaWithLabel = ({ setInputChange, placeholder, inputChange, la
     <View>
       <Text style={styles.labelText}>{label}</Text>
       <TextInput
-        style={[styles.input, styles.textArea]}
+        style={[styles.input, styles.textArea, { marginTop: 4 }]}
         value={inputChange}
         placeholder={placeholder}
         placeholderTextColor={GRAY_COLOR}

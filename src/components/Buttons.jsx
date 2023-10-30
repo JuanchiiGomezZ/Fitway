@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
 import React from "react";
 import {
   WHITE_COLOR,
@@ -90,6 +90,13 @@ export const OrangeButton = ({ action, text }) => {
     <TouchableOpacity style={[styles.button]} onPress={action}>
       <Text style={styles.textButton}>{text}</Text>
     </TouchableOpacity>
+  );
+};
+export const DisabledButton = ({ action, text }) => {
+  return (
+    <Pressable style={[styles.button, { backgroundColor: "#5b5b5b" }]} onPress={action}>
+      <Text style={[styles.textButton, { color: "#e3e3e3" }]}>{text}</Text>
+    </Pressable>
   );
 };
 export const OrangeButtonLarge = ({ action, text }) => {

@@ -13,9 +13,10 @@ import { ORANGE_COLOR, ORANGE_DARK_COLOR } from "../../../styles/styles";
 import { ClassicInput } from "../../../components/Inputs";
 import BackdropModals from "../../../components/BackdropModals";
 import Loader from "../../../components/Loader";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import Animated, { FadeIn, FadeOut, Layout, FadeInDown } from "react-native-reanimated";
 import { CloseModalIcon } from "../../../components/Buttons";
 
+const AnimatedView = Animated.createAnimatedComponent(View);
 const PickerModal = ({ setSelected, toggleModal, data, type }) => {
   const [inputChange, setInputChange] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +38,7 @@ const PickerModal = ({ setSelected, toggleModal, data, type }) => {
       <Animated.View style={styles.modalContainer} entering={FadeIn} exiting={FadeOut}>
         <View style={styles.head}>
           <Text style={styles.titleModal}>{type}</Text>
-          <CloseModalIcon  action={toggleModal}/>
+          <CloseModalIcon action={toggleModal} />
         </View>
         <ClassicInput
           setInputChange={setInputChange}
@@ -55,7 +56,11 @@ const PickerModal = ({ setSelected, toggleModal, data, type }) => {
                 data.name.toLocaleLowerCase().includes(inputChange.toLocaleLowerCase()),
               )
               .map((item, index) => (
-                <View key={index}>
+                <AnimatedView
+                  key={index}
+                  entering={FadeInDown.delay(70 * index)}
+                  layout={Layout.delay(200)}
+                >
                   <TouchableOpacity
                     style={styles.card}
                     onPress={() => {
@@ -66,7 +71,7 @@ const PickerModal = ({ setSelected, toggleModal, data, type }) => {
                     <Text style={styles.textName}>{item.name}</Text>
                   </TouchableOpacity>
                   <View style={styles.line} />
-                </View>
+                </AnimatedView>
               ))}
           </ScrollView>
         )}
