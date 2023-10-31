@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
-import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
-import { WHITE_COLOR, BOX_COLOR, ORANGE_DARK_COLOR } from "../../../styles/styles";
+import { StyleSheet, Text, View, Keyboard } from "react-native";
+import React, { useEffect, forwardRef, useImperativeHandle, useRef } from "react";
+import { WHITE_COLOR, ORANGE_DARK_COLOR, ORANGE_COLOR } from "../../../styles/styles";
 import TableRow from "./TableRow";
-import { OrangeButton, OrangeCircularButton } from "../../../components/Buttons";
+import { OrangeCircularButton } from "../../../components/Buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 export default SetsTable = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,11 @@ export default SetsTable = () => {
     }
   };
 
+  const initialMode = useRef(true);
+  useEffect(() => {
+    initialMode.current = false;
+  }, []);
+
   return (
     <View style={styles.table}>
       <View style={styles.head}>
@@ -24,9 +30,20 @@ export default SetsTable = () => {
         <Text style={[styles.text]}>Reps</Text>
       </View>
       {reps.map((item, index) => (
-        <TableRow key={index} index={index} />
+        <TableRow key={index} index={index} initialMode={initialMode.current} />
       ))}
-      {length < 6 && <OrangeCircularButton action={addSet} icon="plus" text="Add set" />}
+      {length < 6 ? (
+        <Animated.View
+          entering={initialMode.current ? FadeIn.delay((reps.length + 1) * 100) : FadeIn.delay(150)}
+          exiting={FadeOut}
+        >
+          <OrangeCircularButton action={addSet} icon="plus" text="Add set" />
+        </Animated.View>
+      ) : (
+        <Animated.Text entering={FadeIn.delay(150)} exiting={FadeOut} style={styles.maxRepsText}>
+          You reached the number of maximum repetitions
+        </Animated.Text>
+      )}
     </View>
   );
 };
@@ -59,5 +76,11 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     fontSize: 15,
     fontWeight: "500",
+  },
+  maxRepsText: {
+    color: ORANGE_COLOR,
+    fontWeight: "500",
+    fontSize: 15,
+    textAlign: "center",
   },
 });

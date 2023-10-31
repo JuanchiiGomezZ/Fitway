@@ -10,6 +10,8 @@ import { setRepsValidation } from "../../store/slices/newExerciseSlice";
 import Header from "../../components/Header";
 import SetsTable from "./components/SetsTable";
 import { OrangeButton, DisabledButton } from "../../components/Buttons";
+import RestTimeSlider from "./components/RestTimeSlider";
+
 
 //STYLES
 import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
@@ -28,6 +30,7 @@ export default CreateExerciseSecond = () => {
       <View>
         <Header title={"Bench press"} />
         <SetsTable />
+        <RestTimeSlider/>
       </View>
       {reps.some((rep) => rep === "") ? (
         <DisabledButton text="Create exercise" action={handleAreValidReps} />

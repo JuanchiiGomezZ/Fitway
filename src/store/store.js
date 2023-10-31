@@ -22,6 +22,7 @@ export const store = configureStore({
     workouts: workoutsSlice.reducer,
     exercises: exercisesSlice.reducer,
     newExercise: newExerciseSlice.reducer,
+    
   },
   middleware: [testMiddleware],
 });

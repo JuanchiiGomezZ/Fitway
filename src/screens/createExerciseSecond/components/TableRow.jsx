@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { WHITE_COLOR, BOX_COLOR, RED_COLOR, GRAY_COLOR } from "../../../styles/styles";
 import { Feather } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
+import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 
-const TableRow = ({ index }) => {
+const TableRow = ({ index, initialMode }) => {
   const dispatch = useDispatch();
   const { reps, areValidReps } = useSelector((state) => state.newExercise);
   const { length } = reps;
@@ -13,7 +14,6 @@ const TableRow = ({ index }) => {
 
   const handleChangeText = (text) => {
     setNumReps(text);
-
     const updatedArrayReps = [...reps];
     updatedArrayReps[index] = text;
     dispatch(setReps(updatedArrayReps));
@@ -24,7 +24,12 @@ const TableRow = ({ index }) => {
   };
 
   return (
-    <View style={styles.row} key={index}>
+    <Animated.View
+      style={styles.row}
+      key={index}
+      entering={initialMode ? FadeInUp.delay(60 * index) : FadeInUp.delay(0)}
+      exiting={FadeOutUp.delay(0)}
+    >
       <View style={styles.numReps}>
         <Text style={[styles.rowText]}>{index + 1}</Text>
         <TextInput
@@ -42,7 +47,7 @@ const TableRow = ({ index }) => {
           <Feather name="trash-2" size={24} color="#D9D9D9" />
         </TouchableOpacity>
       )}
-    </View>
+    </Animated.View>
   );
 };
 
@@ -51,7 +56,7 @@ export default TableRow;
 const styles = StyleSheet.create({
   row: {
     width: "100%",
-    height: 40,
+    height: 45,
     backgroundColor: BOX_COLOR,
     borderRadius: 5,
     flexDirection: "row",
