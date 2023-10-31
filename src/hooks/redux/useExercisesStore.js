@@ -30,5 +30,18 @@ export default useExercisesStore = () => {
     }
   };
 
-  return { deleteWorkoutExercise };
+  const createNewExercise = async (bodyData) => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/exercise/newExercise/${user.id}/${activeWorkoutDetails.workoutId}`,
+        bodyData,
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      dispatch(onError(error.response.data?.message));
+    }
+  };
+
+  return { deleteWorkoutExercise, createNewExercise };
 };

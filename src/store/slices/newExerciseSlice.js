@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const newExerciseSlice = createSlice({
   name: "newExercise",
   initialState: {
-    exerciseData: null,
+    newExerciseData: null,
     reps: ["", "", ""],
     areValidReps: true,
     restTime: 0,
@@ -18,8 +18,12 @@ export const newExerciseSlice = createSlice({
     setRestTime: (state, { payload }) => {
       state.restTime = payload;
     },
+    saveNewExerciseData: (state, { payload }) => {
+      state.newExerciseData = payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setReps, setRepsValidation, setRestTime } = newExerciseSlice.actions;
+export const { setReps, setRepsValidation, setRestTime, saveNewExerciseData } =
+  newExerciseSlice.actions;

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import musclesData from "../../data/muscles.json";
 import elementsData from "../../data/elements.json";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 
 //COMPONENTS
 import Header from "../../components/Header";
@@ -26,12 +27,14 @@ import {
 
 export default CreateExercise = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const { navigate } = useNavigation();
+  const { activeWorkoutExercises } = useSelector((state) => state.workouts);
   const [bottomsheet, setBottomsheet] = useState(false);
   const [pickerMuscle, setPickerMuscle] = useState(false);
   const [pickerElement, setPickerElement] = useState(false);
 
-  const [image, setImage] = useState(null);
+  const [exerciseImg, setExerciseImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [primaryMuscle, setPrimaryMuscle] = useState(null);
@@ -39,7 +42,7 @@ export default CreateExercise = () => {
 
   const toggleBottomsheet = (img) => {
     if (img) {
-      setImage(img);
+      setExerciseImage(img);
     }
     setBottomsheet((prev) => !prev);
   };
@@ -52,13 +55,34 @@ export default CreateExercise = () => {
     setPickerElement((prev) => !prev);
   };
 
+  const exerciseGif =
+    "https://newlife.com.cy/wp-content/uploads/2019/11/16241301-Dumbbell-Reverse-Bench-Press_Chest_360.gif";
+
+  const exerciseType = "ExerciseWithWeight";
+
+  const handleContinueBtn = () => {
+    const newExerciseData = {
+      name,
+      description,
+      exerciseImg,
+      primaryMuscle: primaryMuscle.name,
+      muscleImg: primaryMuscle.img,
+      element: element.name,
+      elementImg: element.img,
+      exerciseGif,
+      exerciseType,
+      order: activeWorkoutExercises.exercises.length + 1,
+    };
+    navigate("CreateExerciseSecond", newExerciseData);
+  };
+
   return (
     <View style={styles.container}>
       <Header title={"Create Exercise"} />
 
       <View style={styles.contentContainer}>
         <View style={{ width: "90%", gap: 25 }}>
-          <AddImage toggleBottomsheet={toggleBottomsheet} image={image} />
+          <AddImage toggleBottomsheet={toggleBottomsheet} exerciseImg={exerciseImg} />
           <ClassicInputWithLabel
             setInputChange={setName}
             inputChange={name}
@@ -91,7 +115,7 @@ export default CreateExercise = () => {
           <ElementCard icon="human-handsup" name={null} title="Exercise type" />
         </View>
       </View>
-      <OrangeButton text="Continue" action={() => navigate("CreateExerciseSecond")} />
+      <OrangeButton text="Continue" action={handleContinueBtn} />
       {pickerMuscle && (
         <PickerModal
           data={musclesData}

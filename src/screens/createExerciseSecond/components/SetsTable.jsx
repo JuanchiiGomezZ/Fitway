@@ -41,7 +41,7 @@ export default SetsTable = () => {
         </Animated.View>
       ) : (
         <Animated.Text entering={FadeIn.delay(150)} exiting={FadeOut} style={styles.maxRepsText}>
-          You reached the number of maximum repetitions
+          You reached the number of maximum reps.
         </Animated.Text>
       )}
     </View>
