@@ -36,9 +36,8 @@ export default useExercisesStore = () => {
         `${API_URL}/exercise/newExercise/${user.id}/${activeWorkoutDetails.workoutId}`,
         bodyData,
       );
-      console.log(data);
+      //console.log(data);
     } catch (error) {
-      console.log(error);
       dispatch(onError(error.response.data?.message));
     }
   };

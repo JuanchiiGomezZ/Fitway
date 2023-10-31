@@ -53,6 +53,7 @@ export default WorkoutScreen = ({ route }) => {
     setExerciseGIFModal((prev) => !prev);
   };
 
+  /* console.log([...activeWorkoutExercises?.exercises]) */
 
   return (
     <View style={styles.container}>

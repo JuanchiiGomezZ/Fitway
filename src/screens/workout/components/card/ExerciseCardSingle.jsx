@@ -27,7 +27,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     exerciseType,
     WorkoutExercise,
     SupersetExercise,
-  } = data;
+  } = data || {};
   const { reps, series, order, durations } = WorkoutExercise || SupersetExercise || {};
 
   const initialMode = useRef(true);
@@ -38,8 +38,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
   return (
     <AnimatedTouchable
       style={styles.cardContainer}
-      entering={initialMode.current ? FadeInDown.delay(100 * index) : FadeInDown.delay(250)}
-      layout={Layout.delay(200)}
+      entering={initialMode.current ? FadeInDown.delay(100 * index) : ""}
     >
       <>
         {!superset && <ConfigButton action={() => toggleConfig(id, "single")} />}
@@ -51,7 +50,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
         >
           <Image
             source={
-              multimedia.exerciseImg
+              multimedia?.exerciseImg
                 ? { uri: multimedia.exerciseImg }
                 : require("../../../../assets/images/fitwayDark.png")
             }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Text, RefreshControl } from "react-native";
+import { StyleSheet, View, ScrollView, RefreshControl } from "react-native";
 
 /* HOOKS */
 import { useTranslation } from "react-i18next";

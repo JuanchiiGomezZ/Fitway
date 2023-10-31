@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Keyboard } from "react-native";
 
 //HOOKS
 import { useTranslation } from "react-i18next";
@@ -13,7 +13,7 @@ import Header from "../../components/Header";
 import AddImage from "./components/AddImage";
 import BottomsheetImage from "./components/BottomsheetImage";
 import { ClassicInputWithLabel, TextAreaWithLabel } from "../../components/Inputs";
-import { OrangeButton } from "../../components/Buttons";
+import { DisabledButton, OrangeButton } from "../../components/Buttons";
 import ElementCard from "../../components/ElementCard";
 import PickerModal from "./components/PickerModal";
 
@@ -40,7 +40,10 @@ export default CreateExercise = () => {
   const [primaryMuscle, setPrimaryMuscle] = useState(null);
   const [element, setElement] = useState(null);
 
+  const [errors, setErrors] = useState({});
+
   const toggleBottomsheet = (img) => {
+    Keyboard.dismiss();
     if (img) {
       setExerciseImage(img);
     }
@@ -48,10 +51,12 @@ export default CreateExercise = () => {
   };
 
   const togglePickerMuscle = () => {
+    Keyboard.dismiss();
     setPickerMuscle((prev) => !prev);
   };
 
   const togglePickerElement = () => {
+    Keyboard.dismiss();
     setPickerElement((prev) => !prev);
   };
 
@@ -60,15 +65,15 @@ export default CreateExercise = () => {
 
   const exerciseType = "ExerciseWithWeight";
 
-  const handleContinueBtn = () => {
+  const handleContinue = () => {
     const newExerciseData = {
       name,
       description,
       exerciseImg,
-      primaryMuscle: primaryMuscle.name,
-      muscleImg: primaryMuscle.img,
-      element: element.name,
-      elementImg: element.img,
+      primaryMuscle: primaryMuscle?.name,
+      muscleImg: primaryMuscle?.img,
+      element: element?.name,
+      elementImg: element?.img,
       exerciseGif,
       exerciseType,
       order: activeWorkoutExercises.exercises.length + 1,
@@ -76,18 +81,30 @@ export default CreateExercise = () => {
     navigate("CreateExerciseSecond", newExerciseData);
   };
 
+  const validateData = () => {
+    let errors = {};
+
+    if (name.trim() == "") errors.name = true;
+    if (!primaryMuscle) errors.muscle = true;
+    if (!element) errors.element = true;
+    if (!exerciseType) errors.exerciseType = true;
+
+    setErrors(errors);
+  };
+
   return (
     <View style={styles.container}>
       <Header title={"Create Exercise"} />
 
       <View style={styles.contentContainer}>
-        <View style={{ width: "90%", gap: 25 }}>
+        <View style={{ width: "95%", gap: 25 }}>
           <AddImage toggleBottomsheet={toggleBottomsheet} exerciseImg={exerciseImg} />
           <ClassicInputWithLabel
             setInputChange={setName}
             inputChange={name}
             placeholder="Name"
-            label="Name"
+            label="Name *"
+            isValid={name.trim() == "" && errors.name}
           />
           <TextAreaWithLabel
             setInputChange={setDescription}
@@ -102,6 +119,7 @@ export default CreateExercise = () => {
               img={primaryMuscle?.img}
               title="Muscle"
               action={togglePickerMuscle}
+              isValid={!primaryMuscle?.img && errors.muscle}
             />
             <ElementCard
               icon="dumbbell"
@@ -110,12 +128,23 @@ export default CreateExercise = () => {
               title="Element"
               reverse={true}
               action={togglePickerElement}
+              isValid={!element?.img && errors.element}
+            />
+            <ElementCard
+              icon="human-handsup"
+              name={null}
+              title="Exercise type *"
+              isValid={errors.exerciseType}
             />
           </View>
-          <ElementCard icon="human-handsup" name={null} title="Exercise type" />
         </View>
       </View>
-      <OrangeButton text="Continue" action={handleContinueBtn} />
+      {name.trim() == "" || !primaryMuscle || !element ? (
+        <DisabledButton text="Continue" action={validateData} />
+      ) : (
+        <OrangeButton text="Continue" action={handleContinue} />
+      )}
+
       {pickerMuscle && (
         <PickerModal
           data={musclesData}
@@ -150,9 +179,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   selectorsContainer: {
-    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: 15,
   },
   exerciseType: {
     flexDirection: "row",

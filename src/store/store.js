@@ -7,13 +7,13 @@ import { workoutsSlice } from "./slices/workoutsSlice";
 import { exercisesSlice } from "./slices/exercisesSlice";
 import { newExerciseSlice } from "./slices/newExerciseSlice";
 
-const testMiddleware = (store) => (next) => (action) => {
+/* const testMiddleware = (store) => (next) => (action) => {
   if (action.type == "auth/onLogout" && action.payload != undefined) {
     console.log(action.payload);
   }
 
   next(action);
-};
+}; */
 
 export const store = configureStore({
   reducer: {
@@ -24,5 +24,5 @@ export const store = configureStore({
     newExercise: newExerciseSlice.reducer,
     
   },
-  middleware: [testMiddleware],
+/*   middleware: [testMiddleware], */
 });

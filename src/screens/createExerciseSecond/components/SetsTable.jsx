@@ -12,6 +12,8 @@ export default SetsTable = () => {
   const { reps } = useSelector((state) => state.newExercise);
   const { length } = reps;
 
+  console.log(reps);
+
   const addSet = () => {
     if (length <= 6) {
       dispatch(setReps([...reps, ""]));
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   head: {
     flexDirection: "row",
     alignSelf: "flex-start",
-    gap: 40,
+    gap: 35,
     marginLeft: 5,
   },
   text: {

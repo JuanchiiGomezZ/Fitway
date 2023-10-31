@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
-import { GRAY_COLOR, ORANGE_COLOR, ORANGE_DARK_COLOR, WHITE_COLOR } from "../styles/styles";
-import { Foundation } from "@expo/vector-icons";
+import {
+  GRAY_COLOR,
+  ORANGE_COLOR,
+  ORANGE_DARK_COLOR,
+  RED_COLOR,
+  WHITE_COLOR,
+} from "../styles/styles";
+import { Foundation, Feather } from "@expo/vector-icons";
+import { RequiredErrorWithText } from "./RequiredError";
 
 export const ClassicInput = ({ setInputChange, placeholder, inputChange }) => {
   return (
@@ -48,12 +55,22 @@ export const SearchInput = ({ inputChange, setInputChange, placeholder, onEnterP
   );
 };
 
-export const ClassicInputWithLabel = ({ setInputChange, placeholder, inputChange, label }) => {
+export const ClassicInputWithLabel = ({
+  setInputChange,
+  placeholder,
+  inputChange,
+  label,
+  isValid,
+}) => {
   return (
     <View>
-      <Text style={styles.labelText}>{label}</Text>
+      <View style={styles.inputHeadContainer}>
+        <Text style={styles.labelText}>{label}</Text>
+        {isValid && <RequiredErrorWithText />}
+      </View>
+
       <TextInput
-        style={styles.input}
+        style={[styles.input, isValid && { borderColor: RED_COLOR }]}
         value={inputChange}
         placeholder={placeholder}
         placeholderTextColor={GRAY_COLOR}
@@ -138,5 +155,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingVertical: 5,
     borderRadius: 5,
+  },
+
+  inputHeadContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
