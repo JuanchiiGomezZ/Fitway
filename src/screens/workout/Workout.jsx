@@ -14,6 +14,7 @@ import ExercisesList from "./components/card/ExercisesList";
 import FloatingMenu from "./components/FloatingMenu";
 import ConfigExerciseModal from "./components/ConfigExerciseModal";
 import ExerciseGIF from "./components/ExerciseGIF";
+import CreateSupersetModal from "./components/CreateSupersetModal";
 
 //STYLES
 import {
@@ -25,7 +26,7 @@ import {
 
 export default WorkoutScreen = ({ route }) => {
   const { t } = useTranslation();
-  const { workoutId } = route.params;
+  const { workoutId } = route.params || {};
 
   const { getWorkoutsData } = useWorkoutsStore();
   const { activeWorkoutDetails, activeWorkoutExercises, isLoading } = useSelector(
@@ -36,12 +37,12 @@ export default WorkoutScreen = ({ route }) => {
   const [exerciseId, setExerciseId] = useState(null);
   const [exerciseGIF, setExerciseGIF] = useState(null);
   const [exerciseGIFModal, setExerciseGIFModal] = useState(false);
+  const [createSuperset, setCreateSuperset] = useState(false);
 
   useEffect(() => {
-    workoutId != activeWorkoutDetails.workoutId && getWorkoutsData(workoutId);
+    workoutId != activeWorkoutDetails.workoutId &&
+      getWorkoutsData(workoutId || activeWorkoutDetails.workoutId);
   }, []);
-
-
 
   const toggleConfig = (id, type) => {
     id && setExerciseId({ id, type });
@@ -53,7 +54,9 @@ export default WorkoutScreen = ({ route }) => {
     setExerciseGIFModal((prev) => !prev);
   };
 
-  /* console.log([...activeWorkoutExercises?.exercises]) */
+  const toggleCreateSuperset = () => {
+    setCreateSuperset((prev) => !prev);
+  };
 
   return (
     <View style={styles.container}>
@@ -64,7 +67,7 @@ export default WorkoutScreen = ({ route }) => {
           <Header title={name} />
 
           <View style={styles.contentContainer}>
-            {!activeWorkoutExercises?.exercises[0]? (
+            {!activeWorkoutExercises?.exercises[0] ? (
               <EmptyWorkout />
             ) : (
               <ExercisesList toggleConfig={toggleConfig} toggleGIF={toggleGIF} />
@@ -73,9 +76,13 @@ export default WorkoutScreen = ({ route }) => {
           <FloatingMenu />
         </>
       )}
-
+      {createSuperset && <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />}
       {configModal && (
-        <ConfigExerciseModal toggleBottomSheet={toggleConfig} exerciseId={exerciseId} />
+        <ConfigExerciseModal
+          toggleBottomSheet={toggleConfig}
+          exerciseId={exerciseId}
+          toggleCreateSuperset={toggleCreateSuperset}
+        />
       )}
       {exerciseGIFModal && <ExerciseGIF toggleModal={toggleGIF} exerciseGIF={exerciseGIF} />}
     </View>

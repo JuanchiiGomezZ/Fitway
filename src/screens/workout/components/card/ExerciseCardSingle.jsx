@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { BORDER_RADIUS, BOX_COLOR, GRAY_COLOR, WHITE_COLOR } from "../../../../styles/styles";
 import { ConfigButton } from "../../../../components/Buttons";
-import Animated, { FadeInDown, Layout } from "react-native-reanimated";
+import Animated, { FadeInDown, Layout, FadeOut } from "react-native-reanimated";
 
 export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, superset }) => {
   const AnimatedTouchable = Animated.createAnimatedComponent(superset ? View : Pressable);
@@ -27,18 +27,23 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     exerciseType,
     WorkoutExercise,
     SupersetExercise,
+    workoutExercise,
   } = data || {};
-  const { reps, series, order, durations } = WorkoutExercise || SupersetExercise || {};
+  const { reps, order, durations } = WorkoutExercise || SupersetExercise || workoutExercise || {};
 
   const initialMode = useRef(true);
   useEffect(() => {
     initialMode.current = false;
   }, []);
 
+
+
   return (
     <AnimatedTouchable
       style={styles.cardContainer}
-      entering={initialMode.current ? FadeInDown.delay(100 * index) : ""}
+      entering={initialMode.current && FadeInDown.delay(100 * index)}
+      exiting={FadeOut}
+      layout={Layout.delay(200)}
     >
       <>
         {!superset && <ConfigButton action={() => toggleConfig(id, "single")} />}
@@ -60,20 +65,20 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
 
         <View style={styles.contentContainer}>
           <Text style={styles.title}>{name}</Text>
-          <View style={styles.infoContainer}>
+{/*           <View style={styles.infoContainer}>
             <View>
               <Text style={[styles.text]}>{element}</Text>
               <Text style={[styles.text, styles.muscle]}>{primaryMuscle}</Text>
             </View>
             <View style={{ alignItems: "flex-end" }}>
-              <Text style={styles.text}>Sets: {series}</Text>
+              <Text style={styles.text}>Sets: {reps.length}</Text>
               {exerciseType == "ExerciseOfDuration" ? (
                 <Text style={styles.text}>Duration: {durations}s</Text>
               ) : (
-                <Text style={styles.text}>Reps: {/* WorkoutExercise.reps.join(" | ") */}</Text>
+                <Text style={styles.text}>Reps: {reps.join(" | ")}</Text>
               )}
             </View>
-          </View>
+          </View> */}
         </View>
       </>
     </AnimatedTouchable>

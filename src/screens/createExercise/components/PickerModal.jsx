@@ -8,7 +8,6 @@ import {
   Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ORANGE_COLOR, ORANGE_DARK_COLOR } from "../../../styles/styles";
 import { ClassicInput } from "../../../components/Inputs";
 import BackdropModals from "../../../components/BackdropModals";
@@ -97,12 +96,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "white",
     fontWeight: "500",
-  },
-  closeIcon: {
-    color: "white",
-    fontSize: 20,
-    position: "relative",
-    bottom: 10,
   },
   input: {
     borderColor: "transparent",

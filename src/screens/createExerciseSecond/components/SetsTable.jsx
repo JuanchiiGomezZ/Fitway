@@ -12,7 +12,7 @@ export default SetsTable = () => {
   const { reps } = useSelector((state) => state.newExercise);
   const { length } = reps;
 
-  console.log(reps);
+
 
   const addSet = () => {
     if (length <= 6) {

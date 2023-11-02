@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 //HOOKS
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { setRepsValidation } from "../../store/slices/newExerciseSlice";
+import { setRepsValidation, cleanNewExerciseState } from "../../store/slices/newExerciseSlice";
 import useExercisesStore from "../../hooks/redux/useExercisesStore";
 
 //COMPONENTS
@@ -30,7 +30,8 @@ export default CreateExerciseSecond = ({ route }) => {
 
   const handleCreateExercise = () => {
     createNewExercise({ ...route.params, reps, series: reps.length, restTime });
-    /* navigate("TabNavigation", { screen: "Home" }); */
+    dispatch(cleanNewExerciseState());
+    navigate("Workout");
   };
   return (
     <View style={styles.container}>

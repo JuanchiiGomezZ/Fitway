@@ -8,8 +8,10 @@ import { saveActiveWorkoutExercises } from "../../store/slices/workoutsSlice";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import API_URL from "../../helpers/API_URL";
+import useWorkoutsStore from "./useWorkoutsStore";
 
 export default useExercisesStore = () => {
+  const { getWorkoutsData } = useWorkoutsStore();
   const dispatch = useDispatch();
   const { activeWorkoutExercises, activeWorkoutDetails } = useSelector((state) => state.workouts);
   const { user } = useSelector((state) => state.auth);
@@ -18,10 +20,10 @@ export default useExercisesStore = () => {
     dispatch(onChecking());
     try {
       const { data } = await axios.delete(
-        `${API_URL}/exercise/deleteExercise/${exerciseId.id}/${user.id}`,
+        `${API_URL}/exercise/deleteExercise/${exerciseId}/${user.id}`,
       );
       const updateExercises = activeWorkoutExercises.exercises.filter(
-        (element) => element.id !== exerciseId.id,
+        (element) => element.id !== exerciseId,
       );
       dispatch(saveActiveWorkoutExercises(updateExercises));
     } catch (error) {
@@ -36,11 +38,24 @@ export default useExercisesStore = () => {
         `${API_URL}/exercise/newExercise/${user.id}/${activeWorkoutDetails.workoutId}`,
         bodyData,
       );
-      //console.log(data);
+      dispatch(saveActiveWorkoutExercises([...activeWorkoutExercises.exercises, data]));
     } catch (error) {
       dispatch(onError(error.response.data?.message));
     }
   };
 
-  return { deleteWorkoutExercise, createNewExercise };
+  const createSuperset = async (exercises) => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/superset/newSuperset/${activeWorkoutDetails.workoutId}`,
+        { exercises },
+      );
+      console.log(data);
+      getWorkoutsData(data.workoutId);
+    } catch (error) {
+      dispatch(onError(error.response.data?.message));
+    }
+  };
+
+  return { deleteWorkoutExercise, createNewExercise, createSuperset };
 };

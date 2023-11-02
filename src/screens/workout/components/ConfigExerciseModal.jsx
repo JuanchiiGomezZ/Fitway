@@ -2,18 +2,22 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BACKGROUND_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
-import { Feather, MaterialIcons } from "@expo/vector-icons";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 import BackdropModals from "../../../components/BackdropModals";
 import { OptionMenu } from "../../../components/Buttons";
 
-export default ConfigWorkoutModal = ({ toggleBottomSheet, exerciseId }) => {
+export default ConfigWorkoutModal = ({ toggleBottomSheet, exerciseId, toggleCreateSuperset }) => {
   const { t } = useTranslation();
   const { deleteWorkoutExercise } = useExercisesStore();
 
   const handleExercise = () => {
-    deleteWorkoutExercise(exerciseId);
+    deleteWorkoutExercise(exerciseId.id);
+    toggleBottomSheet(null);
+  };
+
+  const handleOpenCreateSuperset = () => {
+    toggleCreateSuperset();
     toggleBottomSheet(null);
   };
 
@@ -26,10 +30,11 @@ export default ConfigWorkoutModal = ({ toggleBottomSheet, exerciseId }) => {
         exiting={SlideOutDown}
       >
         <View style={styles.optionsContainer}>
-          <OptionMenu text={"Edit exercise"} icon="edit-2" />
+          <OptionMenu text="Add to Superset" icon="plus-square" action={handleOpenCreateSuperset} />
+          <OptionMenu text="Edit exercise" icon="edit-2" />
 
           <OptionMenu
-            text={"Delete exercise"}
+            text="Delete exercise"
             icon="trash"
             color={RED_COLOR}
             action={handleExercise}
