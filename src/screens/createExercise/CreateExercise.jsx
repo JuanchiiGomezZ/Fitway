@@ -16,6 +16,7 @@ import { ClassicInputWithLabel, TextAreaWithLabel } from "../../components/Input
 import { DisabledButton, OrangeButton } from "../../components/Buttons";
 import ElementCard from "../../components/ElementCard";
 import PickerModal from "./components/PickerModal";
+import ExerciseTypesModal from "./components/ExerciseTypesModal";
 
 //STYLES
 import {
@@ -33,12 +34,14 @@ export default CreateExercise = () => {
   const [bottomsheet, setBottomsheet] = useState(false);
   const [pickerMuscle, setPickerMuscle] = useState(false);
   const [pickerElement, setPickerElement] = useState(false);
+  const [pickerExerciseType, setPickerExerciseType] = useState(false);
 
   const [exerciseImg, setExerciseImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [primaryMuscle, setPrimaryMuscle] = useState(null);
   const [element, setElement] = useState(null);
+  const [exerciseType, setExerciseType] = useState(null);
 
   const [errors, setErrors] = useState({});
 
@@ -60,10 +63,18 @@ export default CreateExercise = () => {
     setPickerElement((prev) => !prev);
   };
 
+  const togglePickerExerciseType = (type) => {
+    Keyboard.dismiss();
+    if (type) {
+      setExerciseType(type);
+    }
+    setPickerExerciseType((prev) => !prev);
+  };
+
   const exerciseGif =
     "https://newlife.com.cy/wp-content/uploads/2019/11/16241301-Dumbbell-Reverse-Bench-Press_Chest_360.gif";
 
-  const exerciseType = "ExerciseWithWeight";
+  // const exerciseType = "ExerciseWithWeight";
 
   const handleContinue = () => {
     const newExerciseData = {
@@ -75,7 +86,7 @@ export default CreateExercise = () => {
       element: element?.name,
       elementImg: element?.img,
       exerciseGif,
-      exerciseType,
+      exerciseType: exerciseType?.value,
       order: activeWorkoutExercises.exercises.length + 1,
     };
     navigate("CreateExerciseSecond", newExerciseData);
@@ -133,8 +144,9 @@ export default CreateExercise = () => {
             <ElementCard
               icon="human-handsup"
               name={null}
-              title="Exercise type *"
-              isValid={errors.exerciseType}
+              title={exerciseType?.name || "Exercise type"}
+              isValid={!exerciseType?.name && errors.exerciseType}
+              action={() => togglePickerExerciseType(null)}
             />
           </View>
         </View>
@@ -161,6 +173,7 @@ export default CreateExercise = () => {
           setSelected={setElement}
         />
       )}
+      {pickerExerciseType && <ExerciseTypesModal toggleModal={togglePickerExerciseType} />}
       {bottomsheet && <BottomsheetImage toggleBottomsheet={toggleBottomsheet} />}
     </View>
   );

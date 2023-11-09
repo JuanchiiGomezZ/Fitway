@@ -44,15 +44,18 @@ export default useExercisesStore = () => {
     }
   };
 
-  const createSuperset = async (exercises) => {
+  const createSuperset = async (exercisesIds) => {
     try {
       const { data } = await axios.post(
         `${API_URL}/superset/newSuperset/${activeWorkoutDetails.workoutId}`,
-        { exercises },
+        { exercisesIds },
       );
-      console.log(data);
-      getWorkoutsData(data.workoutId);
+      const updateExercises = activeWorkoutExercises.exercises.filter(
+        (element) => !exercisesIds.includes(element.id),
+      );
+      dispatch(saveActiveWorkoutExercises([...updateExercises, data]));
     } catch (error) {
+      console.log(error);
       dispatch(onError(error.response.data?.message));
     }
   };

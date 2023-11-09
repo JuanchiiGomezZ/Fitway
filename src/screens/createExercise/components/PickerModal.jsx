@@ -15,7 +15,7 @@ import Loader from "../../../components/Loader";
 import Animated, { FadeIn, FadeOut, Layout, FadeInDown } from "react-native-reanimated";
 import { CloseModalIcon } from "../../../components/Buttons";
 
-const AnimatedView = Animated.createAnimatedComponent(View);
+
 const PickerModal = ({ setSelected, toggleModal, data, type }) => {
   const [inputChange, setInputChange] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +55,7 @@ const PickerModal = ({ setSelected, toggleModal, data, type }) => {
                 data.name.toLocaleLowerCase().includes(inputChange.toLocaleLowerCase()),
               )
               .map((item, index) => (
-                <AnimatedView
+                <Animated.View
                   key={index}
                   entering={FadeInDown.delay(70 * index)}
                   layout={Layout.delay(200)}
@@ -70,7 +70,7 @@ const PickerModal = ({ setSelected, toggleModal, data, type }) => {
                     <Text style={styles.textName}>{item.name}</Text>
                   </TouchableOpacity>
                   <View style={styles.line} />
-                </AnimatedView>
+                </Animated.View>
               ))}
           </ScrollView>
         )}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { BACKGROUND_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../styles/styles";
 /* COMPONENTS */
 import { CloseModalIcon } from "./Buttons";
@@ -7,7 +7,6 @@ import BackdropModals from "./BackdropModals";
 
 /* HOOKS */
 import Animated, { FadeIn, FadeOut, Layout, FadeInDown } from "react-native-reanimated";
-
 
 export default ModalBase = ({ toggleModal, title, children }) => {
   return (
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   titleModal: {
     fontSize: 30,

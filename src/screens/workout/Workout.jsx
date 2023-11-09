@@ -44,6 +44,8 @@ export default WorkoutScreen = ({ route }) => {
       getWorkoutsData(workoutId || activeWorkoutDetails.workoutId);
   }, []);
 
+ 
+
   const toggleConfig = (id, type) => {
     id && setExerciseId({ id, type });
     setConfigModal((prev) => !prev);
@@ -76,7 +78,9 @@ export default WorkoutScreen = ({ route }) => {
           <FloatingMenu />
         </>
       )}
-      {createSuperset && <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />}
+      {createSuperset && (
+        <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />
+      )}
       {configModal && (
         <ConfigExerciseModal
           toggleBottomSheet={toggleConfig}

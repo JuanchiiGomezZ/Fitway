@@ -33,6 +33,8 @@ export default CreateExerciseSecond = ({ route }) => {
     dispatch(cleanNewExerciseState());
     navigate("Workout");
   };
+
+  console.log(route.params.exerciseType)
   return (
     <View style={styles.container}>
       <View style={{ gap: 30 }}>

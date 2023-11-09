@@ -36,8 +36,6 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     initialMode.current = false;
   }, []);
 
-
-
   return (
     <AnimatedTouchable
       style={styles.cardContainer}
@@ -65,7 +63,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
 
         <View style={styles.contentContainer}>
           <Text style={styles.title}>{name}</Text>
-{/*           <View style={styles.infoContainer}>
+          <View style={styles.infoContainer}>
             <View>
               <Text style={[styles.text]}>{element}</Text>
               <Text style={[styles.text, styles.muscle]}>{primaryMuscle}</Text>
@@ -78,7 +76,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
                 <Text style={styles.text}>Reps: {reps.join(" | ")}</Text>
               )}
             </View>
-          </View> */}
+          </View>
         </View>
       </>
     </AnimatedTouchable>

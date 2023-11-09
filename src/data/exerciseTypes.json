@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Weight + Reps",
+    "tags": ["KG", "REPS"],
+    "examples": ["Bench press", "Dumbell curls"],
+    "value": "ExerciseWithWeight"
+  },
+  {
+    "id": 2,
+    "name": "Bodyweight + Reps",
+    "tags": ["REPS"],
+    "examples": ["Pull ups", "Burpees"],
+    "value": "ExerciseWithoutWeight"
+  },
+  {
+    "id": 3,
+    "name": "Duration + Reps",
+    "tags": ["TIME", "REPS"],
+    "examples": ["Planks", "Yoga"],
+    "value": "ExerciseDuration"
+  }
+]

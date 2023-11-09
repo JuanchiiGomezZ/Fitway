@@ -12,8 +12,6 @@ export default SetsTable = () => {
   const { reps } = useSelector((state) => state.newExercise);
   const { length } = reps;
 
-
-
   const addSet = () => {
     if (length <= 6) {
       dispatch(setReps([...reps, ""]));
