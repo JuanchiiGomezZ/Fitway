@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 
-const TableRow = ({ index, initialMode }) => {
+const TableRow = ({ index, initialMode, exerciseType }) => {
   const dispatch = useDispatch();
   const { reps, areValidReps } = useSelector((state) => state.newExercise);
   const { length } = reps;
@@ -32,19 +32,26 @@ const TableRow = ({ index, initialMode }) => {
     >
       <View style={styles.numReps}>
         <Text style={[styles.rowText]}>{index + 1}</Text>
-        <TextInput
-          maxLength={7}
-          value={numReps}
-          onChangeText={handleChangeText}
-          style={styles.repsInput}
-          keyboardType="numeric"
-          placeholder="-"
-          placeholderTextColor={areValidReps ? GRAY_COLOR : RED_COLOR}
-        />
+        <View
+          style={{ flexDirection: "row", alignItems: "center", gap: 3 }}
+        >
+          <TextInput
+            maxLength={7}
+            value={numReps}
+            onChangeText={handleChangeText}
+            style={styles.repsInput}
+            keyboardType="numeric"
+            placeholder="-"
+            placeholderTextColor={areValidReps ? GRAY_COLOR : RED_COLOR}
+          />
+          {exerciseType == "ExerciseOfDuration" && (
+            <Text style={{ color: WHITE_COLOR, fontSize: 18 }}>s</Text>
+          )}
+        </View>
       </View>
       {index + 1 == length && index + 1 != 1 && (
         <TouchableOpacity onPress={handledeleteSet}>
-          <Feather name="trash-2" size={24} color="#D9D9D9" />
+          <Feather name="trash-2" size={22} color="#D9D9D9" />
         </TouchableOpacity>
       )}
     </Animated.View>
@@ -81,7 +88,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     height: 45,
-    /*     width: 80, */
-    /*   backgroundColor: "red", */
   },
 });

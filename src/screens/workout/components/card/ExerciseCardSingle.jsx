@@ -69,11 +69,11 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
               <Text style={[styles.text, styles.muscle]}>{primaryMuscle}</Text>
             </View>
             <View style={{ alignItems: "flex-end" }}>
-              <Text style={styles.text}>Sets: {reps.length}</Text>
+              <Text style={styles.text}>Sets: {reps?.length}</Text>
               {exerciseType == "ExerciseOfDuration" ? (
                 <Text style={styles.text}>Duration: {durations}s</Text>
               ) : (
-                <Text style={styles.text}>Reps: {reps.join(" | ")}</Text>
+                <Text style={styles.text}>Reps: {reps?.join(" | ")}</Text>
               )}
             </View>
           </View>

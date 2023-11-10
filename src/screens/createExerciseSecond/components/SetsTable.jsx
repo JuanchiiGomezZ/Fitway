@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
-export default SetsTable = () => {
+export default SetsTable = ({ exerciseType }) => {
   const dispatch = useDispatch();
   const { reps } = useSelector((state) => state.newExercise);
   const { length } = reps;
@@ -23,14 +23,18 @@ export default SetsTable = () => {
     initialMode.current = false;
   }, []);
 
+
+
   return (
     <View style={styles.table}>
       <View style={styles.head}>
         <Text style={styles.text}>Sets</Text>
-        <Text style={[styles.text]}>Reps</Text>
+        <Text style={[styles.text]}>
+          {exerciseType != "ExerciseOfDuration" ? "Reps" : "Duration"}
+        </Text>
       </View>
       {reps.map((item, index) => (
-        <TableRow key={index} index={index} initialMode={initialMode.current} />
+        <TableRow key={index} index={index} initialMode={initialMode.current} exerciseType={exerciseType} />
       ))}
       {length < 6 ? (
         <Animated.View

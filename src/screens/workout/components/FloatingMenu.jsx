@@ -15,7 +15,7 @@ const FloatingMenu = ({ setVisible }) => {
   const { navigate } = useNavigation();
 
   const handleNavigateNewExercise = () => {
-    navigate("CreateExercise");
+    navigate("AddExercise");
     popOut(false);
   };
 

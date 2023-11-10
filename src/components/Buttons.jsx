@@ -56,6 +56,18 @@ export const TransparentButtonRounded = ({ action, icon, text }) => {
   );
 };
 
+export const OrangeButtonRounded = ({ action, icon, text }) => {
+  return (
+    <TouchableOpacity
+      style={[styles.transparentBtnRounded, { backgroundColor: ORANGE_COLOR }]}
+      onPress={action}
+    >
+      <MaterialCommunityIcons name={icon} size={20} color={WHITE_COLOR} />
+      <Text style={styles.OrangeButtonSmallText}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+
 export const OrangeButtonSmall = ({ action, text }) => {
   return (
     <TouchableOpacity style={[styles.button, styles.OrangeButtonSmall]} onPress={action}>

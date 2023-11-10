@@ -18,6 +18,6 @@
     "name": "Duration + Reps",
     "tags": ["TIME", "REPS"],
     "examples": ["Planks", "Yoga"],
-    "value": "ExerciseDuration"
+    "value": "ExerciseOfDuration"
   }
 ]

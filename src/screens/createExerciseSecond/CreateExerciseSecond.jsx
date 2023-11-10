@@ -34,13 +34,13 @@ export default CreateExerciseSecond = ({ route }) => {
     navigate("Workout");
   };
 
-  console.log(route.params.exerciseType)
+
   return (
     <View style={styles.container}>
       <View style={{ gap: 30 }}>
         <Header title={"Bench press"} />
         <RestTimeSlider />
-        <SetsTable />
+        <SetsTable exerciseType={route.params.exerciseType} />
       </View>
       {!reps.every((rep) => rep.trim()) ? (
         <DisabledButton text="Create exercise" action={handleAreValidReps} />
