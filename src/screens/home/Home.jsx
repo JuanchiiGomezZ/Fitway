@@ -9,9 +9,9 @@ import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
 /* COMPONENTS */
 import Weekdays from "./components/Weekdays";
 import HeaderHome from "./components/HeaderHome";
-import ConfigWorkoutModal from "./components/ConfigWorkoutModal";
 import NewWorkoutModal from "./components/NewWorkoutModal";
 import ContentHome from "./components/ContentHome";
+import BottomSheetMenuWorkout from "./components/BottomSheetMenuWorkout";
 
 /* STYLES */
 import {
@@ -54,8 +54,6 @@ export default HomeScreen = () => {
     getRoutines(activeRoutineId);
   }, [activeRoutineId]);
 
-
-
   return (
     <View style={styles.container}>
       <ScrollView
@@ -75,7 +73,7 @@ export default HomeScreen = () => {
       </ScrollView>
       {qrModal && <QrModal code={activeRoutineDetails.codeShare} toggleModal={toggleQrModal} />}
       {configWorkoutModal && (
-        <ConfigWorkoutModal toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />
+        <BottomSheetMenuWorkout toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />
       )}
       {newWorkoutModal && <NewWorkoutModal toggleNewWorkoutModal={toggleNewWorkoutModal} />}
     </View>

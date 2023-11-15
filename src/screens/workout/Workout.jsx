@@ -12,9 +12,9 @@ import Loader from "../../components/Loader";
 import EmptyWorkout from "./components/EmptyWorkout";
 import ExercisesList from "./components/card/ExercisesList";
 import FloatingMenu from "./components/FloatingMenu";
-import ConfigExerciseModal from "./components/ConfigExerciseModal";
 import ExerciseGIF from "./components/ExerciseGIF";
 import CreateSupersetModal from "./components/CreateSupersetModal";
+import BottomSheetMenuExercise from "./components/BottomSheetMenuExercise";
 
 //STYLES
 import {
@@ -82,7 +82,7 @@ export default WorkoutScreen = ({ route }) => {
         <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />
       )}
       {configModal && (
-        <ConfigExerciseModal
+        <BottomSheetMenuExercise
           toggleBottomSheet={toggleConfig}
           exerciseId={exerciseId}
           toggleCreateSuperset={toggleCreateSuperset}

@@ -1,9 +1,9 @@
 import { onLogin, onChecking, onLogout } from "../../store/slices/authSlice";
-import axios from "axios";
+import axios from "../../api/axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 import { saveActiveRoutineId } from "../../store/slices/routinesSlice";
-import API_URL from "../../helpers/API_URL";
 
 import { storage } from "../../helpers/storage";
 
@@ -19,12 +19,14 @@ export default useAuthStore = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      const { data } = await axios.post(`${API_URL}/user/google/signIn`, {
+      const { data } = await axios.post(`/user/google/signIn`, {
         ...userInfo.user,
+        googleId: userInfo.user.id,
         language: "en",
       });
-      storage.set("token", data);
-      checkAuthToken();
+      storage.set("access_token", data.access_token);
+     // storage.set("refresh_token", data.refresh_token);
+      getDataUser(data.access_token);
     } catch (error) {
       dispatch(onLogout(error));
     }
@@ -41,23 +43,37 @@ export default useAuthStore = () => {
     }
   };
 
-  const checkAuthToken = async () => {
+  const refreshAuthToken = async () => {
     dispatch(onChecking());
     const token = storage.getString("token");
     if (!token) return dispatch(onLogout());
-
     try {
-      const { data } = await axios.get(`${API_URL}/user/token/data`, {
+      const { data } = await axios.get(`/user/refresh`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      storage.set("token", data.token);
+      getDataUser(data.token);
+    } catch (error) {
+      dispatch(onLogout(error.response.data));
+    }
+  };
 
+  const getDataUser = async (token) => {
+    dispatch(onChecking());
+    if (!token) return dispatch(onLogout());
+    try {
+      const { data } = await axios.get(`/user/token/data`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       dispatch(onLogin(data));
     } catch (error) {
       dispatch(onLogout(error.response.data?.message));
     }
   };
 
-  return { signIn, signOut, checkAuthToken };
+  return { signIn, signOut, refreshAuthToken };
 };

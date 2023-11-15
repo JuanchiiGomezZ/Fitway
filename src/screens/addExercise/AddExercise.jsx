@@ -13,13 +13,20 @@ import useExercisesStore from "../../hooks/redux/useExercisesStore";
 import ExerciseCardSingle from "../workout/components/card/ExerciseCardSingle";
 
 //STYLES
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
+import {
+  BACKGROUND_COLOR,
+  PADDING_HORIZONTAL,
+  PADDING_TOP,
+  WHITE_COLOR,
+} from "../../styles/styles";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 export default AddExercise = () => {
   const { t } = useTranslation();
   const { getUserExercises } = useExercisesStore();
   const { userExercises, isLoading } = useSelector((state) => state.exercises);
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     getUserExercises();
@@ -30,22 +37,26 @@ export default AddExercise = () => {
       <View style={styles.head}>
         <Header title={"Exercises"} />
         <View style={{ marginBottom: 13 }}>
-          <OrangeButtonRounded text={"Create Exercise"} icon={"plus"} />
+          <OrangeButtonRounded
+            text={"Create Exercise"}
+            icon={"plus"}
+            action={() => navigate("CreateExercise")}
+          />
         </View>
       </View>
       <ScrollView>
         <SearchBar />
         <Separator title={"My Exercises"} />
         <View style={{ gap: 10 }}>
-          {userExercises.map((item, index) => (
-            <ExerciseCardSingle
-              key={item.id}
-              data={item}
-              index={index}
-            />
-          ))}
+          {userExercises?.length > 0 ? (
+            userExercises.map((item, index) => (
+              <ExerciseCardSingle key={item.id} data={item} index={index} />
+            ))
+          ) : (
+            <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>
+          )}
         </View>
-        <Separator title={"FITWAY"} />
+        <Separator title={"All Exercises"} />
       </ScrollView>
     </View>
   );

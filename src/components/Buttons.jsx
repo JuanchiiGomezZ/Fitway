@@ -47,6 +47,14 @@ export const TransparentButton = ({ action, icon, text }) => {
     </TouchableOpacity>
   );
 };
+export const TransparentButtonDisabled = ({ icon, text }) => {
+  return (
+    <Pressable style={[styles.transparentButton, { borderColor: GRAY_COLOR }]}>
+      <MaterialCommunityIcons name={icon} size={20} color={GRAY_COLOR} />
+      <Text style={[styles.OrangeButtonSmallText, { color: GRAY_COLOR }]}>{text}</Text>
+    </Pressable>
+  );
+};
 export const TransparentButtonRounded = ({ action, icon, text }) => {
   return (
     <TouchableOpacity style={[styles.transparentBtnRounded]} onPress={action}>

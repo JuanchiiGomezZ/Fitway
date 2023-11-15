@@ -23,17 +23,16 @@ import CreateExercise from "../screens/createExercise/CreateExercise";
 import CreateExerciseSecond from "../screens/createExerciseSecond/CreateExerciseSecond";
 import AddExercise from "../screens/addExercise/AddExercise";
 
-
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
   const { status } = useSelector((state) => state.auth);
-  const { checkAuthToken } = useAuthStore();
+  const { refreshAuthToken } = useAuthStore();
   const { getRoutines } = useRoutinesStore();
   const { activeRoutineId } = useSelector((state) => state.userRoutines);
 
-  /*   useEffect(() => {
-    checkAuthToken();
-  }, []); */
+  // useEffect(() => {
+  //   refreshAuthToken();
+  // }, []);
 
   return (
     <NavigationContainer>
@@ -104,7 +103,7 @@ export default Navigation = () => {
               name="CreateExercise"
               component={CreateExercise}
               options={{
-                animation: "slide_from_right",
+                animation: "slide_from_bottom",
               }}
             />
             <Stack.Screen
@@ -121,7 +120,6 @@ export default Navigation = () => {
                 animation: "slide_from_right",
               }}
             />
-
           </>
         ) : (
           <Stack.Screen

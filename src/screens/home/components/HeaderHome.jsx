@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import TitleScreen from "../../../components/TitleScreen";
-import { TransparentButton } from "../../../components/Buttons";
+import { TransparentButton, TransparentButtonDisabled } from "../../../components/Buttons";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
@@ -11,8 +11,10 @@ import { useSelector } from "react-redux";
 export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
-  const { activeRoutineDetails } = useSelector((state) => state.userRoutines);
-  
+  const { activeRoutineDetails, activeRoutineId } = useSelector(
+    (state) => state.userRoutines,
+  );
+
   return (
     <View style={styles.head}>
       <View style={styles.title}>
@@ -28,11 +30,19 @@ export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <TransparentButton
-          text={t("Home.new-workout")}
-          icon={"clipboard-text"}
-          action={toggleNewWorkoutModal}
-        />
+        {activeRoutineId ? (
+          <TransparentButton
+            text={t("Home.new-workout")}
+            icon={"clipboard-text"}
+            action={toggleNewWorkoutModal}
+          />
+        ) : (
+          <TransparentButtonDisabled
+            text={t("Home.new-workout")}
+            icon={"clipboard-text"}
+            action={toggleNewWorkoutModal}
+          />
+        )}
         <TransparentButton
           text={t("Home.my-routines")}
           icon={"bookmark"}
@@ -55,7 +65,8 @@ const styles = StyleSheet.create({
   },
   routineName: {
     color: GRAY_COLOR,
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight:'600'
   },
   buttonsContainer: {
     flexDirection: "row",

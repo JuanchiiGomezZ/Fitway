@@ -12,9 +12,8 @@ import Header from "../../components/Header";
 import { TransparentButton } from "../../components/Buttons";
 import RoutineCard from "./components/MyRoutineCard";
 import Separator from "../../components/Separator";
-import ConfigRoutineModal from "./components/ConfigRoutineModal";
-import Loader from "../../components/Loader";
 import QrModal from "../../components/QrModal";
+import BottomSheetMenuRoutine from "./components/BottomSheetMenuRoutine";
 
 //STYLES
 import {
@@ -100,7 +99,7 @@ export default MyRoutinesScreen = () => {
       </ScrollView>
       {qrModal && <QrModal toggleModal={toggleQrModal} code={qrCode} />}
       {configRoutineModal && (
-        <ConfigRoutineModal
+        <BottomSheetMenuRoutine
           toggleBottomSheet={toggleBottomSheet}
           id={routineId}
           toggleQrModal={toggleQrModal}

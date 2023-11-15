@@ -1,9 +1,9 @@
 import { onChecking, saveUserExercises, onError } from "../../store/slices/exercisesSlice";
 import { saveActiveWorkoutExercises } from "../../store/slices/workoutsSlice";
 
-import axios from "axios";
+import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
-import API_URL from "../../helpers/API_URL";
+
 import useWorkoutsStore from "./useWorkoutsStore";
 
 export default useExercisesStore = () => {
@@ -16,7 +16,7 @@ export default useExercisesStore = () => {
     dispatch(onChecking());
     try {
       const { data } = await axios.delete(
-        `${API_URL}/exercise/deleteExercise/${exerciseId}/${user.id}`,
+        `/exercise/deleteExercise/${exerciseId}/${user.id}`,
       );
       const updateExercises = activeWorkoutExercises.exercises.filter(
         (element) => element.id !== exerciseId,
@@ -31,7 +31,7 @@ export default useExercisesStore = () => {
   const createNewExercise = async (bodyData) => {
     try {
       const { data } = await axios.post(
-        `${API_URL}/exercise/newExercise/${user.id}/${activeWorkoutDetails.workoutId}`,
+        `/exercise/newExercise/${user.id}/${activeWorkoutDetails.workoutId}`,
         bodyData,
       );
       dispatch(saveActiveWorkoutExercises([...activeWorkoutExercises.exercises, data]));
@@ -43,7 +43,7 @@ export default useExercisesStore = () => {
   const createSuperset = async (exercisesIds) => {
     try {
       const { data } = await axios.post(
-        `${API_URL}/superset/newSuperset/${activeWorkoutDetails.workoutId}`,
+        `/superset/newSuperset/${activeWorkoutDetails.workoutId}`,
         { exercisesIds },
       );
       // const updateExercises = activeWorkoutExercises.exercises.filter(
@@ -60,7 +60,7 @@ export default useExercisesStore = () => {
   const getUserExercises = async () => {
     dispatch(onChecking());
     try {
-      const { data } = await axios.get(`${API_URL}/exercise/findAll/${user.id}`);
+      const { data } = await axios.get(`/exercise/findAll/${user.id}`);
       dispatch(saveUserExercises(data));
     } catch (error) {
       dispatch(onError(error.response.data?.message));

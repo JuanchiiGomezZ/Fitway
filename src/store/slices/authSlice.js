@@ -16,11 +16,11 @@ export const authSlice = createSlice({
       (state.status = "authenticated"), (state.user = payload), (state.isLoading = false);
     },
     onLogout: (state, { payload }) => {
-      (state.status = "not-authenticated"),
+      console.log(payload),
+        (state.status = "not-authenticated"),
         (state.user = {}),
         (state.error = payload || null),
-        (state.isLoading = false),
-        console.log(payload);
+        (state.isLoading = false);
     },
   },
 });

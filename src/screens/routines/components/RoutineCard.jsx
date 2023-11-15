@@ -10,9 +10,9 @@ export default RoutineCard = ({ data, toggleBottomSheet }) => {
   return (
     <TouchableOpacity style={styles.cardContainer}>
       <Text style={styles.routineName}>{name}</Text>
-      <View style={styles.label}>
+      {/* <View style={styles.label}>
         <Text style={styles.labelText}>Fitway</Text>
-      </View>
+      </View> */}
       <View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>

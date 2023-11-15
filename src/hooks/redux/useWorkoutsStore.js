@@ -3,9 +3,9 @@ import {
   onError,
   saveActiveWorkoutExercisesData,
 } from "../../store/slices/workoutsSlice";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
-import API_URL from "../../helpers/API_URL";
+
 import { saveActiveRoutineWorkouts } from "../../store/slices/routinesSlice";
 
 export default useWorkoutsStore = () => {
@@ -14,7 +14,7 @@ export default useWorkoutsStore = () => {
 
   const getWorkoutsActive = async (routineId) => {
     try {
-      const { data } = await axios.get(`${API_URL}/workout/allWorkout/${routineId}`);
+      const { data } = await axios.get(`/workout/allWorkout/${routineId}`);
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +22,7 @@ export default useWorkoutsStore = () => {
 
   const newWorkout = async (name) => {
     try {
-      const { data } = await axios.post(`${API_URL}/workout/newWorkout/${activeRoutineId}`, {
+      const { data } = await axios.post(`/workout/newWorkout/${activeRoutineId}`, {
         name,
         order: activeRoutineWorkouts.length,
       });
@@ -36,7 +36,7 @@ export default useWorkoutsStore = () => {
   const deleteWorkout = async (workoutId) => {
     dispatch(onChecking());
     try {
-      const { data } = await axios.delete(`${API_URL}/workout/delete/${workoutId}`);
+      const { data } = await axios.delete(`/workout/delete/${workoutId}`);
 
       const updateWorkouts = activeRoutineWorkouts.filter((element) => element.id !== workoutId);
       dispatch(saveActiveRoutineWorkouts(updateWorkouts));
@@ -48,7 +48,7 @@ export default useWorkoutsStore = () => {
   const getWorkoutsData = async (workoutId) => {
     dispatch(onChecking());
     try {
-      const { data } = await axios.get(`${API_URL}/workout/${workoutId}`);
+      const { data } = await axios.get(`/workout/${workoutId}`);
       const details = {
         routineId: data.RoutineId,
         workoutId: data.id,

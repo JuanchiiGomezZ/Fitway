@@ -8,9 +8,9 @@ import {
   saveActiveRoutineWorkouts,
 } from "../../store/slices/routinesSlice";
 
-import axios from "axios";
+import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
-import API_URL from "../../helpers/API_URL";
+
 
 export default useRoutinesStore = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export default useRoutinesStore = () => {
   const getUserRoutines = async () => {
     try {
       dispatch(onChecking());
-      const { data } = await axios.get(`${API_URL}/routine/allRoutines/${user.id}`);
+      const { data } = await axios.get(`/routine/allRoutines/${user.id}`);
       dispatch(saveActiveRoutineId(data[0]?.activeRoutine?.id));
       dispatch(saveRoutines(data[0]));
       dispatch(setLoader());
@@ -33,7 +33,7 @@ export default useRoutinesStore = () => {
 
   const createNewRoutine = async (newRoutineData) => {
     try {
-      const { data } = await axios.post(`${API_URL}/routine/newRoutine/${user.id}`, newRoutineData);
+      const { data } = await axios.post(`/routine/newRoutine/${user.id}`, newRoutineData);
       dispatch(
         saveRoutines({
           ...userRoutines,
@@ -47,7 +47,7 @@ export default useRoutinesStore = () => {
 
   const deleteUserRoutine = async (routineId) => {
     try {
-      const { data } = await axios.delete(`${API_URL}/routine/delete/${routineId}`);
+      const { data } = await axios.delete(`/routine/delete/${routineId}`);
       const updatedRoutines = userRoutines.disabledRoutines.filter(
         (element) => element.id !== routineId,
       );
@@ -66,7 +66,7 @@ export default useRoutinesStore = () => {
   const toggleActiveRoutine = async (routineId, isActive) => {
     try {
       const { data } = await axios.patch(
-        `${API_URL}/routine/activeRoutine/${user.id}/${routineId}`,
+        `/routine/activeRoutine/${user.id}/${routineId}`,
         { isActive },
       );
       const updateDisabledRoutine = disabledRoutines.filter((element) => element.id !== routineId);
@@ -104,8 +104,8 @@ export default useRoutinesStore = () => {
     dispatch(onChecking());
     try {
       const [workoutsResponse, routineResponse] = await Promise.all([
-        axios.get(`${API_URL}/workout/allWorkouts/${activeRoutineId}`),
-        axios.get(`${API_URL}/routine/${activeRoutineId}`),
+        axios.get(`/workout/allWorkouts/${activeRoutineId}`),
+        axios.get(`/routine/${activeRoutineId}`),
       ]);
       dispatch(saveActiveRoutineWorkouts(workoutsResponse.data));
       dispatch(saveActiveRoutineDetails(routineResponse.data));
@@ -119,18 +119,15 @@ export default useRoutinesStore = () => {
     try {
       dispatch(onChecking());
       if (!routineId) {
-        const userRoutinesResponse = await axios.get(`${API_URL}/routine/allRoutines/${user.id}`);
-        const userRoutinesData = userRoutinesResponse.data;
+        const { data } = await axios.get(`/routine/allRoutines/${user.id}`);
         dispatch(
-          saveActiveRoutineId(
-            !userRoutinesData[0]?.activeRoutine?.id ? null : userRoutinesData[0]?.activeRoutine?.id,
-          ),
+          saveActiveRoutineId(!data[0]?.activeRoutine?.id ? null : data[0]?.activeRoutine?.id),
         );
-        dispatch(saveRoutines(userRoutinesData[0]));
+        dispatch(saveRoutines(data[0]));
       } else {
         const [routineResponse, workoutsResponse] = await Promise.all([
-          axios.get(`${API_URL}/routine/${routineId}`),
-          axios.get(`${API_URL}/workout/allWorkouts/${routineId}`),
+          axios.get(`/routine/${routineId}`),
+          axios.get(`/workout/allWorkouts/${routineId}`),
         ]);
         dispatch(saveActiveRoutineDetails(routineResponse.data));
         dispatch(saveActiveRoutineWorkouts(workoutsResponse.data));

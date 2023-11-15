@@ -35,7 +35,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
   useEffect(() => {
     initialMode.current = false;
   }, []);
-
+  
   return (
     <AnimatedTouchable
       style={styles.cardContainer}
@@ -68,14 +68,16 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
               <Text style={[styles.text]}>{element}</Text>
               <Text style={[styles.text, styles.muscle]}>{primaryMuscle}</Text>
             </View>
-            <View style={{ alignItems: "flex-end" }}>
-              <Text style={styles.text}>Sets: {reps?.length}</Text>
-              {exerciseType == "ExerciseOfDuration" ? (
-                <Text style={styles.text}>Duration: {durations}s</Text>
-              ) : (
-                <Text style={styles.text}>Reps: {reps?.join(" | ")}</Text>
-              )}
-            </View>
+            {reps && (
+              <View style={{ alignItems: "flex-end" }}>
+                <Text style={styles.text}>Sets: {reps?.length}</Text>
+                {exerciseType == "ExerciseOfDuration" ? (
+                  <Text style={styles.text}>Duration: {reps[0]}s</Text>
+                ) : (
+                  <Text style={styles.text}>Reps: {reps?.join(" | ")}</Text>
+                )}
+              </View>
+            )}
           </View>
         </View>
       </>
