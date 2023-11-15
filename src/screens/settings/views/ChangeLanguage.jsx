@@ -25,7 +25,7 @@ export default ChangeLanguage = () => {
       <Header title={t("Settings.languages")} />
 
       {languages.map((item, index) => (
-        <TouchableOpacity style={styles.languagesContainer} key={index} onPress={() => i18next.changeLanguage(item.abbreviation)}>
+        <TouchableOpacity style={styles.languagesContainer} key={item.name} onPress={() => i18next.changeLanguage(item.abbreviation)}>
           <View style={styles.langagueCard}>
             <Text style={styles.langagueIcon}>{item.icon}</Text>
             <Text style={styles.langagueName}>{item.name}</Text>

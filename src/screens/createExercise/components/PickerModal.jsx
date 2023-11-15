@@ -56,7 +56,7 @@ const PickerModal = ({ setSelected, toggleModal, data, type }) => {
               )
               .map((item, index) => (
                 <Animated.View
-                  key={index}
+                  key={item.name}
                   entering={FadeInDown.delay(70 * index)}
                   layout={Layout.delay(200)}
                 >

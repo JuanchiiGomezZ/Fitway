@@ -41,7 +41,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
             <View style={styles.musclesContainer}>
               {muscles && muscles.length > 0 ? (
                 muscles.map((item, index) => (
-                  <View style={styles.muscle} key={index}>
+                  <View style={styles.muscle} key={item}>
                     <Text style={styles.muscleName}>{item}</Text>
                   </View>
                 ))

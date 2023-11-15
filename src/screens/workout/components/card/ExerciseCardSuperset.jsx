@@ -35,8 +35,7 @@ export default WorkoutCardSuperset = ({ data, toggleConfig, index }) => {
         }}
       />
       {data.exercises.map((item, index) => (
-       
-        <View key={item.SupersetExercise.ExerciseId}>
+        <View key={item.id}>
           <WorkoutCardSingle data={item} superset={true} />
           {index < data.exercises.length - 1 && <View style={styles.line} />}
         </View>

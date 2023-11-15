@@ -20,7 +20,7 @@ export default ExerciseTypesModal = ({ toggleModal }) => {
               <Text style={styles.exampleText}>Example: {type.examples.join(", ")}</Text>
               <View style={styles.tagsContainer}>
                 {type.tags.map((tag, index) => (
-                  <Text key={index} style={styles.tag}>
+                  <Text key={tag} style={styles.tag}>
                     {tag}
                   </Text>
                 ))}

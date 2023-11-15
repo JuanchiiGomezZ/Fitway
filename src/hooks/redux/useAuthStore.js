@@ -20,12 +20,17 @@ export default useAuthStore = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       const { data } = await axios.post(`/user/google/signIn`, {
-        ...userInfo.user,
         googleId: userInfo.user.id,
+        ...userInfo.user,
         language: "en",
       });
-      storage.set("access_token", data.access_token);
-     // storage.set("refresh_token", data.refresh_token);
+      const token = {
+        access_token: data.access_token,
+        expiry: data.expiresIn,
+      };
+
+      storage.set("token", JSON.stringify(token));
+      storage.set("refresh_token", data.refresh_token);
       getDataUser(data.access_token);
     } catch (error) {
       dispatch(onLogout(error));
@@ -43,18 +48,44 @@ export default useAuthStore = () => {
     }
   };
 
+  /**
+   * Refreshes the authentication token.
+   *
+   * This function checks if the token is present and not expired. If so, it sends a request to the server to refresh the token.
+   * If the token is successfully refreshed, it updates the token in the storage and retrieves the user data using the new token.
+   * If the token is not present or expired, it logs the user out.
+   */
   const refreshAuthToken = async () => {
-    dispatch(onChecking());
-    const token = storage.getString("token");
-    if (!token) return dispatch(onLogout());
     try {
-      const { data } = await axios.get(`/user/refresh`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      storage.set("token", data.token);
-      getDataUser(data.token);
+      dispatch(onChecking());
+      const storedToken = JSON.parse(storage.getString("token"));
+      const refreshToken = storage.getString("refresh_token");
+
+      if (!storedToken) {
+        return dispatch(onLogout());
+      }
+
+      if (new Date() < new Date(storedToken.expiry)) {
+        const { data } = await axios.post(
+          `/user/refresh`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`,
+            },
+          },
+        );
+
+        const updatedToken = {
+          access_token: data.access_token,
+          expiry: "2023-11-16T03:24:15.407Z",
+        };
+
+        storage.set("token", JSON.stringify(updatedToken));
+        getDataUser(data.access_token);
+      } else {
+        getDataUser(storedToken.access_token);
+      }
     } catch (error) {
       dispatch(onLogout(error.response.data));
     }
