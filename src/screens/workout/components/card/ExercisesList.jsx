@@ -12,14 +12,14 @@ export default WorkoutsList = ({ toggleConfig, toggleGIF }) => {
       <View style={styles.container}>
         {activeWorkoutExercises.exercises.map((item, index) =>
           item?.exercises ? (
-            <ExerciseCardSuperset data={item} toggleConfig={toggleConfig} index={index} />
+            <ExerciseCardSuperset data={item} toggleConfig={toggleConfig} index={index} key={item.id}/>
           ) : (
             <ExerciseCardSingle
-              key={item.id}
               data={item}
               toggleConfig={toggleConfig}
               toggleGIF={toggleGIF}
               index={index}
+              key={item.id}
             />
           ),
         )}

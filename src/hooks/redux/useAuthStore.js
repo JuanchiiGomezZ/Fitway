@@ -48,13 +48,7 @@ export default useAuthStore = () => {
     }
   };
 
-  /**
-   * Refreshes the authentication token.
-   *
-   * This function checks if the token is present and not expired. If so, it sends a request to the server to refresh the token.
-   * If the token is successfully refreshed, it updates the token in the storage and retrieves the user data using the new token.
-   * If the token is not present or expired, it logs the user out.
-   */
+
   const refreshAuthToken = async () => {
     try {
       dispatch(onChecking());
@@ -78,7 +72,7 @@ export default useAuthStore = () => {
 
         const updatedToken = {
           access_token: data.access_token,
-          expiry: "2023-11-16T03:24:15.407Z",
+          expiry: data.expiresIn,
         };
 
         storage.set("token", JSON.stringify(updatedToken));

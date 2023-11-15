@@ -89,8 +89,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: BOX_COLOR,
     borderRadius: BORDER_RADIUS,
-    padding: 10,
-    minHeight: 100,
+    padding: 7,
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    gap: 10,
+    gap: 7,
   },
   title: {
     color: WHITE_COLOR,

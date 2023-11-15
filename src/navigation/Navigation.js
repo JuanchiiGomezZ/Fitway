@@ -30,9 +30,9 @@ export default Navigation = () => {
   const { getRoutines } = useRoutinesStore();
   const { activeRoutineId } = useSelector((state) => state.userRoutines);
 
-  useEffect(() => {
-    refreshAuthToken();
-  }, []);
+  // useEffect(() => {
+  //   refreshAuthToken();
+  // }, []);
 
   return (
     <NavigationContainer>
