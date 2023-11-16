@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from "react-native";
 
 //HOOKS
@@ -31,10 +31,15 @@ export default AddExercise = () => {
   const { getUserExercises } = useExercisesStore();
   const { userExercises, isLoading } = useSelector((state) => state.exercises);
   const { navigate } = useNavigation();
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     getUserExercises();
   }, []);
+
+  const onPageSelected = (event) => {
+    setCurrentPage(event.nativeEvent.position);
+  };
 
   const ref = useRef();
 
@@ -50,34 +55,44 @@ export default AddExercise = () => {
           />
         </View>
       </View>
-      <ScrollView>
-        <SearchBar />
+      <SearchBar />
+      <View style={styles.paginatorContainer}>
+        <TouchableOpacity onPress={() => ref.current?.setPage(0)}>
+          <Text style={[styles.page, currentPage == 1 && styles.inactive]}>All Exercises</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => ref.current?.setPage(1)}>
+          <Text style={[styles.page, currentPage == 0 && styles.inactive]}>My Exercises</Text>
+        </TouchableOpacity>
+      </View>
 
-        <View style={styles.paginatorContainer}>
-          <TouchableOpacity>
-            <Text style={[styles.page]}>All Exercises</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={[styles.page, styles.inactive]}>My Exercises</Text>
-          </TouchableOpacity>
+      <PagerView style={styles.pager} ref={ref} initialPage={0} onPageSelected={onPageSelected}>
+        <View key="1">
+          <ScrollView>
+            <View style={{ gap: 7 }}>
+              {userExercises?.length > 0 ? (
+                userExercises.map((item, index) => (
+                  <ExerciseCardSingle key={item.id} data={item} index={index} />
+                ))
+              ) : (
+                <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>
+              )}
+            </View>
+          </ScrollView>
         </View>
-
-        <PagerView
-          style={styles.pager}
-          ref={ref}
-          initialPage={0}
-          onPageScroll={(e) => console.log(e)}
-          onPageSelected={(e) => console.log(e)}
-          onPageScrollStateChanged={(e) => console.log(e)}
-        >
-          <View key="1">
-            <Text style={styles.page}>ALL EXERCISES</Text>
-          </View>
-          <View key="2">
-            <Text style={styles.page}>MY EXERCISES</Text>
-          </View>
-        </PagerView>
-      </ScrollView>
+        <View key="2">
+          <ScrollView>
+            <View style={{ gap: 7 }}>
+              {userExercises?.length > 0 ? (
+                userExercises.map((item, index) => (
+                  <ExerciseCardSingle key={item.id} data={item} index={index} />
+                ))
+              ) : (
+                <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>
+              )}
+            </View>
+          </ScrollView>
+        </View>
+      </PagerView>
     </View>
   );
 };

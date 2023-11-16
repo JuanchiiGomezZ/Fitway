@@ -21,5 +21,6 @@ const App = () => {
     </Provider>
   );
 };
-
+// eas build -p android --profile development
+// eas build:run -p android --latest
 export default App;
