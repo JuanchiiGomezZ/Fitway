@@ -18,7 +18,6 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     exerciseType,
     WorkoutExercise,
     SupersetExercise,
-    workoutExercise,
   } = data || {};
   const { reps, order, durations } = WorkoutExercise || SupersetExercise || {};
 

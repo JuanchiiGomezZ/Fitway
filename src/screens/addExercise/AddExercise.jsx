@@ -3,15 +3,17 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from "react-nati
 
 //HOOKS
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 //COMPONENTS
 import Header from "../../components/Header";
 import SearchBar from "./components/SearchBar";
 import { OrangeButtonRounded } from "../../components/Buttons";
-import Separator from "../../components/Separator";
 import useExercisesStore from "../../hooks/redux/useExercisesStore";
 import ExerciseCardSingle from "../workout/components/card/ExerciseCardSingle";
 import PagerView from "react-native-pager-view";
+import AddExerciseCard from "./components/AddExerciseCard";
 
 //STYLES
 import {
@@ -22,9 +24,7 @@ import {
   PADDING_TOP,
   WHITE_COLOR,
 } from "../../styles/styles";
-import { useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
-import { use } from "i18next";
+
 
 export default AddExercise = () => {
   const { t } = useTranslation();
@@ -42,6 +42,8 @@ export default AddExercise = () => {
   };
 
   const ref = useRef();
+
+
 
   return (
     <View style={styles.container}>
@@ -71,7 +73,11 @@ export default AddExercise = () => {
             <View style={{ gap: 7 }}>
               {userExercises?.length > 0 ? (
                 userExercises.map((item, index) => (
-                  <ExerciseCardSingle key={item.id} data={item} index={index} />
+                  <AddExerciseCard
+                    key={item.id}
+                    data={item}
+                    index={index}
+                  />
                 ))
               ) : (
                 <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>
