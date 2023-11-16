@@ -2,13 +2,14 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BORDER_RADIUS, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import CardContainer from "../../../components/CardContainer";
 
-export default RoutineCard = ({ data, toggleBottomSheet }) => {
+export default RoutineCard = ({ data, toggleBottomSheet, index }) => {
   const { t } = useTranslation();
 
   const { id, name, level, workoutsNumber, owner } = data;
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <CardContainer index={index}>
       <Text style={styles.routineName}>{name}</Text>
       {/* <View style={styles.label}>
         <Text style={styles.labelText}>Fitway</Text>
@@ -23,7 +24,7 @@ export default RoutineCard = ({ data, toggleBottomSheet }) => {
           <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutsNumber}</Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </CardContainer>
   );
 };
 

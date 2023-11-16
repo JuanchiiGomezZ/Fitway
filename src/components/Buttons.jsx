@@ -300,8 +300,8 @@ const styles = StyleSheet.create({
   },
   config: {
     position: "absolute",
-    top: 10,
-    right: 5,
+    top: 7,
+    right: 3,
     zIndex: 2,
   },
 

@@ -45,12 +45,12 @@ export default AllRoutinesScreen = ({ route }) => {
           />
         </View>
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <SearchBar toggleFilterModal={toggleFilter} qrQuery={qrQuery} />
         <Separator title={"FITWAY"} />
         <View style={styles.cardsContainer}>
-          {routinesTest.map((item) => (
-            <RoutineCard data={item} key={item.id} />
+          {routinesTest.map((item, index) => (
+            <RoutineCard data={item} key={item.id} index={index} />
           ))}
         </View>
       </ScrollView>

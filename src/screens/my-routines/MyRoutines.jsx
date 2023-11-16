@@ -83,7 +83,7 @@ export default MyRoutinesScreen = () => {
               />
             )}
 
-            <Separator title={t("MyRoutines.all")} />
+            <Separator title={t("Inactives")} />
             <View style={styles.allRoutines}>
               {disabledRoutines.map((item, index) => (
                 <RoutineCard

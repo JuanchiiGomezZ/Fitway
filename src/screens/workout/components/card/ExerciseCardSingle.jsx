@@ -1,21 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Pressable,
-  TouchableHighlight,
-} from "react-native";
+import React from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
-import { BORDER_RADIUS, BOX_COLOR, GRAY_COLOR, WHITE_COLOR } from "../../../../styles/styles";
+import { GRAY_COLOR, WHITE_COLOR } from "../../../../styles/styles";
 import { ConfigButton } from "../../../../components/Buttons";
-import Animated, { FadeInDown, Layout, FadeOut } from "react-native-reanimated";
+import CardContainer from "../../../../components/CardContainer";
 
 export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, superset }) => {
-  const AnimatedTouchable = Animated.createAnimatedComponent(superset ? View : Pressable);
   const { t } = useTranslation();
   const { navigate } = useNavigation();
   const {
@@ -31,21 +22,12 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
   } = data || {};
   const { reps, order, durations } = WorkoutExercise || SupersetExercise || workoutExercise || {};
 
-  const initialMode = useRef(true);
-  useEffect(() => {
-    initialMode.current = false;
-  }, []);
-  
   return (
-    <AnimatedTouchable
-      style={styles.cardContainer}
-      entering={initialMode.current && FadeInDown.delay(100 * index)}
-      exiting={FadeOut}
-      layout={Layout.delay(200)}
+    <CardContainer
+      index={index}
+      configAction={!superset ? () => toggleConfig(id, "single") : false}
     >
-      <>
-        {!superset && <ConfigButton action={() => toggleConfig(id, "single")} />}
-
+      <View style={styles.row}>
         <TouchableOpacity
           onPress={() => {
             toggleGIF(multimedia.exerciseGif ? multimedia.exerciseGif : multimedia.exerciseImg);
@@ -80,24 +62,16 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
             )}
           </View>
         </View>
-      </>
-    </AnimatedTouchable>
+      </View>
+    </CardContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    backgroundColor: BOX_COLOR,
-    borderRadius: BORDER_RADIUS,
-    padding: 7,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    width: "100%",
-  },
   contentContainer: {
     flex: 1,
-    gap: 7,
+    gap: 5,
+    height: 70,
   },
   title: {
     color: WHITE_COLOR,
@@ -124,5 +98,9 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 50,
+  },
+  row: {
+    flexDirection: "row",
+    gap: 10,
   },
 });

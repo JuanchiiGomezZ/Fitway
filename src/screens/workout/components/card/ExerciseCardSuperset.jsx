@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -13,7 +13,7 @@ import { ConfigButton } from "../../../../components/Buttons";
 import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
 import WorkoutCardSingle from "./ExerciseCardSingle";
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 export default WorkoutCardSuperset = ({ data, toggleConfig, index }) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
@@ -48,11 +48,10 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: BOX_COLOR,
     borderRadius: BORDER_RADIUS,
-    paddingRight: 12,
   },
 
   line: {
-    width: "90%",
+    width: "94%",
     height: 1.5,
     backgroundColor: ORANGE_DARK_COLOR,
     marginVertical: 5,

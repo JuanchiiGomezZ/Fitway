@@ -43,7 +43,7 @@ export default ContentHome = ({ toggleBottomSheet }) => {
     );
   } else if (activeRoutineWorkouts.length > 0) {
     return (
-      <View>
+      <View style={{ gap: 10 }}>
         {activeRoutineWorkouts.map((item, index) => (
           <WorkoutCard
             key={item.id}

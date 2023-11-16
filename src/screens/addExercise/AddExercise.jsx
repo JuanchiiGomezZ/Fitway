@@ -47,7 +47,7 @@ export default AddExercise = () => {
       <ScrollView>
         <SearchBar />
         <Separator title={"My Exercises"} />
-        <View style={{ gap: 10 }}>
+        <View style={{ gap: 7 }}>
           {userExercises?.length > 0 ? (
             userExercises.map((item, index) => (
               <ExerciseCardSingle key={item.id} data={item} index={index} />

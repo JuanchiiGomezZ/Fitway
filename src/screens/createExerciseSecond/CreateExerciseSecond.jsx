@@ -29,7 +29,7 @@ export default CreateExerciseSecond = ({ route }) => {
   };
 
   const handleCreateExercise = () => {
-    createNewExercise({ ...route.params, reps, series: reps.length, restTime });
+    createNewExercise({ ...route.params, reps, restTime });
     dispatch(cleanNewExerciseState());
     navigate("Workout");
   };

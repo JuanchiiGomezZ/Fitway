@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
     position: "relative",
     borderColor: ORANGE_COLOR,
     borderWidth: 1,
-    width: "75%",
     borderRadius: 20,
+    flex: 1,
   },
   searchInput: {
     color: WHITE_COLOR,
