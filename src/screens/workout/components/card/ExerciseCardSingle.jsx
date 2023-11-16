@@ -20,7 +20,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     SupersetExercise,
     workoutExercise,
   } = data || {};
-  const { reps, order, durations } = WorkoutExercise || SupersetExercise || workoutExercise || {};
+  const { reps, order, durations } = WorkoutExercise || SupersetExercise || {};
 
   return (
     <CardContainer
@@ -42,7 +42,6 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
             style={styles.workoutImg}
           />
         </TouchableOpacity>
-
         <View style={styles.contentContainer}>
           <Text style={styles.title}>{name}</Text>
           <View style={styles.infoContainer}>
@@ -70,8 +69,8 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
 const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
-    gap: 5,
     height: 70,
+    justifyContent: "space-between",
   },
   title: {
     color: WHITE_COLOR,
