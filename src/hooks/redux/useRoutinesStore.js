@@ -27,7 +27,7 @@ export default useRoutinesStore = () => {
       dispatch(setLoader());
     } catch (error) {
       console.log(error);
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
@@ -41,7 +41,7 @@ export default useRoutinesStore = () => {
         }),
       );
     } catch (error) {
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
@@ -59,7 +59,7 @@ export default useRoutinesStore = () => {
       );
     } catch (error) {
       console.log(error);
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
@@ -96,7 +96,7 @@ export default useRoutinesStore = () => {
         dispatch(saveActiveRoutineId(null));
       }
     } catch (error) {
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
@@ -111,7 +111,7 @@ export default useRoutinesStore = () => {
       dispatch(saveActiveRoutineDetails(routineResponse.data));
       dispatch(setLoader());
     } catch (error) {
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
@@ -135,7 +135,7 @@ export default useRoutinesStore = () => {
       dispatch(setLoader());
     } catch (error) {
       console.log(error);
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 

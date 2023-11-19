@@ -60,6 +60,8 @@ export default useAuthStore = () => {
       }
 
       if (new Date() < new Date(storedToken.expiry)) {
+        console.log(new Date())
+        console.log(new Date(storedToken.expiry))
         const { data } = await axios.post(
           `/user/refresh`,
           {},
@@ -96,7 +98,7 @@ export default useAuthStore = () => {
       });
       dispatch(onLogin(data));
     } catch (error) {
-      dispatch(onLogout(error.response.data?.message));
+      dispatch(onLogout(error.response.data));
     }
   };
 

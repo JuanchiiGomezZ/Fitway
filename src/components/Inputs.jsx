@@ -81,7 +81,7 @@ export const ClassicInputWithLabel = ({
     </View>
   );
 };
-export const TextAreaWithLabel = ({ setInputChange, placeholder, inputChange, label }) => {
+export const TextAreaWithLabel = ({ setInputChange, placeholder, inputChange, label, editable }) => {
   return (
     <View>
       <Text style={styles.labelText}>{label}</Text>
@@ -92,6 +92,7 @@ export const TextAreaWithLabel = ({ setInputChange, placeholder, inputChange, la
         placeholderTextColor={GRAY_COLOR}
         multiline={true}
         numberOfLines={3}
+        editable={editable}
         textAlignVertical="top"
         onChangeText={(e) => {
           setInputChange(e);
@@ -104,7 +105,7 @@ export const TextAreaWithLabel = ({ setInputChange, placeholder, inputChange, la
 const styles = StyleSheet.create({
   input: {
     borderColor: "transparent",
-    fontSize: 18,
+    fontSize: 17,
     color: "white",
     fontWeight: "500",
     width: "100%",
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
   },
   labelText: {
     color: WHITE_COLOR,
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "600",
   },
   textArea: {

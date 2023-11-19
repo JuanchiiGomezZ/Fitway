@@ -21,6 +21,7 @@ import ExerciseTypesModal from "./components/ExerciseTypesModal";
 //STYLES
 import {
   BACKGROUND_COLOR,
+  PADDING_BOTTOM,
   PADDING_HORIZONTAL,
   PADDING_TOP,
   WHITE_COLOR,
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR,
     paddingHorizontal: PADDING_HORIZONTAL,
     paddingTop: PADDING_TOP,
-    paddingBottom: 20,
+    paddingBottom: PADDING_BOTTOM,
   },
   contentContainer: {
     flex: 1,

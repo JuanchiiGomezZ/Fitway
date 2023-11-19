@@ -13,7 +13,7 @@ import {
 } from "../../../styles/styles";
 import { AntDesign } from "@expo/vector-icons";
 
-export default AddExerciseCard = ({ data, index, action }) => {
+export default AddExerciseCard = ({ data, index }) => {
   const { navigate } = useNavigation();
 
   const {
@@ -28,7 +28,7 @@ export default AddExerciseCard = ({ data, index, action }) => {
   } = data || {};
 
   return (
-    <CardContainer index={index} action={() => action(id)}>
+    <CardContainer index={index} action={()=>navigate("ExerciseDetails", {id})}>
       <View style={styles.row}>
         <Image
           source={

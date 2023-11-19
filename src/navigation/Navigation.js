@@ -22,6 +22,7 @@ import WorkoutScreen from "../screens/workout/Workout";
 import CreateExercise from "../screens/createExercise/CreateExercise";
 import CreateExerciseSecond from "../screens/createExerciseSecond/CreateExerciseSecond";
 import AddExercise from "../screens/addExercise/AddExercise";
+import ExerciseDetails from "../screens/exerciseDetails/ExerciseDetails";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -116,6 +117,13 @@ export default Navigation = () => {
             <Stack.Screen
               name="AddExercise"
               component={AddExercise}
+              options={{
+                animation: "slide_from_right",
+              }}
+            />
+            <Stack.Screen
+              name="ExerciseDetails"
+              component={ExerciseDetails}
               options={{
                 animation: "slide_from_right",
               }}

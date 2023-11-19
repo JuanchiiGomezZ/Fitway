@@ -15,14 +15,20 @@ import RestTimeSlider from "./components/RestTimeSlider";
 import { useNavigation } from "@react-navigation/native";
 
 //STYLES
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
+import {
+  BACKGROUND_COLOR,
+  PADDING_BOTTOM,
+  PADDING_HORIZONTAL,
+  PADDING_TOP,
+} from "../../styles/styles";
 
 export default CreateExerciseSecond = ({ route }) => {
   const dispatch = useDispatch();
-  const { navigate } = useNavigation();
+  const { navigate, getId } = useNavigation();
   const { t } = useTranslation();
   const { reps, restTime } = useSelector((state) => state.newExercise);
-  const { createNewExercise } = useExercisesStore();
+  const { createNewExercise, addExercise } = useExercisesStore();
+  const { id, exerciseType, task, name } = route.params;
 
   const handleAreValidReps = () => {
     dispatch(setRepsValidation(false));
@@ -34,18 +40,29 @@ export default CreateExerciseSecond = ({ route }) => {
     navigate("Workout");
   };
 
+  const handleAddExercise = () => {
+    addExercise({ reps, order: 10 }, id);
+    // dispatch(cleanNewExerciseState());
+    // navigate("Workout");
+  };
 
   return (
     <View style={styles.container}>
       <View style={{ gap: 30 }}>
-        <Header title={"Bench press"} />
+        <Header title={route.params.name} />
         <RestTimeSlider />
         <SetsTable exerciseType={route.params.exerciseType} />
       </View>
       {!reps.every((rep) => rep.trim()) ? (
-        <DisabledButton text="Create exercise" action={handleAreValidReps} />
+        <DisabledButton
+          text={task == "AddExercise" ? "Add exercise" : "Create exercise"}
+          action={handleAreValidReps}
+        />
       ) : (
-        <OrangeButton text="Create exercise" action={handleCreateExercise} />
+        <OrangeButton
+          text={task == "AddExercise" ? "Add exercise" : "Create exercise"}
+          action={task == "AddExercise" ? handleAddExercise : handleCreateExercise}
+        />
       )}
     </View>
   );
@@ -57,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR,
     paddingHorizontal: PADDING_HORIZONTAL,
     paddingTop: PADDING_TOP,
-    paddingBottom: 20,
+    paddingBottom: PADDING_BOTTOM,
     justifyContent: "space-between",
   },
 });

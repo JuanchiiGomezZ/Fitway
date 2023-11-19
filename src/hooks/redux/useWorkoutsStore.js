@@ -29,7 +29,7 @@ export default useWorkoutsStore = () => {
       dispatch(saveActiveRoutineWorkouts([...activeRoutineWorkouts, data]));
       return data;
     } catch (error) {
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
@@ -41,7 +41,7 @@ export default useWorkoutsStore = () => {
       const updateWorkouts = activeRoutineWorkouts.filter((element) => element.id !== workoutId);
       dispatch(saveActiveRoutineWorkouts(updateWorkouts));
     } catch (error) {
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
@@ -63,7 +63,7 @@ export default useWorkoutsStore = () => {
     
         dispatch(saveActiveWorkoutExercisesData({ details, exercises }));
     } catch (error) {
-      dispatch(onError(error.response.data?.message));
+      dispatch(onError(error.response.data));
     }
   };
 
