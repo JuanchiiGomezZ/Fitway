@@ -19,7 +19,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     WorkoutExercise,
     SupersetExercise,
   } = data || {};
-  const { reps, order, durations } = WorkoutExercise || SupersetExercise || {};
+  const { reps, order, durations } = WorkoutExercise || SupersetExercise || workoutExercise ||{};
 
   return (
     <CardContainer

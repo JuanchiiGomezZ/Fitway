@@ -25,7 +25,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default ExerciseDetails = ({ route }) => {
   const { id } = route.params;
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
   const { t } = useTranslation();
   const { getExerciseDetails } = useExercisesStore();
 
@@ -41,18 +41,18 @@ export default ExerciseDetails = ({ route }) => {
   }, []);
 
   const convertExerciseType = (type) => {
-    if ((type = "ExerciseWithoutWeight")) {
+    if (type == "ExerciseWithoutWeight") {
       return "Bodyweight + Reps";
-    } else if ((type = "ExerciseWithWeight")) {
+    } else if (type == "ExerciseWithWeight") {
       return "Weight + Reps";
-    } else if ((type = "ExercixeOfDuration")) {
+    } else if (type == "ExerciseOfDuration") {
       return "Duration + Reps";
     }
   };
 
-  const handleNavigate = () =>{
-    navigate("CreateExerciseSecond",{exerciseType, id, task:"AddExercise", name})
-  }
+  const handleNavigate = () => {
+    navigate("CreateExerciseSecond", { exerciseType, id, task: "AddExercise", name });
+  };
 
   return (
     <View style={styles.container}>
@@ -83,7 +83,7 @@ export default ExerciseDetails = ({ route }) => {
               </View>
             </View>
           </View>
-          <OrangeButton text="Continue" action={handleNavigate}/>
+          <OrangeButton text="Continue" action={handleNavigate} />
         </>
       )}
     </View>

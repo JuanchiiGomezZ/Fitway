@@ -42,8 +42,8 @@ export default CreateExerciseSecond = ({ route }) => {
 
   const handleAddExercise = () => {
     addExercise({ reps, order: 10 }, id);
-    // dispatch(cleanNewExerciseState());
-    // navigate("Workout");
+    dispatch(cleanNewExerciseState());
+    navigate("Workout");
   };
 
   return (

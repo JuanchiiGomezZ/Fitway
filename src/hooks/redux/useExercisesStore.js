@@ -75,15 +75,16 @@ export default useExercisesStore = () => {
   };
 
   const addExercise = async (exerciseData, exerciseId) => {
-    // try {
-    //   const { data } = await axios.post(
-    //     `/exercise/addExercise/${user.id}/${activeWorkoutDetails.workoutId}`,
-    //     exerciseData,
-    //   );
-    //   dispatch(saveActiveWorkoutExercises([...activeWorkoutExercises.exercises, data]));
-    // } catch (error) {
-    //   dispatch(onError(error.response.data));
-    // }
+    try {
+      const { data } = await axios.post(
+        `/workout/addExercise/${activeWorkoutDetails.workoutId}/${exerciseId}`,
+        exerciseData,
+      );
+      console.log(data)
+      dispatch(saveActiveWorkoutExercises([...activeWorkoutExercises.exercises, data]));
+    } catch (error) {
+      dispatch(onError(error.response.data));
+    }
   };
 
   return {
@@ -92,6 +93,6 @@ export default useExercisesStore = () => {
     createSuperset,
     getUserExercises,
     getExerciseDetails,
-    addExercise
+    addExercise,
   };
 };
