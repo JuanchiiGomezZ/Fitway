@@ -16,24 +16,15 @@ import { AntDesign } from "@expo/vector-icons";
 export default AddExerciseCard = ({ data, index }) => {
   const { navigate } = useNavigation();
 
-  const {
-    name,
-    element,
-    primaryMuscle,
-    id,
-    multimedia,
-    exerciseType,
-    WorkoutExercise,
-    SupersetExercise,
-  } = data || {};
+  const { name, element, primaryMuscle, id, Multimedia } = data || {};
 
   return (
-    <CardContainer index={index} action={()=>navigate("ExerciseDetails", {id})}>
+    <CardContainer index={index} action={() => navigate("ExerciseDetails", { id })}>
       <View style={styles.row}>
         <Image
           source={
-            multimedia?.exerciseImg
-              ? { uri: multimedia.exerciseImg }
+            Multimedia?.exerciseImg
+              ? { uri: Multimedia.exerciseImg }
               : require("../../../assets/images/fitwayDark.png")
           }
           style={styles.workoutImg}

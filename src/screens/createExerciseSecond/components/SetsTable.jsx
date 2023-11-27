@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Keyboard } from "react-native";
 import React, { useEffect, forwardRef, useImperativeHandle, useRef } from "react";
 import { WHITE_COLOR, ORANGE_DARK_COLOR, ORANGE_COLOR } from "../../../styles/styles";
 import TableRow from "./TableRow";
-import { OrangeCircularButton } from "../../../components/Buttons";
+import { CircularButton } from "../../../components/Buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
@@ -41,7 +41,7 @@ export default SetsTable = ({ exerciseType }) => {
           entering={initialMode.current ? FadeIn.delay((reps.length + 1) * 100) : FadeIn.delay(150)}
           exiting={FadeOut}
         >
-          <OrangeCircularButton action={addSet} icon="plus" text="Add set" />
+          <CircularButton action={addSet} icon="plus" text="Add set" />
         </Animated.View>
       ) : (
         <Animated.Text entering={FadeIn.delay(150)} exiting={FadeOut} style={styles.maxRepsText}>

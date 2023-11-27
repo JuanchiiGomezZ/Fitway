@@ -10,6 +10,6 @@ export const RED_COLOR = "#FE4237";
 export const BACKDROP_COLOR= "rgba(0,0,0,0.8)";
 export const GREEN_COLOR = "#04B500";
 export const PADDING_HORIZONTAL = "5%";
-export const PADDING_TOP = Constants.statusBarHeight + 15;
+export const PADDING_TOP = Constants.statusBarHeight + 5;
 export const PADDING_BOTTOM = 20;
 export const BORDER_RADIUS = 10;

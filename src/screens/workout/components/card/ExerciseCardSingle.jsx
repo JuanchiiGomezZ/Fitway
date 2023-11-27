@@ -14,12 +14,12 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     element,
     primaryMuscle,
     id,
-    multimedia,
+    Multimedia,
     exerciseType,
     WorkoutExercise,
     SupersetExercise,
   } = data || {};
-  const { reps, order, durations } = WorkoutExercise || SupersetExercise || workoutExercise ||{};
+  const { reps, order, durations } = WorkoutExercise || SupersetExercise || {};
 
   return (
     <CardContainer
@@ -29,13 +29,13 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
       <View style={styles.row}>
         <TouchableOpacity
           onPress={() => {
-            toggleGIF(multimedia.exerciseGif ? multimedia.exerciseGif : multimedia.exerciseImg);
+            toggleGIF(Multimedia.exerciseGif ? Multimedia.exerciseGif : Multimedia.exerciseImg);
           }}
         >
           <Image
             source={
-              multimedia?.exerciseImg
-                ? { uri: multimedia.exerciseImg }
+              Multimedia?.exerciseImg
+                ? { uri: Multimedia.exerciseImg }
                 : require("../../../../assets/images/fitwayDark.png")
             }
             style={styles.workoutImg}

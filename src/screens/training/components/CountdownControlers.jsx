@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { OrangeCircularButton, GrayCircularButton } from "../../../components/Buttons";
+import { CircularButton, GrayCircularButton } from "../../../components/Buttons";
 
 export default CountdownControlers = ({ useCountdown, time, setTime }) => {
   const { start, isPaused, addTime, skipTime } = useCountdown;
@@ -18,7 +18,7 @@ export default CountdownControlers = ({ useCountdown, time, setTime }) => {
   return (
     <View style={styles.controlsContainer}>
       <GrayCircularButton text="+15s" action={() => handleAddTime(15)} />
-      <OrangeCircularButton icon={isPaused ? "play" : "pause"} action={handlePlay} />
+      <CircularButton icon={isPaused ? "play" : "pause"} action={handlePlay} />
       <GrayCircularButton icon="forward" action={skipTime} />
     </View>
   );

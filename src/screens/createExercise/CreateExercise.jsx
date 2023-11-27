@@ -31,7 +31,7 @@ export default CreateExercise = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
-  const { activeWorkoutExercises } = useSelector((state) => state.workouts);
+  const { workoutExercises } = useSelector((state) => state.workouts);
   const [bottomsheet, setBottomsheet] = useState(false);
   const [pickerMuscle, setPickerMuscle] = useState(false);
   const [pickerElement, setPickerElement] = useState(false);
@@ -88,7 +88,7 @@ export default CreateExercise = () => {
       elementImg: element?.img,
       exerciseGif,
       exerciseType: exerciseType?.value,
-      order: activeWorkoutExercises.exercises.length + 1,
+      order: workoutExercises.Exercises.length + 1,
     };
     navigate("CreateExerciseSecond", newExerciseData);
   };

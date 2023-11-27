@@ -31,7 +31,7 @@ export default ExerciseDetails = ({ route }) => {
 
   const [exerciseData, setExerciseData] = useState(null);
 
-  const { name, element, primaryMuscle, multimedia, exerciseType, description } =
+  const { name, element, primaryMuscle, Multimedia, exerciseType, description } =
     exerciseData || {};
 
   useEffect(() => {
@@ -62,8 +62,8 @@ export default ExerciseDetails = ({ route }) => {
         <>
           <Header />
           <View style={styles.contentContainer}>
-            {multimedia?.exerciseImg ? (
-              <Image source={{ uri: multimedia.exerciseImg }} style={styles.image} />
+            {Multimedia?.exerciseImg ? (
+              <Image source={{ uri: Multimedia.exerciseImg }} style={styles.image} />
             ) : (
               <View style={[styles.image]}>
                 <MaterialCommunityIcons name="image-off-outline" size={30} color="#545454" />
@@ -77,8 +77,8 @@ export default ExerciseDetails = ({ route }) => {
                 editable={false}
               />
               <View style={styles.selectorsContainer}>
-                <ElementCard img={multimedia?.muscleImg} name={primaryMuscle} title="Muscle" />
-                <ElementCard img={multimedia?.elementImg} name={element} title="Element" />
+                <ElementCard img={Multimedia?.muscleImg} name={primaryMuscle} title="Muscle" />
+                <ElementCard img={Multimedia?.elementImg} name={element} title="Element" />
                 <ElementCard icon="human-handsup" title={convertExerciseType(exerciseType)} />
               </View>
             </View>

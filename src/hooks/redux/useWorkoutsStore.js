@@ -1,12 +1,9 @@
-import {
-  onChecking,
-  onError,
-  saveActiveWorkoutExercisesData,
-} from "../../store/slices/workoutsSlice";
+import { onChecking, onError, saveWorkoutData } from "../../store/slices/workoutsSlice";
 import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
 
 import { saveActiveRoutineWorkouts } from "../../store/slices/routinesSlice";
+import { saveActiveWorkoutData, onLoading } from "../../store/slices/trainingSlice";
 
 export default useWorkoutsStore = () => {
   const dispatch = useDispatch();
@@ -45,7 +42,7 @@ export default useWorkoutsStore = () => {
     }
   };
 
-  const getWorkoutsData = async (workoutId) => {
+  const getWorkoutData = async (workoutId) => {
     dispatch(onChecking());
     try {
       const { data } = await axios.get(`/workout/${workoutId}`);
@@ -55,17 +52,37 @@ export default useWorkoutsStore = () => {
         name: data.name,
         order: data.order,
       };
-      const exercises = data.supersets.length != 0
-        ? {
-            exercises: [...data.exercises, ...data.supersets],
-          }
-        : { exercises: [...data.exercises] };
-    
-        dispatch(saveActiveWorkoutExercisesData({ details, exercises }));
+      const Exercises =
+        data.Supersets.length != 0
+          ? { Exercises: [...data.Exercises, ...data.Supersets] }
+          : { Exercises: [...data.Exercises] };
+
+      dispatch(saveWorkoutData({ details, Exercises }));
     } catch (error) {
       dispatch(onError(error.response.data));
     }
   };
 
-  return { newWorkout, deleteWorkout, getWorkoutsActive, getWorkoutsData };
+  const getWorkoutTrainingData = async (workoutId) => {
+    dispatch(onLoading());
+    try {
+      const { data } = await axios.get(`/workout/${workoutId}`);
+      const details = {
+        routineId: data.RoutineId,
+        workoutId: data.id,
+        name: data.name,
+        order: data.order,
+      };
+      const Exercises =
+        data.Supersets.length != 0
+          ? { Exercises: [...data.Exercises, ...data.Supersets] }
+          : { Exercises: [...data.Exercises] };
+
+      dispatch(saveActiveWorkoutData({ details, Exercises }));
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  return { newWorkout, deleteWorkout, getWorkoutsActive, getWorkoutData, getWorkoutTrainingData };
 };

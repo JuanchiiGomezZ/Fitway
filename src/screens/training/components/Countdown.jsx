@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Circle, Svg, G } from "react-native-svg";
 import {
   BACKGROUND_COLOR,
@@ -18,6 +18,7 @@ import { useFonts } from "expo-font";
 const RADIUS = 45;
 const CIRCUMFERENCE = RADIUS * 2 * Math.PI;
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const screenWidth = Dimensions.get("window").width;
 
 export default Countdown = ({ toggleModal, restTime }) => {
   const countdown = useCountdown();
@@ -50,9 +51,8 @@ export default Countdown = ({ toggleModal, restTime }) => {
           <Text style={styles.progressText}>{convertToMinutesSeconds(secondsLeft)}</Text>
           <Text style={styles.restText}>Rest Time</Text>
         </View>
-
         <Svg
-          height="55%"
+          height={screenWidth * 0.8}
           width="100%"
           viewBox="0 0 100 100"
           style={{ transform: [{ rotateZ: "-90deg" }] }}
@@ -62,7 +62,7 @@ export default Countdown = ({ toggleModal, restTime }) => {
             cy="50"
             r="45"
             stroke={BOX_COLOR}
-            strokeWidth="5"
+            strokeWidth="3"
             fill={BACKGROUND_COLOR}
           />
 
@@ -70,7 +70,7 @@ export default Countdown = ({ toggleModal, restTime }) => {
             cx="50"
             cy="50"
             r="45"
-            strokeWidth="5"
+            strokeWidth="3"
             fill="transparent"
             stroke={ORANGE_COLOR}
             strokeDasharray={CIRCUMFERENCE}
@@ -87,10 +87,11 @@ export default Countdown = ({ toggleModal, restTime }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    zIndex:10,
+    zIndex: 10,
+    position: "absolute",
+    top: "30%",
   },
   progressText: {
     color: WHITE_COLOR,
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   countdownCounter: {
     textAlign: "center",
     position: "absolute",
-    top: "35%",
+    top: "25%",
     zIndex: 10,
   },
   restText: {

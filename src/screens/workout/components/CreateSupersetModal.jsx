@@ -9,7 +9,7 @@ import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 
 export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
   const { createSuperset } = useExercisesStore();
-  const { activeWorkoutExercises } = useSelector((state) => state.workouts);
+  const { workoutExercises } = useSelector((state) => state.workouts);
 
   const [selectedExercises, setSelectedExercises] = useState(new Set([exerciseId]));
 
@@ -36,8 +36,8 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
     <ModalBase title="Create superset" toggleModal={toggleModal}>
       <ScrollView>
         <View style={{ gap: 5 }}>
-          {activeWorkoutExercises &&
-            activeWorkoutExercises.exercises.map(
+          {workoutExercises &&
+            workoutExercises.Exercises.map(
               (item, index) =>
                 !item?.exercises && (
                   <Animated.View key={item.id} entering={FadeInDown.delay(100 * index)}>
@@ -50,8 +50,8 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
                       )}
                       <Image
                         source={
-                          item.multimedia?.exerciseImg
-                            ? { uri: item.multimedia.exerciseImg }
+                          item.Multimedia?.exerciseImg
+                            ? { uri: item.Multimedia.exerciseImg }
                             : require("../../../assets/images/icon.png")
                         }
                         style={styles.exerciseImg}

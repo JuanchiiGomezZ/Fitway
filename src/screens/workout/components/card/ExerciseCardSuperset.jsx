@@ -34,10 +34,10 @@ export default WorkoutCardSuperset = ({ data, toggleConfig, index }) => {
           toggleConfig(data.id, "superset");
         }}
       />
-      {data.exercises.map((item, index) => (
+      {data.Exercises.map((item, index) => (
         <View key={item.id}>
           <WorkoutCardSingle data={item} superset={true} />
-          {index < data.exercises.length - 1 && <View style={styles.line} />}
+          {index < data.Exercises.length - 1 && <View style={styles.line} />}
         </View>
       ))}
     </AnimatedTouchable>

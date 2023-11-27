@@ -43,7 +43,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
             )}
           </View>
         </View>
-        <TouchableOpacity style={styles.trainingButton}>
+        <TouchableOpacity style={styles.trainingButton} onPress={() => navigate("Training", {id})}>
           <FontAwesome5 name="dumbbell" size={22} color={BACKGROUND_COLOR} />
         </TouchableOpacity>
       </View>
@@ -52,16 +52,6 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    width: "100%",
-    backgroundColor: BOX_COLOR,
-    borderRadius: BORDER_RADIUS,
-    paddingHorizontal: 10,
-    paddingTop: 10,
-    minHeight: 70,
-    marginBottom: 15,
-    paddingBottom: 12,
-  },
   workoutName: {
     color: WHITE_COLOR,
     fontSize: 22,
@@ -103,5 +93,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: "91%",
+    minHeight: 70,
   },
 });

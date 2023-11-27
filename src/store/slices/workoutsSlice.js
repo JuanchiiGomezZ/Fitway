@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const workoutsSlice = createSlice({
   name: "workouts",
   initialState: {
-    activeWorkoutDetails: [],
-    activeWorkoutExercises: null,
+    workoutDetails: [],
+    workoutExercises: null,
     isLoading: false,
     error: null,
   },
@@ -12,13 +12,13 @@ export const workoutsSlice = createSlice({
     onChecking: (state, { payload }) => {
       (state.isLoading = true), (state.error = null);
     },
-    saveActiveWorkoutExercisesData: (state, { payload }) => {
-      (state.activeWorkoutDetails = payload.details),
-        (state.activeWorkoutExercises = payload.exercises),
+    saveWorkoutData: (state, { payload }) => {
+      (state.workoutDetails = payload.details),
+        (state.workoutExercises = payload.Exercises),
         (state.isLoading = false);
     },
-    saveActiveWorkoutExercises: (state, { payload }) => {
-      (state.activeWorkoutExercises = { exercises: payload }), (state.isLoading = false);
+    saveWorkoutExercises: (state, { payload }) => {
+      (state.workoutExercises = { Exercises: payload }), (state.isLoading = false);
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
@@ -27,5 +27,4 @@ export const workoutsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { saveActiveWorkoutExercisesData, saveActiveWorkoutExercises, onChecking, onError } =
-  workoutsSlice.actions;
+export const { saveWorkoutData, saveWorkoutExercises, onChecking, onError } = workoutsSlice.actions;

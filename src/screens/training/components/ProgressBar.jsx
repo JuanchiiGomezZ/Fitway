@@ -3,8 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { BACKGROUND_COLOR, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 
 export default ProgressBar = ({ activeExercise, totalExercises }) => {
-  
-    const progressBar = () => {
+  const progressBar = () => {
     return (activeExercise * 100) / totalExercises + "%";
   };
 
@@ -30,10 +29,9 @@ const styles = StyleSheet.create({
     height: 5,
     backgroundColor: BOX_COLOR,
     borderRadius: 5,
-    marginBottom: 20,
-    marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
+    marginTop: 10,
   },
   progress: {
     height: 5,

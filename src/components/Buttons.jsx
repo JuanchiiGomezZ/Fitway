@@ -135,9 +135,12 @@ export const CloseModalIcon = ({ action }) => {
   );
 };
 
-export const OrangeCircularButton = ({ action, icon }) => {
+export const CircularButton = ({ action, icon, color }) => {
   return (
-    <TouchableOpacity style={styles.circularButton} onPress={action}>
+    <TouchableOpacity
+      style={[styles.circularButton, { backgroundColor: color ? color : ORANGE_COLOR }]}
+      onPress={action}
+    >
       <FontAwesome5
         name={icon}
         size={25}
@@ -163,7 +166,10 @@ export const CircularButtonSmall = ({ action, icon, color }) => {
   const Icon = icon == "close" ? FontAwesome : FontAwesome5;
   return (
     <TouchableOpacity
-      style={[styles.circularButton, { backgroundColor: color, width: 40, height: 40 }]}
+      style={[
+        styles.circularButton,
+        { backgroundColor: color ? color : ORANGE_COLOR, width: 40, height: 40 },
+      ]}
       onPress={action}
     >
       <Icon name={icon} size={25} color="white" style={icon == "play" && { marginLeft: 5 }} />

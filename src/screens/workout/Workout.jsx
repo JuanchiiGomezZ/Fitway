@@ -28,11 +28,11 @@ export default WorkoutScreen = ({ route }) => {
   const { t } = useTranslation();
   const { workoutId } = route.params || {};
 
-  const { getWorkoutsData } = useWorkoutsStore();
-  const { activeWorkoutDetails, activeWorkoutExercises, isLoading } = useSelector(
+  const { getWorkoutData } = useWorkoutsStore();
+  const { workoutDetails, workoutExercises, isLoading } = useSelector(
     (state) => state.workouts,
   );
-  const { name } = activeWorkoutDetails;
+  const { name } = workoutDetails;
   const [configModal, setConfigModal] = useState(false);
   const [exerciseId, setExerciseId] = useState(null);
   const [exerciseGIF, setExerciseGIF] = useState(null);
@@ -40,8 +40,8 @@ export default WorkoutScreen = ({ route }) => {
   const [createSuperset, setCreateSuperset] = useState(false);
 
   useEffect(() => {
-    workoutId != activeWorkoutDetails.workoutId &&
-      getWorkoutsData(workoutId || activeWorkoutDetails.workoutId);
+    workoutId != workoutDetails.workoutId &&
+      getWorkoutData(workoutId || workoutDetails.workoutId);
   }, []);
 
  
@@ -62,14 +62,14 @@ export default WorkoutScreen = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      {isLoading || !activeWorkoutExercises ? (
+      {isLoading || !workoutExercises ? (
         <Loader />
       ) : (
         <>
           <Header title={name} />
 
           <View style={styles.contentContainer}>
-            {!activeWorkoutExercises?.exercises[0] ? (
+            {!workoutExercises?.Exercises[0] ? (
               <EmptyWorkout />
             ) : (
               <ExercisesList toggleConfig={toggleConfig} toggleGIF={toggleGIF} />
