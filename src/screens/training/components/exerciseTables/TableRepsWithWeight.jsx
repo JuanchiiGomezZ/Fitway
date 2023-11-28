@@ -1,50 +1,69 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import {
-  WHITE_COLOR,
-  GREEN_COLOR,
-  ORANGE_DARK_COLOR,
-  BOX_COLOR,
-  BACKGROUND_COLOR,
-  GRAY_COLOR,
-} from "../../../../styles/styles";
+import { WHITE_COLOR, BOX_COLOR, GRAY_LIGHT_COLOR, GRAY_COLOR } from "../../../../styles/styles";
 
 export default TableRepsWithWeight = ({ reps, rest, active }) => {
+  const [exerciseLog, setExerciseLog] = useState([]);
+
+  const handleRepChange = (index, repValue) => {
+    const updatedExerciseLog = [...exerciseLog];
+    updatedExerciseLog[index] = { ...updatedExerciseLog[index], reps: repValue };
+    setExerciseLog(updatedExerciseLog);
+  };
+
+ 
+  const handleWeightChange = (index, weightValue) => {
+    const updatedExerciseLog = [...exerciseLog];
+    updatedExerciseLog[index] = { ...updatedExerciseLog[index], weight: weightValue };
+    setExerciseLog(updatedExerciseLog);
+  };
+
+
   return (
     <View style={styles.table}>
-      <View style={styles.head}>
-        <View style={styles.rowItems}>
-          <Text style={styles.text}>Set</Text>
-          <Text style={styles.text}>Rep</Text>
-          <Text style={styles.text}>Weight</Text>
-        </View>
+      <View style={styles.rowItems}>
+        <Text style={[styles.text, styles.headText]}>SETS</Text>
+        <Text style={[styles.text, styles.longItem, styles.headText]}>PREV</Text>
+        <Text style={[styles.text, styles.longItem, styles.headText]}>REPS</Text>
+        <Text style={[styles.text, styles.headText]}>KG</Text>
+        <AntDesign name="check" style={[styles.text, styles.tableIcon, styles.headText]} />
       </View>
       {reps.map((element, index) => (
-        <View
-          style={[styles.row, index == active && { backgroundColor: ORANGE_DARK_COLOR }]}
-          key={index}
-        >
-          <View style={styles.rowItems}>
-            <Text style={styles.text}>{index + 1}</Text>
-            <Text style={styles.text}>12 - 10</Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={[styles.text, { width: "auto" }]}
-                maxLength={3}
-                keyboardType="numeric"
-                placeholder="18"
-                placeholderTextColor="#7a7a7a"
-                cursorColor={WHITE_COLOR}
-                inputMode="numeric"
-                editable={index == active}
-              />
-              <Text style={[styles.text, { width: "auto" }]}>kg</Text>
-            </View>
-          </View>
+        <View style={[styles.row]} key={index}>
+          <Text style={styles.text}>{index + 1}</Text>
+          <Text
+            style={[styles.text, styles.longItem, { fontWeight: "400", color: GRAY_LIGHT_COLOR }]}
+          >
+            {`${element}x10kg`}
+          </Text>
+          {/* REP */}
+          <TextInput
+            style={[styles.text, styles.longItem]}
+            maxLength={3}
+            keyboardType="numeric"
+            placeholder={element}
+            placeholderTextColor={GRAY_LIGHT_COLOR} //"#626262"
+            cursorColor={GRAY_LIGHT_COLOR}
+            inputMode="numeric"
+            onChangeText={(repValue) => handleRepChange(index, repValue)}
+          />
+          {/* WEIGHT */}
+          <TextInput
+            style={[styles.text]}
+            maxLength={3}
+            keyboardType="numeric"
+            placeholder="10"
+            placeholderTextColor={GRAY_LIGHT_COLOR} //"#626262"
+            cursorColor={GRAY_LIGHT_COLOR}
+            inputMode="numeric"
+            onChangeText={(weightValue) => handleWeightChange(index, weightValue)}
+          />
 
-          {index < active && <AntDesign name="checkcircleo" size={28} color={GREEN_COLOR} />}
-          {index == active && <AntDesign name="minuscircleo" size={28} color={GRAY_COLOR} />}
+          <AntDesign
+            name="checkcircleo"
+            style={[styles.text, styles.tableIcon, { color: GRAY_LIGHT_COLOR }]}
+          />
         </View>
       ))}
     </View>
@@ -54,24 +73,18 @@ export default TableRepsWithWeight = ({ reps, rest, active }) => {
 const styles = StyleSheet.create({
   table: {
     gap: 7,
-    marginTop: 10,
+    marginTop: 20,
   },
-  head: {
+  rowItems: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
   text: {
     color: WHITE_COLOR,
-    fontSize: 20,
-    fontWeight: "500",
-    width: 65,
+    fontSize: 16,
+    fontWeight: "600",
     textAlign: "center",
-  },
-  inputText: {
-    color: WHITE_COLOR,
-    fontSize: 20,
-    fontWeight: "500",
-    textAlign: "center",
+    minWidth: 39,
   },
   row: {
     height: 40,
@@ -80,29 +93,38 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingRight: 10,
   },
-  numReps: {
-    flexDirection: "row",
-    gap: 42,
-    alignItems: "center",
+  longItem: {
+    width: 62,
   },
-  rowRest: {
-    backgroundColor: "#424242",
-    borderRadius: 5,
-    height: 30,
-    justifyContent: "center",
-    paddingLeft: 10,
+  tableIcon: {
+    fontSize: 24,
   },
-  rowItems: {
-    flexDirection: "row",
-    gap: 15,
-  },
-  inputContainer: {
-    flexDirection: "row",
-    gap: 3,
-    width: 65,
-    justifyContent: "center",
-    alignItems: "center",
+  headText: {
+    color: GRAY_COLOR,
   },
 });
+
+/* 
+SET
+{
+  rep= 12
+  weight: 10
+}
+
+
+EXERCISE LOG
+{
+    SET,
+    date=date,
+    time=1299
+}
+
+
+WORKOUT LOG
+{
+date = date,
+time = time,
+ExerciseLogs
+} 
+*/

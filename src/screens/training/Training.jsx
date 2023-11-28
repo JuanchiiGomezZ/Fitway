@@ -61,7 +61,7 @@ export default TrainingMode = ({ route }) => {
             <View style={{ paddingBottom: 80 }}>
               <ProgressBar activeExercise={3} totalExercises={6} />
               <ContentExercise />
-              <ControlBar />
+              {/* <ControlBar /> */}
             </View>
           </ScrollView>
           <View style={styles.bottomBar}>

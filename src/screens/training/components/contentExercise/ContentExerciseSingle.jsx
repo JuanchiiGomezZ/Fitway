@@ -36,6 +36,11 @@ export default ContentExerciseSingle = ({ data }) => {
         rest={WorkoutExercise?.resTime || SupersetExercise?.reps}
         active={activeSet}
       />
+      {/* <TableRepsSingle
+        reps={WorkoutExercise?.reps || SupersetExercise?.reps}
+        rest={WorkoutExercise?.resTime || SupersetExercise?.reps}
+        active={activeSet}
+      /> */}
     </>
   );
 };

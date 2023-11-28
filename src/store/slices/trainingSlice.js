@@ -8,6 +8,7 @@ export const trainingSlice = createSlice({
     activeWorkoutExercises: [],
     activeExercise: undefined,
     activeWorkoutDetails: undefined,
+    activeWorkoutLogs: [],
     isLoading: false,
     error: null,
   },
@@ -33,6 +34,9 @@ export const trainingSlice = createSlice({
     setActiveSet: (state, { payload }) => {
       state.activeSet = payload;
     },
+    setWorkoutLog: (state, { payload }) => {
+      state.activeWorkoutLogs = payload;
+    },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
     },
@@ -46,4 +50,5 @@ export const {
   setActiveExercise,
   setActiveSet,
   handleChangeExercise,
+  setWorkoutLog,
 } = trainingSlice.actions;

@@ -29,15 +29,6 @@ const TableRepsSingle = ({ reps, rest, active }) => {
               <AntDesign name="minuscircleo" size={28} color={BACKGROUND_COLOR} />
             )}
           </View>
-          {/* <View>
-            {rest && (
-              <View style={styles.rowRest}>
-                <Text style={styles.restText}>
-                  {`Rest: ${convertToMinutes(rest).slice(0, -1)}`}
-                </Text>
-              </View>
-            )}
-          </View> */}
         </View>
       ))}
     </View>
