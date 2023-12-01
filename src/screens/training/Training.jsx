@@ -1,45 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Button, Dimensions, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Button, Dimensions, ScrollView, BackHandler } from "react-native";
 
 //HOOKS
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { cleanWorkoutLog } from "../../store/slices/trainingSlice";
 
 //COMPONENTS
 import Loader from "../../components/Loader";
 import Countdown from "./components/Countdown";
 import Timer from "./components/Timer";
-
 import ProgressBar from "./components/ProgressBar";
 import ContentExercise from "./components/contentExercise/ContentExercise";
-import { MaterialIcons, AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 //STYLES
-import {
-  BACKGROUND_COLOR,
-  GRAY_COLOR,
-  GREEN_COLOR,
-  PADDING_HORIZONTAL,
-  PADDING_TOP,
-  WHITE_COLOR,
-} from "../../styles/styles";
+import { BACKGROUND_COLOR, GRAY_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
-import ControlBar from "./components/ControlBar";
 import ToolBar from "./components/ToolBar";
 import useTimer from "./hooks/useTimer";
+import ExerciseGIF from "../../components/ExerciseGIF";
 
 export default TrainingMode = ({ route }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { navigate } = useNavigation();
   const { getWorkoutTrainingData } = useWorkoutsStore();
   const { isLoading, activeExercise } = useSelector((state) => state.training);
   const { id } = route.params;
   const timer = useTimer();
 
   const [countdown, setCountdown] = useState(false);
-  const [bottomBar, setBottomBar] = useState(true);
+  const [bottomBar, setBottomBar] = useState(false);
 
   useEffect(() => {
     getWorkoutTrainingData(id);
+  }, []);
+
+  useEffect(() => {
+    const backAction = () => {
+      navigate("TabNavigation", { screen: "Home" });
+      dispatch(cleanWorkoutLog());
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () => backHandler.remove();
   }, []);
 
   const toggleCountodwn = () => {
@@ -61,7 +69,6 @@ export default TrainingMode = ({ route }) => {
             <View style={{ paddingBottom: 80 }}>
               <ProgressBar activeExercise={3} totalExercises={6} />
               <ContentExercise />
-              {/* <ControlBar /> */}
             </View>
           </ScrollView>
           <View style={styles.bottomBar}>
@@ -77,6 +84,7 @@ export default TrainingMode = ({ route }) => {
             />
             {bottomBar ? <ToolBar /> : <Timer useTimer={timer} />}
           </View>
+          {/* <ExerciseGIF/> */}
           {countdown && <Countdown toggleModal={toggleCountodwn} restTime={30} />}
         </>
       )}

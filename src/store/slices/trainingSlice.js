@@ -4,11 +4,10 @@ export const trainingSlice = createSlice({
   name: "training",
   initialState: {
     numActiveExercise: 0,
-    activeSet: 0,
     activeWorkoutExercises: [],
     activeExercise: undefined,
     activeWorkoutDetails: undefined,
-    activeWorkoutLogs: [],
+    workoutLog: [[]],
     isLoading: false,
     error: null,
   },
@@ -24,18 +23,60 @@ export const trainingSlice = createSlice({
     },
     handleChangeExercise: (state, { payload }) => {
       (state.activeExercise = state.activeWorkoutExercises.Exercises[payload]),
-        (state.numActiveExercise = payload),
-        (state.activeSet = 0);
+        (state.numActiveExercise = payload);
     },
     setActiveExercise: (state, { payload }) => {
       (state.activeExercise = state.activeWorkoutExercises.Exercises[payload]),
         (state.numActiveExercise = payload);
     },
-    setActiveSet: (state, { payload }) => {
-      state.activeSet = payload;
+    updateWorkoutLog: (state, { payload }) => {
+      const { index, reps, weight, done } = payload;
+      const { numActiveExercise, workoutLog } = state;
+
+      if (!workoutLog[numActiveExercise]) {
+        workoutLog[numActiveExercise] = [];
+      }
+
+      if (!workoutLog[numActiveExercise][index]) {
+        workoutLog[numActiveExercise][index] = {};
+      }
+
+      workoutLog[numActiveExercise][index].reps = reps;
+      workoutLog[numActiveExercise][index].weight = weight;
+      workoutLog[numActiveExercise][index].done = done;
     },
-    setWorkoutLog: (state, { payload }) => {
-      state.activeWorkoutLogs = payload;
+    updateWorkoutLogReps: (state, { payload }) => {
+      const { index, reps, done } = payload;
+      const { numActiveExercise, workoutLog } = state;
+
+      if (!workoutLog[numActiveExercise]) {
+        workoutLog[numActiveExercise] = [];
+      }
+
+      if (!workoutLog[numActiveExercise][index]) {
+        workoutLog[numActiveExercise][index] = {};
+      }
+
+      workoutLog[numActiveExercise][index].reps = reps;
+      workoutLog[numActiveExercise][index].done = done;
+    },
+    updateWorkoutLogWeight: (state, { payload }) => {
+      const { index, weight, done } = payload;
+      const { numActiveExercise, workoutLog } = state;
+
+      if (!workoutLog[numActiveExercise]) {
+        workoutLog[numActiveExercise] = [];
+      }
+
+      if (!workoutLog[numActiveExercise][index]) {
+        workoutLog[numActiveExercise][index] = {};
+      }
+
+      workoutLog[numActiveExercise][index].weight = weight;
+      workoutLog[numActiveExercise][index].done = done;
+    },
+    cleanWorkoutLog: (state, { payload }) => {
+      (state.workoutLog = [[]]), (state.numActiveExercise = 0);
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
@@ -48,7 +89,9 @@ export const {
   saveActiveWorkoutData,
   onLoading,
   setActiveExercise,
-  setActiveSet,
   handleChangeExercise,
-  setWorkoutLog,
+  updateWorkoutLog,
+  updateWorkoutLogWeight,
+  updateWorkoutLogReps,
+  cleanWorkoutLog,
 } = trainingSlice.actions;

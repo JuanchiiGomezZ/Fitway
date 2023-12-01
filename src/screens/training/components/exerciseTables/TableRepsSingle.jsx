@@ -8,6 +8,7 @@ import {
   BOX_COLOR,
   BACKGROUND_COLOR,
 } from "../../../../styles/styles";
+import ControlBar from "../ControlBar";
 
 const TableRepsSingle = ({ reps, rest, active }) => {
   return (
@@ -18,7 +19,7 @@ const TableRepsSingle = ({ reps, rest, active }) => {
       </View>
       {reps.map((element, index) => (
         <View style={styles.row} key={index + 10}>
-          <View style={[styles.rowSet, index == active && { backgroundColor: ORANGE_DARK_COLOR }]}>
+          <View style={[styles.rowSet, index == active && { backgroundColor: "rgba(4, 154, 0, 0.6)" }]}>
             <View style={styles.numReps}>
               <Text style={[styles.rowText]}>{index + 1}</Text>
               <Text style={styles.repsText}>{element}</Text>
@@ -26,11 +27,12 @@ const TableRepsSingle = ({ reps, rest, active }) => {
 
             {index < active && <AntDesign name="checkcircleo" size={28} color={GREEN_COLOR} />}
             {index == active && (
-              <AntDesign name="minuscircleo" size={28} color={BACKGROUND_COLOR} />
+              <AntDesign name="checkcircleo" size={28} color={WHITE_COLOR} />
             )}
           </View>
         </View>
       ))}
+      <ControlBar/>
     </View>
   );
 };

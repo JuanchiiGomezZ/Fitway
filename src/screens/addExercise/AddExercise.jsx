@@ -25,16 +25,18 @@ import {
   WHITE_COLOR,
 } from "../../styles/styles";
 
-
 export default AddExercise = () => {
   const { t } = useTranslation();
-  const { getUserExercises } = useExercisesStore();
-  const { userExercises, isLoading } = useSelector((state) => state.exercises);
+  const { getAllUserExercises, getUserExsWithoutSelectedWkt } = useExercisesStore();
+  const { isLoading } = useSelector((state) => state.exercises);
   const { navigate } = useNavigation();
   const [currentPage, setCurrentPage] = useState(0);
+  const [userExercises, setUserExercises] = useState(null);
 
   useEffect(() => {
-    getUserExercises();
+    getUserExsWithoutSelectedWkt().then((res) => {
+      setUserExercises(res);
+    });
   }, []);
 
   const onPageSelected = (event) => {
@@ -42,8 +44,6 @@ export default AddExercise = () => {
   };
 
   const ref = useRef();
-
-
 
   return (
     <View style={styles.container}>
@@ -73,11 +73,7 @@ export default AddExercise = () => {
             <View style={{ gap: 7 }}>
               {userExercises?.length > 0 ? (
                 userExercises.map((item, index) => (
-                  <AddExerciseCard
-                    key={item.id}
-                    data={item}
-                    index={index}
-                  />
+                  <AddExerciseCard key={item.id} data={item} index={index} />
                 ))
               ) : (
                 <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>

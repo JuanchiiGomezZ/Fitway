@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useTranslation } from "react-i18next";
 import ElementCard from "../../../../components/ElementCard";
-import TableRepsSingle from "../exerciseTables/TableRepsSingle";
-import TableRepsWithWeight from "../exerciseTables/TableRepsWithWeight";
-import { useSelector } from "react-redux";
+import TableRepsWithWeight from "../exerciseTables/repsWithWeight/TableRepsWithWeight";
 
 export default ContentExerciseSingle = ({ data }) => {
-  const { t } = useTranslation();
-  const { activeSet, activeExercise } = useSelector((state) => state.training);
   const { name, primaryMuscle, Multimedia, element, WorkoutExercise, SupersetExercise } = data;
 
   return (
@@ -34,13 +29,8 @@ export default ContentExerciseSingle = ({ data }) => {
       <TableRepsWithWeight
         reps={WorkoutExercise?.reps || SupersetExercise?.reps}
         rest={WorkoutExercise?.resTime || SupersetExercise?.reps}
-        active={activeSet}
       />
-      {/* <TableRepsSingle
-        reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-        rest={WorkoutExercise?.resTime || SupersetExercise?.reps}
-        active={activeSet}
-      /> */}
+
     </>
   );
 };

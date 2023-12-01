@@ -54,11 +54,23 @@ export default useExercisesStore = () => {
     }
   };
 
-  const getUserExercises = async () => {
+  const getAllUserExercises = async () => {
     dispatch(onChecking());
     try {
       const { data } = await axios.get(`/exercise/findAll/${user.id}`);
       dispatch(saveUserExercises(data));
+    } catch (error) {
+      dispatch(onError(error.response.data));
+    }
+  };
+
+  const getUserExsWithoutSelectedWkt = async () => {
+    dispatch(onChecking());
+    try {
+      const { data } = await axios.get(
+        `/exercise/selectExercise/${user.id}/${workoutDetails.workoutId}`,
+      );
+      return data;
     } catch (error) {
       dispatch(onError(error.response.data));
     }
@@ -80,7 +92,7 @@ export default useExercisesStore = () => {
         `/workout/addExercise/${workoutDetails.workoutId}/${exerciseId}`,
         exerciseData,
       );
-      console.log(data)
+      console.log(data);
       dispatch(saveWorkoutExercises([...workoutExercises.Exercises, data]));
     } catch (error) {
       dispatch(onError(error.response.data));
@@ -91,8 +103,9 @@ export default useExercisesStore = () => {
     deleteWorkoutExercise,
     createNewExercise,
     createSuperset,
-    getUserExercises,
+    getAllUserExercises,
     getExerciseDetails,
     addExercise,
+    getUserExsWithoutSelectedWkt,
   };
 };

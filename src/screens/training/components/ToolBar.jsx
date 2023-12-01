@@ -29,7 +29,10 @@ export default ToolBar = () => {
     >
       <CircularButtonSmall icon="angle-double-left" action={handlePreviousExercise} />
 
-      <CircularButtonSmall icon="clipboard-list" />
+
+      
+        <CircularButtonSmall icon="clipboard-list" />
+
 
       <CircularButtonSmall icon="angle-double-right" action={handleNextExercise} />
     </Animated.View>
