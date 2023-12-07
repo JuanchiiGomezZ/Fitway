@@ -5,6 +5,7 @@ import { StyleSheet, View, ScrollView, RefreshControl } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
+import useToggle from "../../hooks/useToggle";
 
 /* COMPONENTS */
 import Weekdays from "./components/Weekdays";
@@ -22,6 +23,7 @@ import {
 } from "../../styles/styles";
 import QrModal from "../../components/QrModal";
 
+
 export default HomeScreen = () => {
   const { t } = useTranslation();
   const { getUserRoutineDetail, getRoutines } = useRoutinesStore();
@@ -30,20 +32,12 @@ export default HomeScreen = () => {
   );
   const [configWorkoutModal, setConfigWorkoutModal] = useState(false);
   const [workoutId, setWorkoutId] = useState(null);
-  const [newWorkoutModal, setNewWorkoutModal] = useState(false);
-  const [qrModal, setQrModal] = useState(false);
+  const [newWorkoutModal, toggleNewWorkoutModal] = useToggle(false);
+  const [qrModal, toggleQrModal] = useToggle(false);
 
   const toggleBottomSheet = (id) => {
     id && setWorkoutId(id);
-    setConfigWorkoutModal(!configWorkoutModal);
-  };
-
-  const toggleNewWorkoutModal = () => {
-    setNewWorkoutModal(!newWorkoutModal);
-  };
-
-  const toggleQrModal = () => {
-    setQrModal((prev) => !prev);
+    setConfigWorkoutModal((prev) => !prev);
   };
 
   const handleRefresh = () => {

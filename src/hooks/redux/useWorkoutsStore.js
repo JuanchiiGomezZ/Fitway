@@ -73,14 +73,15 @@ export default useWorkoutsStore = () => {
         name: data.name,
         order: data.order,
       };
-      const Exercises =
-        data.Supersets.length != 0
-          ? { Exercises: [...data.Exercises, ...data.Supersets] }
-          : { Exercises: [...data.Exercises] };
-
+      const Exercises = {
+        Exercises:
+          data.Supersets.length !== 0
+            ? [...data.Exercises, ...data.Supersets]
+            : [...data.Exercises],
+      };
       dispatch(saveActiveWorkoutData({ details, Exercises }));
     } catch (error) {
-      console.log(error.response.data);
+      dispatch(onError(error.response.data));
     }
   };
 

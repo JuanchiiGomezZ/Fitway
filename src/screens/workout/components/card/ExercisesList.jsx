@@ -7,10 +7,12 @@ import ExerciseCardSuperset from "./ExerciseCardSuperset";
 export default WorkoutsList = ({ toggleConfig, toggleGIF }) => {
   const { workoutExercises } = useSelector((state) => state.workouts);
 
+
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        {workoutExercises.Exercises.map((item, index) =>
+        {workoutExercises.Exercises.sort((a, b) => a.order - b.order).map((item, index) =>
           item?.Exercises ? (
             <ExerciseCardSuperset data={item} toggleConfig={toggleConfig} index={index} key={item.id}/>
           ) : (
@@ -27,6 +29,8 @@ export default WorkoutsList = ({ toggleConfig, toggleGIF }) => {
     </ScrollView>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: { gap: 15, marginBottom: 100 },

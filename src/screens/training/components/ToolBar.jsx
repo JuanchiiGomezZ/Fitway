@@ -6,12 +6,12 @@ import { CircularButtonSmall } from "../../../components/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangeExercise } from "../../../store/slices/trainingSlice";
 
-export default ToolBar = () => {
+export default ToolBar = ({toggleWorkoutModal}) => {
   const dispatch = useDispatch();
   const { numActiveExercise, activeWorkoutExercises } = useSelector((state) => state.training);
 
   const handleNextExercise = () => {
-    if (activeWorkoutExercises.Exercises?.length > numActiveExercise + 1) {
+    if (activeWorkoutExercises.length > numActiveExercise + 1) {
       dispatch(handleChangeExercise(numActiveExercise + 1));
     }
   };
@@ -31,7 +31,7 @@ export default ToolBar = () => {
 
 
       
-        <CircularButtonSmall icon="clipboard-list" />
+        <CircularButtonSmall icon="clipboard-list" action={toggleWorkoutModal} />
 
 
       <CircularButtonSmall icon="angle-double-right" action={handleNextExercise} />

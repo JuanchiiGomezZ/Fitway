@@ -27,8 +27,11 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
 
   const handleCreateSuperset = async () => {
     if (selectedExercises.size > 1) {
-      await createSuperset([...selectedExercises]);
-      toggleModal()
+      await createSuperset({
+        exercisesIds: [...selectedExercises],
+        order: workoutExercises.Exercises.length + 1,
+      });
+      toggleModal();
     }
   };
 

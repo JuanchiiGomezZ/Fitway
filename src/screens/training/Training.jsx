@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { cleanWorkoutLog } from "../../store/slices/trainingSlice";
+import useToggle from "../../hooks/useToggle";
 
 //COMPONENTS
 import Loader from "../../components/Loader";
@@ -14,6 +15,7 @@ import Timer from "./components/Timer";
 import ProgressBar from "./components/ProgressBar";
 import ContentExercise from "./components/contentExercise/ContentExercise";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import ExercisesModal from "./components/exercisesModal/ExercisesModal";
 
 //STYLES
 import { BACKGROUND_COLOR, GRAY_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
@@ -31,32 +33,27 @@ export default TrainingMode = ({ route }) => {
   const { id } = route.params;
   const timer = useTimer();
 
-  const [countdown, setCountdown] = useState(false);
-  const [bottomBar, setBottomBar] = useState(false);
+  const [countdown, toggleCountodwn] = useToggle(false);
+  const [bottomBar, toggleBottomBar] = useToggle(false);
+  const [openWorkout, toggleOpenWorkout] = useToggle(false);
 
-  useEffect(() => {
-    getWorkoutTrainingData(id);
-  }, []);
+  // useEffect(() => {
+  //   getWorkoutTrainingData(id);
+  // }, []);
 
-  useEffect(() => {
-    const backAction = () => {
-      navigate("TabNavigation", { screen: "Home" });
-      dispatch(cleanWorkoutLog());
-      return true;
-    };
+  // useEffect(() => {
+  //   const backAction = () => {
+  //     navigate("TabNavigation", { screen: "Home" });
+  //     dispatch(cleanWorkoutLog());
+  //     return true;
+  //   };
 
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
+  //   const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
 
-    return () => backHandler.remove();
-  }, []);
+  //   return () => backHandler.remove();
+  // }, []);
 
-  const toggleCountodwn = () => {
-    setCountdown((prev) => !prev);
-  };
 
-  const toggleBottomBar = () => {
-    setBottomBar((prev) => !prev);
-  };
 
   return (
     <View style={styles.container}>
@@ -82,10 +79,11 @@ export default TrainingMode = ({ route }) => {
               }}
               onPress={toggleBottomBar}
             />
-            {bottomBar ? <ToolBar /> : <Timer useTimer={timer} />}
+            {bottomBar ? <ToolBar toggleWorkoutModal={toggleOpenWorkout} /> : <Timer useTimer={timer} />}
           </View>
           {/* <ExerciseGIF/> */}
           {countdown && <Countdown toggleModal={toggleCountodwn} restTime={30} />}
+          {openWorkout && <ExercisesModal toggleModal={toggleOpenWorkout} />}
         </>
       )}
     </View>
@@ -110,3 +108,11 @@ const styles = StyleSheet.create({
     gap: 2,
   },
 });
+
+/*
+
+[{"done": true, "reps": "12", "weight": "80"}, 
+{"done": true, "reps": "10", "weight": "65"}, 
+{"done": true, "reps": "12", "weight": "12"}]
+
+*/

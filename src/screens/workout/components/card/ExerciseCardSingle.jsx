@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from "reac
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { GRAY_COLOR, WHITE_COLOR } from "../../../../styles/styles";
-import { ConfigButton } from "../../../../components/Buttons";
 import CardContainer from "../../../../components/CardContainer";
 
 export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, superset }) => {
@@ -16,10 +15,12 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     id,
     Multimedia,
     exerciseType,
+    workoutExercise,
+    supersetExercise,
     WorkoutExercise,
     SupersetExercise,
   } = data || {};
-  const { reps, order, durations } = WorkoutExercise || SupersetExercise || {};
+  const { reps, order, durations } = workoutExercise || supersetExercise || SupersetExercise|| WorkoutExercise || {};
 
   return (
     <CardContainer

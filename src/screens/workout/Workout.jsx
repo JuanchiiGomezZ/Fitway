@@ -5,6 +5,8 @@ import { StyleSheet, Text, View, RefreshControl, ScrollView } from "react-native
 import { useTranslation } from "react-i18next";
 import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import { useSelector } from "react-redux";
+import useToggle from "../../hooks/useToggle";
+
 
 //COMPONENTS
 import Header from "../../components/Header";
@@ -37,7 +39,8 @@ export default WorkoutScreen = ({ route }) => {
   const [exerciseId, setExerciseId] = useState(null);
   const [exerciseGIF, setExerciseGIF] = useState(null);
   const [exerciseGIFModal, setExerciseGIFModal] = useState(false);
-  const [createSuperset, setCreateSuperset] = useState(false);
+  
+  const [createSuperset, toggleCreateSuperset] = useToggle(false);
 
   useEffect(() => {
     workoutId != workoutDetails.workoutId &&
@@ -56,9 +59,6 @@ export default WorkoutScreen = ({ route }) => {
     setExerciseGIFModal((prev) => !prev);
   };
 
-  const toggleCreateSuperset = () => {
-    setCreateSuperset((prev) => !prev);
-  };
 
   return (
     <View style={styles.container}>

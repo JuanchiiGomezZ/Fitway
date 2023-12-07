@@ -7,6 +7,7 @@ import musclesData from "../../data/muscles.json";
 import elementsData from "../../data/elements.json";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
+import useToggle from "../../hooks/useToggle";
 
 //COMPONENTS
 import Header from "../../components/Header";
@@ -32,10 +33,11 @@ export default CreateExercise = () => {
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
   const { workoutExercises } = useSelector((state) => state.workouts);
-  const [bottomsheet, setBottomsheet] = useState(false);
-  const [pickerMuscle, setPickerMuscle] = useState(false);
-  const [pickerElement, setPickerElement] = useState(false);
+
+  const [pickerMuscle, togglePickerMuscle] = useToggle(false);
+  const [pickerElement, togglePickerElement] = useToggle(false);
   const [pickerExerciseType, setPickerExerciseType] = useState(false);
+  const [bottomsheet, setBottomsheet] = useState(false);
 
   const [exerciseImg, setExerciseImage] = useState(null);
   const [name, setName] = useState("");
@@ -53,17 +55,6 @@ export default CreateExercise = () => {
     }
     setBottomsheet((prev) => !prev);
   };
-
-  const togglePickerMuscle = () => {
-    Keyboard.dismiss();
-    setPickerMuscle((prev) => !prev);
-  };
-
-  const togglePickerElement = () => {
-    Keyboard.dismiss();
-    setPickerElement((prev) => !prev);
-  };
-
   const togglePickerExerciseType = (type) => {
     Keyboard.dismiss();
     if (type) {
@@ -71,6 +62,7 @@ export default CreateExercise = () => {
     }
     setPickerExerciseType((prev) => !prev);
   };
+
 
   const exerciseGif =
     "https://newlife.com.cy/wp-content/uploads/2019/11/16241301-Dumbbell-Reverse-Bench-Press_Chest_360.gif";

@@ -27,6 +27,7 @@ export default CreateExerciseSecond = ({ route }) => {
   const { navigate, getId } = useNavigation();
   const { t } = useTranslation();
   const { reps, restTime } = useSelector((state) => state.newExercise);
+  const { workoutExercises } = useSelector((state) => state.workouts);
   const { createNewExercise, addExercise } = useExercisesStore();
   const { id, exerciseType, task, name } = route.params;
 
@@ -41,7 +42,7 @@ export default CreateExerciseSecond = ({ route }) => {
   };
 
   const handleAddExercise = () => {
-    addExercise({ reps, order: 10 }, id);
+    addExercise({ reps, order: workoutExercises.Exercises.length + 1 }, id);
     dispatch(cleanNewExerciseState());
     navigate("Workout");
   };
