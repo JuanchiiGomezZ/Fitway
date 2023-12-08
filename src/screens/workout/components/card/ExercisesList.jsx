@@ -12,7 +12,7 @@ export default WorkoutsList = ({ toggleConfig, toggleGIF }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        {workoutExercises.Exercises.sort((a, b) => a.order - b.order).map((item, index) =>
+        {workoutExercises.sort((a, b) => a.order - b.order).map((item, index) =>
           item?.Exercises ? (
             <ExerciseCardSuperset data={item} toggleConfig={toggleConfig} index={index} key={item.id}/>
           ) : (

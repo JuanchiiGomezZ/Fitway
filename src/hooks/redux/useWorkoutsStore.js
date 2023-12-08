@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveActiveRoutineWorkouts } from "../../store/slices/routinesSlice";
 import { saveActiveWorkoutData, onLoading } from "../../store/slices/trainingSlice";
 
+import maxOrder from "../../helpers/maxOrder";
+
 export default useWorkoutsStore = () => {
   const dispatch = useDispatch();
   const { activeRoutineId, activeRoutineWorkouts } = useSelector((state) => state.userRoutines);
@@ -21,7 +23,7 @@ export default useWorkoutsStore = () => {
     try {
       const { data } = await axios.post(`/workout/newWorkout/${activeRoutineId}`, {
         name,
-        order: activeRoutineWorkouts.length,
+        order: maxOrder(activeRoutineWorkouts),
       });
       dispatch(saveActiveRoutineWorkouts([...activeRoutineWorkouts, data]));
       return data;

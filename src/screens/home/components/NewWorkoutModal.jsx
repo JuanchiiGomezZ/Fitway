@@ -5,13 +5,14 @@ import { BACKGROUND_COLOR, BORDER_RADIUS } from "../../../styles/styles";
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 import { ClassicInput, Te } from "../../../components/Inputs";
 import {
-  OrangeButtonSmall,
+  LongButtonSmall,
   DisabledButtonSmall,
   CloseModalIcon,
 } from "../../../components/Buttons";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
 import BackdropModals from "../../../components/BackdropModals";
 import { useNavigation } from "@react-navigation/native";
+import ModalBase from "../../../components/ModalBase";
 
 const heightScren = Dimensions.get("screen").height;
 
@@ -29,15 +30,8 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
   };
 
   return (
-    <>
-      <BackdropModals toggleModal={toggleNewWorkoutModal} />
-
-      <Animated.View style={styles.modalContainer} entering={FadeInLeft} exiting={FadeOutLeft}>
-        <View style={styles.header}>
-          <Text style={styles.title}>{t("Home.new-workout")}</Text>
-          <CloseModalIcon action={toggleNewWorkoutModal} />
-        </View>
-
+    <ModalBase toggleModal={toggleNewWorkoutModal} title="New Workout" short={true}>
+      <View style={{ gap: 20 }}>
         <ClassicInput
           setInputChange={setName}
           inputChange={name}
@@ -47,10 +41,10 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
         {name.trim() < 1 ? (
           <DisabledButtonSmall text={t("global.continue")} />
         ) : (
-          <OrangeButtonSmall text={t("global.continue")} action={handleNewWorkout} />
+          <LongButtonSmall text={t("global.continue")} action={handleNewWorkout} />
         )}
-      </Animated.View>
-    </>
+      </View>
+    </ModalBase>
   );
 };
 

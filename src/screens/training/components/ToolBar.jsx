@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
-import { BACKGROUND_COLOR, ORANGE_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import { BACKGROUND_COLOR, GRAY_COLOR, ORANGE_COLOR } from "../../../styles/styles";
 import { CircularButtonSmall } from "../../../components/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangeExercise } from "../../../store/slices/trainingSlice";
 
-export default ToolBar = ({toggleWorkoutModal}) => {
+export default ToolBar = ({ toggleWorkoutModal }) => {
   const dispatch = useDispatch();
-  const { numActiveExercise, activeWorkoutExercises } = useSelector((state) => state.training);
+  const { numActiveExercise, activeWorkout } = useSelector((state) => state.training);
 
   const handleNextExercise = () => {
-    if (activeWorkoutExercises.length > numActiveExercise + 1) {
+    if (activeWorkout.length > numActiveExercise + 1) {
       dispatch(handleChangeExercise(numActiveExercise + 1));
     }
   };
@@ -27,12 +27,13 @@ export default ToolBar = ({toggleWorkoutModal}) => {
       exiting={SlideOutDown.duration(300).easing()}
       style={styles.toolBar}
     >
-      <CircularButtonSmall icon="angle-double-left" action={handlePreviousExercise} />
+      <CircularButtonSmall
+        icon="angle-double-left"
+        action={handlePreviousExercise}
+        color={numActiveExercise == 0 && GRAY_COLOR}
+      />
 
-
-      
-        <CircularButtonSmall icon="clipboard-list" action={toggleWorkoutModal} />
-
+      <CircularButtonSmall icon="clipboard-list" action={toggleWorkoutModal} />
 
       <CircularButtonSmall icon="angle-double-right" action={handleNextExercise} />
     </Animated.View>

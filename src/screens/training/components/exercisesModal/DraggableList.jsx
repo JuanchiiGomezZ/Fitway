@@ -10,39 +10,56 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import ExerciseSingleCard from "./ExerciseSingleCard";
 import ExerciseSupersetCard from "./ExerciseSupersetCard";
+import { saveExercises, handleChangeExercise } from "../../../../store/slices/trainingSlice";
+import { OrangeButton } from "../../../../components/Buttons";
 
-export default DraggableList = () => {
+export default DraggableList = ({ toggleModal }) => {
   const dispatch = useDispatch();
   const ref = useRef(null);
-  const { activeWorkoutExercises } = useSelector((state) => state.training);
-  const [data, setData] = useState(activeWorkoutExercises);
+  const { activeWorkout, numActiveExercise } = useSelector((state) => state.training);
+  const [data, setData] = useState(activeWorkout.sort((a, b) => a.order - b.order));
 
-  const renderItem = ({ item, drag, index }) => {
+  const saveOrder = () => {
+    dispatch(saveExercises(data));
+    dispatch(handleChangeExercise(numActiveExercise));
+    toggleModal();
+  };
+
+  const renderItem = ({ item, drag, getIndex }) => {
     const { isActive } = useOnCellActiveAnimation();
+
     return (
       <OpacityDecorator activeOpacity={0.5}>
         <ShadowDecorator>
           {item?.Exercises ? (
-            <ExerciseSupersetCard data={item} isActive={isActive} />
+            <ExerciseSupersetCard
+              data={item}
+              isActive={isActive}
+              action={drag}
+              index={getIndex()}
+            />
           ) : (
-            <ExerciseSingleCard data={item} isActive={isActive} action={drag} />
+            <ExerciseSingleCard data={item} isActive={isActive} action={drag} index={getIndex()} />
           )}
-          <View style={styles.line} />
+          <View style={[styles.line]} />
         </ShadowDecorator>
       </OpacityDecorator>
     );
   };
 
   return (
-    <GestureHandlerRootView>
-      <DraggableFlatList
-        data={data}
-        keyExtractor={(item) => item.WorkoutExercise.order}
-        ref={ref}
-        onDragEnd={({ data }) => setData(data)}
-        renderItem={renderItem}
-      />
-    </GestureHandlerRootView>
+    <>
+      <GestureHandlerRootView>
+        <DraggableFlatList
+          data={data}
+          keyExtractor={(item) => item?.WorkoutExercise?.order || item?.order}
+          ref={ref}
+          onDragEnd={({ data }) => setData(data)}
+          renderItem={renderItem}
+        />
+      </GestureHandlerRootView>
+      <OrangeButton text="Save" action={saveOrder} />
+    </>
   );
 };
 

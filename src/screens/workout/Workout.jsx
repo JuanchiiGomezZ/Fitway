@@ -7,7 +7,6 @@ import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import { useSelector } from "react-redux";
 import useToggle from "../../hooks/useToggle";
 
-
 //COMPONENTS
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
@@ -31,23 +30,18 @@ export default WorkoutScreen = ({ route }) => {
   const { workoutId } = route.params || {};
 
   const { getWorkoutData } = useWorkoutsStore();
-  const { workoutDetails, workoutExercises, isLoading } = useSelector(
-    (state) => state.workouts,
-  );
+  const { workoutDetails, workoutExercises, isLoading } = useSelector((state) => state.workouts);
   const { name } = workoutDetails;
   const [configModal, setConfigModal] = useState(false);
   const [exerciseId, setExerciseId] = useState(null);
   const [exerciseGIF, setExerciseGIF] = useState(null);
   const [exerciseGIFModal, setExerciseGIFModal] = useState(false);
-  
+
   const [createSuperset, toggleCreateSuperset] = useToggle(false);
 
   useEffect(() => {
-    workoutId != workoutDetails.workoutId &&
-      getWorkoutData(workoutId || workoutDetails.workoutId);
+    workoutId != workoutDetails.workoutId && getWorkoutData(workoutId || workoutDetails.workoutId);
   }, []);
-
- 
 
   const toggleConfig = (id, type) => {
     id && setExerciseId({ id, type });
@@ -60,6 +54,9 @@ export default WorkoutScreen = ({ route }) => {
   };
 
 
+
+
+
   return (
     <View style={styles.container}>
       {isLoading || !workoutExercises ? (
@@ -69,7 +66,7 @@ export default WorkoutScreen = ({ route }) => {
           <Header title={name} />
 
           <View style={styles.contentContainer}>
-            {!workoutExercises?.Exercises[0] ? (
+            {!workoutExercises[0] ? (
               <EmptyWorkout />
             ) : (
               <ExercisesList toggleConfig={toggleConfig} toggleGIF={toggleGIF} />

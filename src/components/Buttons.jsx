@@ -76,9 +76,19 @@ export const OrangeButtonRounded = ({ action, icon, text }) => {
   );
 };
 
-export const OrangeButtonSmall = ({ action, text }) => {
+export const LongButtonSmall = ({ action, text, color }) => {
   return (
-    <TouchableOpacity style={[styles.button, styles.OrangeButtonSmall]} onPress={action}>
+    <TouchableOpacity
+      style={[styles.button, styles.LongButtonSmall, color && { backgroundColor: color }]}
+      onPress={action}
+    >
+      <Text style={styles.OrangeButtonSmallText}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+export const LongButtonSmallTransparent = ({ action, text }) => {
+  return (
+    <TouchableOpacity style={[styles.button, styles.longTransparent]} onPress={action}>
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
     </TouchableOpacity>
   );
@@ -86,7 +96,7 @@ export const OrangeButtonSmall = ({ action, text }) => {
 export const WhiteButtonSmall = ({ action, text }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, styles.OrangeButtonSmall, { backgroundColor: WHITE_COLOR }]}
+      style={[styles.button, styles.LongButtonSmall, { backgroundColor: WHITE_COLOR }]}
       onPress={action}
     >
       <Text style={[styles.OrangeButtonSmallText, { color: ORANGE_COLOR }]}>{text}</Text>
@@ -97,7 +107,7 @@ export const WhiteButtonSmall = ({ action, text }) => {
 export const DisabledButtonSmall = ({ action, text }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, styles.OrangeButtonSmall, { backgroundColor: "grey" }]}
+      style={[styles.button, styles.LongButtonSmall, { backgroundColor: "grey" }]}
       onPress={action}
     >
       <Text style={styles.OrangeButtonSmallText}>{text}</Text>
@@ -253,7 +263,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 
-  OrangeButtonSmall: {
+  LongButtonSmall: {
     backgroundColor: ORANGE_COLOR,
     height: 35,
   },
@@ -318,5 +328,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     paddingVertical: 12,
+  },
+
+  longTransparent: {
+    backgroundColor: BACKGROUND_COLOR,
+    borderColor: WHITE_COLOR,
+    borderWidth: 1,
+    height: 35,
   },
 });

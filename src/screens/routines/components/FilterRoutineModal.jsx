@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import {BACKGROUND_COLOR, BORDER_RADIUS, WHITE_COLOR } from "../../../styles/styles";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import FilterOptionComponent from "./FilterOptionComponent";
-import { OrangeButtonSmall, WhiteButtonSmall, CloseModalIcon } from "../../../components/Buttons";
+import { LongButtonSmall, WhiteButtonSmall, CloseModalIcon } from "../../../components/Buttons";
 import BackdropModals from "../../../components/BackdropModals";
 
 const width = Dimensions.get("screen").width;
@@ -49,7 +49,7 @@ export default FilterRoutineModal = ({ toggleModal }) => {
 
         <View style={styles.buttonsContainer}>
           <View style={{ width: "65%" }}>
-            <OrangeButtonSmall text={t("Routines.FilterRoutineModal.apply")} action={toggleModal} />
+            <LongButtonSmall text={t("Routines.FilterRoutineModal.apply")} action={toggleModal} />
           </View>
           <View style={{ width: "32%" }}>
             <WhiteButtonSmall text={t("Routines.FilterRoutineModal.clear-filters")} />

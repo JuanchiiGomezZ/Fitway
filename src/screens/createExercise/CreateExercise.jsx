@@ -27,6 +27,7 @@ import {
   PADDING_TOP,
   WHITE_COLOR,
 } from "../../styles/styles";
+import maxOrder from "../../helpers/maxOrder";
 
 export default CreateExercise = () => {
   const { t } = useTranslation();
@@ -63,7 +64,6 @@ export default CreateExercise = () => {
     setPickerExerciseType((prev) => !prev);
   };
 
-
   const exerciseGif =
     "https://newlife.com.cy/wp-content/uploads/2019/11/16241301-Dumbbell-Reverse-Bench-Press_Chest_360.gif";
 
@@ -80,7 +80,7 @@ export default CreateExercise = () => {
       elementImg: element?.img,
       exerciseGif,
       exerciseType: exerciseType?.value,
-      order: workoutExercises.Exercises.length + 1,
+      order: maxOrder(workoutExercises),
     };
     navigate("CreateExerciseSecond", newExerciseData);
   };

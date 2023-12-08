@@ -13,6 +13,7 @@ import HeaderHome from "./components/HeaderHome";
 import NewWorkoutModal from "./components/NewWorkoutModal";
 import ContentHome from "./components/ContentHome";
 import BottomSheetMenuWorkout from "./components/BottomSheetMenuWorkout";
+import ConfirmationAlert from "../../components/ConfirmationAlert";
 
 /* STYLES */
 import {
@@ -22,7 +23,6 @@ import {
   PADDING_TOP,
 } from "../../styles/styles";
 import QrModal from "../../components/QrModal";
-
 
 export default HomeScreen = () => {
   const { t } = useTranslation();
@@ -70,6 +70,7 @@ export default HomeScreen = () => {
         <BottomSheetMenuWorkout toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />
       )}
       {newWorkoutModal && <NewWorkoutModal toggleNewWorkoutModal={toggleNewWorkoutModal} />}
+      <ConfirmationAlert title="Alert" text="Are you sure you want to delete this routine?" />
     </View>
   );
 };

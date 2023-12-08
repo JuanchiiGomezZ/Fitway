@@ -6,6 +6,7 @@ import { GREEN_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import Animated, { FadeIn, FadeOut, FadeInDown } from "react-native-reanimated";
 import { OrangeButton } from "../../../components/Buttons";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
+import maxOrder from "../../../helpers/maxOrder";
 
 export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
   const { createSuperset } = useExercisesStore();
@@ -29,7 +30,7 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
     if (selectedExercises.size > 1) {
       await createSuperset({
         exercisesIds: [...selectedExercises],
-        order: workoutExercises.Exercises.length + 1,
+        order: maxOrder(workoutExercises),
       });
       toggleModal();
     }
@@ -40,7 +41,7 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
       <ScrollView>
         <View style={{ gap: 5 }}>
           {workoutExercises &&
-            workoutExercises.Exercises.map(
+            workoutExercises.map(
               (item, index) =>
                 !item?.exercises && (
                   <Animated.View key={item.id} entering={FadeInDown.delay(100 * index)}>

@@ -14,11 +14,11 @@ export const workoutsSlice = createSlice({
     },
     saveWorkoutData: (state, { payload }) => {
       (state.workoutDetails = payload.details),
-        (state.workoutExercises = payload.Exercises),
+        (state.workoutExercises = payload.Exercises.Exercises),
         (state.isLoading = false);
     },
     saveWorkoutExercises: (state, { payload }) => {
-      (state.workoutExercises = { Exercises: payload }), (state.isLoading = false);
+      (state.workoutExercises =  payload ), (state.isLoading = false);
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);

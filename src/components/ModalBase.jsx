@@ -8,11 +8,15 @@ import BackdropModals from "./BackdropModals";
 /* HOOKS */
 import Animated, { FadeIn, FadeOut, Layout, FadeInDown } from "react-native-reanimated";
 
-export default ModalBase = ({ toggleModal, title, children }) => {
+export default ModalBase = ({ toggleModal, title, children, short }) => {
   return (
     <>
       <BackdropModals toggleModal={toggleModal} />
-      <Animated.View style={styles.modalContainer} entering={FadeIn} exiting={FadeOut}>
+      <Animated.View
+        style={[styles.modalContainer, short && { top: "35%", height: "auto" }]}
+        entering={FadeIn}
+        exiting={FadeOut}
+      >
         <View style={styles.head}>
           <Text style={styles.titleModal}>{title}</Text>
           <CloseModalIcon action={toggleModal} />

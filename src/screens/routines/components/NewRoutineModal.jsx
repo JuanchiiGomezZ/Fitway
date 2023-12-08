@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import Animated, { FadeIn, FadeOut, FadeInRight, FadeOutRight } from "react-native-reanimated";
 import { ClassicInput } from "../../../components/Inputs";
 import {
-  OrangeButtonSmall,
+  LongButtonSmall,
   DisabledButtonSmall,
   CloseModalIcon,
 } from "../../../components/Buttons";
@@ -99,7 +99,7 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
         {name.trim() < 1 || difficulty == null ? (
           <DisabledButtonSmall text={"Continue"} />
         ) : (
-          <OrangeButtonSmall text={"Continue"} action={handleCreateRoutine} />
+          <LongButtonSmall text={"Continue"} action={handleCreateRoutine} />
         )}
       </Animated.View>
     </>

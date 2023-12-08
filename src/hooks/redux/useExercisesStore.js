@@ -1,5 +1,6 @@
 import { onChecking, saveUserExercises, onError } from "../../store/slices/exercisesSlice";
 import { saveWorkoutExercises } from "../../store/slices/workoutsSlice";
+import maxOrder from "../../helpers/maxOrder";
 
 import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +17,7 @@ export default useExercisesStore = () => {
     dispatch(onChecking());
     try {
       const { data } = await axios.delete(`/exercise/deleteExercise/${exerciseId}/${user.id}`);
-      const updateExercises = workoutExercises.Exercises.filter(
-        (element) => element.id !== exerciseId,
-      );
+      const updateExercises = workoutExercises.filter((element) => element.id !== exerciseId);
       dispatch(saveWorkoutExercises(updateExercises));
     } catch (error) {
       console.log(error.response.data);
@@ -32,7 +31,7 @@ export default useExercisesStore = () => {
         `/exercise/newExercise/${user.id}/${workoutDetails.workoutId}`,
         exerciseData,
       );
-      dispatch(saveWorkoutExercises([...workoutExercises.Exercises, data]));
+      dispatch(saveWorkoutExercises([...workoutExercises, data]));
     } catch (error) {
       dispatch(onError(error.response.data));
     }
@@ -41,7 +40,7 @@ export default useExercisesStore = () => {
   const createSuperset = async (body) => {
     try {
       const { data } = await axios.post(`/superset/newSuperset/${workoutDetails.workoutId}`, body);
-      // const updateExercises = workoutExercises.Exercises.filter(
+      // const updateExercises = workoutExercises.filter(
       //   (element) => !exercisesIds.includes(element.id),
       // );
       // dispatch(saveWorkoutExercises([...updateExercises, data]));
@@ -90,7 +89,7 @@ export default useExercisesStore = () => {
         `/workout/addExercise/${workoutDetails.workoutId}/${exerciseId}`,
         exerciseData,
       );
-      dispatch(saveWorkoutExercises([...workoutExercises.Exercises, data]));
+      dispatch(saveWorkoutExercises([...workoutExercises, data]));
     } catch (error) {
       dispatch(onError(error.response.data));
     }

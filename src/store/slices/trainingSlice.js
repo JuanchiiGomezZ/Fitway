@@ -4,7 +4,7 @@ export const trainingSlice = createSlice({
   name: "training",
   initialState: {
     numActiveExercise: 0,
-    activeWorkoutExercises: [],
+    activeWorkout: [],
     activeExercise: undefined,
     activeWorkoutDetails: undefined,
     workoutLog: [[]],
@@ -19,21 +19,19 @@ export const trainingSlice = createSlice({
       const { details, Exercises } = payload;
       const { numActiveExercise } = state;
 
-      state.activeWorkoutExercises = details;
-      state.activeWorkoutExercises = Exercises.Exercises;
-      state.activeExercise = Exercises.Exercises[numActiveExercise];
-      state.isLoading = false;
+      (state.activeWorkoutDetails = details),
+        (state.activeWorkout = Exercises.Exercises),
+        (state.activeExercise = Exercises.Exercises[numActiveExercise]),
+        (state.isLoading = false);
     },
     handleChangeExercise: (state, { payload }) => {
-      (state.activeExercise = state.activeWorkoutExercises[payload]),
-        (state.numActiveExercise = payload);
+      (state.activeExercise = state.activeWorkout[payload]), (state.numActiveExercise = payload);
     },
     setActiveExercise: (state, { payload }) => {
-      (state.activeExercise = state.activeWorkoutExercises[payload]),
-        (state.numActiveExercise = payload);
+      (state.activeExercise = state.activeWorkout[payload]), (state.numActiveExercise = payload);
     },
     saveExercises: (state, { payload }) => {
-      state.activeWorkoutExercises = payload;
+      state.activeWorkout = payload;
     },
     updateWorkoutLog: (state, { payload }) => {
       const { index, reps, weight, done } = payload;

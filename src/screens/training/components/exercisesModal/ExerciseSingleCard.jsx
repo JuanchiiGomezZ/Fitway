@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { Image, StyleSheet, Text, View, Pressable } from "react-native";
 import { useTranslation } from "react-i18next";
 import { GRAY_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, WHITE_COLOR } from "../../../../styles/styles";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
+import MarkIcon from "./MarkIcon";
 
-export default ExerciseSingleCard = ({ data, action, superset, isActive }) => {
+export default ExerciseSingleCard = ({ data, action, superset, isActive, index }) => {
   const { t } = useTranslation();
+  const Exercise = superset ? View : Pressable;
+  const { numActiveExercise } = useSelector((state) => state.training);
   return (
-    <Pressable
-      style={[styles.row, styles.cardContainer, { elevation: isActive ? 30 : 0 }]}
+    <Exercise
+      style={[styles.row, styles.cardContainer, { paddingVertical: superset ? 0 : 6 }]}
       onLongPress={action}
     >
       <View style={[styles.row, { gap: 10 }]}>
@@ -16,14 +20,17 @@ export default ExerciseSingleCard = ({ data, action, superset, isActive }) => {
           source={
             data?.Multimedia?.exerciseImg
               ? { uri: data.Multimedia.exerciseImg }
-              : require("../../../../assets/images/icon.png")
+              : require("../../../../assets/images/icon_fw_orange.png")
           }
           style={styles.exerciseImg}
         />
         <Text style={styles.exerciseText}>{data.name}</Text>
       </View>
-      {!superset && <Ionicons name="md-reorder-three-outline" size={30} color={GRAY_COLOR} />}
-    </Pressable>
+      <View style={[styles.row, { gap: 5 }]}>
+        {index == numActiveExercise && <MarkIcon />}
+        {!superset && <Ionicons name="md-reorder-three-outline" size={30} color={GRAY_COLOR} />}
+      </View>
+    </Exercise>
   );
 };
 
@@ -33,7 +40,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardContainer: {
-    paddingVertical: 6,
     justifyContent: "space-between",
   },
   exerciseImg: {

@@ -21,6 +21,7 @@ import {
   PADDING_HORIZONTAL,
   PADDING_TOP,
 } from "../../styles/styles";
+import maxOrder from "../../helpers/maxOrder";
 
 export default CreateExerciseSecond = ({ route }) => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export default CreateExerciseSecond = ({ route }) => {
   };
 
   const handleAddExercise = () => {
-    addExercise({ reps, order: workoutExercises.Exercises.length + 1 }, id);
+    addExercise({ reps, order: maxOrder(workoutExercises) }, id);
     dispatch(cleanNewExerciseState());
     navigate("Workout");
   };
