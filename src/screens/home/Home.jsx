@@ -70,7 +70,6 @@ export default HomeScreen = () => {
         <BottomSheetMenuWorkout toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />
       )}
       {newWorkoutModal && <NewWorkoutModal toggleNewWorkoutModal={toggleNewWorkoutModal} />}
-      <ConfirmationAlert title="Alert" text="Are you sure you want to delete this routine?" />
     </View>
   );
 };

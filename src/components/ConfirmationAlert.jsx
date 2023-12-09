@@ -15,8 +15,8 @@ export default ConfirmationAlert = ({ toggleModal, title, text, confirmAction })
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.textBody}>{text}</Text>
         <View style={{ width: "100%", gap: 10, marginTop: 10 }}>
-          <LongButtonSmall text="Confirm" />
-          <LongButtonSmallTransparent text="Cancel" />
+          <LongButtonSmall text="Confirm" action={confirmAction} />
+          <LongButtonSmallTransparent text="Cancel" action={toggleModal} />
         </View>
       </Animated.View>
     </>

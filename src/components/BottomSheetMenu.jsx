@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     left: "5%",
     width: "100%",
-    zIndex: 20,
+    zIndex: 5,
     gap: 20,
   },
   optionsContainer: {

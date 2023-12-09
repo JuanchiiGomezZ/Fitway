@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   },
 
   option: {
-    height: 50,
+    height: 45,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
