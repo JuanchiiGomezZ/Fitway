@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
-import {BACKGROUND_COLOR, BORDER_RADIUS, WHITE_COLOR } from "../../../styles/styles";
+import { BACKGROUND_COLOR, BORDER_RADIUS, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import FilterOptionComponent from "./FilterOptionComponent";
-import { LongButtonSmall, WhiteButtonSmall, CloseModalIcon } from "../../../components/Buttons";
 import BackdropModals from "../../../components/BackdropModals";
+import { CloseModalIcon, ButtonClassicLong } from "../../../components/CustomButtons";
 
 const width = Dimensions.get("screen").width;
 export default FilterRoutineModal = ({ toggleModal }) => {
@@ -49,10 +49,19 @@ export default FilterRoutineModal = ({ toggleModal }) => {
 
         <View style={styles.buttonsContainer}>
           <View style={{ width: "65%" }}>
-            <LongButtonSmall text={t("Routines.FilterRoutineModal.apply")} action={toggleModal} />
+            <ButtonClassicLong
+              text={t("Routines.FilterRoutineModal.apply")}
+              action={toggleModal}
+              short={true}
+            />
           </View>
           <View style={{ width: "32%" }}>
-            <WhiteButtonSmall text={t("Routines.FilterRoutineModal.clear-filters")} />
+            <ButtonClassicLong
+              text={t("Routines.FilterRoutineModal.clear-filters")}
+              short={true}
+              color={ORANGE_COLOR}
+              bgColor={WHITE_COLOR}
+            />
           </View>
         </View>
       </Animated.View>
@@ -61,7 +70,6 @@ export default FilterRoutineModal = ({ toggleModal }) => {
 };
 
 const styles = StyleSheet.create({
- 
   modalContainer: {
     minHeight: 300,
     width: width,
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: "5%",
     paddingTop: 10,
     paddingBottom: 15,
-    zIndex: 4,
+    zIndex: 5,
   },
   head: {
     flexDirection: "row",

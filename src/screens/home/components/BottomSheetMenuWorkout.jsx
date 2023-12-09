@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { WHITE_COLOR, RED_COLOR, ORANGE_COLOR } from "../../../styles/styles";
 import BottomSheetMenu from "../../../components/BottomSheetMenu";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
-import { OptionMenu } from "../../../components/Buttons";
+import { OptionMenu } from "../../../components/CustomButtons";
 import ConfirmationAlert from "../../../components/ConfirmationAlert";
 import useToggle from "../../../hooks/useToggle";
 

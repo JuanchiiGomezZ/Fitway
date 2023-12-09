@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import BackdropModals from "./BackdropModals";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BORDER_RADIUS, GRAY_COLOR, WHITE_COLOR } from "../styles/styles";
-import { OrangeButton, LongButtonSmall, LongButtonSmallTransparent } from "./Buttons";
+import { ButtonClassicLong } from "./CustomButtons";
 
 export default ConfirmationAlert = ({ toggleModal, title, text, confirmAction }) => {
   const { t } = useTranslation();
@@ -15,8 +15,8 @@ export default ConfirmationAlert = ({ toggleModal, title, text, confirmAction })
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.textBody}>{text}</Text>
         <View style={{ width: "100%", gap: 10, marginTop: 10 }}>
-          <LongButtonSmall text="Confirm" action={confirmAction} />
-          <LongButtonSmallTransparent text="Cancel" action={toggleModal} />
+          <ButtonClassicLong text="Confirm" action={confirmAction} short={true} />
+          <ButtonClassicLong text="Cancel" action={toggleModal} short={true} transparent={true} />
         </View>
       </Animated.View>
     </>

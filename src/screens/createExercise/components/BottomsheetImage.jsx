@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { BACKGROUND_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import BackdropModals from "../../../components/BackdropModals";
-import { OptionMenu } from "../../../components/Buttons";
+import { OptionMenu } from "../../../components/CustomButtons";
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 

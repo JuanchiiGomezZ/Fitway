@@ -1,12 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text,View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BORDER_RADIUS, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
-import { ConfigButton } from "../../../components/Buttons";
-import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
+import {  ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import CardContainer from "../../../components/CardContainer";
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+
 
 export default MyRoutineCard = ({ data, toggleBottomSheet, index }) => {
   const { t } = useTranslation();

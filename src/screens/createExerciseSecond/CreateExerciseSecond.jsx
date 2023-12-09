@@ -10,7 +10,6 @@ import useExercisesStore from "../../hooks/redux/useExercisesStore";
 //COMPONENTS
 import Header from "../../components/Header";
 import SetsTable from "./components/SetsTable";
-import { OrangeButton, DisabledButton } from "../../components/Buttons";
 import RestTimeSlider from "./components/RestTimeSlider";
 import { useNavigation } from "@react-navigation/native";
 
@@ -22,6 +21,7 @@ import {
   PADDING_TOP,
 } from "../../styles/styles";
 import maxOrder from "../../helpers/maxOrder";
+import { ButtonClassicLong } from "../../components/CustomButtons";
 
 export default CreateExerciseSecond = ({ route }) => {
   const dispatch = useDispatch();
@@ -48,6 +48,8 @@ export default CreateExerciseSecond = ({ route }) => {
     navigate("Workout");
   };
 
+  const activeButton = !reps.every((rep) => rep.trim());
+
   return (
     <View style={styles.container}>
       <View style={{ gap: 30 }}>
@@ -55,17 +57,18 @@ export default CreateExerciseSecond = ({ route }) => {
         <RestTimeSlider />
         <SetsTable exerciseType={route.params.exerciseType} />
       </View>
-      {!reps.every((rep) => rep.trim()) ? (
-        <DisabledButton
-          text={task == "AddExercise" ? "Add exercise" : "Create exercise"}
-          action={handleAreValidReps}
-        />
-      ) : (
-        <OrangeButton
-          text={task == "AddExercise" ? "Add exercise" : "Create exercise"}
-          action={task == "AddExercise" ? handleAddExercise : handleCreateExercise}
-        />
-      )}
+
+      <ButtonClassicLong
+        text={task == "AddExercise" ? "Add exercise" : "Create exercise"}
+        action={
+          activeButton
+            ? handleAreValidReps
+            : task == "AddExercise"
+            ? handleAddExercise
+            : handleCreateExercise
+        }
+        disabled={activeButton}
+      />
     </View>
   );
 };

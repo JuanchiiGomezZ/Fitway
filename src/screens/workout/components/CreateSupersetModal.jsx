@@ -4,9 +4,9 @@ import ModalBase from "../../../components/ModalBase";
 import { useSelector } from "react-redux";
 import { GREEN_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import Animated, { FadeIn, FadeOut, FadeInDown } from "react-native-reanimated";
-import { OrangeButton } from "../../../components/Buttons";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 import maxOrder from "../../../helpers/maxOrder";
+import { ButtonClassicLong } from "../../../components/CustomButtons";
 
 export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
   const { createSuperset } = useExercisesStore();
@@ -68,7 +68,7 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
             )}
         </View>
       </ScrollView>
-      <OrangeButton text="Confirm" action={handleCreateSuperset} />
+      <ButtonClassicLong text="Confirm" action={handleCreateSuperset} />
     </ModalBase>
   );
 };

@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, Keyboard } from "react-native";
 import React, { useEffect, forwardRef, useImperativeHandle, useRef } from "react";
 import { WHITE_COLOR, ORANGE_DARK_COLOR, ORANGE_COLOR } from "../../../styles/styles";
 import TableRow from "./TableRow";
-import { CircularButton } from "../../../components/Buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import { ButtonCircular } from "../../../components/CustomButtons";
 
 export default SetsTable = ({ exerciseType }) => {
   const dispatch = useDispatch();
@@ -23,8 +23,6 @@ export default SetsTable = ({ exerciseType }) => {
     initialMode.current = false;
   }, []);
 
-
-
   return (
     <View style={styles.table}>
       <View style={styles.head}>
@@ -34,14 +32,19 @@ export default SetsTable = ({ exerciseType }) => {
         </Text>
       </View>
       {reps.map((item, index) => (
-        <TableRow key={index} index={index} initialMode={initialMode.current} exerciseType={exerciseType} />
+        <TableRow
+          key={index}
+          index={index}
+          initialMode={initialMode.current}
+          exerciseType={exerciseType}
+        />
       ))}
       {length < 6 ? (
         <Animated.View
           entering={initialMode.current ? FadeIn.delay((reps.length + 1) * 100) : FadeIn.delay(150)}
           exiting={FadeOut}
         >
-          <CircularButton action={addSet} icon="plus" text="Add set" />
+          <ButtonCircular action={addSet} icon="plus" size="l" />
         </Animated.View>
       ) : (
         <Animated.Text entering={FadeIn.delay(150)} exiting={FadeOut} style={styles.maxRepsText}>

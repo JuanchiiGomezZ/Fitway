@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { View, TouchableOpacity, StyleSheet, Pressable } from "react-native";
 import Animated, { FadeInDown, Layout, FadeOut } from "react-native-reanimated";
 import { BORDER_RADIUS, BOX_COLOR } from "../styles/styles";
-import { ConfigButton } from "./Buttons";
+import { ConfigButton } from "./CustomButtons";
 
 const CardContainer = ({ children, action, index, configAction, animation }) => {
   const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);

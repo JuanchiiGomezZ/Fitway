@@ -9,7 +9,8 @@ import { useNavigation } from "@react-navigation/native";
 //COMPONENTS
 import Header from "../../components/Header";
 import SearchBar from "./components/SearchBar";
-import { OrangeButtonRounded } from "../../components/Buttons";
+
+import { ButtonRounded } from "../../components/CustomButtons";
 import useExercisesStore from "../../hooks/redux/useExercisesStore";
 import ExerciseCardSingle from "../workout/components/card/ExerciseCardSingle";
 import PagerView from "react-native-pager-view";
@@ -50,7 +51,7 @@ export default AddExercise = () => {
       <View style={styles.head}>
         <Header title={"Exercises"} />
         <View style={{ marginBottom: 13 }}>
-          <OrangeButtonRounded
+          <ButtonRounded
             text={"Create Exercise"}
             icon={"plus"}
             action={() => navigate("CreateExercise")}

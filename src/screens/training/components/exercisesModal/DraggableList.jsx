@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ExerciseSingleCard from "./ExerciseSingleCard";
 import ExerciseSupersetCard from "./ExerciseSupersetCard";
 import { saveExercises, handleChangeExercise } from "../../../../store/slices/trainingSlice";
-import { OrangeButton } from "../../../../components/Buttons";
+import { ButtonClassicLong } from "../../../../components/CustomButtons";
 
 export default DraggableList = ({ toggleModal }) => {
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ export default DraggableList = ({ toggleModal }) => {
           renderItem={renderItem}
         />
       </GestureHandlerRootView>
-      <OrangeButton text="Save" action={saveOrder} />
+      <ButtonClassicLong text="Save" action={saveOrder} />
     </>
   );
 };

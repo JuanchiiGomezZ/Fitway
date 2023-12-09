@@ -20,8 +20,8 @@ import {
   WHITE_COLOR,
 } from "../../styles/styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { OrangeButton } from "../../components/Buttons";
 import { useNavigation } from "@react-navigation/native";
+import { ButtonClassicLong } from "../../components/CustomButtons";
 
 export default ExerciseDetails = ({ route }) => {
   const { id } = route.params;
@@ -83,7 +83,7 @@ export default ExerciseDetails = ({ route }) => {
               </View>
             </View>
           </View>
-          <OrangeButton text="Continue" action={handleNavigate} />
+          <ButtonClassicLong text="Continue" action={handleNavigate} />
         </>
       )}
     </View>

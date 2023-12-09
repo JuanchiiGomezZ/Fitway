@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { BACKGROUND_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../styles/styles";
+import { BACKGROUND_COLOR, WHITE_COLOR } from "../styles/styles";
 /* COMPONENTS */
-import { CloseModalIcon } from "./Buttons";
+import { CloseModalIcon } from "./CustomButtons";
 import BackdropModals from "./BackdropModals";
 
 /* HOOKS */
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR,
     borderRadius: 10,
     padding: 20,
-    zIndex: 4,
+    zIndex: 5,
   },
   head: {
     flexDirection: "row",

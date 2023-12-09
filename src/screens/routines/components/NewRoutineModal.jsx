@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Keyboard, TouchableHighlight } from "react-native";
+
+// HOOKS
 import { useTranslation } from "react-i18next";
-import {
-  BACKGROUND_COLOR,
-  BORDER_RADIUS,
-  ORANGE_COLOR,
-  ORANGE_DARK_COLOR,
-} from "../../../styles/styles";
 import useRoutinesStore from "../../../hooks/redux/useRoutinesStore";
 import { useNavigation } from "@react-navigation/native";
 
-import Animated, { FadeIn, FadeOut, FadeInRight, FadeOutRight } from "react-native-reanimated";
+// COMPONENTS
 import { ClassicInput } from "../../../components/Inputs";
+import ModalBase from "../../../components/ModalBase";
+import { ButtonClassicLong } from "../../../components/CustomButtons";
+
 import {
-  LongButtonSmall,
-  DisabledButtonSmall,
-  CloseModalIcon,
-} from "../../../components/Buttons";
-import BackdropModals from "../../../components/BackdropModals";
+  ORANGE_COLOR,
+  ORANGE_DARK_COLOR,
+} from "../../../styles/styles";
+
 
 export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
   const { t } = useTranslation();
@@ -40,15 +38,14 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
     goBack();
   };
 
+  const activeButton = name.trim() < 1 || difficulty == null;
   return (
-    <>
-      <BackdropModals toggleModal={toggleNewRoutineModal} />
-      <Animated.View style={styles.modalContainer} entering={FadeInRight} exiting={FadeOutRight}>
-        <View style={styles.header}>
-          <Text style={styles.title}>{t("Routines.NewRoutineModal.title")}</Text>
-          <CloseModalIcon action={toggleNewRoutineModal} />
-        </View>
-
+    <ModalBase
+      short={true}
+      toggleModal={toggleNewRoutineModal}
+      title={t("Routines.NewRoutineModal.title")}
+    >
+      <View style={{ gap: 20 }}>
         <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />
 
         <View>
@@ -95,50 +92,21 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
             ))}
           </View>
         </View>
-
-        {name.trim() < 1 || difficulty == null ? (
-          <DisabledButtonSmall text={"Continue"} />
-        ) : (
-          <LongButtonSmall text={"Continue"} action={handleCreateRoutine} />
-        )}
-      </Animated.View>
-    </>
+        <ButtonClassicLong
+          text={"Continue"}
+          disabled={activeButton}
+          action={!activeButton && handleCreateRoutine}
+          short={true}
+        />
+      </View>
+    </ModalBase>
   );
 };
 
 const styles = StyleSheet.create({
-  modalContainer: {
-    minHeight: 200,
-    width: "100%",
-    position: "absolute",
-    backgroundColor: BACKGROUND_COLOR,
-    top: "30%",
-    left: "5%",
-    borderRadius: BORDER_RADIUS,
-    paddingHorizontal: "5%",
-    paddingTop: 10,
-    paddingBottom: 15,
-    zIndex: 4,
-    gap: 25,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  title: {
-    color: "white",
-    fontSize: 22,
-    fontWeight: "500",
-  },
-  icon: {
-    color: "white",
-    fontSize: 20,
-  },
-
   subtitle: {
     color: "white",
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "400",
     marginBottom: 5,
   },

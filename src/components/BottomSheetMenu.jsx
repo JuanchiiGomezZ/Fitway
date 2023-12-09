@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import BackdropModals from "./BackdropModals";
-import { OptionMenu } from "./Buttons";
+import { OptionMenu } from "./CustomButtons";
 
 export default BottomSheetMenu = ({ children, toggleBottomSheet }) => {
   const { t } = useTranslation();

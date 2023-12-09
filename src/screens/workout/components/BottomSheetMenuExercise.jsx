@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { WHITE_COLOR, RED_COLOR, ORANGE_COLOR } from "../../../styles/styles";
 import BottomSheetMenu from "../../../components/BottomSheetMenu";
-import { OptionMenu } from "../../../components/Buttons";
+import { OptionMenu } from "../../../components/CustomButtons";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 
 export default BottomSheetMenuWorkout = ({

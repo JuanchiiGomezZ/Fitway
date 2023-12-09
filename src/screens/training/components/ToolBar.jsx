@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, GRAY_COLOR, ORANGE_COLOR } from "../../../styles/styles";
-import { CircularButtonSmall } from "../../../components/Buttons";
+import { ButtonCircular } from "../../../components/CustomButtons";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangeExercise } from "../../../store/slices/trainingSlice";
 
@@ -27,15 +27,16 @@ export default ToolBar = ({ toggleWorkoutModal }) => {
       exiting={SlideOutDown.duration(300).easing()}
       style={styles.toolBar}
     >
-      <CircularButtonSmall
+      <ButtonCircular
         icon="angle-double-left"
         action={handlePreviousExercise}
-        color={numActiveExercise == 0 && GRAY_COLOR}
+        disabled={numActiveExercise == 0 && GRAY_COLOR}
+        size={"m"}
       />
 
-      <CircularButtonSmall icon="clipboard-list" action={toggleWorkoutModal} />
+      <ButtonCircular icon="clipboard-list" action={toggleWorkoutModal} size={"m"} />
 
-      <CircularButtonSmall icon="angle-double-right" action={handleNextExercise} />
+      <ButtonCircular icon="angle-double-right" action={handleNextExercise} size={"m"} />
     </Animated.View>
   );
 };

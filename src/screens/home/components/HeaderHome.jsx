@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import TitleScreen from "../../../components/TitleScreen";
-import { TransparentButton, TransparentButtonDisabled } from "../../../components/Buttons";
+import { ButtonShortIndex } from "../../../components/CustomButtons";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
@@ -11,9 +11,7 @@ import { useSelector } from "react-redux";
 export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
-  const { activeRoutineDetails, activeRoutineId } = useSelector(
-    (state) => state.userRoutines,
-  );
+  const { activeRoutineDetails, activeRoutineId } = useSelector((state) => state.userRoutines);
 
   return (
     <View style={styles.head}>
@@ -30,20 +28,13 @@ export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
       </View>
 
       <View style={styles.buttonsContainer}>
-        {activeRoutineId ? (
-          <TransparentButton
-            text={t("Home.new-workout")}
-            icon={"clipboard-text"}
-            action={toggleNewWorkoutModal}
-          />
-        ) : (
-          <TransparentButtonDisabled
-            text={t("Home.new-workout")}
-            icon={"clipboard-text"}
-            action={toggleNewWorkoutModal}
-          />
-        )}
-        <TransparentButton
+        <ButtonShortIndex
+          text={t("Home.new-workout")}
+          icon={"clipboard-text"}
+          action={toggleNewWorkoutModal}
+          disabled={!activeRoutineId}
+        />
+        <ButtonShortIndex
           text={t("Home.my-routines")}
           icon={"bookmark"}
           action={() => navigate("MyRoutines")}
@@ -66,7 +57,7 @@ const styles = StyleSheet.create({
   routineName: {
     color: GRAY_COLOR,
     fontSize: 18,
-    fontWeight:'600'
+    fontWeight: "600",
   },
   buttonsContainer: {
     flexDirection: "row",

@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BACKGROUND_COLOR, BORDER_RADIUS } from "../../../styles/styles";
-import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 import { ClassicInput, Te } from "../../../components/Inputs";
-import {
-  LongButtonSmall,
-  DisabledButtonSmall,
-  CloseModalIcon,
-} from "../../../components/Buttons";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
-import BackdropModals from "../../../components/BackdropModals";
 import { useNavigation } from "@react-navigation/native";
 import ModalBase from "../../../components/ModalBase";
+import { ButtonClassicLong } from "../../../components/CustomButtons";
 
 const heightScren = Dimensions.get("screen").height;
 
@@ -29,6 +23,8 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
     toggleNewWorkoutModal();
   };
 
+  const activeButton = name.trim() < 1;
+
   return (
     <ModalBase toggleModal={toggleNewWorkoutModal} title="New Workout" short={true}>
       <View style={{ gap: 20 }}>
@@ -38,11 +34,12 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
           placeholder={t("Home.workout-name")}
         />
 
-        {name.trim() < 1 ? (
-          <DisabledButtonSmall text={t("global.continue")} />
-        ) : (
-          <LongButtonSmall text={t("global.continue")} action={handleNewWorkout} />
-        )}
+        <ButtonClassicLong
+          text={t("global.continue")}
+          short={true}
+          action={!activeButton && handleNewWorkout}
+          disabled={activeButton}
+        />
       </View>
     </ModalBase>
   );

@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     right: 15,
     bottom: 19,
     position: "absolute",
-    zIndex: 4,
+    zIndex: 5,
   },
   secondCircle: {
     width: 46,
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    zIndex: 4,
+    zIndex: 5,
   },
   buttonLabel: {
     color: WHITE_COLOR,

@@ -11,7 +11,6 @@ import {
 import { FontAwesome5 } from "@expo/vector-icons";
 import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
-import { ConfigButton } from "../../../components/Buttons";
 import CardContainer from "../../../components/CardContainer";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);

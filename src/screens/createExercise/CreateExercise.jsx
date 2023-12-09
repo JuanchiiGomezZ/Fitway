@@ -14,10 +14,10 @@ import Header from "../../components/Header";
 import AddImage from "./components/AddImage";
 import BottomsheetImage from "./components/BottomsheetImage";
 import { ClassicInputWithLabel, TextAreaWithLabel } from "../../components/Inputs";
-import { DisabledButton, OrangeButton } from "../../components/Buttons";
 import ElementCard from "../../components/ElementCard";
 import PickerModal from "./components/PickerModal";
 import ExerciseTypesModal from "./components/ExerciseTypesModal";
+import { ButtonClassicLong } from "../../components/CustomButtons";
 
 //STYLES
 import {
@@ -96,6 +96,8 @@ export default CreateExercise = () => {
     setErrors(errors);
   };
 
+  const activeButton = name.trim() == "" || !primaryMuscle || !element || !exerciseType;
+
   return (
     <View style={styles.container}>
       <Header title={"Create Exercise"} />
@@ -144,11 +146,12 @@ export default CreateExercise = () => {
           </View>
         </View>
       </View>
-      {name.trim() == "" || !primaryMuscle || !element ? (
-        <DisabledButton text="Continue" action={validateData} />
-      ) : (
-        <OrangeButton text="Continue" action={handleContinue} />
-      )}
+
+      <ButtonClassicLong
+        text="Continue"
+        action={!activeButton ? handleContinue : validateData}
+        disabled={activeButton}
+      />
 
       {pickerMuscle && (
         <PickerModal

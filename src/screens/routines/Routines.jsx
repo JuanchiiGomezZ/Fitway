@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 
 //COMPONENTS
 import Header from "../../components/Header";
-import { TransparentButtonRounded, OrangeButtonRounded } from "../../components/Buttons";
+
 import SearchBar from "./components/SearchBar";
 import RoutineCard from "./components/RoutineCard";
 import NewRoutineModal from "./components/NewRoutineModal";
@@ -17,6 +17,7 @@ import FilterRoutineModal from "./components/FilterRoutineModal";
 //MORE
 import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 import Separator from "../../components/Separator";
+import { ButtonRounded } from "../../components/CustomButtons";
 
 export default AllRoutinesScreen = ({ route }) => {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ export default AllRoutinesScreen = ({ route }) => {
       <View style={styles.head}>
         <Header title={t("Routines.title")} />
         <View style={{ marginBottom: 13 }}>
-          <OrangeButtonRounded
+          <ButtonRounded
             text={t("Routines.create-routine")}
             icon={"plus"}
             action={toggleNewRoutineModal}

@@ -9,7 +9,7 @@ import {
   ORANGE_DARK_COLOR,
   WHITE_COLOR,
 } from "../../../../styles/styles";
-import { ConfigButton } from "../../../../components/Buttons";
+import { ConfigButton } from "../../../../components/CustomButtons";
 import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
 import WorkoutCardSingle from "./ExerciseCardSingle";
 

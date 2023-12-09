@@ -9,7 +9,7 @@ import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
 
 //COMPONENTS
 import Header from "../../components/Header";
-import { TransparentButton } from "../../components/Buttons";
+import { ButtonShortIndex } from "../../components/CustomButtons";
 import RoutineCard from "./components/MyRoutineCard";
 import Separator from "../../components/Separator";
 import QrModal from "../../components/QrModal";
@@ -63,8 +63,8 @@ export default MyRoutinesScreen = () => {
         }
       >
         <View style={styles.buttonsContainer}>
-          <TransparentButton text={t("MyRoutines.filter")} icon={"filter-variant-plus"} />
-          <TransparentButton
+          <ButtonShortIndex text={t("MyRoutines.filter")} icon={"filter-variant-plus"} />
+          <ButtonShortIndex
             text={t("MyRoutines.add-routine")}
             icon={"plus-circle"}
             action={() => navigation.navigate("AllRoutines")}

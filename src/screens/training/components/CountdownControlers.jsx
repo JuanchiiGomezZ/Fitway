@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { CircularButton, GrayCircularButton } from "../../../components/Buttons";
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { ButtonCircular } from "../../../components/CustomButtons";
+import { GRAY_COLOR } from "../../../styles/styles";
 
 export default CountdownControlers = ({ useCountdown, time, setTime }) => {
   const { start, isPaused, addTime, skipTime } = useCountdown;
@@ -9,7 +10,6 @@ export default CountdownControlers = ({ useCountdown, time, setTime }) => {
     start(time);
   };
 
-
   const handleAddTime = (extraSeconds) => {
     setTime((current) => current + extraSeconds);
     addTime(extraSeconds);
@@ -17,9 +17,14 @@ export default CountdownControlers = ({ useCountdown, time, setTime }) => {
 
   return (
     <View style={styles.controlsContainer}>
-      <GrayCircularButton text="+15s" action={() => handleAddTime(15)} />
-      <CircularButton icon={isPaused ? "play" : "pause"} action={handlePlay} />
-      <GrayCircularButton icon="forward" action={skipTime} />
+      <ButtonCircular
+        text="+15s"
+        action={() => handleAddTime(15)}
+        size={"m"}
+        bgColor={GRAY_COLOR}
+      />
+      <ButtonCircular icon={isPaused ? "play" : "pause"} action={handlePlay} size={"l"} />
+      <ButtonCircular icon="forward" action={skipTime} size={"m"} bgColor={GRAY_COLOR} />
     </View>
   );
 };

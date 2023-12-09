@@ -4,20 +4,18 @@ import { StyleSheet, ImageBackground, View, Text } from "react-native";
 /* HOOKS & HELPERS */
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
-import { storage } from "../../helpers/storage";
 
 /* COMPONENTS */
-import { GoogleButton, FacebookButton, OrangeButton } from "../../components/Buttons";
+import { ButtonClassicLong, ButtonGoogle } from "../../components/CustomButtons";
 import LogoFitway from "../../components/LogoFitway";
 import Loader from "../../components/Loader";
 import useAuthStore from "../../hooks/redux/useAuthStore";
 
 import { PADDING_HORIZONTAL, GRAY_COLOR, ORANGE_COLOR } from "../../styles/styles";
+
 export default StartScreen = () => {
-  const { signIn, signOut } = useAuthStore();
-  const { isLoading, user } = useSelector((state) => state.auth);
-  const { activeRoutineId } = useSelector((state) => state.userRoutines);
-  
+  const { signIn } = useAuthStore();
+  const { isLoading } = useSelector((state) => state.auth);
 
   return (
     <>
@@ -41,13 +39,8 @@ export default StartScreen = () => {
           >
             <LogoFitway />
             <View style={styles.bottomContainer}>
-            <OrangeButton
-                text={"Login"}
-                action={() => {
-                }}
-              />
-              {/*<FacebookButton /> */}
-              <GoogleButton action={signIn} />
+              <ButtonClassicLong text="Continue" />
+              <ButtonGoogle action={signIn} />
               <View>
                 <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>
                 <Text style={[styles.privacyGeneral, { color: ORANGE_COLOR }]}>

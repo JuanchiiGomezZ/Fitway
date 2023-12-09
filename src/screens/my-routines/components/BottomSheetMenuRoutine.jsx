@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RED_COLOR, ORANGE_COLOR, GREEN_COLOR } from "../../../styles/styles";
 import BottomSheetMenu from "../../../components/BottomSheetMenu";
-import { OptionMenu } from "../../../components/Buttons";
+import { OptionMenu } from "../../../components/CustomButtons";
 import useRoutinesStore from "../../../hooks/redux/useRoutinesStore";
 import { useSelector } from "react-redux";
 
