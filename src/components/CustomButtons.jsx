@@ -213,9 +213,10 @@ const styles = StyleSheet.create({
 
   buttonRounded: {
     borderRadius: 40,
-    height: 45,
+    height: 40,
     paddingLeft: 4,
     paddingRight: 7,
+    gap: 1,
   },
 
   buttonLongSmall: {

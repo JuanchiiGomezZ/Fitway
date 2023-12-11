@@ -23,6 +23,9 @@ export const workoutsSlice = createSlice({
     saveWorkoutExercises: (state, { payload }) => {
       (state.workoutExercises = payload), (state.isLoading = false);
     },
+    cleanWorkout: (state, { payload }) => {
+      (state.workoutDetails = []), (state.workoutExercises = null);
+    },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
     },
@@ -30,4 +33,4 @@ export const workoutsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { saveWorkoutData, saveWorkoutExercises, onChecking, onError } = workoutsSlice.actions;
+export const { saveWorkoutData, saveWorkoutExercises, onChecking, onError, cleanWorkout } = workoutsSlice.actions;

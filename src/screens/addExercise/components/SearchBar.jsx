@@ -33,5 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     gap: 10,
+    marginBottom: 20,
   },
 });

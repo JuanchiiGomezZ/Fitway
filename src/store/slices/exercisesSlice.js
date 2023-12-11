@@ -21,9 +21,12 @@ export const exercisesSlice = createSlice({
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
     },
+    onSuccess: (state, { payload }) => {
+      (state.isLoading = false), (state.error = null);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { saveUserExercises, onChecking, onError, saveExerciseDetail } =
+export const { saveUserExercises, onChecking, onError, onSuccess, saveExerciseDetail } =
   exercisesSlice.actions;

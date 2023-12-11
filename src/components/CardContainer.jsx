@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { View, TouchableOpacity, StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import Animated, { FadeInDown, Layout, FadeOut } from "react-native-reanimated";
 import { BORDER_RADIUS, BOX_COLOR } from "../styles/styles";
 import { ConfigButton } from "./CustomButtons";
@@ -17,8 +17,7 @@ const CardContainer = ({ children, action, index, configAction, animation }) => 
     <AnimatedTouchable
       style={styles.cardContainer}
       entering={initialMode.current && FadeInDown.delay(100 * index)}
-      exiting={ FadeOut}
-      layout={Layout.delay(200)}
+      // exiting={ FadeOut} // GHOSTING AL CAMBIAR DE WORKOUT
       onPress={action}
     >
       {configAction && <ConfigButton action={configAction} />}

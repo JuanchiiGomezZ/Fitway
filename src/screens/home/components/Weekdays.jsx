@@ -63,11 +63,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: BOX_COLOR,
     justifyContent: "center",
+    alignItems: "center",
   },
   dayText: {
     width: screenWidth * 0.11,
     color: WHITE_COLOR,
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: "800",
     textAlign: "center",
   },

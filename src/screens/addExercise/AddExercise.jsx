@@ -1,101 +1,44 @@
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
 //HOOKS
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 //COMPONENTS
 import Header from "../../components/Header";
 import SearchBar from "./components/SearchBar";
-
 import { ButtonRounded } from "../../components/CustomButtons";
-import useExercisesStore from "../../hooks/redux/useExercisesStore";
-import ExerciseCardSingle from "../workout/components/card/ExerciseCardSingle";
-import PagerView from "react-native-pager-view";
-import AddExerciseCard from "./components/AddExerciseCard";
+import AllExercises from "./components/AllExercises";
+import MyExercises from "./components/MyExercises";
 
 //STYLES
-import {
-  BACKGROUND_COLOR,
-  GRAY_COLOR,
-  ORANGE_COLOR,
-  PADDING_HORIZONTAL,
-  PADDING_TOP,
-  WHITE_COLOR,
-} from "../../styles/styles";
+import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
+import PagerNavigator from "../../components/PagerNavigator";
 
 export default AddExercise = () => {
   const { t } = useTranslation();
-  const { getAllUserExercises, getUserExsWithoutSelectedWkt } = useExercisesStore();
-  const { isLoading } = useSelector((state) => state.exercises);
   const { navigate } = useNavigation();
-  const [currentPage, setCurrentPage] = useState(0);
-  const [userExercises, setUserExercises] = useState(null);
 
-  useEffect(() => {
-    getUserExsWithoutSelectedWkt().then((res) => {
-      setUserExercises(res);
-    });
-  }, []);
-
-  const onPageSelected = (event) => {
-    setCurrentPage(event.nativeEvent.position);
-  };
-
-  const ref = useRef();
+  const pages = [
+    { title: "All Exercises", component: <AllExercises /> },
+    { title: "My Exercises", component: <MyExercises /> },
+  ];
 
   return (
     <View style={styles.container}>
-      <View style={styles.head}>
-        <Header title={"Exercises"} />
-        <View style={{ marginBottom: 13 }}>
+      <View>
+        <View style={styles.row}>
+          <Header title={"Exercises"} />
           <ButtonRounded
             text={"Create Exercise"}
             icon={"plus"}
             action={() => navigate("CreateExercise")}
           />
         </View>
-      </View>
       <SearchBar />
-      <View style={styles.paginatorContainer}>
-        <TouchableOpacity onPress={() => ref.current?.setPage(0)}>
-          <Text style={[styles.page, currentPage == 1 && styles.inactive]}>All Exercises</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => ref.current?.setPage(1)}>
-          <Text style={[styles.page, currentPage == 0 && styles.inactive]}>My Exercises</Text>
-        </TouchableOpacity>
       </View>
-
-      <PagerView style={styles.pager} ref={ref} initialPage={0} onPageSelected={onPageSelected}>
-        <View key="1">
-          <ScrollView>
-            <View style={{ gap: 7 }}>
-              {userExercises?.length > 0 ? (
-                userExercises.map((item, index) => (
-                  <AddExerciseCard key={item.id} data={item} index={index} />
-                ))
-              ) : (
-                <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>
-              )}
-            </View>
-          </ScrollView>
-        </View>
-        <View key="2">
-          <ScrollView>
-            <View style={{ gap: 7 }}>
-              {userExercises?.length > 0 ? (
-                userExercises.map((item, index) => (
-                  <ExerciseCardSingle key={item.id} data={item} index={index} />
-                ))
-              ) : (
-                <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>
-              )}
-            </View>
-          </ScrollView>
-        </View>
-      </PagerView>
+      <PagerNavigator pages={pages} />
     </View>
   );
 };
@@ -107,43 +50,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: PADDING_HORIZONTAL,
     paddingTop: PADDING_TOP,
   },
-  head: {
+
+  row: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
   },
-  paginatorContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: 20,
-    gap: 50,
-  },
-  page: {
-    color: WHITE_COLOR,
-    fontSize: 17,
-    fontWeight: "700",
-    paddingBottom: 5,
-    borderBottomColor: ORANGE_COLOR,
-    borderBottomWidth: 3,
-  },
-  inactive: {
-    color: GRAY_COLOR,
-    borderBottomWidth: 0,
-  },
-
-  pager: {
-    flex: 1,
-  },
 });
-
-{
-  /* <View style={{ gap: 7 }}>
-{userExercises?.length > 0 ? (
-  userExercises.map((item, index) => (
-    <ExerciseCardSingle key={item.id} data={item} index={index} />
-  ))
-) : (
-  <Text style={{ textAlign: "center", color: WHITE_COLOR }}>Empty</Text>
-)}
-</View> */
-}

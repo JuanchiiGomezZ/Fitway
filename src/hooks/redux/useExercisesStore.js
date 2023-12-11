@@ -1,4 +1,9 @@
-import { onChecking, saveUserExercises, onError } from "../../store/slices/exercisesSlice";
+import {
+  onChecking,
+  saveUserExercises,
+  onError,
+  onSuccess,
+} from "../../store/slices/exercisesSlice";
 import { saveWorkoutExercises } from "../../store/slices/workoutsSlice";
 import maxOrder from "../../helpers/maxOrder";
 
@@ -67,6 +72,7 @@ export default useExercisesStore = () => {
       const { data } = await axios.get(
         `/exercise/selectExercise/${user.id}/${workoutDetails.workoutId}`,
       );
+      dispatch(onSuccess());
       return data;
     } catch (error) {
       dispatch(onError(error.response.data));
