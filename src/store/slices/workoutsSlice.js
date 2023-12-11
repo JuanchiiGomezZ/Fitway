@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import sortByOrder from "../../helpers/sortByOrder";
 
 export const workoutsSlice = createSlice({
   name: "workouts",
@@ -13,12 +14,14 @@ export const workoutsSlice = createSlice({
       (state.isLoading = true), (state.error = null);
     },
     saveWorkoutData: (state, { payload }) => {
-      (state.workoutDetails = payload.details),
-        (state.workoutExercises = payload.Exercises.Exercises),
+      const { details, Exercises } = payload;
+
+      (state.workoutDetails = details),
+        (state.workoutExercises = sortByOrder(Exercises.Exercises)),
         (state.isLoading = false);
     },
     saveWorkoutExercises: (state, { payload }) => {
-      (state.workoutExercises =  payload ), (state.isLoading = false);
+      (state.workoutExercises = payload), (state.isLoading = false);
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);

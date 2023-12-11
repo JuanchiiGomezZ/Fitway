@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useTranslation } from "react-i18next";
+import { StyleSheet, View } from "react-native";
 import DraggableFlatList, {
   OpacityDecorator,
   ShadowDecorator,
@@ -13,11 +12,12 @@ import ExerciseSupersetCard from "./ExerciseSupersetCard";
 import { saveExercises, handleChangeExercise } from "../../../../store/slices/trainingSlice";
 import { ButtonClassicLong } from "../../../../components/CustomButtons";
 
+
 export default DraggableList = ({ toggleModal }) => {
   const dispatch = useDispatch();
   const ref = useRef(null);
   const { activeWorkout, numActiveExercise } = useSelector((state) => state.training);
-  const [data, setData] = useState(activeWorkout.sort((a, b) => a.order - b.order));
+  const [data, setData] = useState(activeWorkout);
 
   const saveOrder = () => {
     dispatch(saveExercises(data));

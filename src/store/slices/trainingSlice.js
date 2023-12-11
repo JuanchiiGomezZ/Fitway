@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import sortByOrder from "../../helpers/sortByOrder";
 
 export const trainingSlice = createSlice({
   name: "training",
@@ -8,6 +9,7 @@ export const trainingSlice = createSlice({
     activeExercise: undefined,
     activeWorkoutDetails: undefined,
     workoutLog: [[]],
+    exerciseGif: null,
     isLoading: false,
     error: null,
   },
@@ -20,7 +22,7 @@ export const trainingSlice = createSlice({
       const { numActiveExercise } = state;
 
       (state.activeWorkoutDetails = details),
-        (state.activeWorkout = Exercises.Exercises),
+        (state.activeWorkout = sortByOrder(Exercises.Exercises)),
         (state.activeExercise = Exercises.Exercises[numActiveExercise]),
         (state.isLoading = false);
     },
@@ -82,6 +84,10 @@ export const trainingSlice = createSlice({
     cleanWorkoutLog: (state, { payload }) => {
       (state.workoutLog = [[]]), (state.numActiveExercise = 0);
     },
+    toggleExerciseGif: (state, { payload }) => {
+
+        state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
+    },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
     },
@@ -99,4 +105,5 @@ export const {
   updateWorkoutLogReps,
   cleanWorkoutLog,
   saveExercises,
+  toggleExerciseGif,
 } = trainingSlice.actions;

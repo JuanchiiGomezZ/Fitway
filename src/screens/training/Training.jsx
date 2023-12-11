@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { cleanWorkoutLog } from "../../store/slices/trainingSlice";
 import useToggle from "../../hooks/useToggle";
+import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
+import { toggleExerciseGif } from "../../store/slices/trainingSlice";
 
 //COMPONENTS
 import Loader from "../../components/Loader";
@@ -15,39 +17,52 @@ import ProgressBar from "./components/ProgressBar";
 import ContentExercise from "./components/contentExercise/ContentExercise";
 import ExercisesModal from "./components/exercisesModal/ExercisesModal";
 import BottomBar from "./components/bottomBars/BottomBar";
+import ConfirmationAlert from "../../components/ConfirmationAlert";
 
 //STYLES
 import { BACKGROUND_COLOR, GRAY_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
-import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import ExerciseGIF from "../../components/ExerciseGIF";
 
 export default TrainingMode = ({ route }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { navigate } = useNavigation();
+  const { navigate, goBack } = useNavigation();
   const { getWorkoutTrainingData } = useWorkoutsStore();
-  const { isLoading, activeExercise, activeWorkoutDetails, numActiveExercise, activeWorkout } =
-    useSelector((state) => state.training);
+  const {
+    isLoading,
+    activeExercise,
+    activeWorkoutDetails,
+    numActiveExercise,
+    activeWorkout,
+    exerciseGif,
+  } = useSelector((state) => state.training);
   const { id } = route.params;
 
   const [countdown, toggleCountodwn] = useToggle(false);
   const [openWorkout, toggleOpenWorkout] = useToggle(false);
+  const [confirmationAlert, toggleConfAlert] = useToggle(false);
 
   useEffect(() => {
     if (activeWorkoutDetails?.workoutId != id) getWorkoutTrainingData(id);
   }, []);
 
-  // useEffect(() => {
-  //   const backAction = () => {
-  //     navigate("TabNavigation", { screen: "Home" });
-  //     dispatch(cleanWorkoutLog());
-  //     return true;
-  //   };
+  useEffect(() => {
+    const backAction = () => {
+      // toggleConfAlert();
+      goBack();
+      dispatch(cleanWorkoutLog());
+      return true;
+    };
 
-  //   const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
 
-  //   return () => backHandler.remove();
-  // }, []);
+    return () => backHandler.remove();
+  }, []);
+
+  const backAction = () => {
+    goBack();
+    dispatch(cleanWorkoutLog());
+  };
 
   return (
     <View style={styles.container}>
@@ -66,9 +81,22 @@ export default TrainingMode = ({ route }) => {
           </ScrollView>
           <BottomBar toggleOpenWorkout={toggleOpenWorkout} />
 
-          {/* <ExerciseGIF/> */}
+          {exerciseGif && (
+            <ExerciseGIF
+              toggleModal={() => dispatch(toggleExerciseGif())}
+              exerciseGIF={exerciseGif}
+            />
+          )}
           {countdown && <Countdown toggleModal={toggleCountodwn} restTime={30} />}
           {openWorkout && <ExercisesModal toggleModal={toggleOpenWorkout} />}
+          {confirmationAlert && (
+            <ConfirmationAlert
+              toggleModal={toggleConfAlert}
+              title="Alert"
+              text={"Are you sure you want to quit the training?"}
+              confirmAction={backAction}
+            />
+          )}
         </>
       )}
     </View>

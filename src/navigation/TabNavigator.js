@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 /* Screens */
 import Home from "../screens/home/Home";
 import Profile from "../screens/profile/Profile";
-import Discover from "../screens/discover/Discover";
+
 import WorkoutLog from "../screens/workoutLog/WorkoutLogs";
 
 /* Navigation */
@@ -31,15 +31,13 @@ const TabNavigator = () => {
         component={Home}
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <FontAwesome5 name="home" size={25} color={focused ? "white" : "#151515"} style={styles.centerButton} />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="Discover"
-        component={Discover}
-        options={{
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="robot" size={35} color={color} />,
+            <FontAwesome5
+              name="home"
+              size={25}
+              color={focused ? "white" : "#151515"}
+              style={styles.centerButton}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -74,6 +72,5 @@ const styles = StyleSheet.create({
     height: 60,
     borderTopWidth: 0.55,
     borderTopColor: "#474747",
-
   },
 });

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import ContentExerciseSingle from "./ContentExerciseSingle";
@@ -10,7 +10,7 @@ export default ContentExercise = () => {
   const { activeExercise } = useSelector((state) => state.training);
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 30 }}>
       {activeExercise.Exercises ? (
         <ContentExerciseSuperset data={activeExercise} />
       ) : (
@@ -19,7 +19,3 @@ export default ContentExercise = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {},
-});

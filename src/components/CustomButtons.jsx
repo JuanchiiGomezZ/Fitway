@@ -8,6 +8,7 @@ import {
   BACKGROUND_COLOR,
   GRAY_LIGHT_COLOR,
   GRAY_DARK_COLOR,
+  BOX_COLOR,
 } from "../styles/styles";
 import { useTranslation } from "react-i18next";
 import {
@@ -45,6 +46,8 @@ const TextButton = ({ text, color, disabled }) => {
         { color: color ? color : WHITE_COLOR },
         disabled && { color: GRAY_LIGHT_COLOR },
       ]}
+      ellipsizeMode="tail"
+      numberOfLines={1}
     >
       {text}
     </Text>
@@ -113,6 +116,7 @@ export const ButtonRounded = ({ bgColor, action, transparent, disabled, text, co
 
 export const ButtonCircular = ({ bgColor, action, color, icon, size, text, disabled }) => {
   const Icon = icon == "close" ? FontAwesome : FontAwesome5;
+  const Container = disabled ? Pressable : TouchableOpacity;
 
   // size = l(50), m(40), s(30)
   const sizeSelector = () => {
@@ -133,7 +137,7 @@ export const ButtonCircular = ({ bgColor, action, color, icon, size, text, disab
   ];
 
   return (
-    <TouchableOpacity style={buttonStyles} onPress={action}>
+    <Container style={buttonStyles} onPress={action}>
       {icon ? (
         <Icon
           name={icon}
@@ -144,7 +148,7 @@ export const ButtonCircular = ({ bgColor, action, color, icon, size, text, disab
       ) : (
         <TextButton text={text} />
       )}
-    </TouchableOpacity>
+    </Container>
   );
 };
 
@@ -187,11 +191,7 @@ export const ButtonShortIndex = ({ action, icon, text, disabled }) => {
       style={[styles.row, styles.buttonShortIndex, disabled && { borderColor: GRAY_COLOR }]}
       onPress={action}
     >
-      <MaterialCommunityIcons
-        name={icon}
-        size={20}
-        color={disabled ? GRAY_COLOR : WHITE_COLOR}
-      />
+      <MaterialCommunityIcons name={icon} size={20} color={disabled ? GRAY_COLOR : WHITE_COLOR} />
       <TextButton text={text} color={disabled && GRAY_COLOR} />
     </Container>
   );

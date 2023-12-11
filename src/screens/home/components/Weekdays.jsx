@@ -5,7 +5,13 @@
  */
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BOX_COLOR, ORANGE_COLOR, BACKGROUND_COLOR, WHITE_COLOR, GREEN_COLOR } from "../../../styles/styles";
+import {
+  BOX_COLOR,
+  ORANGE_COLOR,
+  BACKGROUND_COLOR,
+  WHITE_COLOR,
+  GREEN_COLOR,
+} from "../../../styles/styles";
 import { FontAwesome } from "@expo/vector-icons";
 
 const screenWidth = Dimensions.get("window").width;
@@ -17,7 +23,7 @@ export default Weekdays = () => {
   const dayOfWeek = new Date().getDay();
 
   const initialWeekDaysArr = weekDays.map((day, index) => ({
-    name: t(`weekdays.${day}`).slice(0, 2).toUpperCase(),
+    name: t(`weekdays.${day}`).slice(0, 3).toUpperCase(),
     active: false,
     today: index === dayOfWeek,
   }));
@@ -27,7 +33,9 @@ export default Weekdays = () => {
       {initialWeekDaysArr.map((item, index) => (
         <View style={styles.dayContainer} key={item.name}>
           <View style={[styles.day, item.today && styles.activeDay]}>
-            <Text style={styles.dayText}>{item.name}</Text>
+            <Text style={styles.dayText} adjustsFontSizeToFit={true}>
+              {item.name}
+            </Text>
           </View>
           {!item.active ? (
             <FontAwesome name="check" size={20} color={GREEN_COLOR} />
@@ -47,20 +55,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: screenWidth * 0.02,
     marginTop: 10,
-    height:65
+    height: 65,
   },
   day: {
     height: screenWidth * 0.11,
     width: screenWidth * 0.11,
     borderRadius: 25,
     backgroundColor: BOX_COLOR,
-    alignItems: "center",
     justifyContent: "center",
   },
   dayText: {
+    width: screenWidth * 0.11,
     color: WHITE_COLOR,
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "800",
+    textAlign: "center",
   },
   activeDay: {
     backgroundColor: ORANGE_COLOR,

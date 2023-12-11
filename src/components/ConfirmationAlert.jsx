@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
 import BackdropModals from "./BackdropModals";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BORDER_RADIUS, GRAY_COLOR, WHITE_COLOR } from "../styles/styles";
 import { ButtonClassicLong } from "./CustomButtons";
 
 export default ConfirmationAlert = ({ toggleModal, title, text, confirmAction }) => {
-  const { t } = useTranslation();
+
   return (
     <>
       <BackdropModals toggleModal={toggleModal} />
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR,
     borderRadius: BORDER_RADIUS,
     padding: 20,
-    zIndex: 4,
+    zIndex: 5,
     justifyContent: "center",
     alignItems: "center",
   },

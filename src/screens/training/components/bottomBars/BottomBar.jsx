@@ -4,6 +4,7 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { GRAY_COLOR } from "../../../../styles/styles";
 import useToggle from "../../../../hooks/useToggle";
+import useTimer from "../../hooks/useTimer";
 import ToolBar from "../ToolBar";
 import Timer from "../Timer";
 
