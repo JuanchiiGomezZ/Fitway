@@ -36,6 +36,7 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
     }
   };
 
+
   return (
     <ModalBase title="Create superset" toggleModal={toggleModal}>
       <ScrollView>
@@ -43,7 +44,7 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
           {workoutExercises &&
             workoutExercises.map(
               (item, index) =>
-                !item?.exercises && (
+                !item?.Exercises && (
                   <Animated.View key={item.id} entering={FadeInDown.delay(100 * index)}>
                     <Pressable
                       style={styles.cardContainer}
@@ -68,7 +69,12 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
             )}
         </View>
       </ScrollView>
-      <ButtonClassicLong text="Confirm" action={handleCreateSuperset} />
+
+      <ButtonClassicLong
+        text="Confirm"
+        action={handleCreateSuperset}
+        disabled={selectedExercises.size <= 1}
+      />
     </ModalBase>
   );
 };

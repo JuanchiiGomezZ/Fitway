@@ -95,7 +95,7 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
         <ButtonClassicLong
           text={"Continue"}
           disabled={activeButton}
-          action={!activeButton && handleCreateRoutine}
+          action={handleCreateRoutine}
           short={true}
         />
       </View>

@@ -37,7 +37,7 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
         <ButtonClassicLong
           text={t("global.continue")}
           short={true}
-          action={!activeButton && handleNewWorkout}
+          action={handleNewWorkout}
           disabled={activeButton}
         />
       </View>

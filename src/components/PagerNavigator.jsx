@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import PagerView from "react-native-pager-view";
 import { ORANGE_COLOR, WHITE_COLOR } from "../styles/styles";
+import CreateSupersetModal from "../screens/workout/components/CreateSupersetModal";
 
 const PagerNavigator = ({ pages }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,6 +27,7 @@ const PagerNavigator = ({ pages }) => {
           <View key={index + 1}>{page.component}</View>
         ))}
       </PagerView>
+
     </>
   );
 };

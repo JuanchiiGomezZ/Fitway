@@ -19,9 +19,18 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 
-const ButtonLong = ({ children, short, bgColor, action, transparent, disabled }) => {
+const ButtonLong = ({
+  children,
+  short,
+  bgColor,
+  action,
+  transparent,
+  disabled,
+  disabledAction,
+}) => {
+  const Container = disabled ? Pressable : TouchableOpacity;
   return (
-    <TouchableOpacity
+    <Container
       style={[
         styles.row,
         styles.buttonLong,
@@ -31,10 +40,10 @@ const ButtonLong = ({ children, short, bgColor, action, transparent, disabled })
         disabled && { backgroundColor: "#363636" },
         disabled && transparent && styles.buttonTransparentDisabled,
       ]}
-      onPress={action ? action : () => {}}
+      onPress={!disabled ? action : disabledAction}
     >
       {children}
-    </TouchableOpacity>
+    </Container>
   );
 };
 
@@ -82,6 +91,7 @@ export const ButtonClassicLong = ({
   transparent,
   disabled,
   short,
+  disabledAction,
 }) => {
   return (
     <ButtonLong
@@ -90,6 +100,7 @@ export const ButtonClassicLong = ({
       transparent={transparent}
       disabled={disabled}
       short={short}
+      disabledAction={disabledAction}
     >
       <TextButton text={text} color={color} disabled={disabled} />
     </ButtonLong>
@@ -185,7 +196,6 @@ export const CloseModalIcon = ({ action }) => {
 };
 export const ButtonShortIndex = ({ action, icon, text, disabled }) => {
   const Container = disabled ? View : TouchableOpacity;
-
   return (
     <Container
       style={[styles.row, styles.buttonShortIndex, disabled && { borderColor: GRAY_COLOR }]}

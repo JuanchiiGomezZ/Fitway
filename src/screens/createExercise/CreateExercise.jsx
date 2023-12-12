@@ -149,8 +149,9 @@ export default CreateExercise = () => {
 
       <ButtonClassicLong
         text="Continue"
-        action={!activeButton ? handleContinue : validateData}
+        action={handleContinue}
         disabled={activeButton}
+        disabledAction={validateData}
       />
 
       {pickerMuscle && (

@@ -1,72 +1,62 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 //HOOKS
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import useToggle from "../../hooks/useToggle";
 
 //COMPONENTS
 import Header from "../../components/Header";
 import ExercisesList from "./components/card/ExercisesList";
-import ExerciseGIF from "./components/ExerciseGIF";
 import CreateSupersetModal from "./components/CreateSupersetModal";
 import BottomSheetMenuExercise from "./components/BottomSheetMenuExercise";
 import PagerNavigator from "../../components/PagerNavigator";
-
-//STYLES
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
+import ScreenContainer from "../../components/ScreenContainer";
+import FloatingMenu from "./components/FloatingMenu";
 
 export default WorkoutScreen = ({ route }) => {
-  const { t } = useTranslation();
   const { workoutId } = route.params || {};
-
 
   const { workoutDetails } = useSelector((state) => state.workouts);
   const { name } = workoutDetails;
-  const [configModal, setConfigModal] = useState(false);
   const [exerciseId, setExerciseId] = useState(null);
 
+  const [bottomSheet, toggleBottomsheet] = useToggle(false);
   const [createSuperset, toggleCreateSuperset] = useToggle(false);
 
-  const toggleConfig = (id, type) => {
+  const toggleBottomSheet = (id, type) => {
     id && setExerciseId({ id, type });
-    setConfigModal((prev) => !prev);
+    toggleBottomsheet();
   };
 
-
-
   const pages = [
-    { title: "Exercises", component: <ExercisesList workoutId={workoutId} /> },
+    {
+      title: "Exercises",
+      component: <ExercisesList workoutId={workoutId} toggleBottomSheet={toggleBottomSheet} />,
+    },
     { title: "Logs", component: <></> },
   ];
 
   return (
-    <View style={styles.container}>
-      <Header title={name} margin={false} />
+    <ScreenContainer>
+      <Header title={name} />
       <PagerNavigator pages={pages} />
-
+      <FloatingMenu />
       {createSuperset && (
         <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />
       )}
-      {configModal && (
+      {bottomSheet && (
         <BottomSheetMenuExercise
-          toggleBottomSheet={toggleConfig}
+          toggleBottomSheet={toggleBottomsheet}
           exerciseId={exerciseId}
           toggleCreateSuperset={toggleCreateSuperset}
         />
       )}
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    paddingHorizontal: PADDING_HORIZONTAL,
-    paddingTop: PADDING_TOP,
-  },
   inline: {
     flexDirection: "row",
     justifyContent: "space-between",

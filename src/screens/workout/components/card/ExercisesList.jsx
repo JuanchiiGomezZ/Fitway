@@ -9,23 +9,13 @@ import EmptyWorkout from "../EmptyWorkout";
 import useToggle from "../../../../hooks/useToggle";
 import BottomSheetMenuExercise from "../BottomSheetMenuExercise";
 
-export default ExercisesList = ({ workoutId }) => {
+export default ExercisesList = ({ workoutId, toggleBottomSheet }) => {
   const { workoutDetails, workoutExercises, isLoading } = useSelector((state) => state.workouts);
   const { getWorkoutData } = useWorkoutsStore();
-
-  const [configModal, setConfigModal] = useState(false);
-  const [exerciseId, setExerciseId] = useState(null);
-
-  const [createSuperset, toggleCreateSuperset] = useToggle(false);
 
   useEffect(() => {
     workoutId != workoutDetails.workoutId && getWorkoutData(workoutId || workoutDetails.workoutId);
   }, []);
-
-  const toggleConfig = (id, type) => {
-    id && setExerciseId({ id, type });
-    setConfigModal((prev) => !prev);
-  };
 
   return (
     <>
@@ -42,14 +32,14 @@ export default ExercisesList = ({ workoutId }) => {
                   item?.Exercises ? (
                     <ExerciseCardSuperset
                       data={item}
-                      toggleConfig={toggleConfig}
+                      toggleConfig={toggleBottomSheet}
                       index={index}
                       key={item.id}
                     />
                   ) : (
                     <ExerciseCardSingle
                       data={item}
-                      toggleConfig={toggleConfig}
+                      toggleConfig={toggleBottomSheet}
                       index={index}
                       key={item.id}
                     />
@@ -59,17 +49,6 @@ export default ExercisesList = ({ workoutId }) => {
             </ScrollView>
           )}
         </>
-      )}
-      <FloatingMenu />
-      {createSuperset && (
-        <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />
-      )}
-      {configModal && (
-        <BottomSheetMenuExercise
-          toggleBottomSheet={toggleConfig}
-          exerciseId={exerciseId}
-          toggleCreateSuperset={toggleCreateSuperset}
-        />
       )}
     </>
   );

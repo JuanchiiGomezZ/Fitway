@@ -60,14 +60,9 @@ export default CreateExerciseSecond = ({ route }) => {
 
       <ButtonClassicLong
         text={task == "AddExercise" ? "Add exercise" : "Create exercise"}
-        action={
-          activeButton
-            ? handleAreValidReps
-            : task == "AddExercise"
-            ? handleAddExercise
-            : handleCreateExercise
-        }
+        action={task == "AddExercise" ? handleAddExercise : handleCreateExercise}
         disabled={activeButton}
+        disabledAction={handleAreValidReps}
       />
     </View>
   );
