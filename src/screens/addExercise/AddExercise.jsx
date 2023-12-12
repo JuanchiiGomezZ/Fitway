@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
 //COMPONENTS
+import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import SearchBar from "./components/SearchBar";
 import { ButtonRounded } from "../../components/CustomButtons";
@@ -26,7 +27,7 @@ export default AddExercise = () => {
   ];
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer>
       <View>
         <View style={styles.row}>
           <Header title={"Exercises"} />
@@ -36,21 +37,14 @@ export default AddExercise = () => {
             action={() => navigate("CreateExercise")}
           />
         </View>
-      <SearchBar />
+        <SearchBar />
       </View>
       <PagerNavigator pages={pages} />
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    paddingHorizontal: PADDING_HORIZONTAL,
-    paddingTop: PADDING_TOP,
-  },
-
   row: {
     flexDirection: "row",
     justifyContent: "space-between",

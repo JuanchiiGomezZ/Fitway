@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 //HOOKS & HELPERS
 import { useTranslation } from "react-i18next";
@@ -8,16 +8,14 @@ import { useNavigation } from "@react-navigation/native";
 
 //COMPONENTS
 import Header from "../../components/Header";
-
+import ScreenContainer from "../../components/ScreenContainer";
 import SearchBar from "./components/SearchBar";
 import RoutineCard from "./components/RoutineCard";
 import NewRoutineModal from "./components/NewRoutineModal";
 import FilterRoutineModal from "./components/FilterRoutineModal";
-
-//MORE
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 import Separator from "../../components/Separator";
 import { ButtonRounded } from "../../components/CustomButtons";
+
 
 export default AllRoutinesScreen = ({ route }) => {
   const { t } = useTranslation();
@@ -35,7 +33,7 @@ export default AllRoutinesScreen = ({ route }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer>
       <View style={styles.head}>
         <Header title={t("Routines.title")} />
         <View style={{ marginBottom: 13 }}>
@@ -58,17 +56,11 @@ export default AllRoutinesScreen = ({ route }) => {
 
       {newRoutineModal && <NewRoutineModal toggleNewRoutineModal={toggleNewRoutineModal} />}
       {filterModal && <FilterRoutineModal toggleModal={toggleFilter} />}
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    paddingHorizontal: PADDING_HORIZONTAL,
-    paddingTop: PADDING_TOP,
-  },
   head: {
     flexDirection: "row",
     alignItems: "center",

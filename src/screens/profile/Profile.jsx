@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 
 /* HOOKS */
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
-import { storage } from "../../helpers/storage";
 import useAuthStore from "../../hooks/redux/useAuthStore";
 import { useSelector } from "react-redux";
 

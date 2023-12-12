@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, ScrollView, BackHandler } from "react-native";
+import React, { useEffect} from "react";
+import { View, ScrollView, BackHandler } from "react-native";
 
 //HOOKS
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import { toggleExerciseGif } from "../../store/slices/trainingSlice";
 
 //COMPONENTS
+import ScreenContainer from '../../components/ScreenContainer';
 import Loader from "../../components/Loader";
 import Countdown from "./components/Countdown";
 import ProgressBar from "./components/ProgressBar";
@@ -18,9 +19,6 @@ import ContentExercise from "./components/contentExercise/ContentExercise";
 import ExercisesModal from "./components/exercisesModal/ExercisesModal";
 import BottomBar from "./components/bottomBars/BottomBar";
 import ConfirmationAlert from "../../components/ConfirmationAlert";
-
-//STYLES
-import { BACKGROUND_COLOR, GRAY_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 import ExerciseGIF from "../../components/ExerciseGIF";
 
 export default TrainingMode = ({ route }) => {
@@ -65,7 +63,7 @@ export default TrainingMode = ({ route }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer>
       {isLoading || !activeExercise ? (
         <Loader />
       ) : (
@@ -99,15 +97,8 @@ export default TrainingMode = ({ route }) => {
           )}
         </>
       )}
-    </View>
+    </ScreenContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    paddingHorizontal: PADDING_HORIZONTAL,
-    paddingTop: PADDING_TOP,
-  },
-});
+

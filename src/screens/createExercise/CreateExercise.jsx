@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useToggle from "../../hooks/useToggle";
 
 //COMPONENTS
+import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import AddImage from "./components/AddImage";
 import BottomsheetImage from "./components/BottomsheetImage";
@@ -99,7 +100,7 @@ export default CreateExercise = () => {
   const activeButton = name.trim() == "" || !primaryMuscle || !element || !exerciseType;
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer paddingBottom={true}>
       <Header title={"Create Exercise"} />
 
       <View style={styles.contentContainer}>
@@ -172,18 +173,11 @@ export default CreateExercise = () => {
       )}
       {pickerExerciseType && <ExerciseTypesModal toggleModal={togglePickerExerciseType} />}
       {bottomsheet && <BottomsheetImage toggleBottomsheet={toggleBottomsheet} />}
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    paddingHorizontal: PADDING_HORIZONTAL,
-    paddingTop: PADDING_TOP,
-    paddingBottom: PADDING_BOTTOM,
-  },
   contentContainer: {
     flex: 1,
     alignItems: "center",

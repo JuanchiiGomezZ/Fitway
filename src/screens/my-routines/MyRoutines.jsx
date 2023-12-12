@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, View, RefreshControl } from "react-native";
 
 //HOOKS
@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
 
 //COMPONENTS
+import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import { ButtonShortIndex } from "../../components/CustomButtons";
 import RoutineCard from "./components/MyRoutineCard";
@@ -16,12 +17,7 @@ import QrModal from "../../components/QrModal";
 import BottomSheetMenuRoutine from "./components/BottomSheetMenuRoutine";
 
 //STYLES
-import {
-  BACKGROUND_COLOR,
-  ORANGE_COLOR,
-  PADDING_HORIZONTAL,
-  PADDING_TOP,
-} from "../../styles/styles";
+import { ORANGE_COLOR } from "../../styles/styles";
 
 export default MyRoutinesScreen = () => {
   const { t } = useTranslation();
@@ -48,7 +44,7 @@ export default MyRoutinesScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer>
       <Header title={t("MyRoutines.title")} />
 
       <ScrollView
@@ -105,17 +101,11 @@ export default MyRoutinesScreen = () => {
           toggleQrModal={toggleQrModal}
         />
       )}
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    paddingHorizontal: PADDING_HORIZONTAL,
-    paddingTop: PADDING_TOP,
-  },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

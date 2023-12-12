@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import useExercisesStore from "../../hooks/redux/useExercisesStore";
 
 //COMPONENTS
+import ScreenContainer from "../../components/ScreenContainer";
 import Loader from "../../components/Loader";
 import ElementCard from "../../components/ElementCard";
 import Header from "../../components/Header";
@@ -55,7 +56,7 @@ export default ExerciseDetails = ({ route }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer paddingBottom={true}>
       {!exerciseData ? (
         <Loader />
       ) : (
@@ -86,18 +87,11 @@ export default ExerciseDetails = ({ route }) => {
           <ButtonClassicLong text="Continue" action={handleNavigate} />
         </>
       )}
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    paddingHorizontal: PADDING_HORIZONTAL,
-    paddingTop: PADDING_TOP,
-    paddingBottom: PADDING_BOTTOM,
-  },
   image: {
     width: 120,
     height: 120,

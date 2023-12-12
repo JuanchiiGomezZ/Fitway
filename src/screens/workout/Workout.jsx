@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
 
 //HOOKS
 import { useSelector } from "react-redux";
@@ -56,9 +55,3 @@ export default WorkoutScreen = ({ route }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  inline: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-});
