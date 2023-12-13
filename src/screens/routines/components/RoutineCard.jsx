@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BORDER_RADIUS, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import CardContainer from "../../../components/CardContainer";
@@ -10,10 +10,7 @@ export default RoutineCard = ({ data, toggleBottomSheet, index }) => {
   const { id, name, level, workoutsNumber, owner } = data;
   return (
     <CardContainer index={index}>
-      <Text style={styles.routineName}>{name}</Text>
-      {/* <View style={styles.label}>
-        <Text style={styles.labelText}>Fitway</Text>
-      </View> */}
+      <CardContainer.Title>{name}</CardContainer.Title>
       <View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>
@@ -35,11 +32,6 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS,
     padding: 10,
     gap: 5,
-  },
-  routineName: {
-    color: WHITE_COLOR,
-    fontSize: 22,
-    fontWeight: "500",
   },
   row: {
     flexDirection: "row",

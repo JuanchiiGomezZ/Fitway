@@ -4,15 +4,18 @@ import {
   PADDING_BOTTOM,
   PADDING_HORIZONTAL,
   PADDING_TOP,
+  WHITE_COLOR,
 } from "../styles/styles";
 
-export default ScreenContainer = ({ children, paddingBottom }) => {
+const ScreenContainer = ({ children, paddingBottom }) => {
   return (
     <View style={[styles.container, paddingBottom && { paddingBottom: PADDING_BOTTOM }]}>
       {children}
     </View>
   );
 };
+
+export default ScreenContainer;
 
 const styles = StyleSheet.create({
   container: {

@@ -27,7 +27,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
     >
       <View style={styles.contentContainer}>
         <View style={{ width: "83%" }}>
-          <Text style={styles.workoutName}>{name}</Text>
+          <CardContainer.Title>{name}</CardContainer.Title>
           <View style={styles.musclesContainer}>
             {muscles && muscles.length > 0 ? (
               muscles.map((item) => (
@@ -42,7 +42,10 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
             )}
           </View>
         </View>
-        <TouchableOpacity style={styles.trainingButton} onPress={() => navigate("Training", {id})}>
+        <TouchableOpacity
+          style={styles.trainingButton}
+          onPress={() => navigate("Training", { id })}
+        >
           <FontAwesome5 name="dumbbell" size={22} color={BACKGROUND_COLOR} />
         </TouchableOpacity>
       </View>
@@ -51,13 +54,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
 };
 
 const styles = StyleSheet.create({
-  workoutName: {
-    color: WHITE_COLOR,
-    fontSize: 22,
-    fontWeight: "500",
-    marginBottom: 10,
-    width: "100%",
-  },
+
   musclesContainer: {
     flexWrap: "wrap",
     gap: 5,

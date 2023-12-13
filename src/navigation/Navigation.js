@@ -23,15 +23,14 @@ import CreateExercise from "../screens/createExercise/CreateExercise";
 import CreateExerciseSecond from "../screens/createExerciseSecond/CreateExerciseSecond";
 import AddExercise from "../screens/addExercise/AddExercise";
 import ExerciseDetails from "../screens/exerciseDetails/ExerciseDetails";
-
-import ProgressTracker from "../screens/progressTracker/ProgressTracker";
+import ActivitiesLog from "../screens/activitiesLog/ActivitiesLog";
+import TrainingsLog from "../screens/trainingsLog/TrainingsLog";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
   const { status } = useSelector((state) => state.auth);
   const { refreshAuthToken } = useAuthStore();
   const { getRoutines } = useRoutinesStore();
-
 
   // useEffect(() => {
   //   refreshAuthToken();
@@ -130,15 +129,24 @@ export default Navigation = () => {
                 animation: "slide_from_right",
               }}
             />
+            <Stack.Screen
+              name="TrainingsLog"
+              component={TrainingsLog}
+              options={{
+                animation: "slide_from_right",
+              }}
+            />
           </>
         ) : (
-          <Stack.Screen
-            name="StartScreen"
-            component={StartScreen}
-            options={{
-              animation: "default",
-            }}
-          />
+          <>
+            <Stack.Screen
+              name="StartScreen"
+              component={StartScreen}
+              options={{
+                animation: "default",
+              }}
+            />
+          </>
         )}
 
         {/* NOT-AUTHENTICATED */}

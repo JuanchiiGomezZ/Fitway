@@ -4,8 +4,7 @@ import { StyleSheet } from "react-native";
 /* Screens */
 import Home from "../screens/home/Home";
 import Profile from "../screens/profile/Profile";
-import ProgressTracker from "../screens/progressTracker/ProgressTracker";
-
+import ActivitiesLog from "../screens/activitiesLog/ActivitiesLog";
 
 /* Navigation */
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -41,8 +40,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="ProgressTracker"
-        component={ProgressTracker}
+        name="ActivitiesLog"
+        component={ActivitiesLog}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="stats-chart" size={30} color={color} />,
         }}

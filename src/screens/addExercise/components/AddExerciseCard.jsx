@@ -30,7 +30,7 @@ export default AddExerciseCard = ({ data, index }) => {
           style={styles.workoutImg}
         />
         <View style={styles.contentContainer}>
-          <Text style={styles.title}>{name}</Text>
+          <CardContainer.Title>{name}</CardContainer.Title>
           <View style={styles.infoContainer}>
             <View>
               <Text style={[styles.text]}>{element}</Text>
@@ -49,12 +49,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 70,
     justifyContent: "space-between",
-  },
-  title: {
-    color: WHITE_COLOR,
-    fontSize: 22,
-    fontWeight: "700",
-    maxWidth: "65%",
   },
   infoContainer: {
     flexDirection: "row",
