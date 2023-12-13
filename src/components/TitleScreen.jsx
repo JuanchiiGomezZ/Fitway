@@ -9,7 +9,7 @@ export default ComponentName = ({ title }) => {
 const styles = StyleSheet.create({
   title: {
     color: WHITE_COLOR,
-    fontSize: 40,
+    fontSize: 35,
     fontWeight: "800",
   },
 });

@@ -24,12 +24,14 @@ import CreateExerciseSecond from "../screens/createExerciseSecond/CreateExercise
 import AddExercise from "../screens/addExercise/AddExercise";
 import ExerciseDetails from "../screens/exerciseDetails/ExerciseDetails";
 
+import ProgressTracker from "../screens/progressTracker/ProgressTracker";
+
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
   const { status } = useSelector((state) => state.auth);
   const { refreshAuthToken } = useAuthStore();
   const { getRoutines } = useRoutinesStore();
-  const { activeRoutineId } = useSelector((state) => state.userRoutines);
+
 
   // useEffect(() => {
   //   refreshAuthToken();

@@ -15,7 +15,7 @@ export default Settings = () => {
   return (
     <ScreenContainer>
       <Header title={t("Profile.settings")} />
-      <View style={styles.settingContainer}>
+      <View>
         {settingOptions.map((item) => (
           <SettingCard key={item.id} data={item} />
         ))}

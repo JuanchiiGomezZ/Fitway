@@ -38,7 +38,7 @@ export default WorkoutScreen = ({ route }) => {
 
   return (
     <ScreenContainer>
-      <Header title={name} />
+      <Header title={name} margin={false} />
       <PagerNavigator pages={pages} />
       <FloatingMenu />
       {createSuperset && (
@@ -54,4 +54,3 @@ export default WorkoutScreen = ({ route }) => {
     </ScreenContainer>
   );
 };
-
