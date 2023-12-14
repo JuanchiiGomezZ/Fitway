@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 //COMPONENTS
 import { Calendar } from "react-native-calendars";
 import {
@@ -59,7 +58,7 @@ export default CustomCalendar = () => {
       onMonthChange={onMonthChange}
       disableArrowRight={currentMonth}
       onDayPress={onDayPress}
+ 
     />
   );
 };
-

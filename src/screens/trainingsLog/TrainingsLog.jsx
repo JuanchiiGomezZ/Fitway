@@ -13,6 +13,7 @@ import { ORANGE_COLOR } from "../../styles/styles";
 import WorkoutLogCard from "./components/WorkoutLogCard";
 import Empty from "./components/Empty";
 import { useNavigation } from "@react-navigation/native";
+import TitleScreen from "../../components/TitleScreen";
 
 export default TrainingsLog = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ export default TrainingsLog = () => {
 
   return (
     <ScreenContainer>
-      <Header title="Trainings Log" />
+      <TitleScreen title={"Trainings log"} />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ gap: 20 }}>
         <Calendar />
         <View style={{ gap: 10 }}>

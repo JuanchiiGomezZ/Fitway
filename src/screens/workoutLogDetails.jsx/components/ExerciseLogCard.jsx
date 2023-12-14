@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 //COMPONENTS
 import { BOX_COLOR, GRAY_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { Entypo } from "@expo/vector-icons";
 
-export default TableWorkoutLog = ({ data, name }) => {
+
+export default ExerciseLogCard = ({ data, name }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={[styles.row, { justifyContent: "space-between" }]}>

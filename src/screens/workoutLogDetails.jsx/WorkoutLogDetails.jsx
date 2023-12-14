@@ -7,30 +7,31 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import Subtitle from "../../components/Subtitle";
-import TableWorkoutLog from "./components/TableWorkoutLog";
+import ExerciseLogCard from "./components/ExerciseLogCard";
 import { ORANGE_COLOR } from "../../styles/styles";
 import SeparatingLine from "../../components/SeparatingLine";
-
+import Empty from "./components/Empty";
 export default WorkoutLogDetails = ({ route }) => {
   const { id } = route.params;
 
   const data = ["12x15kg", "10x20kg", "8x21kg", "-"];
   return (
     <ScreenContainer>
+      <Header title={"12/12/2023"} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header title={"12/12/2023"} />
         <View style={styles.row}>
           <Subtitle title={"Workout name"} />
           <Text style={styles.timeText}>01:43:12</Text>
         </View>
         <View style={styles.exercisesContainer}>
-          <TableWorkoutLog data={data} name={"Press bench"} />
+          <ExerciseLogCard data={data} name={"Press bench"} />
           <SeparatingLine />
-          <TableWorkoutLog data={data} name={"Press bench"} />
+          <ExerciseLogCard data={data} name={"Press bench"} />
           <SeparatingLine />
-          <TableWorkoutLog data={data} name={"Press bench"} />
+          <ExerciseLogCard data={data} name={"Press bench"} />
         </View>
       </ScrollView>
+      {/* <Empty /> */}
     </ScreenContainer>
   );
 };

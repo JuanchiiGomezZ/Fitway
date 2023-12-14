@@ -34,7 +34,7 @@ const ButtonLong = ({
       style={[
         styles.row,
         styles.buttonLong,
-        { backgroundColor: bgColor ? bgColor : ORANGE_COLOR },
+        { backgroundColor: bgColor || ORANGE_COLOR },
         short && styles.buttonLongSmall,
         transparent && styles.buttonTransparent,
         disabled && { backgroundColor: "#363636" },
@@ -52,7 +52,7 @@ const TextButton = ({ text, color, disabled }) => {
     <Text
       style={[
         styles.textButton,
-        { color: color ? color : WHITE_COLOR },
+        { color: color || WHITE_COLOR },
         disabled && { color: GRAY_LIGHT_COLOR },
       ]}
       ellipsizeMode="tail"
@@ -113,7 +113,7 @@ export const ButtonRounded = ({ bgColor, action, transparent, disabled, text, co
       style={[
         styles.row,
         styles.buttonRounded,
-        { backgroundColor: bgColor ? bgColor : ORANGE_COLOR },
+        { backgroundColor: bgColor || ORANGE_COLOR },
         transparent && styles.buttonTransparent,
         disabled && { backgroundColor: "#363636" },
       ]}
