@@ -24,10 +24,11 @@ const PagerNavigator = ({ pages }) => {
 
       <PagerView style={styles.pager} ref={ref} initialPage={0} onPageSelected={onPageSelected}>
         {pages.map((page, index) => (
-          <View key={index + 1}>{page.component}</View>
+          <View key={index + 1} style={{ flex: 1 }}>
+            {page.component}
+          </View>
         ))}
       </PagerView>
-
     </>
   );
 };

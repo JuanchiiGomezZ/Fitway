@@ -18,7 +18,7 @@ const CardContainer = ({ children, action, index, configAction }) => {
       style={styles.cardContainer}
       entering={initialMode.current && FadeInDown.delay(100 * index)}
       // exiting={ FadeOut} // GHOSTING AL CAMBIAR DE WORKOUT
-      onPress={action}
+      onPress={action ? action : () => {}}
     >
       {configAction && <ConfigButton action={configAction} />}
       {children}
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "700",
   },
-  titleSmall:{
+  titleSmall: {
     color: WHITE_COLOR,
     fontSize: 20,
-  }
+  },
 });

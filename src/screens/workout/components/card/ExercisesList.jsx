@@ -55,5 +55,5 @@ export default ExercisesList = ({ workoutId, toggleBottomSheet }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { gap: 15, marginBottom: 100 },
+  container: { gap: 10, marginBottom: 100 },
 });

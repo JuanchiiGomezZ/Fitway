@@ -33,7 +33,7 @@ export default WorkoutScreen = ({ route }) => {
       title: "Exercises",
       component: <ExercisesList workoutId={workoutId} toggleBottomSheet={toggleBottomSheet} />,
     },
-    { title: "Logs", component: <></> },
+    { title: "History", component: <></> },
   ];
 
   return (

@@ -20,12 +20,17 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     WorkoutExercise,
     SupersetExercise,
   } = data || {};
-  const { reps } = workoutExercise || supersetExercise || SupersetExercise|| WorkoutExercise || {};
+  const { reps } = workoutExercise || supersetExercise || SupersetExercise || WorkoutExercise || {};
+
+  const handleNavigate = () => {
+    navigate("ExerciseDetails", { id });
+  };
 
   return (
     <CardContainer
       index={index}
       configAction={!superset ? () => toggleConfig(id, "single") : false}
+      action={!superset && handleNavigate}
     >
       <View style={styles.row}>
         <TouchableOpacity
@@ -43,7 +48,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
           />
         </TouchableOpacity>
         <View style={styles.contentContainer}>
-          <Text style={styles.title}>{name}</Text>
+          <CardContainer.Title>{name}</CardContainer.Title>
           <View style={styles.infoContainer}>
             <View>
               <Text style={[styles.text]}>{element}</Text>
@@ -69,14 +74,8 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
 const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
-    height: 70,
+    height: 65,
     justifyContent: "space-between",
-  },
-  title: {
-    color: WHITE_COLOR,
-    fontSize: 22,
-    fontWeight: "700",
-    maxWidth: "65%",
   },
   infoContainer: {
     flexDirection: "row",
@@ -94,9 +93,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   workoutImg: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
+    width: 65,
+    height: 65,
+    borderRadius: 12,
   },
   row: {
     flexDirection: "row",

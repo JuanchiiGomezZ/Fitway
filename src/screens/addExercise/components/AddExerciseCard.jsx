@@ -19,7 +19,7 @@ export default AddExerciseCard = ({ data, index }) => {
   const { name, element, primaryMuscle, id, Multimedia } = data || {};
 
   return (
-    <CardContainer index={index} action={() => navigate("ExerciseDetails", { id })}>
+    <CardContainer index={index} action={() => navigate("AddExerciseDetails", { id })}>
       <View style={styles.row}>
         <Image
           source={

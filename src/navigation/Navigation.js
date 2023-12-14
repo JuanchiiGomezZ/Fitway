@@ -25,6 +25,7 @@ import AddExercise from "../screens/addExercise/AddExercise";
 import ExerciseDetails from "../screens/exerciseDetails/ExerciseDetails";
 import ActivitiesLog from "../screens/activitiesLog/ActivitiesLog";
 import TrainingsLog from "../screens/trainingsLog/TrainingsLog";
+import AddExerciseDetails from "../screens/addExerciseDetails/AddExerciseDetails";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -125,6 +126,13 @@ export default Navigation = () => {
             <Stack.Screen
               name="ExerciseDetails"
               component={ExerciseDetails}
+              options={{
+                animation: "slide_from_right",
+              }}
+            />
+            <Stack.Screen
+              name="AddExerciseDetails"
+              component={AddExerciseDetails}
               options={{
                 animation: "slide_from_right",
               }}

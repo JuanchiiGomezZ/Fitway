@@ -89,6 +89,18 @@ export default useExercisesStore = () => {
     }
   };
 
+  const getExerciseCompleteDetails = async (exerciseId) => {
+    dispatch(onChecking());
+    try {
+      const { data } = await axios.get(
+        `/exercise/workoutExercise/${exerciseId}/${workoutDetails.workoutId}`,
+      );
+      return data;
+      dispatch(onSuccess());
+    } catch (error) {
+      dispatch(onError(error.response.data));
+    }
+  };
   const addExercise = async (exerciseData, exerciseId) => {
     try {
       const { data } = await axios.post(
@@ -109,5 +121,6 @@ export default useExercisesStore = () => {
     getExerciseDetails,
     addExercise,
     getUserExsWithoutSelectedWkt,
+    getExerciseCompleteDetails
   };
 };
