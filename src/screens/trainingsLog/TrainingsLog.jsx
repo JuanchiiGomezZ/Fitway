@@ -11,30 +11,35 @@ import Header from "../../components/Header";
 import Subtitle from "../../components/Subtitle";
 import { ORANGE_COLOR } from "../../styles/styles";
 import WorkoutLogCard from "./components/WorkoutLogCard";
+import Empty from "./components/Empty";
+import { useNavigation } from "@react-navigation/native";
 
 export default TrainingsLog = () => {
   const { t } = useTranslation();
+  const { navigate } = useNavigation();
+  const prueba = [1, 2, 3];
+
   return (
     <ScreenContainer>
       <Header title="Trainings Log" />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.content}>
-          <Calendar />
-          <View style={{ gap: 10 }}>
-            <View style={styles.row}>
-              <Subtitle title={"Workouts"} />
-              <TouchableOpacity>
-                <Text style={styles.showMoreText}>Show More</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.cardsContainer}>
-              <WorkoutLogCard index={1} />
-              <WorkoutLogCard index={2} />
-              <WorkoutLogCard index={3} />
-              <WorkoutLogCard index={4} />
-              <WorkoutLogCard index={5} />
-            </View>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ gap: 20 }}>
+        <Calendar />
+        <View style={{ gap: 10 }}>
+          <View style={styles.row}>
+            <Subtitle title={"Workouts"} />
+            <TouchableOpacity>
+              <Text style={styles.showMoreText}>Show More</Text>
+            </TouchableOpacity>
           </View>
+          {prueba.length == 0 ? (
+            <Empty />
+          ) : (
+            <View style={styles.cardsContainer}>
+              {prueba.map((index) => (
+                <WorkoutLogCard index={index} key={index} />
+              ))}
+            </View>
+          )}
         </View>
       </ScrollView>
     </ScreenContainer>
@@ -42,9 +47,6 @@ export default TrainingsLog = () => {
 };
 
 const styles = StyleSheet.create({
-  content: {
-    gap: 20,
-  },
   row: {
     flexDirection: "row",
     alignItems: "center",

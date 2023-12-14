@@ -23,9 +23,10 @@ import CreateExercise from "../screens/createExercise/CreateExercise";
 import CreateExerciseSecond from "../screens/createExerciseSecond/CreateExerciseSecond";
 import AddExercise from "../screens/addExercise/AddExercise";
 import ExerciseDetails from "../screens/exerciseDetails/ExerciseDetails";
-import ActivitiesLog from "../screens/activitiesLog/ActivitiesLog";
 import TrainingsLog from "../screens/trainingsLog/TrainingsLog";
 import AddExerciseDetails from "../screens/addExerciseDetails/AddExerciseDetails";
+import WorkoutLogDetails from "../screens/workoutLogDetails.jsx/WorkoutLogDetails";
+
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -140,6 +141,13 @@ export default Navigation = () => {
             <Stack.Screen
               name="TrainingsLog"
               component={TrainingsLog}
+              options={{
+                animation: "slide_from_right",
+              }}
+            />
+            <Stack.Screen
+              name="WorkoutLogDetails"
+              component={WorkoutLogDetails}
               options={{
                 animation: "slide_from_right",
               }}

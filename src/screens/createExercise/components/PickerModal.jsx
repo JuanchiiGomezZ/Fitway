@@ -5,6 +5,7 @@ import { ClassicInput } from "../../../components/Inputs";
 import Loader from "../../../components/Loader";
 import Animated, { Layout, FadeInDown } from "react-native-reanimated";
 import ModalBase from "../../../components/ModalBase";
+import SeparatingLine from "../../../components/SeparatingLine";
 
 const PickerModal = ({ setSelected, toggleModal, data, type }) => {
   const [inputChange, setInputChange] = useState("");
@@ -53,7 +54,7 @@ const PickerModal = ({ setSelected, toggleModal, data, type }) => {
                   <Image style={styles.image} source={{ uri: item.img }} />
                   <Text style={styles.textName}>{item.name}</Text>
                 </TouchableOpacity>
-                <View style={styles.line} />
+                <SeparatingLine/>
               </Animated.View>
             ))}
         </ScrollView>
@@ -107,12 +108,6 @@ const styles = StyleSheet.create({
   textName: {
     color: "white",
     fontSize: 20,
-  },
-  line: {
-    height: 1,
-    width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
-    borderRadius: 10,
   },
   image: {
     width: 45,

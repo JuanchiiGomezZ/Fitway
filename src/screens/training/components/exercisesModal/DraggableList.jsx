@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
 import DraggableFlatList, {
   OpacityDecorator,
   ShadowDecorator,
@@ -11,7 +10,7 @@ import ExerciseSingleCard from "./ExerciseSingleCard";
 import ExerciseSupersetCard from "./ExerciseSupersetCard";
 import { saveExercises, handleChangeExercise } from "../../../../store/slices/trainingSlice";
 import { ButtonClassicLong } from "../../../../components/CustomButtons";
-
+import SeparatingLine from "../../../../components/SeparatingLine";
 
 export default DraggableList = ({ toggleModal }) => {
   const dispatch = useDispatch();
@@ -41,7 +40,7 @@ export default DraggableList = ({ toggleModal }) => {
           ) : (
             <ExerciseSingleCard data={item} isActive={isActive} action={drag} index={getIndex()} />
           )}
-          <View style={[styles.line]} />
+          <SeparatingLine />
         </ShadowDecorator>
       </OpacityDecorator>
     );
@@ -63,11 +62,4 @@ export default DraggableList = ({ toggleModal }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  line: {
-    height: 1,
-    width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
-    borderRadius: 10,
-  },
-});
+

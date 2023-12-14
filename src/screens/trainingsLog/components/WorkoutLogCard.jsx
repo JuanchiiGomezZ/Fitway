@@ -5,10 +5,17 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import CardContainer from "../../../components/CardContainer";
 import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { Entypo } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default WorkoutLogCard = ({ index }) => {
+  const { navigate } = useNavigation();
+
+  const handleNavigate = () => {
+    navigate("WorkoutLogDetails", { id: 1 });
+  };
+
   return (
-    <CardContainer index={index}>
+    <CardContainer index={index} action={handleNavigate}>
       <View style={styles.row}>
         <Image source={require("../../../assets/images/icon_fw_dark.png")} style={styles.iconImg} />
         <View style={styles.content}>

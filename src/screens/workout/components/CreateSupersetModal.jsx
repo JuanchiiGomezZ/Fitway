@@ -7,6 +7,7 @@ import Animated, { FadeIn, FadeOut, FadeInDown } from "react-native-reanimated";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 import maxOrder from "../../../helpers/maxOrder";
 import { ButtonClassicLong } from "../../../components/CustomButtons";
+import SeparatingLine from "../../../components/SeparatingLine";
 
 export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
   const { createSuperset } = useExercisesStore();
@@ -36,7 +37,6 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
     }
   };
 
-
   return (
     <ModalBase title="Create superset" toggleModal={toggleModal}>
       <ScrollView>
@@ -63,7 +63,7 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
                       />
                       <Text style={styles.exerciseText}>{item.name}</Text>
                     </Pressable>
-                    <View style={styles.line} />
+                    <SeparatingLine />
                   </Animated.View>
                 ),
             )}
@@ -101,11 +101,5 @@ const styles = StyleSheet.create({
     width: 5,
     backgroundColor: GREEN_COLOR,
     borderRadius: 1,
-  },
-  line: {
-    height: 1,
-    width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
-    borderRadius: 10,
   },
 });

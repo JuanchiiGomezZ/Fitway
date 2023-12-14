@@ -12,6 +12,7 @@ import {
 import { ConfigButton } from "../../../../components/CustomButtons";
 import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
 import WorkoutCardSingle from "./ExerciseCardSingle";
+import SeparatingLine from "../../../../components/SeparatingLine";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 export default WorkoutCardSuperset = ({ data, toggleConfig, index }) => {
@@ -37,7 +38,9 @@ export default WorkoutCardSuperset = ({ data, toggleConfig, index }) => {
       {data.Exercises.map((item, index) => (
         <View key={item.id}>
           <WorkoutCardSingle data={item} superset={true} />
-          {index < data.Exercises.length - 1 && <View style={styles.line} />}
+          {index < data.Exercises.length - 1 && (
+            <SeparatingLine color={ORANGE_DARK_COLOR} width={"95%"} />
+          )}
         </View>
       ))}
     </AnimatedTouchable>
@@ -48,13 +51,5 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: BOX_COLOR,
     borderRadius: BORDER_RADIUS,
-  },
-
-  line: {
-    width: "94%",
-    height: 1.5,
-    backgroundColor: ORANGE_DARK_COLOR,
-    marginVertical: 5,
-    alignSelf: "center",
   },
 });

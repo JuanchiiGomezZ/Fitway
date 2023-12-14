@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { GRAY_COLOR,WHITE_COLOR } from "../../../styles/styles";
+import { GRAY_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import ageCalculator from "../helpers/ageCalculator";
+import SeparatingLine from "../../../components/SeparatingLine";
 
 export default InfoContainer = ({ weight, height, birthdate }) => {
   const { t } = useTranslation();
@@ -13,12 +14,12 @@ export default InfoContainer = ({ weight, height, birthdate }) => {
         <Text style={styles.infoTitle}>{t("Profile.weight")}</Text>
         <Text style={styles.infoValue}>{weight}</Text>
       </View>
-      <View style={styles.line} />
+      <SeparatingLine />
       <View style={styles.infoItem}>
         <Text style={styles.infoTitle}>{t("Profile.height")}</Text>
         <Text style={styles.infoValue}>{height}</Text>
       </View>
-      <View style={styles.line} />
+      <SeparatingLine />
       <View style={styles.infoItem}>
         <Text style={styles.infoTitle}>{t("Profile.age")}</Text>
         <Text style={styles.infoValue}>{"-"}</Text>
@@ -45,10 +46,5 @@ const styles = StyleSheet.create({
   infoValue: {
     color: WHITE_COLOR,
     fontWeight: "500",
-  },
-  line: {
-    height: "100%",
-    width: 1,
-    backgroundColor: "#929292",
   },
 });

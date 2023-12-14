@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, ScrollView, Pressable } from "react-native";
 import ModalBase from "../../../components/ModalBase";
 import exerciseTypes from "../../../data/exerciseTypes.json";
-import { BACKGROUND_COLOR, GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import SeparatingLine from "../../../components/SeparatingLine";
 
 export default ExerciseTypesModal = ({ toggleModal }) => {
   return (
@@ -25,7 +26,7 @@ export default ExerciseTypesModal = ({ toggleModal }) => {
               ))}
             </View>
           </Pressable>
-          <View style={styles.line} />
+          <SeparatingLine />
         </View>
       ))}
     </ModalBase>
@@ -57,12 +58,5 @@ const styles = StyleSheet.create({
   tagsContainer: {
     flexDirection: "row",
     gap: 10,
-  },
-  line: {
-    height: 1,
-    width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
-    borderRadius: 10,
-    marginVertical: 10,
   },
 });

@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: "91%",
-    minHeight: 70,
+    minHeight: 60,
   },
 });
