@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import sortByOrder from "../../helpers/sortByOrder";
+import workoutLogInitialState from "../../helpers/workoutLogInitialState";
 
 export const trainingSlice = createSlice({
   name: "training",
@@ -20,10 +21,12 @@ export const trainingSlice = createSlice({
     saveActiveWorkoutData: (state, { payload }) => {
       const { details, Exercises } = payload;
       const { numActiveExercise } = state;
+      const sortedExercises = sortByOrder(Exercises.Exercises);
 
       (state.activeWorkoutDetails = details),
-        (state.activeWorkout = sortByOrder(Exercises.Exercises)),
-        (state.activeExercise = Exercises.Exercises[numActiveExercise]),
+        (state.activeWorkout = sortedExercises),
+        (state.activeExercise = sortedExercises[numActiveExercise]),
+        (state.workoutLog = workoutLogInitialState(sortedExercises)),
         (state.isLoading = false);
     },
     handleChangeExercise: (state, { payload }) => {
@@ -67,26 +70,25 @@ export const trainingSlice = createSlice({
       workoutLog[numActiveExercise][index].done = done;
     },
     updateWorkoutLogWeight: (state, { payload }) => {
-      const { index, weight, done } = payload;
+      const { index, weight, done, exerciseId } = payload;
       const { numActiveExercise, workoutLog } = state;
 
-      if (!workoutLog[numActiveExercise]) {
-        workoutLog[numActiveExercise] = [];
-      }
+      // if (!workoutLog[numActiveExercise]) {
+      //   workoutLog[numActiveExercise] = [];
+      // }
 
-      if (!workoutLog[numActiveExercise][index]) {
-        workoutLog[numActiveExercise][index] = {};
-      }
+      // if (!workoutLog[numActiveExercise][index]) {
+      //   workoutLog[numActiveExercise][index] = {};
+      // }
 
-      workoutLog[numActiveExercise][index].weight = weight;
-      workoutLog[numActiveExercise][index].done = done;
+      // workoutLog[numActiveExercise][index].weight = weight;
+      // workoutLog[numActiveExercise][index].done = done;
     },
     cleanWorkoutLog: (state, { payload }) => {
       (state.workoutLog = [[]]), (state.numActiveExercise = 0);
     },
     toggleExerciseGif: (state, { payload }) => {
-
-        state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
+      state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);

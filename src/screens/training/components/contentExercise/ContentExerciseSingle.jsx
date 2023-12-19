@@ -4,6 +4,7 @@ import ElementCard from "../../../../components/ElementCard";
 import TableRepsWithWeight from "../exerciseTables/repsWithWeight/TableRepsWithWeight";
 import { toggleExerciseGif } from "../../../../store/slices/trainingSlice";
 import { useDispatch } from "react-redux";
+import searchLogById from "../../helper/searchLogById";
 
 export default ContentExerciseSingle = ({ data }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default ContentExerciseSingle = ({ data }) => {
   const setExerciseGif = () => {
     dispatch(toggleExerciseGif(data.Multimedia?.exerciseGif));
   };
+
   return (
     <>
       <View style={styles.head}>
@@ -37,6 +39,7 @@ export default ContentExerciseSingle = ({ data }) => {
       <TableRepsWithWeight
         reps={WorkoutExercise?.reps || SupersetExercise?.reps}
         rest={WorkoutExercise?.resTime || SupersetExercise?.reps}
+        id={data.id}
       />
     </>
   );

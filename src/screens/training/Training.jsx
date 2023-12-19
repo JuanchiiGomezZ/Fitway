@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { View, ScrollView, BackHandler } from "react-native";
 
 //HOOKS
@@ -11,7 +11,7 @@ import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import { toggleExerciseGif } from "../../store/slices/trainingSlice";
 
 //COMPONENTS
-import ScreenContainer from '../../components/ScreenContainer';
+import ScreenContainer from "../../components/ScreenContainer";
 import Loader from "../../components/Loader";
 import Countdown from "./components/Countdown";
 import ProgressBar from "./components/ProgressBar";
@@ -39,6 +39,7 @@ export default TrainingMode = ({ route }) => {
   const [countdown, toggleCountodwn] = useToggle(false);
   const [openWorkout, toggleOpenWorkout] = useToggle(false);
   const [confirmationAlert, toggleConfAlert] = useToggle(false);
+
 
   useEffect(() => {
     if (activeWorkoutDetails?.workoutId != id) getWorkoutTrainingData(id);
@@ -100,5 +101,3 @@ export default TrainingMode = ({ route }) => {
     </ScreenContainer>
   );
 };
-
-

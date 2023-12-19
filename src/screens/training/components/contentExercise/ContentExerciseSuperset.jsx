@@ -3,6 +3,8 @@ import { StyleSheet, View } from "react-native";
 import ContentExerciseSingle from "./ContentExerciseSingle";
 
 export default ContentExerciseSuperset = ({ data }) => {
+
+
   return (
     <View style={{ gap: 30 }}>
       {data.Exercises.map((item) => (

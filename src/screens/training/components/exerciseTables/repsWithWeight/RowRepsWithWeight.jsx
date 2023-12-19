@@ -11,40 +11,17 @@ import {
 } from "../../../../../store/slices/trainingSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-export default RowRepsWithWeight = ({ index, data }) => {
+export default RowRepsWithWeight = ({ index, data, log }) => {
   const dispatch = useDispatch();
-  const [input, setInput] = useState({ reps: "", weight: "" });
-
-  useEffect(() => {
-    setInput({
-      reps: workoutLog?.[numActiveExercise]?.[index]?.reps || data,
-      weight: workoutLog?.[numActiveExercise]?.[index]?.weight || "0",
-    });
-  }, [numActiveExercise]);
-
-  const [exerciseDone, setDone] = useState(false);
   const { numActiveExercise, workoutLog } = useSelector((state) => state.training);
+  const [input, setInput] = useState(log.data[index]);
+  const doneCondition = input.done;
 
-  const doneCondition = workoutLog?.[numActiveExercise]?.[index]?.done;
 
-  const handleChange = (type, value) => {
-    setInput((prev) => {
-      if (type === "reps") {
-        dispatch(updateWorkoutLogReps({ index, reps: value, done: exerciseDone }));
-        return { ...prev, reps: value };
-      } else {
-        dispatch(updateWorkoutLogWeight({ index, weight: value, done: exerciseDone }));
-        return { ...prev, weight: value };
-      }
-    });
+  const toggleDone = () => {
+    setInput((prev) => ({ ...prev, done: !prev.done }));
   };
 
-  const handleDoneChange = () => {
-    setDone((prev) => {
-      dispatch(updateWorkoutLog({ index, reps: input.reps, weight: input.weight, done: !prev }));
-      return !prev;
-    });
-  };
   return (
     <View
       style={[
@@ -83,12 +60,8 @@ export default RowRepsWithWeight = ({ index, data }) => {
         placeholderTextColor={GRAY_LIGHT_COLOR} //"#626262"
         cursorColor={GRAY_LIGHT_COLOR}
         inputMode="numeric"
-        onChangeText={(value) => handleChange("weight", value)}
-        defaultValue={
-          doneCondition || workoutLog?.[numActiveExercise]?.[index]?.weight
-            ? workoutLog?.[numActiveExercise]?.[index]?.weight
-            : ""
-        }
+        onChangeText={() => {}}
+        defaultValue={() => {}}
       />
 
       <AntDesign
@@ -98,7 +71,7 @@ export default RowRepsWithWeight = ({ index, data }) => {
           styles.tableIcon,
           { color: doneCondition ? GREEN_COLOR : GRAY_LIGHT_COLOR },
         ]}
-        onPress={handleDoneChange}
+        onPress={toggleDone}
       />
     </View>
   );

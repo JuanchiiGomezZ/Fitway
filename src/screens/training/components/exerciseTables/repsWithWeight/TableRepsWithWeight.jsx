@@ -4,8 +4,9 @@ import { AntDesign } from "@expo/vector-icons";
 import { GRAY_LIGHT_COLOR } from "../../../../../styles/styles";
 import * as styles from "./styles";
 import RowRepsWithWeight from "./RowRepsWithWeight";
+import searchLogById from "../../../helper/searchLogById";
 
-export default TableRepsWithWeight = ({ reps, rest, active }) => {
+export default TableRepsWithWeight = ({ reps, rest, id }) => {
   return (
     <View style={styles.table}>
       <View style={styles.row}>
@@ -16,7 +17,7 @@ export default TableRepsWithWeight = ({ reps, rest, active }) => {
         <AntDesign name="check" style={[styles.text, styles.tableIcon, styles.headText]} />
       </View>
       {reps.map((element, index) => (
-        <RowRepsWithWeight index={index} data={element} key={index}/>
+        <RowRepsWithWeight index={index} data={element} key={index} log={searchLogById(id)} />
       ))}
     </View>
   );
