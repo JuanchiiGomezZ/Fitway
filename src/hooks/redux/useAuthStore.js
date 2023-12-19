@@ -1,8 +1,8 @@
 import { onLogin, onChecking, onLogout } from "../../store/slices/authSlice";
 import axios from "../../api/axios";
 
-import { useDispatch, useSelector } from "react-redux";
-import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
+import { useDispatch } from "react-redux";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { saveActiveRoutineId } from "../../store/slices/routinesSlice";
 
 import { storage } from "../../helpers/storage";
@@ -48,7 +48,6 @@ export default useAuthStore = () => {
     }
   };
 
-
   const refreshAuthToken = async () => {
     try {
       dispatch(onChecking());
@@ -60,8 +59,8 @@ export default useAuthStore = () => {
       }
 
       if (new Date() < new Date(storedToken.expiry)) {
-        console.log(new Date())
-        console.log(new Date(storedToken.expiry))
+        console.log(new Date());
+        console.log(new Date(storedToken.expiry));
         const { data } = await axios.post(
           `/user/refresh`,
           {},

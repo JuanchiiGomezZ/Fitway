@@ -52,6 +52,7 @@ export default CustomCalendar = () => {
         "2023-11-29": { selected: true, marked: true },
         "2023-12-01": { selected: true, marked: true },
         "2023-12-03": { selected: true, marked: true },
+        "2023-12-15": { selected: true, marked: true },
       }}
       hideExtraDays={true}
       displayLoadingIndicator={false}

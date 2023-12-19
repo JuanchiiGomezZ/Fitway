@@ -9,7 +9,7 @@ export default LogoFitway = () => {
   });
 
   if (!fontsLoaded) return null;
-  return <Text style={styles.logo}>FITWAY</Text>;
+  return <Text style={styles.logo}>LIFTWAY</Text>;
 };
 
 const styles = StyleSheet.create({

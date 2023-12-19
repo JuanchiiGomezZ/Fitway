@@ -14,12 +14,12 @@ export default InfoContainer = ({ weight, height, birthdate }) => {
         <Text style={styles.infoTitle}>{t("Profile.weight")}</Text>
         <Text style={styles.infoValue}>{weight}</Text>
       </View>
-      <SeparatingLine />
+
       <View style={styles.infoItem}>
         <Text style={styles.infoTitle}>{t("Profile.height")}</Text>
         <Text style={styles.infoValue}>{height}</Text>
       </View>
-      <SeparatingLine />
+
       <View style={styles.infoItem}>
         <Text style={styles.infoTitle}>{t("Profile.age")}</Text>
         <Text style={styles.infoValue}>{"-"}</Text>
