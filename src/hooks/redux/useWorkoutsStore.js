@@ -55,8 +55,8 @@ export default useWorkoutsStore = () => {
         order: data.order,
       };
       const Exercises =
-        data.Supersets.length != 0
-          ? { Exercises: [...data.Exercises, ...data.Supersets] }
+        data.SuperSets.length != 0
+          ? { Exercises: [...data.Exercises, ...data.SuperSets] }
           : { Exercises: [...data.Exercises] };
 
       dispatch(saveWorkoutData({ details, Exercises }));
@@ -77,8 +77,8 @@ export default useWorkoutsStore = () => {
       };
       const Exercises = {
         Exercises:
-          data.Supersets.length !== 0
-            ? [...data.Exercises, ...data.Supersets]
+          data.SuperSets.length !== 0
+            ? [...data.Exercises, ...data.SuperSets]
             : [...data.Exercises],
       };
       dispatch(saveActiveWorkoutData({ details, Exercises }));

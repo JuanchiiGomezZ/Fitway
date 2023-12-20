@@ -1,4 +1,4 @@
-export default ExerciseTypeConvert = (type) => {
+export default exerciseTypeConvert = (type) => {
   if (type == "ExerciseWithoutWeight") {
     return "Bodyweight + Reps";
   } else if (type == "ExerciseWithWeight") {

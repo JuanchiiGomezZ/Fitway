@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 import ElementCard from "../../../components/ElementCard";
 import { TextAreaWithLabel } from "../../../components/Inputs";
 
-import ExerciseTypeConvert from "../../../helpers/ExerciseTypeConvert";
+import exerciseTypeConvert from "../../../helpers/exerciseTypeConvert";
 
 //COMPONENTS
 import TableExercise from "./TableExercise";
@@ -50,7 +50,7 @@ export default Details = ({ id }) => {
             <View style={styles.selectorsContainer}>
               <ElementCard img={Multimedia?.muscleImg} name={primaryMuscle} title="Muscle" />
               <ElementCard img={Multimedia?.elementImg} name={element} title="Element" />
-              <ElementCard icon="human-handsup" title={ExerciseTypeConvert(exerciseType)} />
+              <ElementCard icon="human-handsup" title={exerciseTypeConvert(exerciseType)} />
               <ElementCard
                 icon="timer-outline"
                 title="Rest time"

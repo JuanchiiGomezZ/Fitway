@@ -5,7 +5,7 @@ import { View, ScrollView, BackHandler } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import { cleanWorkoutLog } from "../../store/slices/trainingSlice";
+import { cleanWorkoutLog, saveInitialWorkoutLog } from "../../store/slices/trainingSlice";
 import useToggle from "../../hooks/useToggle";
 import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import { toggleExerciseGif } from "../../store/slices/trainingSlice";
@@ -33,6 +33,7 @@ export default TrainingMode = ({ route }) => {
     numActiveExercise,
     activeWorkout,
     exerciseGif,
+    workoutLog,
   } = useSelector((state) => state.training);
   const { id } = route.params;
 
@@ -40,16 +41,19 @@ export default TrainingMode = ({ route }) => {
   const [openWorkout, toggleOpenWorkout] = useToggle(false);
   const [confirmationAlert, toggleConfAlert] = useToggle(false);
 
-
   useEffect(() => {
-    if (activeWorkoutDetails?.workoutId != id) getWorkoutTrainingData(id);
+    if (activeWorkoutDetails?.workoutId != id) {
+      getWorkoutTrainingData(id);
+    } else {
+      dispatch(saveInitialWorkoutLog());
+    }
   }, []);
 
   useEffect(() => {
     const backAction = () => {
       // toggleConfAlert();
       goBack();
-      dispatch(cleanWorkoutLog());
+      // dispatch(cleanWorkoutLog());
       return true;
     };
 
@@ -75,7 +79,7 @@ export default TrainingMode = ({ route }) => {
                 activeExercise={numActiveExercise}
                 totalExercises={activeWorkout.length}
               />
-              <ContentExercise />
+              {workoutLog && <ContentExercise />}
             </View>
           </ScrollView>
           <BottomBar toggleOpenWorkout={toggleOpenWorkout} />

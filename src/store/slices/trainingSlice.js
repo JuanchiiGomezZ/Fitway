@@ -9,7 +9,7 @@ export const trainingSlice = createSlice({
     activeWorkout: [],
     activeExercise: undefined,
     activeWorkoutDetails: undefined,
-    workoutLog: [[]],
+    workoutLog: null,
     exerciseGif: null,
     isLoading: false,
     error: null,
@@ -28,6 +28,9 @@ export const trainingSlice = createSlice({
         (state.activeExercise = sortedExercises[numActiveExercise]),
         (state.workoutLog = workoutLogInitialState(sortedExercises)),
         (state.isLoading = false);
+    },
+    saveInitialWorkoutLog: (state, { payload }) => {
+      state.workoutLog = workoutLogInitialState(state.activeWorkout);
     },
     handleChangeExercise: (state, { payload }) => {
       (state.activeExercise = state.activeWorkout[payload]), (state.numActiveExercise = payload);
@@ -69,23 +72,17 @@ export const trainingSlice = createSlice({
       workoutLog[numActiveExercise][index].reps = reps;
       workoutLog[numActiveExercise][index].done = done;
     },
-    updateWorkoutLogWeight: (state, { payload }) => {
-      const { index, weight, done, exerciseId } = payload;
-      const { numActiveExercise, workoutLog } = state;
+    handleLogChange: (state, { payload }) => {
+      const { id, index, field, value } = payload;
+      const newState = state.workoutLog;
 
-      // if (!workoutLog[numActiveExercise]) {
-      //   workoutLog[numActiveExercise] = [];
-      // }
-
-      // if (!workoutLog[numActiveExercise][index]) {
-      //   workoutLog[numActiveExercise][index] = {};
-      // }
-
-      // workoutLog[numActiveExercise][index].weight = weight;
-      // workoutLog[numActiveExercise][index].done = done;
+      const indexExercise = newState.findIndex((item) => item.id === id);
+      if (indexExercise !== -1) {
+        newState[indexExercise].stats[index][field] = value;
+      }
     },
     cleanWorkoutLog: (state, { payload }) => {
-      (state.workoutLog = [[]]), (state.numActiveExercise = 0);
+      (state.workoutLog = null), (state.numActiveExercise = 0);
     },
     toggleExerciseGif: (state, { payload }) => {
       state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
@@ -103,9 +100,10 @@ export const {
   setActiveExercise,
   handleChangeExercise,
   updateWorkoutLog,
-  updateWorkoutLogWeight,
+  handleLogChange,
   updateWorkoutLogReps,
   cleanWorkoutLog,
   saveExercises,
   toggleExerciseGif,
+  saveInitialWorkoutLog,
 } = trainingSlice.actions;
