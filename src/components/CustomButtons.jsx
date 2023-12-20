@@ -47,13 +47,14 @@ const ButtonLong = ({
   );
 };
 
-const TextButton = ({ text, color, disabled }) => {
+const TextButton = ({ text, color, disabled, textWeight }) => {
   return (
     <Text
       style={[
         styles.textButton,
         { color: color || WHITE_COLOR },
         disabled && { color: GRAY_LIGHT_COLOR },
+        textWeight && { fontWeight: textWeight },
       ]}
       ellipsizeMode="tail"
       numberOfLines={1}
@@ -92,6 +93,7 @@ export const ButtonClassicLong = ({
   disabled,
   short,
   disabledAction,
+  textWeight,
 }) => {
   return (
     <ButtonLong
@@ -102,12 +104,21 @@ export const ButtonClassicLong = ({
       short={short}
       disabledAction={disabledAction}
     >
-      <TextButton text={text} color={color} disabled={disabled} />
+      <TextButton text={text} color={color} disabled={disabled} textWeight={textWeight} />
     </ButtonLong>
   );
 };
 
-export const ButtonRounded = ({ bgColor, action, transparent, disabled, text, color, icon }) => {
+export const ButtonRounded = ({
+  bgColor,
+  action,
+  transparent,
+  disabled,
+  text,
+  color,
+  icon,
+  textWeight,
+}) => {
   return (
     <TouchableOpacity
       style={[
@@ -116,11 +127,12 @@ export const ButtonRounded = ({ bgColor, action, transparent, disabled, text, co
         { backgroundColor: bgColor || ORANGE_COLOR },
         transparent && styles.buttonTransparent,
         disabled && { backgroundColor: "#363636" },
+        !icon && { paddingHorizontal: 7 },
       ]}
       onPress={action}
     >
       {icon && <MaterialCommunityIcons name={icon} size={20} color={color ? color : WHITE_COLOR} />}
-      <TextButton text={text} color={color} />
+      <TextButton text={text} color={color} textWeight={textWeight} />
     </TouchableOpacity>
   );
 };
@@ -248,6 +260,10 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     fontSize: 15,
     fontWeight: "500",
+  },
+
+  textBold: {
+    fontWeight: "700",
   },
 
   iconImg: {

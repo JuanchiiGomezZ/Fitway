@@ -17,6 +17,7 @@ export default ExercisesList = ({ workoutId, toggleBottomSheet }) => {
     workoutId != workoutDetails.workoutId && getWorkoutData(workoutId || workoutDetails.workoutId);
   }, []);
 
+  console.log(workoutExercises[2])
   return (
     <>
       {isLoading || !workoutExercises ? (

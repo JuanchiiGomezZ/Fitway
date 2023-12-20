@@ -41,37 +41,6 @@ export const trainingSlice = createSlice({
     saveExercises: (state, { payload }) => {
       state.activeWorkout = payload;
     },
-    updateWorkoutLog: (state, { payload }) => {
-      const { index, reps, weight, done } = payload;
-      const { numActiveExercise, workoutLog } = state;
-
-      if (!workoutLog[numActiveExercise]) {
-        workoutLog[numActiveExercise] = [];
-      }
-
-      if (!workoutLog[numActiveExercise][index]) {
-        workoutLog[numActiveExercise][index] = {};
-      }
-
-      workoutLog[numActiveExercise][index].reps = reps;
-      workoutLog[numActiveExercise][index].weight = weight;
-      workoutLog[numActiveExercise][index].done = done;
-    },
-    updateWorkoutLogReps: (state, { payload }) => {
-      const { index, reps, done } = payload;
-      const { numActiveExercise, workoutLog } = state;
-
-      if (!workoutLog[numActiveExercise]) {
-        workoutLog[numActiveExercise] = [];
-      }
-
-      if (!workoutLog[numActiveExercise][index]) {
-        workoutLog[numActiveExercise][index] = {};
-      }
-
-      workoutLog[numActiveExercise][index].reps = reps;
-      workoutLog[numActiveExercise][index].done = done;
-    },
     handleLogChange: (state, { payload }) => {
       const { id, index, field, value } = payload;
       const newState = state.workoutLog;
@@ -99,9 +68,7 @@ export const {
   onLoading,
   setActiveExercise,
   handleChangeExercise,
-  updateWorkoutLog,
   handleLogChange,
-  updateWorkoutLogReps,
   cleanWorkoutLog,
   saveExercises,
   toggleExerciseGif,

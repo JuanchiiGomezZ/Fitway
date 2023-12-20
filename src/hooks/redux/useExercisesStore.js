@@ -36,6 +36,7 @@ export default useExercisesStore = () => {
         `/exercise/newExercise/${user.id}/${workoutDetails.workoutId}`,
         exerciseData,
       );
+      console.log(data);
       dispatch(saveWorkoutExercises([...workoutExercises, data]));
     } catch (error) {
       dispatch(onError(error.response.data));
@@ -121,6 +122,6 @@ export default useExercisesStore = () => {
     getExerciseDetails,
     addExercise,
     getUserExsWithoutSelectedWkt,
-    getExerciseCompleteDetails
+    getExerciseCompleteDetails,
   };
 };

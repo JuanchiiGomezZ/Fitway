@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
-import { ButtonCircular } from "../../../components/CustomButtons";
-import { convertToHourMinutesSeconds } from "../helper/timeFormater";
-import { BACKGROUND_COLOR, RED_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import React from "react";
+import { StyleSheet, Text } from "react-native";
+import { ButtonCircular } from "../../../../components/CustomButtons";
+import { convertToHourMinutesSeconds } from "../../helper/timeFormater";
+import { BACKGROUND_COLOR, RED_COLOR, WHITE_COLOR } from "../../../../styles/styles";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { useFonts } from "expo-font";
 
 export default Timer = ({ useTimer }) => {
   const { pause, seconds, isPaused } = useTimer;
   const [fontsLoaded] = useFonts({
-    Fugaz: require("../../../assets/fonts/Fugaz.ttf"),
+    Fugaz: require("../../../../assets/fonts/Fugaz.ttf"),
   });
 
   if (!fontsLoaded) return null;
@@ -26,8 +26,6 @@ export default Timer = ({ useTimer }) => {
     </Animated.View>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   timerContent: {

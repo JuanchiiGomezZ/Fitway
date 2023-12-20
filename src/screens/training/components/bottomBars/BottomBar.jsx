@@ -5,8 +5,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { GRAY_COLOR } from "../../../../styles/styles";
 import useToggle from "../../../../hooks/useToggle";
 import useTimer from "../../hooks/useTimer";
-import ToolBar from "../ToolBar";
-import Timer from "../Timer";
+import ToolBar from "./ToolBar";
+import Timer from "./Timer";
 
 export default BottomBar = ({ toggleOpenWorkout }) => {
   const timer = useTimer();
@@ -28,7 +28,7 @@ export default BottomBar = ({ toggleOpenWorkout }) => {
   );
 };
 
-const { width} = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
   bottomBar: {
