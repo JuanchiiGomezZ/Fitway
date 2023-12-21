@@ -14,9 +14,8 @@ import { useTranslation } from "react-i18next";
 import {
   MaterialCommunityIcons,
   FontAwesome5,
-  FontAwesome,
   Feather,
-  Entypo,
+  Ionicons
 } from "@expo/vector-icons";
 
 const ButtonLong = ({
@@ -127,7 +126,7 @@ export const ButtonRounded = ({
         { backgroundColor: bgColor || ORANGE_COLOR },
         transparent && styles.buttonTransparent,
         disabled && { backgroundColor: "#363636" },
-        !icon && { paddingHorizontal: 7 },
+        !icon && { paddingLeft: 7 },
       ]}
       onPress={action}
     >
@@ -138,7 +137,7 @@ export const ButtonRounded = ({
 };
 
 export const ButtonCircular = ({ bgColor, action, color, icon, size, text, disabled }) => {
-  const Icon = icon == "close" ? FontAwesome : FontAwesome5;
+  const Icon = icon != "reload" ? FontAwesome5 : Ionicons;
   const Container = disabled ? Pressable : TouchableOpacity;
 
   // size = l(50), m(40), s(30)
@@ -164,7 +163,7 @@ export const ButtonCircular = ({ bgColor, action, color, icon, size, text, disab
       {icon ? (
         <Icon
           name={icon}
-          size={25}
+          size={sizeSelector().width - 15}
           color={color ? color : WHITE_COLOR}
           style={(icon == "play" && { marginLeft: 5 }, disabled && { color: GRAY_LIGHT_COLOR })}
         />

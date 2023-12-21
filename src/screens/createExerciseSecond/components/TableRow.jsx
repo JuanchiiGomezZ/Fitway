@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 
-const TableRow = ({ index, initialMode, exerciseType }) => {
+const TableRow = ({ index, initialMode, exerciseType, handledeleteSet }) => {
   const dispatch = useDispatch();
   const { reps, areValidReps } = useSelector((state) => state.newExercise);
   const { length } = reps;
@@ -17,10 +17,6 @@ const TableRow = ({ index, initialMode, exerciseType }) => {
     const updatedArrayReps = [...reps];
     updatedArrayReps[index] = text;
     dispatch(setReps(updatedArrayReps));
-  };
-
-  const handledeleteSet = () => {
-    dispatch(setReps(reps.slice(0, -1)));
   };
 
   return (

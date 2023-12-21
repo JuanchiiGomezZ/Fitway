@@ -1,27 +1,36 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Animated, { Easing, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 
-export default ProgressBar = ({ activeExercise, totalExercises }) => {
-  const progressBar = () => {
-    return (activeExercise * 100) / totalExercises + "%";
-  };
+const ProgressBar = ({ activeExercise, totalExercises }) => {
+  const progress = (activeExercise * 100) / totalExercises;
 
+
+  const animatedWidth = useAnimatedStyle(() => {
+    return {
+      width: withTiming(`${progress}%`, { duration: 300, easing: Easing.ease }),
+    };
+  });
+
+
+  
   return (
     <View style={styles.progressBarContainer}>
-      <View style={[styles.progress, { width: progressBar() }]} />
+      <Animated.View style={[styles.progress, animatedWidth]} />
       <View
-        style={[styles.progressCircle, activeExercise > 0 && { position: "relative", right: 25 }]}
+        style={[styles.progressCircle]}
       >
         <Text style={styles.progressNumber}>{activeExercise}</Text>
       </View>
-
       <View style={[styles.progressCircle, { position: "absolute", right: 0 }]}>
         <Text style={styles.progressNumber}>{totalExercises}</Text>
       </View>
     </View>
   );
 };
+
+export default ProgressBar;
 
 const styles = StyleSheet.create({
   progressBarContainer: {

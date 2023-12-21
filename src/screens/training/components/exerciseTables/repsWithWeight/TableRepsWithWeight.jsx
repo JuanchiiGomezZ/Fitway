@@ -9,7 +9,7 @@ import searchLogById from "../../../helper/searchLogById";
 
 export default TableRepsWithWeight = ({ reps, id, exerciseLogs }) => {
   const dispatch = useDispatch();
-
+  const { workoutLog } = useSelector((state) => state.training);
   const handleChange = (index, field, value) => {
     dispatch(handleLogChange({ id, index, field, value }));
   };
@@ -29,7 +29,7 @@ export default TableRepsWithWeight = ({ reps, id, exerciseLogs }) => {
           exerciseReps={element}
           key={index}
           handleChange={handleChange}
-          input={searchLogById(id)?.stats[index]}
+          input={searchLogById(id, workoutLog)?.stats[index]}
           exerciseLog={exerciseLogs?.stats?.[index]}
         />
       ))}

@@ -16,10 +16,9 @@ import { useNavigation } from "@react-navigation/native";
 import { ButtonClassicLong } from "../../components/CustomButtons";
 import ScreenContainer from "../../components/ScreenContainer";
 
-
 export default CreateExerciseSecond = ({ route }) => {
   const dispatch = useDispatch();
-  const { navigate } = useNavigation();
+  const { navigate, goBack } = useNavigation();
   const { t } = useTranslation();
   const { reps, restTime } = useSelector((state) => state.newExercise);
   const { workoutExercises } = useSelector((state) => state.workouts);
@@ -42,12 +41,17 @@ export default CreateExerciseSecond = ({ route }) => {
     navigate("Workout");
   };
 
+  const handleGoBack = () => {
+    goBack();
+    dispatch(cleanNewExerciseState());
+  };
+
   const activeButton = !reps.every((rep) => rep.trim());
 
   return (
     <ScreenContainer paddingBottom={true}>
       <View style={{ gap: 30, flex: 1 }}>
-        <Header title={route.params.name} />
+        <Header title={route.params.name} action={handleGoBack} />
         <RestTimeSlider />
         <SetsTable exerciseType={route.params.exerciseType} />
       </View>
@@ -61,5 +65,3 @@ export default CreateExerciseSecond = ({ route }) => {
     </ScreenContainer>
   );
 };
-
-

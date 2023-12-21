@@ -84,6 +84,7 @@ export default useExercisesStore = () => {
     dispatch(onChecking());
     try {
       const { data } = await axios.get(`/exercise/findOne/${exerciseId}`);
+      dispatch(onSuccess());
       return data;
     } catch (error) {
       dispatch(onError(error.response.data));
@@ -96,8 +97,8 @@ export default useExercisesStore = () => {
       const { data } = await axios.get(
         `/exercise/workoutExercise/${exerciseId}/${workoutDetails.workoutId}`,
       );
-      return data;
       dispatch(onSuccess());
+      return data;
     } catch (error) {
       dispatch(onError(error.response.data));
     }

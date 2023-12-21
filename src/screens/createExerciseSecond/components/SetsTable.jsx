@@ -4,7 +4,13 @@ import { WHITE_COLOR, ORANGE_DARK_COLOR, ORANGE_COLOR } from "../../../styles/st
 import TableRow from "./TableRow";
 import { useSelector, useDispatch } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import Animated, {
+  FadeIn,
+  FadeOut,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
 import { ButtonCircular } from "../../../components/CustomButtons";
 
 export default SetsTable = ({ exerciseType }) => {
@@ -12,10 +18,22 @@ export default SetsTable = ({ exerciseType }) => {
   const { reps } = useSelector((state) => state.newExercise);
   const { length } = reps;
 
-  const addSet = () => {
+  const translateY = useSharedValue(0);
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: translateY.value }],
+    };
+  });
+  const handleAddSet = () => {
     if (length <= 6) {
       dispatch(setReps([...reps, ""]));
+      translateY.value = withSpring(translateY.value + 55, { damping: 7, stiffness: 80 });
     }
+  };
+
+  const handledeleteSet = () => {
+    dispatch(setReps(reps.slice(0, -1)));
+    translateY.value = withSpring(translateY.value - 55, { damping: 7, stiffness: 80 });
   };
 
   const initialMode = useRef(true);
@@ -37,14 +55,16 @@ export default SetsTable = ({ exerciseType }) => {
           index={index}
           initialMode={initialMode.current}
           exerciseType={exerciseType}
+          handledeleteSet={handledeleteSet}
         />
       ))}
       {length < 6 ? (
         <Animated.View
           entering={initialMode.current ? FadeIn.delay((reps.length + 1) * 100) : FadeIn.delay(150)}
           exiting={FadeOut}
+          style={[animatedStyles, { position: "absolute", top: 200 }]}
         >
-          <ButtonCircular action={addSet} icon="plus" size="l" />
+          <ButtonCircular action={handleAddSet} icon="plus" size="l" />
         </Animated.View>
       ) : (
         <Animated.Text entering={FadeIn.delay(150)} exiting={FadeOut} style={styles.maxRepsText}>

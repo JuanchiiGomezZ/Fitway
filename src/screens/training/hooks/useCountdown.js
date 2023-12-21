@@ -45,7 +45,13 @@ export default function useCountdown() {
    * @param {number} extraSeconds - The number of extra seconds to add.
    */
   const addTime = (extraSeconds) => {
-    if (!isPaused) setSecondsLeft((prevSeconds) => prevSeconds + extraSeconds);
+    if (!isPaused)
+      setSecondsLeft((prev) => {
+        if (prev + extraSeconds > 1) {
+          return prev + extraSeconds;
+        }
+        return 0;
+      });
   };
 
   /**

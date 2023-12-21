@@ -1,19 +1,9 @@
-import { StyleSheet, Text, View, TouchableOpacity, Pressable } from "react-native";
-import React, { useRef, useEffect } from "react";
-import {
-  BACKGROUND_COLOR,
-  BORDER_RADIUS,
-  BOX_COLOR,
-  GRAY_COLOR,
-  ORANGE_COLOR,
-  WHITE_COLOR,
-} from "../../../styles/styles";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React from "react";
+import { BACKGROUND_COLOR, GRAY_COLOR, ORANGE_COLOR } from "../../../styles/styles";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Animated, { FadeInDown, FadeOutLeft, Layout } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import CardContainer from "../../../components/CardContainer";
-
-const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 
 export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
   const { muscles, name, id } = data;
@@ -26,7 +16,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
       configAction={() => toggleBottomSheet(id)}
     >
       <View style={styles.contentContainer}>
-        <View style={{ width: "83%" }}>
+        <View style={{ width: "83%", gap: 5 }}>
           <CardContainer.Title>{name}</CardContainer.Title>
           <View style={styles.musclesContainer}>
             {muscles && muscles.length > 0 ? (
@@ -54,7 +44,6 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
 };
 
 const styles = StyleSheet.create({
-
   musclesContainer: {
     flexWrap: "wrap",
     gap: 5,

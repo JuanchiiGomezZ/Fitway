@@ -1,114 +1,136 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
-import { Circle, Svg, G } from "react-native-svg";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import {
   BACKGROUND_COLOR,
   BOX_COLOR,
   GRAY_COLOR,
   ORANGE_COLOR,
+  PADDING_HORIZONTAL,
   WHITE_COLOR,
 } from "../../../styles/styles";
-import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
-import useCountdown from "../hooks/useCountdown";
-import CountdownControlers from "./CountdownControlers";
-import BackdropModals from "../../../components/BackdropModals";
-import { convertToMinutesSeconds } from "../helper/timeFormater";
+
+//HOOKS
 import { useFonts } from "expo-font";
+import { ButtonCircular } from "../../../components/CustomButtons";
+import useCountdown from "../hooks/useCountdown";
+import { convertToMinutesSeconds } from "../helper/timeFormater";
+import Animated, {
+  Easing,
+  FadeInDown,
+  FadeOutDown,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
+import { useDispatch, useSelector } from "react-redux";
+import { setCountdown } from "../../../store/slices/trainingSlice";
 
-const RADIUS = 45;
-const CIRCUMFERENCE = RADIUS * 2 * Math.PI;
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const screenWidth = Dimensions.get("window").width;
+export default Countdown = () => {
+  const { secondsLeft, isTimeOver, start, addTime, skipTime, isPaused } = useCountdown();
+  const dispatch = useDispatch();
+  const { countdown } = useSelector((state) => state.training);
 
-export default Countdown = ({ toggleModal, restTime }) => {
-  const countdown = useCountdown();
-  const { secondsLeft, isTimeOver, start } = countdown;
+  const [time, setTime] = useState(countdown.restTime || 30);
+  const progress = Math.min((secondsLeft * 100) / time, 100);
+
+  const animatedWidth = useAnimatedStyle(() => {
+    return {
+      width: withTiming(`${progress}%`, { duration: 120, easing: Easing.ease }),
+    };
+  });
+
+  useEffect(() => {
+    start(countdown.restTime);
+  }, [countdown.restTime]);
+
   const [fontsLoaded] = useFonts({
     Fugaz: require("../../../assets/fonts/Fugaz.ttf"),
   });
 
-  const [time, setTime] = useState(restTime);
+  const handleAddTime = (extraTime) => {
+    setTime((prev) => {
+      if (prev + extraTime > 1) {
+        return prev + extraTime;
+      }
+      return 0;
+    });
+    addTime(extraTime);
+  };
+
+  const handlePlay = () => {
+    start(time);
+  };
 
   useEffect(() => {
     if (isTimeOver) {
       const timeout = setTimeout(() => {
-        toggleModal();
+        dispatch(setCountdown({ state: false, restTime: 0 }));
       }, 400);
       return () => clearTimeout(timeout);
     }
   }, [isTimeOver]);
 
-  useEffect(() => {
-    start(time);
-  }, []);
-
   if (!fontsLoaded) return null;
   return (
-    <>
-      <BackdropModals />
-      <Animated.View style={styles.container} entering={SlideInDown} exiting={SlideOutDown}>
-        <View style={styles.countdownCounter}>
-          <Text style={styles.progressText}>{convertToMinutesSeconds(secondsLeft)}</Text>
-          <Text style={styles.restText}>Rest Time</Text>
-        </View>
-        <Svg
-          height={screenWidth * 0.8}
-          width="100%"
-          viewBox="0 0 100 100"
-          style={{ transform: [{ rotateZ: "-90deg" }] }}
-        >
-          <Circle
-            cx="50"
-            cy="50"
-            r="45"
-            stroke={BOX_COLOR}
-            strokeWidth="3"
-            fill={BACKGROUND_COLOR}
-          />
+    <Animated.View style={styles.container} entering={FadeInDown} exiting={FadeOutDown}>
+      <View style={styles.toolsContainer}>
+        <ButtonCircular icon={isPaused ? "play" : "pause"} action={handlePlay} size={"s"} />
+        <Text style={[styles.countdownText, styles.textSmall]} onPress={() => handleAddTime(-15)}>
+          -15
+        </Text>
+        <Text style={styles.countdownText}>{convertToMinutesSeconds(secondsLeft)}</Text>
+        <Text style={[styles.countdownText, styles.textSmall]} onPress={() => handleAddTime(15)}>
+          +15
+        </Text>
 
-          <AnimatedCircle
-            cx="50"
-            cy="50"
-            r="45"
-            strokeWidth="3"
-            fill="transparent"
-            stroke={ORANGE_COLOR}
-            strokeDasharray={CIRCUMFERENCE}
-            strokeLinecap={"butt"}
-            strokeDashoffset={CIRCUMFERENCE * (secondsLeft / time)}
-          />
-        </Svg>
-
-        <CountdownControlers useCountdown={countdown} time={time} setTime={setTime} />
-      </Animated.View>
-    </>
+        <ButtonCircular size="s" icon="forward" action={skipTime} />
+      </View>
+      <View style={styles.progressContainer}>
+        <Animated.View style={[styles.progress, animatedWidth]} />
+      </View>
+    </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
+    borderWidth: 1.5,
+    borderColor: GRAY_COLOR,
+    position: "absolute",
+    bottom: 100,
+    left: PADDING_HORIZONTAL,
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 10,
-    position: "absolute",
-    top: "30%",
+    backgroundColor: BOX_COLOR,
+    paddingVertical: 10,
+    borderRadius: 5,
   },
-  progressText: {
+  progressContainer: {
+    width: "90%",
+    height: 7,
+    backgroundColor: BACKGROUND_COLOR,
+    borderRadius: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  progress: {
+    height: 7,
+    borderRadius: 5,
+    backgroundColor: ORANGE_COLOR,
+  },
+  countdownText: {
     color: WHITE_COLOR,
-    fontSize: 65,
-    textAlign: "center",
     fontFamily: "Fugaz",
+    fontSize: 25,
   },
-  countdownCounter: {
-    textAlign: "center",
-    position: "absolute",
-    top: "25%",
-    zIndex: 10,
+  textSmall: {
+    fontSize: 18,
   },
-  restText: {
-    color: GRAY_COLOR,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "600",
+  toolsContainer: {
+    width: "90%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 });

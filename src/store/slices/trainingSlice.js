@@ -11,6 +11,7 @@ export const trainingSlice = createSlice({
     activeWorkoutDetails: undefined,
     workoutLog: null,
     exerciseGif: null,
+    countdown: { state: false, restTime: null },
     isLoading: false,
     error: null,
   },
@@ -56,6 +57,9 @@ export const trainingSlice = createSlice({
     toggleExerciseGif: (state, { payload }) => {
       state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
     },
+    setCountdown: (state, { payload }) => {
+      state.countdown = payload;
+    },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
     },
@@ -73,4 +77,5 @@ export const {
   saveExercises,
   toggleExerciseGif,
   saveInitialWorkoutLog,
+  setCountdown,
 } = trainingSlice.actions;

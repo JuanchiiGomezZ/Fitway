@@ -1,12 +1,19 @@
 import React from "react";
 import { Text, TextInput, View } from "react-native";
-import { BOX_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR } from "../../../../../styles/styles";
+import {
+  BOX_COLOR,
+  GRAY_LIGHT_COLOR,
+  GREEN_COLOR,
+  WHITE_COLOR,
+} from "../../../../../styles/styles";
 import * as styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
+import { setCountdown } from "../../../../../store/slices/trainingSlice";
 
 export default RowRepsWithWeight = ({ index, exerciseReps, handleChange, input, exerciseLog }) => {
   const { done, reps, weight } = input || {};
-
+  const dispatch = useDispatch();
   const toggleDone = () => {
     if (!done) {
       if (reps.length < 1) {
@@ -15,6 +22,7 @@ export default RowRepsWithWeight = ({ index, exerciseReps, handleChange, input, 
       if (weight.length < 1) {
         handleChange(index, "weight", exerciseLog?.weight || "");
       }
+      dispatch(setCountdown({ state: true, restTime: 45 }));
     } else {
       handleChange(index, "reps", "");
       handleChange(index, "weight", "");
@@ -34,9 +42,10 @@ export default RowRepsWithWeight = ({ index, exerciseReps, handleChange, input, 
       <Text style={[styles.text, styles.longItem, { fontWeight: "400", color: GRAY_LIGHT_COLOR }]}>
         {exerciseLog?.weight ? `${exerciseLog.reps}x${exerciseLog?.weight}kg` : "-"}
       </Text>
-      {/* REP */}
+
+      {/* REPS */}
       <TextInput
-        style={[styles.text, styles.longItem]}
+        style={[styles.text]}
         maxLength={3}
         keyboardType="numeric"
         inputMode="numeric"
@@ -47,17 +56,18 @@ export default RowRepsWithWeight = ({ index, exerciseReps, handleChange, input, 
         onChangeText={(value) => handleChange(index, "reps", value)}
         defaultValue={done || reps ? reps : ""}
       />
+
       {/* WEIGHT */}
       <TextInput
-        style={[styles.text, styles.longItem]}
+        style={[styles.text]}
         maxLength={3}
         keyboardType="numeric"
-        placeholder={exerciseLog?.weight || " - "}
-        placeholderTextColor={GRAY_LIGHT_COLOR} //"#626262"
+        placeholder={exerciseLog?.weight || "-"}
+        placeholderTextColor={done ? WHITE_COLOR : GRAY_LIGHT_COLOR} //"#626262"
         cursorColor={GRAY_LIGHT_COLOR}
         inputMode="numeric"
         onChangeText={(value) => handleChange(index, "weight", value)}
-        defaultValue={done || weight ? weight || "-" : ""}
+        defaultValue={(done && weight) || ""}
       />
 
       <AntDesign

@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, ScrollView, BackHandler } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 import ExerciseCardSingle from "./ExerciseCardSingle";
 import ExerciseCardSuperset from "./ExerciseCardSuperset";
-import FloatingMenu from "../FloatingMenu";
 import Loader from "../../../../components/Loader";
 import EmptyWorkout from "../EmptyWorkout";
-import useToggle from "../../../../hooks/useToggle";
-import BottomSheetMenuExercise from "../BottomSheetMenuExercise";
 
 export default ExercisesList = ({ workoutId, toggleBottomSheet }) => {
   const { workoutDetails, workoutExercises, isLoading } = useSelector((state) => state.workouts);
@@ -17,7 +14,6 @@ export default ExercisesList = ({ workoutId, toggleBottomSheet }) => {
     workoutId != workoutDetails.workoutId && getWorkoutData(workoutId || workoutDetails.workoutId);
   }, []);
 
-  console.log(workoutExercises[2])
   return (
     <>
       {isLoading || !workoutExercises ? (

@@ -60,7 +60,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
                 {exerciseType == "ExerciseOfDuration" ? (
                   <Text style={styles.text}>Duration: {reps[0]}s</Text>
                 ) : (
-                  <Text style={styles.text}>Reps: {reps?.join(" | ")}</Text>
+                  <Text style={[styles.text,{marginTop:-3}]}>Reps: {reps?.join(" | ")}</Text>
                 )}
               </View>
             )}
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
   },
   muscle: {
@@ -93,8 +92,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   workoutImg: {
-    width: 65,
-    height: 65,
+    width: 66,
+    height: 66,
     borderRadius: 12,
   },
   row: {

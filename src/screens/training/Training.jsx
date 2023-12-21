@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { View, ScrollView, BackHandler } from "react-native";
 
 //HOOKS
-import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { cleanWorkoutLog, saveInitialWorkoutLog } from "../../store/slices/trainingSlice";
@@ -21,10 +20,10 @@ import BottomBar from "./components/bottomBars/BottomBar";
 import ConfirmationAlert from "../../components/ConfirmationAlert";
 import ExerciseGIF from "../../components/ExerciseGIF";
 
+
 export default TrainingMode = ({ route }) => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { navigate, goBack } = useNavigation();
+  const { goBack } = useNavigation();
   const { getWorkoutTrainingData } = useWorkoutsStore();
   const {
     isLoading,
@@ -34,10 +33,10 @@ export default TrainingMode = ({ route }) => {
     activeWorkout,
     exerciseGif,
     workoutLog,
+    countdown,
   } = useSelector((state) => state.training);
   const { id } = route.params;
 
-  const [countdown, toggleCountodwn] = useToggle(false);
   const [openWorkout, toggleOpenWorkout] = useToggle(false);
   const [confirmationAlert, toggleConfAlert] = useToggle(false);
 
@@ -90,7 +89,7 @@ export default TrainingMode = ({ route }) => {
               exerciseGIF={exerciseGif}
             />
           )}
-          {countdown && <Countdown toggleModal={toggleCountodwn} restTime={30} />}
+          {countdown.state && <Countdown restTime={30} />}
           {openWorkout && <ExercisesModal toggleModal={toggleOpenWorkout} />}
           {confirmationAlert && (
             <ConfirmationAlert

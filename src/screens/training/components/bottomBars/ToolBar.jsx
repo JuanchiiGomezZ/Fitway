@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
-import { BACKGROUND_COLOR, GRAY_COLOR, ORANGE_COLOR } from "../../../../styles/styles";
+import { BACKGROUND_COLOR, GRAY_COLOR } from "../../../../styles/styles";
 import { ButtonCircular, ButtonRounded } from "../../../../components/CustomButtons";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangeExercise } from "../../../../store/slices/trainingSlice";
+
 
 export default ToolBar = ({ toggleWorkoutModal }) => {
   const dispatch = useDispatch();
@@ -27,24 +28,23 @@ export default ToolBar = ({ toggleWorkoutModal }) => {
       exiting={SlideOutDown.duration(300).easing()}
       style={[styles.toolBar, styles.row]}
     >
-      <View style={[styles.row, { gap: 30 }]}>
-        <ButtonCircular
-          icon="angle-double-left"
-          action={handlePreviousExercise}
-          disabled={numActiveExercise == 0 && GRAY_COLOR}
-          size={"m"}
-        />
-        <ButtonCircular
-          icon="angle-double-right"
-          action={handleNextExercise}
-          size={"m"}
-          disabled={activeWorkout.length == numActiveExercise + 1 && GRAY_COLOR}
-        />
-      </View>
-      <View style={[styles.row, { gap: 30 }]}>
+      <ButtonCircular
+        icon="angle-double-left"
+        action={handlePreviousExercise}
+        disabled={numActiveExercise == 0 && GRAY_COLOR}
+        size={"m"}
+      />
+
+      <View style={[styles.row, { gap: 20 }]}>
         <ButtonCircular icon="clipboard-list" action={toggleWorkoutModal} size={"m"} />
         <ButtonRounded text="Finish" textWeight="700" />
       </View>
+      <ButtonCircular
+        icon="angle-double-right"
+        action={handleNextExercise}
+        size={"m"}
+        disabled={activeWorkout.length == numActiveExercise + 1 && GRAY_COLOR}
+      />
     </Animated.View>
   );
 };

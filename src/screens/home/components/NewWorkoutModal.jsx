@@ -32,6 +32,7 @@ export default NewRoutineModal = ({ toggleNewWorkoutModal }) => {
           setInputChange={setName}
           inputChange={name}
           placeholder={t("Home.workout-name")}
+          
         />
 
         <ButtonClassicLong

@@ -20,7 +20,7 @@ export default Timer = ({ useTimer }) => {
       exiting={SlideOutDown.duration(300).easing()}
       style={styles.timerContent}
     >
-      <ButtonCircular icon={"close"} bgColor={RED_COLOR} size={"m"} />
+      <ButtonCircular icon={"times"} bgColor={RED_COLOR} size={"m"} />
       <Text style={styles.textTimer}>{convertToHourMinutesSeconds(seconds)}</Text>
       <ButtonCircular icon={isPaused ? "play" : "pause"} action={pause} size={"m"} />
     </Animated.View>
