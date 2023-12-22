@@ -30,7 +30,7 @@ export default BottomSheetMenuWorkout = ({ toggleBottomSheet, workoutId }) => {
       {confirmationAlert && (
         <ConfirmationAlert
           title="Alert"
-          text="Are you sure you want to delete this workout?"
+          subTitle="Are you sure you want to delete this workout?"
           toggleModal={toggleConfAlert}
           confirmAction={handleDeleteWorkout}
         />

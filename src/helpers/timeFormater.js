@@ -7,8 +7,15 @@ export const convertToHourMinutesSeconds = (time) => {
     .padStart(2, "0")}`;
 };
 
+export const convertToMinutesSeconds = (time) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  if (time <= 0) return "00:00";
+  return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+};
+
 export const convertToMinutes = (value) => {
-  if (value == 0) {
+  if (value == 0 || !value) {
     return "OFF";
   } else if (value >= 60) {
     const minutes = Math.floor(value / 60);

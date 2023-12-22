@@ -17,7 +17,7 @@ export default DraggableList = ({ toggleModal }) => {
   const ref = useRef(null);
   const { activeWorkout, numActiveExercise } = useSelector((state) => state.training);
   const [data, setData] = useState(activeWorkout);
-
+  console.log(data)
   const saveOrder = () => {
     dispatch(saveExercises(data));
     dispatch(handleChangeExercise(numActiveExercise));

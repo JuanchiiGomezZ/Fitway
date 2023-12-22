@@ -11,12 +11,7 @@ import {
   BOX_COLOR,
 } from "../styles/styles";
 import { useTranslation } from "react-i18next";
-import {
-  MaterialCommunityIcons,
-  FontAwesome5,
-  Feather,
-  Ionicons
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome5, Feather, Ionicons } from "@expo/vector-icons";
 
 const ButtonLong = ({
   children,
@@ -26,6 +21,7 @@ const ButtonLong = ({
   transparent,
   disabled,
   disabledAction,
+  borderColor,
 }) => {
   const Container = disabled ? Pressable : TouchableOpacity;
   return (
@@ -37,6 +33,7 @@ const ButtonLong = ({
         short && styles.buttonLongSmall,
         transparent && styles.buttonTransparent,
         disabled && { backgroundColor: "#363636" },
+        borderColor && transparent && { borderColor: borderColor },
         disabled && transparent && styles.buttonTransparentDisabled,
       ]}
       onPress={!disabled ? action : disabledAction}
@@ -93,6 +90,7 @@ export const ButtonClassicLong = ({
   short,
   disabledAction,
   textWeight,
+  borderColor,
 }) => {
   return (
     <ButtonLong
@@ -102,6 +100,7 @@ export const ButtonClassicLong = ({
       disabled={disabled}
       short={short}
       disabledAction={disabledAction}
+      borderColor={borderColor}
     >
       <TextButton text={text} color={color} disabled={disabled} textWeight={textWeight} />
     </ButtonLong>

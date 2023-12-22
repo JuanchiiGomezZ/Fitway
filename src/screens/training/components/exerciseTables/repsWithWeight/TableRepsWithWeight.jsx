@@ -7,9 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleLogChange } from "../../../../../store/slices/trainingSlice";
 import searchLogById from "../../../helper/searchLogById";
 
-export default TableRepsWithWeight = ({ reps, id, exerciseLogs }) => {
+export default TableRepsWithWeight = ({ reps, id, exerciseLogs, rest }) => {
   const dispatch = useDispatch();
   const { workoutLog } = useSelector((state) => state.training);
+
   const handleChange = (index, field, value) => {
     dispatch(handleLogChange({ id, index, field, value }));
   };
@@ -31,6 +32,7 @@ export default TableRepsWithWeight = ({ reps, id, exerciseLogs }) => {
           handleChange={handleChange}
           input={searchLogById(id, workoutLog)?.stats[index]}
           exerciseLog={exerciseLogs?.stats?.[index]}
+          rest={rest}
         />
       ))}
     </View>

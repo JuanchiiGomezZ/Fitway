@@ -12,7 +12,7 @@ import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import useCountdown from "../hooks/useCountdown";
 import CountdownControlers from "./CountdownControlers";
 import BackdropModals from "../../../components/BackdropModals";
-import { convertToMinutesSeconds } from "../helper/timeFormater";
+import { convertToMinutesSeconds } from "../../../helper/timeFormater";
 import { useFonts } from "expo-font";
 
 const RADIUS = 45;

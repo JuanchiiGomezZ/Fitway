@@ -2,19 +2,45 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import BackdropModals from "./BackdropModals";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import { BACKGROUND_COLOR, BORDER_RADIUS, GRAY_COLOR, WHITE_COLOR } from "../styles/styles";
+import {
+  BACKGROUND_COLOR,
+  BORDER_RADIUS,
+  GRAY_COLOR,
+  RED_COLOR,
+  WHITE_COLOR,
+} from "../styles/styles";
 import { ButtonClassicLong } from "./CustomButtons";
 
-export default ConfirmationAlert = ({ toggleModal, title, text, confirmAction }) => {
-
+export default ConfirmationAlert = ({
+  toggleModal,
+  title,
+  text,
+  subTitle,
+  confirmAction,
+  thirdButton,
+  thirdAction,
+  thirdColor,
+  thirdTitle,
+}) => {
   return (
     <>
       <BackdropModals toggleModal={toggleModal} />
       <Animated.View style={styles.modalContainer} entering={FadeIn} exiting={FadeOut}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.textBody}>{text}</Text>
+        <Text style={styles.textBody}>{subTitle}</Text>
+        {text && <Text style={styles.textBody}>{text}</Text>}
         <View style={{ width: "100%", gap: 10, marginTop: 10 }}>
           <ButtonClassicLong text="Confirm" action={confirmAction} short={true} />
+          {thirdButton && (
+            <ButtonClassicLong
+              text={thirdTitle}
+              action={thirdAction}
+              short={true}
+              transparent={true}
+              color={thirdColor}
+              borderColor={thirdColor}
+            />
+          )}
           <ButtonClassicLong text="Cancel" action={toggleModal} short={true} transparent={true} />
         </View>
       </Animated.View>
@@ -47,6 +73,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 17,
     fontWeight: "500",
-    width: "80%",
+    width: "90%",
   },
 });

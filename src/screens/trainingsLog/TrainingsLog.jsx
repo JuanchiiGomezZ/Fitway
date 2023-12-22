@@ -18,7 +18,11 @@ import TitleScreen from "../../components/TitleScreen";
 export default TrainingsLog = () => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
-  const prueba = [1, 2, 3];
+  const prueba = [
+    { name: "Thursday", date: "20/12/2023", time: "01:25:32" },
+    { name: "Tuesday", date: "18/12/2023", time: "01:16:51" },
+    { name: "Friday", date: "15/12/2023", time: "01:05:17" },
+  ];
 
   return (
     <ScreenContainer>
@@ -36,8 +40,8 @@ export default TrainingsLog = () => {
             <Empty />
           ) : (
             <View style={styles.cardsContainer}>
-              {prueba.map((index) => (
-                <WorkoutLogCard index={index} key={index} />
+              {prueba.map((item, index) => (
+                <WorkoutLogCard index={index} key={index} data={item} />
               ))}
             </View>
           )}

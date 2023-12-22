@@ -49,17 +49,22 @@ export default CustomCalendar = () => {
     <Calendar
       theme={theme}
       markedDates={{
-        "2023-11-29": { selected: true, marked: true },
-        "2023-12-01": { selected: true, marked: true },
-        "2023-12-03": { selected: true, marked: true },
+        "2023-12-20": { selected: true, marked: true },
+        "2023-12-19": { selected: true, marked: true },
         "2023-12-15": { selected: true, marked: true },
+        "2023-12-14": { selected: true, marked: true },
+        "2023-12-12": { selected: true, marked: true },
+        "2023-12-11": { selected: true, marked: true },
+        "2023-12-08": { selected: true, marked: true },
+        "2023-12-07": { selected: true, marked: true },
+        "2023-12-06": { selected: true, marked: true },
+        "2023-12-04": { selected: true, marked: true },
       }}
       hideExtraDays={true}
       displayLoadingIndicator={false}
       onMonthChange={onMonthChange}
       disableArrowRight={currentMonth}
       onDayPress={onDayPress}
- 
     />
   );
 };

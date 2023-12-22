@@ -13,7 +13,7 @@ import {
 import { useFonts } from "expo-font";
 import { ButtonCircular } from "../../../components/CustomButtons";
 import useCountdown from "../hooks/useCountdown";
-import { convertToMinutesSeconds } from "../helper/timeFormater";
+import { convertToMinutesSeconds } from "../../../helpers/timeFormater";
 import Animated, {
   Easing,
   FadeInDown,

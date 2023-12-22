@@ -57,5 +57,6 @@ const styles = StyleSheet.create({
   titleSmall: {
     color: WHITE_COLOR,
     fontSize: 20,
+    fontWeight: "500",
   },
 });

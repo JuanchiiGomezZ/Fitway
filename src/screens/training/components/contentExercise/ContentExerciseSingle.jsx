@@ -4,11 +4,13 @@ import ElementCard from "../../../../components/ElementCard";
 import TableRepsWithWeight from "../exerciseTables/repsWithWeight/TableRepsWithWeight";
 import { toggleExerciseGif } from "../../../../store/slices/trainingSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { WHITE_COLOR } from "../../../../styles/styles";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { ORANGE_COLOR, WHITE_COLOR } from "../../../../styles/styles";
+import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import { toggleRestTimerBottomSheet } from "../../../../store/slices/trainingSlice";
+import { convertToMinutes } from "../../../../helpers/timeFormater";
 
-export default ContentExerciseSingle = ({ data }) => {
+export default ContentExerciseSingle = ({ data, index }) => {
   const dispatch = useDispatch();
   const { exerciseGif } = useSelector((state) => state.training);
   const {
@@ -25,24 +27,48 @@ export default ContentExerciseSingle = ({ data }) => {
     dispatch(toggleExerciseGif(data.Multimedia?.exerciseGif));
   };
 
+  const handleOpenBottomSheetRestTime = () => {
+    dispatch(
+      toggleRestTimerBottomSheet(
+        index >= 0
+          ? {
+              actualRestTime: SupersetExercise?.resTime,
+              index: index,
+            }
+          : { actualRestTime: WorkoutExercise?.resTime },
+      ),
+    );
+  };
+
   return (
     <>
       <View style={styles.head}>
-        <View style={styles.titleContainer}>
-          <TouchableOpacity onPress={setExerciseGif}>
-            <Image
-              style={styles.image}
-              source={{ uri: "https://i.blogs.es/85d668/bench-press-1/650_1200.jpg" }}
-            />
-            {!exerciseGif && (
-              <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.bottomShadow}>
-                <FontAwesome5 name="search" size={13} color="#a1a1a1" />
-              </Animated.View>
-            )}
+        <View>
+          <View style={styles.titleContainer}>
+            <TouchableOpacity onPress={setExerciseGif}>
+              <Image
+                style={styles.image}
+                source={{ uri: "https://i.blogs.es/85d668/bench-press-1/650_1200.jpg" }}
+              />
+              {!exerciseGif && (
+                <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.bottomShadow}>
+                  <FontAwesome5 name="search" size={13} color="#a1a1a1" />
+                </Animated.View>
+              )}
+            </TouchableOpacity>
+            <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
+              {name}
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={[styles.row, styles.restTimerContainer]}
+            onPress={handleOpenBottomSheetRestTime}
+          >
+            <MaterialCommunityIcons name="timer-outline" size={24} color={ORANGE_COLOR} />
+            <Text style={styles.resTimerText}>
+              Rest Timer: {convertToMinutes(WorkoutExercise?.resTime || SupersetExercise?.resTime)}
+            </Text>
           </TouchableOpacity>
-          <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
-            {name}
-          </Text>
         </View>
         <View style={styles.cardsContainer}>
           <ElementCard
@@ -56,7 +82,7 @@ export default ContentExerciseSingle = ({ data }) => {
       </View>
       <TableRepsWithWeight
         reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-        rest={WorkoutExercise?.resTime || SupersetExercise?.reps}
+        rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
         id={data.id}
         exerciseLogs={ExerciseLogs[0]}
       />
@@ -69,7 +95,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "700",
     color: WHITE_COLOR,
-    maxWidth: "70%",
   },
   cardsContainer: {
     gap: 10,
@@ -78,7 +103,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    maxWidth: "62%",
+    maxWidth: "68%",
   },
   image: {
     width: 60,
@@ -101,5 +126,17 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 40,
     justifyContent: "center",
     alignItems: "center",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  resTimerText: {
+    color: ORANGE_COLOR,
+    fontSize: 16,
+  },
+  restTimerContainer: {
+    gap: 5,
+    marginTop: 15,
   },
 });

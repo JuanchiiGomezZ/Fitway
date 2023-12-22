@@ -11,18 +11,24 @@ import { AntDesign } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import { setCountdown } from "../../../../../store/slices/trainingSlice";
 
-export default RowRepsWithWeight = ({ index, exerciseReps, handleChange, input, exerciseLog }) => {
+export default RowRepsWithWeight = ({
+  index,
+  exerciseReps,
+  handleChange,
+  input,
+  exerciseLog,
+  rest,
+}) => {
   const { done, reps, weight } = input || {};
   const dispatch = useDispatch();
+
   const toggleDone = () => {
     if (!done) {
-      if (reps.length < 1) {
-        handleChange(index, "reps", exerciseReps);
-      }
-      if (weight.length < 1) {
-        handleChange(index, "weight", exerciseLog?.weight || "");
-      }
-      dispatch(setCountdown({ state: true, restTime: 45 }));
+      if (reps.length < 1) handleChange(index, "reps", exerciseReps);
+
+      if (weight.length < 1) handleChange(index, "weight", exerciseLog?.weight || "");
+
+      if (rest) dispatch(setCountdown({ state: true, restTime: rest }));
     } else {
       handleChange(index, "reps", "");
       handleChange(index, "weight", "");
@@ -45,7 +51,7 @@ export default RowRepsWithWeight = ({ index, exerciseReps, handleChange, input, 
 
       {/* REPS */}
       <TextInput
-        style={[styles.text]}
+        style={[styles.text, styles.longItem]}
         maxLength={3}
         keyboardType="numeric"
         inputMode="numeric"
@@ -59,7 +65,7 @@ export default RowRepsWithWeight = ({ index, exerciseReps, handleChange, input, 
 
       {/* WEIGHT */}
       <TextInput
-        style={[styles.text]}
+        style={[styles.text, styles.longItem]}
         maxLength={3}
         keyboardType="numeric"
         placeholder={exerciseLog?.weight || "-"}

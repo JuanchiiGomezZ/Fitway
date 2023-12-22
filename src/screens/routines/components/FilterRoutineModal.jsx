@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BACKGROUND_COLOR, BORDER_RADIUS, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
-import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
+import { ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import FilterOptionComponent from "./FilterOptionComponent";
-import BackdropModals from "../../../components/BackdropModals";
-import { CloseModalIcon, ButtonClassicLong } from "../../../components/CustomButtons";
+import { ButtonClassicLong } from "../../../components/CustomButtons";
+import BottomSheetModal from "../../../components/BottomSheetModal";
 
-const width = Dimensions.get("screen").width;
 export default FilterRoutineModal = ({ toggleModal }) => {
   const { t } = useTranslation();
   const [selectedDay, setSelectedDay] = useState(null);
@@ -19,79 +17,48 @@ export default FilterRoutineModal = ({ toggleModal }) => {
   const creators = ["FITWAY", "Community"];
 
   return (
-    <>
-      <BackdropModals toggleModal={toggleModal} />
+    <BottomSheetModal toggleModal={toggleModal} title={t("Routines.FilterRoutineModal.title")}>
+      <FilterOptionComponent
+        data={days}
+        state={selectedDay}
+        setState={setSelectedDay}
+        title={t("Routines.FilterRoutineModal.days")}
+      />
+      <FilterOptionComponent
+        data={difficulties}
+        state={difficulty}
+        setState={setDifficulty}
+        title={t("Routines.FilterRoutineModal.difficulty")}
+      />
+      <FilterOptionComponent
+        data={creators}
+        state={creator}
+        setState={setCreator}
+        title={t("Routines.FilterRoutineModal.creator")}
+      />
 
-      <Animated.View style={styles.modalContainer} entering={SlideInDown} exiting={SlideOutDown}>
-        <View style={styles.head}>
-          <Text style={styles.headText}>{t("Routines.FilterRoutineModal.title")}</Text>
-          <CloseModalIcon action={toggleModal} />
+      <View style={styles.buttonsContainer}>
+        <View style={{ width: "65%" }}>
+          <ButtonClassicLong
+            text={t("Routines.FilterRoutineModal.apply")}
+            action={toggleModal}
+            short={true}
+          />
         </View>
-
-        <FilterOptionComponent
-          data={days}
-          state={selectedDay}
-          setState={setSelectedDay}
-          title={t("Routines.FilterRoutineModal.days")}
-        />
-        <FilterOptionComponent
-          data={difficulties}
-          state={difficulty}
-          setState={setDifficulty}
-          title={t("Routines.FilterRoutineModal.difficulty")}
-        />
-        <FilterOptionComponent
-          data={creators}
-          state={creator}
-          setState={setCreator}
-          title={t("Routines.FilterRoutineModal.creator")}
-        />
-
-        <View style={styles.buttonsContainer}>
-          <View style={{ width: "65%" }}>
-            <ButtonClassicLong
-              text={t("Routines.FilterRoutineModal.apply")}
-              action={toggleModal}
-              short={true}
-            />
-          </View>
-          <View style={{ width: "32%" }}>
-            <ButtonClassicLong
-              text={t("Routines.FilterRoutineModal.clear-filters")}
-              short={true}
-              color={ORANGE_COLOR}
-              bgColor={WHITE_COLOR}
-            />
-          </View>
+        <View style={{ width: "32%" }}>
+          <ButtonClassicLong
+            text={t("Routines.FilterRoutineModal.clear-filters")}
+            short={true}
+            color={ORANGE_COLOR}
+            bgColor={WHITE_COLOR}
+          />
         </View>
-      </Animated.View>
-    </>
+      </View>
+    </BottomSheetModal>
   );
 };
 
 const styles = StyleSheet.create({
-  modalContainer: {
-    minHeight: 300,
-    width: width,
-    position: "absolute",
-    backgroundColor: BACKGROUND_COLOR,
-    bottom: 0,
-    borderRadius: BORDER_RADIUS,
-    paddingHorizontal: "5%",
-    paddingTop: 10,
-    paddingBottom: 15,
-    zIndex: 5,
-  },
-  head: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  headText: {
-    color: WHITE_COLOR,
-    fontSize: 25,
-    fontWeight: "700",
-  },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

@@ -7,18 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRestTime } from "../../../store/slices/newExerciseSlice";
 const RestTimeSlider = () => {
   const dispatch = useDispatch();
-  const { restTime } = useSelector((state) => state.newExercise);
+  const { resTime } = useSelector((state) => state.newExercise);
 
   return (
     <View>
-      <Text style={styles.restText}>Rest Time: {convertToMinutes(restTime)}</Text>
+      <Text style={styles.restText}>Rest Time: {convertToMinutes(resTime)}</Text>
       <Slider
         style={{ width: "100%", transform: [{ scaleX: 1.045 }] }}
         minimumValue={0}
         maximumValue={300}
         onValueChange={(value) => dispatch(setRestTime(value))}
         step={15}
-        value={restTime}
+        value={resTime}
         minimumTrackTintColor={ORANGE_COLOR}
         maximumTrackTintColor={GRAY_COLOR}
         thumbTintColor={WHITE_COLOR}

@@ -9,7 +9,7 @@ const ProgressBar = ({ activeExercise, totalExercises }) => {
 
   const animatedWidth = useAnimatedStyle(() => {
     return {
-      width: withTiming(`${progress}%`, { duration: 300, easing: Easing.ease }),
+      width: withTiming(`${progress-5}%`, { duration: 300, easing: Easing.ease }),
     };
   });
 

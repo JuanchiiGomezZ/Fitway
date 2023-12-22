@@ -7,7 +7,7 @@ import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default WorkoutLogCard = ({ index }) => {
+export default WorkoutLogCard = ({ index, data }) => {
   const { navigate } = useNavigation();
 
   const handleNavigate = () => {
@@ -19,11 +19,11 @@ export default WorkoutLogCard = ({ index }) => {
       <View style={styles.row}>
         <Image source={require("../../../assets/images/icon_fw_dark.png")} style={styles.iconImg} />
         <View style={styles.content}>
-          <CardContainer.TitleSmall>Workout Name</CardContainer.TitleSmall>
+          <CardContainer.TitleSmall>{data.name}</CardContainer.TitleSmall>
           <View style={[styles.row, { justifyContent: "space-between" }]}>
-            <Text style={styles.timeText}>01:23:45</Text>
+            <Text style={styles.timeText}>{data.time}</Text>
             <View style={[styles.row, { gap: -5 }]}>
-              <Text style={styles.dateText}>12/12/2023</Text>
+              <Text style={styles.dateText}>{data.date}</Text>
               <Entypo name="chevron-small-right" size={24} color={GRAY_COLOR} />
             </View>
           </View>

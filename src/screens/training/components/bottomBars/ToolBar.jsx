@@ -4,12 +4,16 @@ import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, GRAY_COLOR } from "../../../../styles/styles";
 import { ButtonCircular, ButtonRounded } from "../../../../components/CustomButtons";
 import { useDispatch, useSelector } from "react-redux";
-import { handleChangeExercise } from "../../../../store/slices/trainingSlice";
-
+import {
+  handleChangeExercise,
+  toggleConfirmExitAlert,
+} from "../../../../store/slices/trainingSlice";
+import { useNavigation } from "@react-navigation/native";
 
 export default ToolBar = ({ toggleWorkoutModal }) => {
   const dispatch = useDispatch();
-  const { numActiveExercise, activeWorkout } = useSelector((state) => state.training);
+  const { navigate } = useNavigation();
+  const { numActiveExercise, activeWorkout, workoutLog } = useSelector((state) => state.training);
 
   const handleNextExercise = () => {
     if (activeWorkout.length > numActiveExercise + 1) {
@@ -22,6 +26,12 @@ export default ToolBar = ({ toggleWorkoutModal }) => {
       dispatch(handleChangeExercise(numActiveExercise - 1));
     }
   };
+
+  
+  const handleFinishWorkout = () => {
+    dispatch(toggleConfirmExitAlert());
+  };
+
   return (
     <Animated.View
       entering={SlideInDown}
@@ -37,7 +47,7 @@ export default ToolBar = ({ toggleWorkoutModal }) => {
 
       <View style={[styles.row, { gap: 20 }]}>
         <ButtonCircular icon="clipboard-list" action={toggleWorkoutModal} size={"m"} />
-        <ButtonRounded text="Finish" textWeight="700" />
+        <ButtonRounded text="Complete" textWeight="700" action={handleFinishWorkout} />
       </View>
       <ButtonCircular
         icon="angle-double-right"

@@ -12,6 +12,8 @@ export const trainingSlice = createSlice({
     workoutLog: null,
     exerciseGif: null,
     countdown: { state: false, restTime: null },
+    restTimerBottomSheet: { state: false, restTime: null },
+    confirmExitAlert: false,
     isLoading: false,
     error: null,
   },
@@ -54,11 +56,43 @@ export const trainingSlice = createSlice({
     cleanWorkoutLog: (state, { payload }) => {
       (state.workoutLog = null), (state.numActiveExercise = 0);
     },
-    toggleExerciseGif: (state, { payload }) => {
-      state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
+    setRestTime: (state, { payload }) => {
+      const { exerciseId, newRestTime, index } = payload;
+
+      const exerciseToUpdate = state.activeWorkout.find((exercise) => exercise.id === exerciseId);
+      if (exerciseToUpdate) {
+        if (exerciseToUpdate?.Exercises) {
+          exerciseToUpdate.Exercises[index].SupersetExercise.resTime = newRestTime;
+        } else {
+          exerciseToUpdate.WorkoutExercise.resTime = newRestTime;
+        }
+      }
+
+      if (state.activeExercise.Exercises) {
+        state.activeExercise.Exercises[index].SupersetExercise.resTime = newRestTime;
+      } else {
+        state.activeExercise.WorkoutExercise.resTime = newRestTime;
+      }
     },
     setCountdown: (state, { payload }) => {
       state.countdown = payload;
+    },
+    toggleExerciseGif: (state, { payload }) => {
+      state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
+    },
+    toggleRestTimerBottomSheet: (state, { payload }) => {
+      const { actualRestTime, index } = payload || {};
+
+      state.restTimerBottomSheet.state
+        ? (state.restTimerBottomSheet = { state: false, actualRestTime: null })
+        : (state.restTimerBottomSheet = {
+            state: true,
+            actualRestTime,
+            index,
+          });
+    },
+    toggleConfirmExitAlert: (state, { payload }) => {
+      state.confirmExitAlert = !state.confirmExitAlert;
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
@@ -78,4 +112,7 @@ export const {
   toggleExerciseGif,
   saveInitialWorkoutLog,
   setCountdown,
+  setRestTime,
+  toggleRestTimerBottomSheet,
+  toggleConfirmExitAlert,
 } = trainingSlice.actions;

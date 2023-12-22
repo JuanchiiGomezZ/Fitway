@@ -13,7 +13,6 @@ import HeaderHome from "./components/HeaderHome";
 import NewWorkoutModal from "./components/NewWorkoutModal";
 import ContentHome from "./components/ContentHome";
 import BottomSheetMenuWorkout from "./components/BottomSheetMenuWorkout";
-import ConfirmationAlert from "../../components/ConfirmationAlert";
 import QrModal from "../../components/QrModal";
 
 /* STYLES */
