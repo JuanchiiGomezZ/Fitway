@@ -9,6 +9,8 @@ import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { toggleRestTimerBottomSheet } from "../../../../store/slices/trainingSlice";
 import { convertToMinutes } from "../../../../helpers/timeFormater";
+import TableDuration from "../exerciseTables/duration/TableDuration";
+import TableRepsWithoutWeight from "../exerciseTables/repsWithoutWeight/TableRepsWithoutWeight";
 
 export default ContentExerciseSingle = ({ data, index }) => {
   const dispatch = useDispatch();
@@ -80,7 +82,14 @@ export default ContentExerciseSingle = ({ data, index }) => {
           <ElementCard title="Element" name={element} img={Multimedia?.elementImg} reverse={true} />
         </View>
       </View>
-      <TableRepsWithWeight
+      {/* <TableRepsWithWeight
+        reps={WorkoutExercise?.reps || SupersetExercise?.reps}
+        rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
+        id={data.id}
+        exerciseLogs={ExerciseLogs[0]}
+      /> */}
+      {/* <TableDuration /> */}
+      <TableRepsWithoutWeight
         reps={WorkoutExercise?.reps || SupersetExercise?.reps}
         rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
         id={data.id}

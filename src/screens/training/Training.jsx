@@ -23,7 +23,7 @@ import ExercisesModal from "./components/exercisesModal/ExercisesModal";
 import BottomBar from "./components/bottomBars/BottomBar";
 import ConfirmationAlert from "../../components/ConfirmationAlert";
 import ExerciseGIF from "../../components/ExerciseGIF";
-import BottomSheetRestTimerConfig from "./components/restTimerBottomSheet/BottomSheetRestTimerConfig";
+import BottomSheetRestTimerConfig from "./components/BottomSheetRestTimerConfig";
 import { RED_COLOR } from "../../styles/styles";
 
 export default TrainingMode = ({ route }) => {

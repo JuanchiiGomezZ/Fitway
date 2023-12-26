@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { WHITE_COLOR, BOX_COLOR, GRAY_LIGHT_COLOR, GRAY_COLOR } from "../../../../../styles/styles";
+import { WHITE_COLOR, BOX_COLOR, GRAY_COLOR } from "./styles";
 
 module.exports = StyleSheet.create({
   table: {

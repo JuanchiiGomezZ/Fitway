@@ -1,38 +1,39 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import * as styles from "../../../../../styles/tableStyles";
-import RowRepsWithWeight from "./RowRepsWithWeight";
+import RowRepsWithoutWeight from "./RowRepsWithoutWeight";
+import searchLogById from "../../../helper/searchLogById";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogChange } from "../../../../../store/slices/trainingSlice";
-import searchLogById from "../../../helper/searchLogById";
+import { AntDesign } from "@expo/vector-icons";
+//HOOKS
 
-export default TableRepsWithWeight = ({ reps, id, exerciseLogs, rest }) => {
+//COMPONENTS
+
+export default TableRepsWithoutWeight = ({ reps, id, exerciseLogs, rest }) => {
   const dispatch = useDispatch();
   const { workoutLog } = useSelector((state) => state.training);
 
   const handleChange = (index, field, value) => {
     dispatch(handleLogChange({ id, index, field, value }));
   };
-
   return (
     <View style={styles.table}>
       <View style={styles.row}>
         <Text style={[styles.text, styles.headText]}>SETS</Text>
         <Text style={[styles.text, styles.longItem, styles.headText]}>PREV</Text>
         <Text style={[styles.text, styles.longItem, styles.headText]}>REPS</Text>
-        <Text style={[styles.text, styles.headText, styles.longItem]}>KG</Text>
         <AntDesign name="check" style={[styles.text, styles.tableIcon, styles.headText]} />
       </View>
-      {reps.map((element, index) => (
-        <RowRepsWithWeight
+      {reps.map((item, index) => (
+        <RowRepsWithoutWeight
           index={index}
-          exerciseReps={element}
+          exerciseReps={item}
           key={index}
-          handleChange={handleChange}
           input={searchLogById(id, workoutLog)?.stats[index]}
           exerciseLog={exerciseLogs?.stats?.[index]}
           rest={rest}
+          handleChange={handleChange}
         />
       ))}
     </View>

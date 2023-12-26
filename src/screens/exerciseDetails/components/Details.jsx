@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 import ElementCard from "../../../components/ElementCard";
 import { TextAreaWithLabel } from "../../../components/Inputs";
-
 import exerciseTypeConvert from "../../../helpers/exerciseTypeConvert";
 
 //COMPONENTS
@@ -11,6 +10,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { WHITE_COLOR } from "../../../styles/styles";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 import Loader from "../../../components/Loader";
+import { convertToMinutes } from "../../../helpers/timeFormater";
+import { ButtonCircular } from "../../../components/CustomButtons";
+import { Feather } from "@expo/vector-icons";
 
 export default Details = ({ id }) => {
   const [exerciseData, setExerciseData] = useState(null);
@@ -22,17 +24,20 @@ export default Details = ({ id }) => {
     });
   }, []);
 
-  const { name, element, primaryMuscle, Multimedia, exerciseType, description, workoutExercise } =
+  const { name, element, primaryMuscle, Multimedia, exerciseType, description, WorkoutExercise } =
     exerciseData || {};
 
-  const { restTime, reps } = workoutExercise || {};
+  const { resTime, reps } = WorkoutExercise || {};
 
   return (
     <>
       {!exerciseData ? (
         <Loader />
       ) : (
-        <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+        <ScrollView
+          contentContainerStyle={{ alignItems: "center" }}
+          showsVerticalScrollIndicator={false}
+        >
           {Multimedia?.exerciseImg ? (
             <Image source={{ uri: Multimedia.exerciseImg }} style={styles.image} />
           ) : (
@@ -40,7 +45,7 @@ export default Details = ({ id }) => {
               <MaterialCommunityIcons name="image-off-outline" size={30} color="#545454" />
             </View>
           )}
-          <View style={{ width: "95%", gap: 20 }}>
+          <View style={{ width: "95%", gap: 20, paddingBottom: 20 }}>
             <Text style={styles.exerciseName}>{name}</Text>
             <TextAreaWithLabel
               label="Description"
@@ -54,13 +59,16 @@ export default Details = ({ id }) => {
               <ElementCard
                 icon="timer-outline"
                 title="Rest time"
-                name={restTime ? restTime : "OFF"}
+                name={convertToMinutes(resTime)}
               />
             </View>
             <TableExercise reps={reps} />
           </View>
         </ScrollView>
       )}
+      <View style={styles.editBtn}>
+        <ButtonCircular icon="edit-2" iconFamily={Feather} iconSize={25} />
+      </View>
     </>
   );
 };
@@ -89,5 +97,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     fontWeight: "700",
+  },
+  editBtn: {
+    position: "absolute",
+    right: 0,
+    bottom: 10,
   },
 });

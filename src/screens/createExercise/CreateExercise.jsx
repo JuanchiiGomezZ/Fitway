@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import musclesData from "../../data/muscles.json";
 import elementsData from "../../data/elements.json";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import useToggle from "../../hooks/useToggle";
 
 //COMPONENTS
@@ -21,18 +21,10 @@ import ExerciseTypesModal from "./components/ExerciseTypesModal";
 import { ButtonClassicLong } from "../../components/CustomButtons";
 
 //STYLES
-import {
-  BACKGROUND_COLOR,
-  PADDING_BOTTOM,
-  PADDING_HORIZONTAL,
-  PADDING_TOP,
-  WHITE_COLOR,
-} from "../../styles/styles";
+import { WHITE_COLOR } from "../../styles/styles";
 import maxOrder from "../../helpers/maxOrder";
 
 export default CreateExercise = () => {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
   const { navigate } = useNavigation();
   const { workoutExercises } = useSelector((state) => state.workouts);
 

@@ -22,7 +22,7 @@ export default ExerciseDetails = ({ route }) => {
     { title: "History", component: <></> },
   ];
   return (
-    <ScreenContainer paddingBottom={true}>
+    <ScreenContainer>
       <Header margin={false} />
       <PagerNavigator pages={pages} />
     </ScreenContainer>

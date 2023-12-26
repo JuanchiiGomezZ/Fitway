@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { ButtonCircular } from "../../../../components/CustomButtons";
 import { convertToHourMinutesSeconds } from "../../../../helpers/timeFormater";
@@ -12,8 +12,11 @@ export default Timer = ({ useTimer }) => {
     Fugaz: require("../../../../assets/fonts/Fugaz.ttf"),
   });
 
-  if (!fontsLoaded) return null;
+  // useEffect(() => {
+  //   pause();
+  // }, []);
 
+  if (!fontsLoaded) return null;
   return (
     <Animated.View
       entering={SlideInDown}

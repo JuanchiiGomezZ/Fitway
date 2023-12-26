@@ -135,8 +135,18 @@ export const ButtonRounded = ({
   );
 };
 
-export const ButtonCircular = ({ bgColor, action, color, icon, size, text, disabled }) => {
-  const Icon = icon != "reload" ? FontAwesome5 : Ionicons;
+export const ButtonCircular = ({
+  bgColor,
+  action,
+  color,
+  icon,
+  size,
+  text,
+  disabled,
+  iconFamily,
+  iconSize,
+}) => {
+  const Icon = iconFamily || FontAwesome5;
   const Container = disabled ? Pressable : TouchableOpacity;
 
   // size = l(50), m(40), s(30)
@@ -162,7 +172,7 @@ export const ButtonCircular = ({ bgColor, action, color, icon, size, text, disab
       {icon ? (
         <Icon
           name={icon}
-          size={sizeSelector().width - 15}
+          size={iconSize || sizeSelector().width - 20}
           color={color ? color : WHITE_COLOR}
           style={(icon == "play" && { marginLeft: 5 }, disabled && { color: GRAY_LIGHT_COLOR })}
         />

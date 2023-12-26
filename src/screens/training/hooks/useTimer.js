@@ -4,7 +4,7 @@ import useElapsedTimeOnBackground from "./useElapsedTimeOnBackground";
 export default useTimer = () => {
   const { elapsedTime } = useElapsedTimeOnBackground();
   const [seconds, setSeconds] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
     if (isPaused) return;
