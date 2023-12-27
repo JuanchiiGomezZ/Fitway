@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import sortByOrder from "../../helpers/sortByOrder";
 import workoutLogInitialState from "../../helpers/workoutLogInitialState";
+import { storage } from "../../helpers/storage";
 
 export const trainingSlice = createSlice({
   name: "training",
@@ -54,7 +55,9 @@ export const trainingSlice = createSlice({
       }
     },
     cleanWorkoutLog: (state, { payload }) => {
-      (state.workoutLog = null), (state.numActiveExercise = 0);
+      storage.delete("workoutId_training"),
+        (state.workoutLog = null),
+        (state.numActiveExercise = 0);
     },
     setRestTime: (state, { payload }) => {
       const { exerciseId, newRestTime, index } = payload;

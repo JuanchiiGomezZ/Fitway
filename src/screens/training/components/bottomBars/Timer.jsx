@@ -47,7 +47,4 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontFamily: "Fugaz",
   },
-  handleIcon: {
-    alignItems: "center",
-  },
 });

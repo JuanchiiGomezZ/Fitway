@@ -24,9 +24,14 @@ export default useTimer = () => {
     if (!isPaused) setSeconds((prev) => prev + elapsedTime);
   };
 
+  const start = (initialTime) => {
+    setSeconds(initialTime);
+    pause();
+  };
+
   useEffect(() => {
     updateTimer(elapsedTime);
   }, [elapsedTime]);
-  
-  return { pause, seconds, isPaused };
+
+  return { pause, seconds, isPaused, start };
 };

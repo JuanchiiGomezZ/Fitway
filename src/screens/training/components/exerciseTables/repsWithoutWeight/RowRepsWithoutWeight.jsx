@@ -1,10 +1,6 @@
 import React from "react";
 import { Text, TextInput, View } from "react-native";
-import {
-  BOX_COLOR,
-  GRAY_LIGHT_COLOR,
-  GREEN_COLOR,
-} from "../../../../../styles/styles";
+import { BOX_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR } from "../../../../../styles/styles";
 import * as styles from "../../../../../styles/tableStyles";
 import { AntDesign } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";

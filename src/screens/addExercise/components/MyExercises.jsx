@@ -21,7 +21,6 @@ export default AllExercises = () => {
     });
   }, []);
 
-
   return (
     <>
       {isLoading || !userExercises ? (
@@ -31,12 +30,10 @@ export default AllExercises = () => {
       ) : (
         <>
           {userExercises?.length > 0 ? (
-            <ScrollView>
-              <View style={{ gap: 7 }}>
-                {userExercises.map((item, index) => (
-                  <AddExerciseCard key={item.id} data={item} index={index} />
-                ))}
-              </View>
+            <ScrollView contentContainerStyle={{ paddingBottom: 20, gap: 7 }}>
+              {userExercises.map((item, index) => (
+                <AddExerciseCard key={item.id} data={item} index={index} />
+              ))}
             </ScrollView>
           ) : (
             <Text style={{ color: WHITE_COLOR, textAlign: "center" }}>Empty</Text>

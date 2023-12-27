@@ -22,6 +22,7 @@ export default useRoutinesStore = () => {
     try {
       dispatch(onChecking());
       const { data } = await axios.get(`/routine/allRoutines/${user.id}`);
+
       dispatch(saveActiveRoutineId(data[0]?.activeRoutine?.id));
       dispatch(saveRoutines(data[0]));
       dispatch(setLoader());

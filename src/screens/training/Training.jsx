@@ -12,6 +12,7 @@ import {
 import useToggle from "../../hooks/useToggle";
 import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import { toggleExerciseGif } from "../../store/slices/trainingSlice";
+import { storage } from "../../helpers/storage";
 
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
@@ -53,6 +54,7 @@ export default TrainingMode = ({ route }) => {
     } else {
       dispatch(saveInitialWorkoutLog());
     }
+    storage.set("workoutId_training", id);
   }, []);
 
   useEffect(() => {
@@ -74,6 +76,7 @@ export default TrainingMode = ({ route }) => {
 
   const handleConfirmFinishTraining = () => {
     navigate("TrainingFinished");
+    dispatch(toggleConfirmExitAlert());
   };
 
   return (
@@ -105,7 +108,7 @@ export default TrainingMode = ({ route }) => {
             <confirmationExitAlert
               toggleModal={toggleConfExitAlert}
               title="Alert"
-              text={"Are you sure you want to quit the training?"}
+              text={"Are you sure you want to discard the training?"}
               confirmAction={backAction}
             />
           )}
@@ -120,6 +123,7 @@ export default TrainingMode = ({ route }) => {
               thirdColor={RED_COLOR}
               thirdTitle={"Discard training"}
               confirmAction={handleConfirmFinishTraining}
+              thirdAction={backAction}
             />
           )}
         </>

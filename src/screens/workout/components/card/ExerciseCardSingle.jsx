@@ -60,7 +60,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
                 {exerciseType == "ExerciseOfDuration" ? (
                   <Text style={styles.text}>Duration: {reps[0]}s</Text>
                 ) : (
-                  <Text style={[styles.text,{marginTop:-3}]}>Reps: {reps?.join(" | ")}</Text>
+                  <Text style={[styles.text, { marginTop: -3 }]}>Reps: {reps?.join(" | ")}</Text>
                 )}
               </View>
             )}

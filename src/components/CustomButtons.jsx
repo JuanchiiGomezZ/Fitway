@@ -172,9 +172,9 @@ export const ButtonCircular = ({
       {icon ? (
         <Icon
           name={icon}
-          size={iconSize || sizeSelector().width - 20}
+          size={iconSize || sizeSelector().width - 15}
           color={color ? color : WHITE_COLOR}
-          style={(icon == "play" && { marginLeft: 5 }, disabled && { color: GRAY_LIGHT_COLOR })}
+          style={[icon == "play" && { marginLeft: 4 }, disabled && { color: GRAY_LIGHT_COLOR }]}
         />
       ) : (
         <TextButton text={text} />

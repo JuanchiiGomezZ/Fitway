@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, RefreshControl } from "react-native";
+import { ScrollView, RefreshControl, Text } from "react-native";
 
 /* HOOKS */
 import { useSelector } from "react-redux";
 import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
 import useToggle from "../../hooks/useToggle";
+import { storage } from "../../helpers/storage";
+import { useMMKVListener } from "react-native-mmkv";
 
 /* COMPONENTS */
 import ScreenContainer from "../../components/ScreenContainer";
@@ -14,6 +16,7 @@ import NewWorkoutModal from "./components/NewWorkoutModal";
 import ContentHome from "./components/ContentHome";
 import BottomSheetMenuWorkout from "./components/BottomSheetMenuWorkout";
 import QrModal from "../../components/QrModal";
+import TrainigInProgressModal from "./components/TrainigInProgressModal";
 
 /* STYLES */
 import { ORANGE_COLOR } from "../../styles/styles";
@@ -27,11 +30,19 @@ export default HomeScreen = () => {
   const [workoutId, setWorkoutId] = useState(null);
   const [newWorkoutModal, toggleNewWorkoutModal] = useToggle(false);
   const [qrModal, toggleQrModal] = useToggle(false);
+  const [trainingInProgress, setTrainingInProgress] = useState(
+    storage.getString("workoutId_training"),
+  );
 
   const toggleBottomSheet = (id) => {
     id && setWorkoutId(id);
     setConfigWorkoutModal((prev) => !prev);
   };
+
+  useMMKVListener(() => {
+    //EN REVISION UTILIZAR REDUX + STORAGE O SOLO STORAGE
+    setTrainingInProgress(storage.getString("workoutId_training"));
+  }, storage);
 
   const handleRefresh = () => {
     activeRoutineId && getUserRoutineDetail(activeRoutineId);
@@ -58,6 +69,8 @@ export default HomeScreen = () => {
         <HeaderHome toggleNewWorkoutModal={toggleNewWorkoutModal} toggleQrModal={toggleQrModal} />
         <ContentHome toggleBottomSheet={toggleBottomSheet} />
       </ScrollView>
+
+      {trainingInProgress && <TrainigInProgressModal />}
       {qrModal && <QrModal code={activeRoutineDetails.codeShare} toggleModal={toggleQrModal} />}
       {configWorkoutModal && (
         <BottomSheetMenuWorkout toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />

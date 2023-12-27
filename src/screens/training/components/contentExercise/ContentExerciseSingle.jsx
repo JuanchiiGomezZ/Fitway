@@ -20,6 +20,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
     primaryMuscle,
     Multimedia,
     element,
+    exerciseType,
     WorkoutExercise,
     SupersetExercise,
     ExerciseLogs,
@@ -40,6 +41,35 @@ export default ContentExerciseSingle = ({ data, index }) => {
           : { actualRestTime: WorkoutExercise?.resTime },
       ),
     );
+  };
+
+  const tableExerciseSelector = () => {
+    switch (exerciseType) {
+      case "ExerciseWithWeight":
+        return (
+          <TableRepsWithWeight
+            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
+            rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
+            id={data.id}
+            exerciseLogs={ExerciseLogs[0]}
+          />
+        );
+      case "ExerciseWithoutWeight":
+        return (
+          <TableRepsWithoutWeight
+            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
+            rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
+            id={data.id}
+            exerciseLogs={ExerciseLogs[0]}
+          />
+        );
+      case "ExerciseOfDuration":
+        return (
+          <TableDuration reps={WorkoutExercise?.reps || SupersetExercise?.reps} id={data.id} />
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -82,19 +112,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
           <ElementCard title="Element" name={element} img={Multimedia?.elementImg} reverse={true} />
         </View>
       </View>
-      {/* <TableRepsWithWeight
-        reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-        rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
-        id={data.id}
-        exerciseLogs={ExerciseLogs[0]}
-      /> */}
-      {/* <TableDuration /> */}
-      <TableRepsWithoutWeight
-        reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-        rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
-        id={data.id}
-        exerciseLogs={ExerciseLogs[0]}
-      />
+      {tableExerciseSelector()}
     </>
   );
 };

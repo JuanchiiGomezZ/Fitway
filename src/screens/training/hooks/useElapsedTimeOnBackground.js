@@ -1,21 +1,22 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { AppState } from "react-native";
+import { useSelector } from "react-redux";
 
-export default useElapsedTimeOnBackground = () => {
+const useElapsedTimeOnBackground = () => {
   const appState = useRef(AppState.currentState);
-  const [departureTime, setDepartureTime] = useState(null);
-  const [backTime, setBackTime] = useState(null);
-  const [elapsedTime, setElapsedTime] = useState(0);
-
+  const departureTime = useRef(null);
+  const backTime = useRef(null);
+  const elapsedTime = useRef(0);
+  const { workoutLog } = useSelector((state) => state.training);
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (appState.current.match(/inactive|background/) && nextAppState === "active") {
-        setBackTime(new Date());
+      if (["inactive", "background"].includes(appState.current) && nextAppState === "active") {
+        backTime.current = new Date();
       }
 
       appState.current = nextAppState;
       if (appState.current === "background") {
-        setDepartureTime(new Date());
+        departureTime.current = new Date();
       }
     });
 
@@ -24,15 +25,17 @@ export default useElapsedTimeOnBackground = () => {
     };
   }, []);
 
-
   useEffect(() => {
-    if (departureTime && backTime) {
-      const tiemElapsed = Math.round((backTime.getTime() - departureTime.getTime()) / 1000);
-      setDepartureTime(null);
-      setBackTime(null);
-      setElapsedTime(tiemElapsed);
+    if (departureTime.current && backTime.current) {
+      elapsedTime.current = Math.round(
+        (backTime.current.getTime() - departureTime.current.getTime()) / 1000,
+      );
+      departureTime.current = null;
+      backTime.current = null;
     }
-  }, [backTime]);
+  }, [backTime.current]);
 
-  return { elapsedTime };
+  return { elapsedTime: elapsedTime.current };
 };
+
+export default useElapsedTimeOnBackground;
