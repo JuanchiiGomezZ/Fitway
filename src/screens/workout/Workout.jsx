@@ -15,7 +15,6 @@ import FloatingMenu from "./components/FloatingMenu";
 
 export default WorkoutScreen = ({ route }) => {
   const { workoutId } = route.params || {};
-
   const { workoutDetails } = useSelector((state) => state.workouts);
   const { name } = workoutDetails;
   const [exerciseId, setExerciseId] = useState(null);

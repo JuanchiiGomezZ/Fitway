@@ -7,6 +7,7 @@ import { OptionMenu } from "../../../components/CustomButtons";
 import ConfirmationAlert from "../../../components/ConfirmationAlert";
 import useToggle from "../../../hooks/useToggle";
 
+
 export default BottomSheetMenuWorkout = ({ toggleBottomSheet, workoutId }) => {
   const { t } = useTranslation();
   const { deleteWorkout } = useWorkoutsStore();

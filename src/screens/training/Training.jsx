@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
-import { View, ScrollView, BackHandler } from "react-native";
+import { View, ScrollView } from "react-native";
 
 //HOOKS
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import {
-  cleanWorkoutLog,
-  saveInitialWorkoutLog,
-  toggleConfirmExitAlert,
-} from "../../store/slices/trainingSlice";
+import { cleanWorkoutLog, toggleConfirmExitAlert } from "../../store/slices/trainingSlice";
 import useToggle from "../../hooks/useToggle";
 import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import { toggleExerciseGif } from "../../store/slices/trainingSlice";
@@ -51,22 +47,11 @@ export default TrainingMode = ({ route }) => {
   useEffect(() => {
     if (activeWorkoutDetails?.workoutId != id) {
       getWorkoutTrainingData(id);
-    } else {
-      dispatch(saveInitialWorkoutLog());
     }
-    storage.set("workoutId_training", id);
-  }, []);
 
-  useEffect(() => {
-    const backAction = () => {
-      // toggleConfExitAlert();
-      goBack();
-      return true;
-    };
-
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
-
-    return () => backHandler.remove();
+    if (!storage.getString("workout_id_training")) storage.set("workout_id_training", id);
+    if (!storage.getString("workout_startDate_training"))
+      storage.set("workout_startDate_training", new Date().toString());
   }, []);
 
   const backAction = () => {
@@ -76,6 +61,7 @@ export default TrainingMode = ({ route }) => {
 
   const handleConfirmFinishTraining = () => {
     navigate("TrainingFinished");
+    dispatch(cleanWorkoutLog());
     dispatch(toggleConfirmExitAlert());
   };
 
@@ -94,7 +80,10 @@ export default TrainingMode = ({ route }) => {
               {workoutLog && <ContentExercise />}
             </View>
           </ScrollView>
-          <BottomBar toggleOpenWorkout={toggleOpenWorkout} />
+          <BottomBar
+            toggleOpenWorkout={toggleOpenWorkout}
+            toggleConfExitAlert={toggleConfExitAlert}
+          />
 
           {exerciseGif && (
             <ExerciseGIF
@@ -105,7 +94,7 @@ export default TrainingMode = ({ route }) => {
           {countdown.state && <Countdown restTime={30} />}
           {openWorkout && <ExercisesModal toggleModal={toggleOpenWorkout} />}
           {confirmationExitAlert && (
-            <confirmationExitAlert
+            <ConfirmationAlert
               toggleModal={toggleConfExitAlert}
               title="Alert"
               text={"Are you sure you want to discard the training?"}

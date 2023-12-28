@@ -51,7 +51,13 @@ export default DraggableList = ({ toggleModal }) => {
       <GestureHandlerRootView>
         <DraggableFlatList
           data={data}
-          keyExtractor={(item) => item?.WorkoutExercise?.order || item?.order}
+          keyExtractor={(item) => {
+            if (item.Exercises) {
+              return item.order;
+            } else {
+              return item?.WorkoutExercise?.order;
+            }
+          }}
           ref={ref}
           onDragEnd={({ data }) => setData(data)}
           renderItem={renderItem}
@@ -61,5 +67,3 @@ export default DraggableList = ({ toggleModal }) => {
     </>
   );
 };
-
-

@@ -15,12 +15,11 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     id,
     Multimedia,
     exerciseType,
-    workoutExercise,
-    supersetExercise,
+
     WorkoutExercise,
     SupersetExercise,
   } = data || {};
-  const { reps } = workoutExercise || supersetExercise || SupersetExercise || WorkoutExercise || {};
+  const { reps } = SupersetExercise || WorkoutExercise || {};
 
   const handleNavigate = () => {
     navigate("ExerciseDetails", { id });

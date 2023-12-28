@@ -14,19 +14,25 @@ import useTimer from "../../training/hooks/useTimer";
 import { convertToHourMinutesSeconds } from "../../../helpers/timeFormater";
 import { useNavigation } from "@react-navigation/native";
 import { storage } from "../../../helpers/storage";
+import { cleanWorkoutLog } from "../../../store/slices/trainingSlice";
+import { useDispatch } from "react-redux";
 //COMPONENTS
 import { ButtonCircular } from "../../../components/CustomButtons";
 
-export default TrainigInProgressModal = () => {
+export default TrainigInProgressModal = ({ workoutId }) => {
+  const dispatch = useDispatch();
   const { pause, seconds, isPaused, start } = useTimer();
   const { navigate } = useNavigation();
 
   useEffect(() => {
-    start(20);
+    const initialDate = storage.getString("workout_startDate_training");
+    const initialTime = Math.round((new Date() - new Date(initialDate)) / 1000);
+
+    start(initialTime || 0);
   }, []);
 
   const handleDiscardTraining = () => {
-    storage.delete("workoutId_training");
+    dispatch(cleanWorkoutLog());
   };
 
   return (
@@ -40,7 +46,13 @@ export default TrainigInProgressModal = () => {
           action={handleDiscardTraining}
         />
         <Text style={styles.textTimer}>{convertToHourMinutesSeconds(seconds)}</Text>
-        <ButtonCircular icon="play" action={pause} size={"m"} />
+        <ButtonCircular
+          icon="play"
+          action={() => {
+            navigate("Training", { id: workoutId });
+          }}
+          size={"m"}
+        />
       </View>
     </Animated.View>
   );

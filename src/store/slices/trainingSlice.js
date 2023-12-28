@@ -26,15 +26,18 @@ export const trainingSlice = createSlice({
       const { details, Exercises } = payload;
       const { numActiveExercise } = state;
       const sortedExercises = sortByOrder(Exercises.Exercises);
-
+      const storedWorkoutId = storage.getString("workout_id_training");
+      const storedWorkoutLog = storage.getString("workoutLog");
       (state.activeWorkoutDetails = details),
         (state.activeWorkout = sortedExercises),
-        (state.activeExercise = sortedExercises[numActiveExercise]),
-        (state.workoutLog = workoutLogInitialState(sortedExercises)),
-        (state.isLoading = false);
-    },
-    saveInitialWorkoutLog: (state, { payload }) => {
-      state.workoutLog = workoutLogInitialState(state.activeWorkout);
+        (state.activeExercise = sortedExercises[numActiveExercise]);
+      if (storedWorkoutId == details.workoutId && storedWorkoutLog) {
+        state.workoutLog = JSON.parse(storedWorkoutLog);
+      } else {
+        state.workoutLog = workoutLogInitialState(sortedExercises);
+      }
+
+      state.isLoading = false;
     },
     handleChangeExercise: (state, { payload }) => {
       (state.activeExercise = state.activeWorkout[payload]), (state.numActiveExercise = payload);
@@ -55,9 +58,13 @@ export const trainingSlice = createSlice({
       }
     },
     cleanWorkoutLog: (state, { payload }) => {
-      storage.delete("workoutId_training"),
+      storage.delete("workout_id_training"),
+        storage.delete("workout_startDate_training"),
+        storage.delete("workoutLog"),
         (state.workoutLog = null),
-        (state.numActiveExercise = 0);
+        (state.numActiveExercise = 0),
+        (state.activeExercise = undefined),
+        (state.activeWorkoutDetails = undefined);
     },
     setRestTime: (state, { payload }) => {
       const { exerciseId, newRestTime, index } = payload;
@@ -113,7 +120,6 @@ export const {
   cleanWorkoutLog,
   saveExercises,
   toggleExerciseGif,
-  saveInitialWorkoutLog,
   setCountdown,
   setRestTime,
   toggleRestTimerBottomSheet,

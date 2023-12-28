@@ -30,8 +30,8 @@ export default HomeScreen = () => {
   const [workoutId, setWorkoutId] = useState(null);
   const [newWorkoutModal, toggleNewWorkoutModal] = useToggle(false);
   const [qrModal, toggleQrModal] = useToggle(false);
-  const [trainingInProgress, setTrainingInProgress] = useState(
-    storage.getString("workoutId_training"),
+  const [workoutIdInProgress, setWorkoutIdInProgress] = useState(
+    storage.getString("workout_id_training"),
   );
 
   const toggleBottomSheet = (id) => {
@@ -41,7 +41,7 @@ export default HomeScreen = () => {
 
   useMMKVListener(() => {
     //EN REVISION UTILIZAR REDUX + STORAGE O SOLO STORAGE
-    setTrainingInProgress(storage.getString("workoutId_training"));
+    setWorkoutIdInProgress(storage.getString("workout_id_training"));
   }, storage);
 
   const handleRefresh = () => {
@@ -70,7 +70,7 @@ export default HomeScreen = () => {
         <ContentHome toggleBottomSheet={toggleBottomSheet} />
       </ScrollView>
 
-      {trainingInProgress && <TrainigInProgressModal />}
+      {workoutIdInProgress && <TrainigInProgressModal workoutId={workoutIdInProgress} />}
       {qrModal && <QrModal code={activeRoutineDetails.codeShare} toggleModal={toggleQrModal} />}
       {configWorkoutModal && (
         <BottomSheetMenuWorkout toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />

@@ -16,12 +16,12 @@ import useTimer from "../../hooks/useTimer";
 import ToolBar from "./ToolBar";
 import Timer from "./Timer";
 
-export default BottomBar = ({ toggleOpenWorkout }) => {
+export default BottomBar = ({ toggleOpenWorkout, toggleConfExitAlert }) => {
   const timer = useTimer();
   const [bottomBar, toggleBottomBar] = useToggle(false);
 
   const translateY = useSharedValue(0);
-  const rotateY = useSharedValue(0)
+  const rotateY = useSharedValue(0);
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -53,7 +53,11 @@ export default BottomBar = ({ toggleOpenWorkout }) => {
           onPress={handlePress}
         />
       </Animated.View>
-      {bottomBar ? <ToolBar toggleWorkoutModal={toggleOpenWorkout} /> : <Timer useTimer={timer} />}
+      {bottomBar ? (
+        <ToolBar toggleWorkoutModal={toggleOpenWorkout} />
+      ) : (
+        <Timer useTimer={timer} toggleConfExitAlert={toggleConfExitAlert} />
+      )}
     </View>
   );
 };

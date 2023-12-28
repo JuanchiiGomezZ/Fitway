@@ -5,8 +5,8 @@ export default maxOrder = (data) => {
     if (item.order) {
       order = Math.max(order, item.order);
     }
-    if (item.workoutExercise && item.workoutExercise.order) {
-      order = Math.max(order, item.workoutExercise.order);
+    if (item.WorkoutExercise && item.WorkoutExercise.order) {
+      order = Math.max(order, item.WorkoutExercise.order);
     }
 
     return Math.max(max, order) + 1;

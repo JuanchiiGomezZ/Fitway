@@ -73,7 +73,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
   };
 
   return (
-    <>
+    <View>
       <View style={styles.head}>
         <View>
           <View style={styles.titleContainer}>
@@ -113,7 +113,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
         </View>
       </View>
       {tableExerciseSelector()}
-    </>
+    </View>
   );
 };
 
