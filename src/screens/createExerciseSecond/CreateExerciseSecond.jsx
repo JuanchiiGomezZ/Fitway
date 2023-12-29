@@ -60,7 +60,7 @@ export default CreateExerciseSecond = ({ route }) => {
         text={task == "AddExercise" ? "Add exercise" : "Create exercise"}
         action={task == "AddExercise" ? handleAddExercise : handleCreateExercise}
         disabled={activeButton}
-        disabledAction={handleAreValidReps}
+        actionDisabled={handleAreValidReps}
       />
     </ScreenContainer>
   );

@@ -35,10 +35,10 @@ export default ContentExerciseSingle = ({ data, index }) => {
       toggleRestTimerBottomSheet(
         index >= 0
           ? {
-              actualRestTime: SupersetExercise?.resTime,
+              actualRestTime: SupersetExercise?.restTime,
               index: index,
             }
-          : { actualRestTime: WorkoutExercise?.resTime },
+          : { actualRestTime: WorkoutExercise?.restTime },
       ),
     );
   };
@@ -49,7 +49,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
         return (
           <TableRepsWithWeight
             reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-            rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
+            rest={WorkoutExercise?.restTime || SupersetExercise?.restTime}
             id={data.id}
             exerciseLogs={ExerciseLogs[0]}
           />
@@ -58,7 +58,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
         return (
           <TableRepsWithoutWeight
             reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-            rest={WorkoutExercise?.resTime || SupersetExercise?.resTime}
+            rest={WorkoutExercise?.restTime || SupersetExercise?.restTime}
             id={data.id}
             exerciseLogs={ExerciseLogs[0]}
           />
@@ -98,7 +98,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
           >
             <MaterialCommunityIcons name="timer-outline" size={24} color={ORANGE_COLOR} />
             <Text style={styles.resTimerText}>
-              Rest Timer: {convertToMinutes(WorkoutExercise?.resTime || SupersetExercise?.resTime)}
+              Rest Timer: {convertToMinutes(WorkoutExercise?.restTime || SupersetExercise?.restTime)}
             </Text>
           </TouchableOpacity>
         </View>

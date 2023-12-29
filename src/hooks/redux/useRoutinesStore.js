@@ -11,7 +11,6 @@ import {
 import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export default useRoutinesStore = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -35,10 +34,11 @@ export default useRoutinesStore = () => {
   const createNewRoutine = async (newRoutineData) => {
     try {
       const { data } = await axios.post(`/routine/newRoutine/${user.id}`, newRoutineData);
+      console.log(data);
       dispatch(
         saveRoutines({
           ...userRoutines,
-          disabledRoutines: [...disabledRoutines, data],
+          disabledRoutines: [...disabledRoutines, { ...data, workoutCount: 0 }],
         }),
       );
     } catch (error) {
@@ -66,10 +66,9 @@ export default useRoutinesStore = () => {
 
   const toggleActiveRoutine = async (routineId, isActive) => {
     try {
-      const { data } = await axios.patch(
-        `/routine/activeRoutine/${user.id}/${routineId}`,
-        { isActive },
-      );
+      const { data } = await axios.patch(`/routine/activeRoutine/${user.id}/${routineId}`, {
+        isActive,
+      });
       const updateDisabledRoutine = disabledRoutines.filter((element) => element.id !== routineId);
       if (!activeRoutine && isActive) {
         dispatch(

@@ -4,14 +4,12 @@ import {
   WHITE_COLOR,
   ORANGE_COLOR,
   GRAY_COLOR,
-  RED_COLOR,
   BACKGROUND_COLOR,
   GRAY_LIGHT_COLOR,
   GRAY_DARK_COLOR,
-  BOX_COLOR,
 } from "../styles/styles";
 import { useTranslation } from "react-i18next";
-import { MaterialCommunityIcons, FontAwesome5, Feather, Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome5, Feather } from "@expo/vector-icons";
 
 const ButtonLong = ({
   children,
@@ -20,7 +18,7 @@ const ButtonLong = ({
   action,
   transparent,
   disabled,
-  disabledAction,
+  actionDisabled,
   borderColor,
 }) => {
   const Container = disabled ? Pressable : TouchableOpacity;
@@ -36,7 +34,7 @@ const ButtonLong = ({
         borderColor && transparent && { borderColor: borderColor },
         disabled && transparent && styles.buttonTransparentDisabled,
       ]}
-      onPress={!disabled ? action : disabledAction}
+      onPress={!disabled ? action : actionDisabled}
     >
       {children}
     </Container>
@@ -88,7 +86,7 @@ export const ButtonClassicLong = ({
   transparent,
   disabled,
   short,
-  disabledAction,
+  actionDisabled,
   textWeight,
   borderColor,
 }) => {
@@ -99,7 +97,7 @@ export const ButtonClassicLong = ({
       transparent={transparent}
       disabled={disabled}
       short={short}
-      disabledAction={disabledAction}
+      actionDisabled={actionDisabled}
       borderColor={borderColor}
     >
       <TextButton text={text} color={color} disabled={disabled} textWeight={textWeight} />
@@ -145,6 +143,7 @@ export const ButtonCircular = ({
   disabled,
   iconFamily,
   iconSize,
+  actionDisabled,
 }) => {
   const Icon = iconFamily || FontAwesome5;
   const Container = disabled ? Pressable : TouchableOpacity;
@@ -152,7 +151,7 @@ export const ButtonCircular = ({
   // size = l(50), m(40), s(30)
   const sizeSelector = () => {
     const sizes = {
-      l: { height: 50, width: 50 },
+      l: { height: 45, width: 45 },
       m: { height: 40, width: 40 },
       s: { height: 30, width: 30 },
     };
@@ -168,7 +167,7 @@ export const ButtonCircular = ({
   ];
 
   return (
-    <Container style={buttonStyles} onPress={action}>
+    <Container style={buttonStyles} onPress={!disabled ? action : actionDisabled}>
       {icon ? (
         <Icon
           name={icon}

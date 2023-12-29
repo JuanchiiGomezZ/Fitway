@@ -24,13 +24,13 @@ export const trainingSlice = createSlice({
     },
     saveActiveWorkoutData: (state, { payload }) => {
       const { details, Exercises } = payload;
-      const { numActiveExercise } = state;
+
       const sortedExercises = sortByOrder(Exercises.Exercises);
       const storedWorkoutId = storage.getString("workout_id_training");
       const storedWorkoutLog = storage.getString("workoutLog");
       (state.activeWorkoutDetails = details),
         (state.activeWorkout = sortedExercises),
-        (state.activeExercise = sortedExercises[numActiveExercise]);
+        (state.activeExercise = sortedExercises[0]);
       if (storedWorkoutId == details.workoutId && storedWorkoutLog) {
         state.workoutLog = JSON.parse(storedWorkoutLog);
       } else {
@@ -72,16 +72,16 @@ export const trainingSlice = createSlice({
       const exerciseToUpdate = state.activeWorkout.find((exercise) => exercise.id === exerciseId);
       if (exerciseToUpdate) {
         if (exerciseToUpdate?.Exercises) {
-          exerciseToUpdate.Exercises[index].SupersetExercise.resTime = newRestTime;
+          exerciseToUpdate.Exercises[index].SupersetExercise.restTime = newRestTime;
         } else {
-          exerciseToUpdate.WorkoutExercise.resTime = newRestTime;
+          exerciseToUpdate.WorkoutExercise.restTime = newRestTime;
         }
       }
 
       if (state.activeExercise.Exercises) {
-        state.activeExercise.Exercises[index].SupersetExercise.resTime = newRestTime;
+        state.activeExercise.Exercises[index].SupersetExercise.restTime = newRestTime;
       } else {
-        state.activeExercise.WorkoutExercise.resTime = newRestTime;
+        state.activeExercise.WorkoutExercise.restTime = newRestTime;
       }
     },
     setCountdown: (state, { payload }) => {

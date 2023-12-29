@@ -11,18 +11,13 @@ import { ClassicInput } from "../../../components/Inputs";
 import ModalBase from "../../../components/ModalBase";
 import { ButtonClassicLong } from "../../../components/CustomButtons";
 
-import {
-  ORANGE_COLOR,
-  ORANGE_DARK_COLOR,
-} from "../../../styles/styles";
-
+import { ORANGE_COLOR, ORANGE_DARK_COLOR } from "../../../styles/styles";
 
 export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
   const { t } = useTranslation();
   const { goBack } = useNavigation();
   const { createNewRoutine } = useRoutinesStore();
   const [name, setName] = useState("");
-  const [difficulty, setDifficulty] = useState(null);
   const [visibilitty, setVisibilitty] = useState(true);
 
   const visibilities = [
@@ -30,15 +25,13 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
     { name: "Public", value: true },
   ];
 
-  const difficulties = ["Beginer", "Intermediate", "Experienced", "Don´t know"];
-
   const handleCreateRoutine = () => {
-    createNewRoutine({ name, public: visibilitty, difficulty });
+    createNewRoutine({ name, public: visibilitty });
     toggleNewRoutineModal();
     goBack();
   };
 
-  const activeButton = name.trim() < 1 || difficulty == null;
+  const activeButton = name.trim() < 1;
   return (
     <ModalBase
       short={true}
@@ -47,28 +40,6 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
     >
       <View style={{ gap: 20 }}>
         <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />
-
-        <View>
-          <Text style={styles.subtitle}>{t("Routines.NewRoutineModal.choose-difficulty")}:</Text>
-          <View style={styles.tagsContainer}>
-            {difficulties.map((item) => (
-              <TouchableHighlight
-                key={item}
-                style={[styles.tagContainer, difficulty === item && styles.activeTagContainer]}
-                onPress={() => {
-                  setDifficulty(item);
-                  Keyboard.dismiss();
-                }}
-                underlayColor="transparent"
-              >
-                <Text style={[styles.tagText, difficulty === item && styles.activeTagText]}>
-                  {item}
-                </Text>
-              </TouchableHighlight>
-            ))}
-          </View>
-        </View>
-
         <View>
           <Text style={styles.subtitle}>{t("Routines.NewRoutineModal.choose-visibility")}:</Text>
           <View style={styles.tagsContainer}>

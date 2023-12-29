@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollView, RefreshControl, Text } from "react-native";
 
 /* HOOKS */
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
 import useToggle from "../../hooks/useToggle";
 import { storage } from "../../helpers/storage";
@@ -20,9 +20,11 @@ import TrainigInProgressModal from "./components/TrainigInProgressModal";
 
 /* STYLES */
 import { ORANGE_COLOR } from "../../styles/styles";
+import { cleanWorkoutLog } from "../../store/slices/trainingSlice";
 
 export default HomeScreen = () => {
   const { getUserRoutineDetail, getRoutines } = useRoutinesStore();
+  const dispatch = useDispatch();
   const { activeRoutineId, isLoading, activeRoutineDetails } = useSelector(
     (state) => state.userRoutines,
   );
@@ -30,6 +32,8 @@ export default HomeScreen = () => {
   const [workoutId, setWorkoutId] = useState(null);
   const [newWorkoutModal, toggleNewWorkoutModal] = useToggle(false);
   const [qrModal, toggleQrModal] = useToggle(false);
+  const [discardTrainingAlert, toggleDiscardTrainingAlert] = useToggle(false);
+
   const [workoutIdInProgress, setWorkoutIdInProgress] = useState(
     storage.getString("workout_id_training"),
   );
@@ -52,6 +56,11 @@ export default HomeScreen = () => {
     getRoutines(activeRoutineId);
   }, [activeRoutineId]);
 
+  const handleDiscardTraining = () => {
+    dispatch(cleanWorkoutLog());
+    toggleDiscardTrainingAlert();
+  };
+
   return (
     <ScreenContainer>
       <ScrollView
@@ -70,10 +79,23 @@ export default HomeScreen = () => {
         <ContentHome toggleBottomSheet={toggleBottomSheet} />
       </ScrollView>
 
-      {workoutIdInProgress && <TrainigInProgressModal workoutId={workoutIdInProgress} />}
       {qrModal && <QrModal code={activeRoutineDetails.codeShare} toggleModal={toggleQrModal} />}
       {configWorkoutModal && (
         <BottomSheetMenuWorkout toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />
+      )}
+      {discardTrainingAlert && (
+        <ConfirmationAlert
+          toggleModal={toggleDiscardTrainingAlert}
+          title="Alert"
+          subTitle={"Are you sure you want to discard the training?"}
+          confirmAction={handleDiscardTraining}
+        />
+      )}
+      {workoutIdInProgress && (
+        <TrainigInProgressModal
+          workoutId={workoutIdInProgress}
+          toggleDiscardTrainingAlert={toggleDiscardTrainingAlert}
+        />
       )}
       {newWorkoutModal && <NewWorkoutModal toggleNewWorkoutModal={toggleNewWorkoutModal} />}
     </ScreenContainer>

@@ -97,7 +97,7 @@ export default TrainingMode = ({ route }) => {
             <ConfirmationAlert
               toggleModal={toggleConfExitAlert}
               title="Alert"
-              text={"Are you sure you want to discard the training?"}
+              subTitle={"Are you sure you want to discard the training?"}
               confirmAction={backAction}
             />
           )}

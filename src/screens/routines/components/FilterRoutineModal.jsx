@@ -1,35 +1,34 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { useTranslation } from "react-i18next";
-import { ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
+import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import FilterOptionComponent from "./FilterOptionComponent";
 import { ButtonClassicLong } from "../../../components/CustomButtons";
 import BottomSheetModal from "../../../components/BottomSheetModal";
+import Slider from "@react-native-community/slider";
 
 export default FilterRoutineModal = ({ toggleModal }) => {
   const { t } = useTranslation();
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [difficulty, setDifficulty] = useState(null);
+  const [workouts, setWorkouts] = useState(0);
   const [creator, setCreator] = useState(null);
-
-  const days = [2, 3, 4, 5, 6, 7];
-  const difficulties = ["Beginer", "Intermediate", "Experienced"];
   const creators = ["FITWAY", "Community"];
 
   return (
     <BottomSheetModal toggleModal={toggleModal} title={t("Routines.FilterRoutineModal.title")}>
-      <FilterOptionComponent
-        data={days}
-        state={selectedDay}
-        setState={setSelectedDay}
-        title={t("Routines.FilterRoutineModal.days")}
-      />
-      <FilterOptionComponent
-        data={difficulties}
-        state={difficulty}
-        setState={setDifficulty}
-        title={t("Routines.FilterRoutineModal.difficulty")}
-      />
+      <View>
+        <Text style={styles.optionName}>Workouts: {workouts} </Text>
+        <Slider
+          style={{ width: "100%", transform: [{ scaleX: 1.045 }] }}
+          minimumValue={0}
+          maximumValue={7}
+          onValueChange={(value) => setWorkouts(value)}
+          step={1}
+          value={workouts}
+          minimumTrackTintColor={ORANGE_COLOR}
+          maximumTrackTintColor={GRAY_COLOR}
+          thumbTintColor={WHITE_COLOR}
+        />
+      </View>
       <FilterOptionComponent
         data={creators}
         state={creator}
@@ -63,5 +62,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 22,
+  },
+  optionName: {
+    color: WHITE_COLOR,
+    fontSize: 20,
+    fontWeight: "600",
   },
 });

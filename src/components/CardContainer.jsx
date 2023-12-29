@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, Pressable, Text } from "react-native";
-import Animated, { FadeInDown, Layout, FadeOut } from "react-native-reanimated";
+import { StyleSheet, Pressable, Text, Image } from "react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import { BORDER_RADIUS, BOX_COLOR, WHITE_COLOR } from "../styles/styles";
 import { ConfigButton } from "./CustomButtons";
 
@@ -40,6 +40,14 @@ const TitleSmall = ({ children, ...props }) => (
 );
 CardContainer.TitleSmall = TitleSmall;
 
+const CardImage = ({ img }) => (
+  <Image
+    source={img ? { uri: img } : require("../assets/images/icon_fw_dark.png")}
+    style={styles.cardImage}
+  />
+);
+CardContainer.CardImage = CardImage;
+
 export default CardContainer;
 
 const styles = StyleSheet.create({
@@ -58,5 +66,10 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     fontSize: 20,
     fontWeight: "500",
+  },
+  cardImage: {
+    width: 66,
+    height: 66,
+    borderRadius: 12,
   },
 });

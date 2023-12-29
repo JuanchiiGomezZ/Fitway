@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 //COMPONENTS
 import { ButtonCircular } from "../../../components/CustomButtons";
 
-export default TrainigInProgressModal = ({ workoutId }) => {
+export default TrainigInProgressModal = ({ workoutId, toggleDiscardTrainingAlert }) => {
   const dispatch = useDispatch();
   const { pause, seconds, isPaused, start } = useTimer();
   const { navigate } = useNavigation();
@@ -31,10 +31,6 @@ export default TrainigInProgressModal = ({ workoutId }) => {
     start(initialTime || 0);
   }, []);
 
-  const handleDiscardTraining = () => {
-    dispatch(cleanWorkoutLog());
-  };
-
   return (
     <Animated.View style={styles.container} entering={FadeInDown} exiting={FadeOutDown}>
       <Text style={styles.title}>TRAINING IN PROGRESS</Text>
@@ -43,7 +39,7 @@ export default TrainigInProgressModal = ({ workoutId }) => {
           icon={"times"}
           bgColor={RED_COLOR}
           size={"m"}
-          action={handleDiscardTraining}
+          action={toggleDiscardTrainingAlert}
         />
         <Text style={styles.textTimer}>{convertToHourMinutesSeconds(seconds)}</Text>
         <ButtonCircular
@@ -71,6 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: BOX_COLOR,
     paddingVertical: 5,
     borderRadius: 5,
+    zIndex: 3,
   },
   textTimer: {
     color: WHITE_COLOR,

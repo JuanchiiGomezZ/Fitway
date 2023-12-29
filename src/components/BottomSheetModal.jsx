@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BORDER_RADIUS, WHITE_COLOR } from "../styles/styles";
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginBottom: 10,
   },
   headText: {
     color: WHITE_COLOR,

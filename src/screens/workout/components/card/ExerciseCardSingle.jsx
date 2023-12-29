@@ -15,7 +15,6 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
     id,
     Multimedia,
     exerciseType,
-
     WorkoutExercise,
     SupersetExercise,
   } = data || {};
@@ -37,14 +36,7 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
             toggleGIF(Multimedia.exerciseGif ? Multimedia.exerciseGif : Multimedia.exerciseImg);
           }}
         >
-          <Image
-            source={
-              Multimedia?.exerciseImg
-                ? { uri: Multimedia.exerciseImg }
-                : require("../../../../assets/images/fitwayDark.png")
-            }
-            style={styles.workoutImg}
-          />
+          <CardContainer.CardImage img={Multimedia.exerciseImg} />
         </TouchableOpacity>
         <View style={styles.contentContainer}>
           <CardContainer.Title>{name}</CardContainer.Title>
@@ -89,11 +81,6 @@ const styles = StyleSheet.create({
     color: WHITE_COLOR,
     fontSize: 14,
     fontWeight: "600",
-  },
-  workoutImg: {
-    width: 66,
-    height: 66,
-    borderRadius: 12,
   },
   row: {
     flexDirection: "row",

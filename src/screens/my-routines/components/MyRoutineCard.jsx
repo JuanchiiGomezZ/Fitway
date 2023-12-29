@@ -14,10 +14,6 @@ export default MyRoutineCard = ({ data, toggleBottomSheet, index }) => {
         <CardContainer.Title>{name}</CardContainer.Title>
         <View>
           <View style={styles.row}>
-            <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>
-            <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{difficulty}</Text>
-          </View>
-          <View style={styles.row}>
             <Text style={styles.rowTitle}>{t("MyRoutines.workouts") + ": "}</Text>
             <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutCount}</Text>
           </View>

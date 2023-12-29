@@ -18,6 +18,7 @@ import BottomSheetMenuRoutine from "./components/BottomSheetMenuRoutine";
 
 //STYLES
 import { ORANGE_COLOR } from "../../styles/styles";
+import EmptyRoutines from "./components/EmptyRoutines";
 
 export default MyRoutinesScreen = () => {
   const { t } = useTranslation();
@@ -46,7 +47,6 @@ export default MyRoutinesScreen = () => {
   return (
     <ScreenContainer>
       <Header title={t("MyRoutines.title")} />
-
       <ScrollView
         showsVerticalScrollIndicator={false}
         refreshControl={
@@ -59,15 +59,19 @@ export default MyRoutinesScreen = () => {
         }
       >
         <View style={styles.buttonsContainer}>
-          <ButtonShortIndex text={t("MyRoutines.filter")} icon={"filter-variant-plus"} />
+          <ButtonShortIndex
+            text={t("MyRoutines.filter")}
+            icon={"filter-variant-plus"}
+            disabled={disabledRoutines.length < 1 && !activeRoutine}
+          />
           <ButtonShortIndex
             text={t("MyRoutines.add-routine")}
             icon={"plus-circle"}
             action={() => navigation.navigate("AllRoutines")}
           />
         </View>
-        {userRoutines.length < 1 ? (
-          ""
+        {disabledRoutines.length < 1 && !activeRoutine ? (
+          <EmptyRoutines />
         ) : (
           <View style={styles.routinesContainer}>
             <Separator title={t("MyRoutines.active")} />

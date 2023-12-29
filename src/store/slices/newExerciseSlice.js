@@ -5,7 +5,7 @@ export const newExerciseSlice = createSlice({
   initialState: {
     reps: ["", "", ""],
     areValidReps: true,
-    resTime: 0,
+    restTime: 0,
   },
   reducers: {
     setReps: (state, { payload }) => {
@@ -15,10 +15,10 @@ export const newExerciseSlice = createSlice({
       state.areValidReps = payload;
     },
     setRestTime: (state, { payload }) => {
-      state.resTime = payload;
+      state.restTime = payload;
     },
     cleanNewExerciseState: (state) => {
-      (state.reps = ["", "", ""]), (state.resTime = 0), (state.areValidReps = true);
+      (state.reps = ["", "", ""]), (state.restTime = 0), (state.areValidReps = true);
     },
   },
 });

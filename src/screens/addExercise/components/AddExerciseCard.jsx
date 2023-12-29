@@ -21,14 +21,7 @@ export default AddExerciseCard = ({ data, index }) => {
   return (
     <CardContainer index={index} action={() => navigate("AddExerciseDetails", { id })}>
       <View style={styles.row}>
-        <Image
-          source={
-            Multimedia?.exerciseImg
-              ? { uri: Multimedia.exerciseImg }
-              : require("../../../assets/images/fitwayDark.png")
-          }
-          style={styles.workoutImg}
-        />
+        <CardContainer.CardImage img={Multimedia.exerciseImg} />
         <View style={styles.contentContainer}>
           <CardContainer.Title>{name}</CardContainer.Title>
           <View style={styles.infoContainer}>
@@ -65,11 +58,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
   },
-  workoutImg: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
-  },
   row: {
     flexDirection: "row",
     gap: 10,
@@ -81,4 +69,5 @@ const styles = StyleSheet.create({
     width: 5,
     backgroundColor: GREEN_COLOR,
   },
+
 });

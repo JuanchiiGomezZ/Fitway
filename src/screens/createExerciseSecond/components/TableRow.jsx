@@ -5,6 +5,7 @@ import { Feather } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
+import * as tableStyles from "../../../styles/tableStyles";
 
 const TableRow = ({ index, initialMode, exerciseType, handledeleteSet }) => {
   const dispatch = useDispatch();
@@ -21,33 +22,33 @@ const TableRow = ({ index, initialMode, exerciseType, handledeleteSet }) => {
 
   return (
     <Animated.View
-      style={styles.row}
+      style={[tableStyles.row, tableStyles.rowItems, { width: "100%" }]}
       key={index}
       entering={initialMode ? FadeInUp.delay(60 * index) : FadeInUp.delay(0)}
       exiting={FadeOutUp.delay(0)}
     >
-      <View style={styles.numReps}>
-        <Text style={[styles.rowText]}>{index + 1}</Text>
-        <View
-          style={{ flexDirection: "row", alignItems: "center", gap: 3 }}
-        >
-          <TextInput
-            maxLength={7}
-            value={numReps}
-            onChangeText={handleChangeText}
-            style={styles.repsInput}
-            keyboardType="numeric"
-            placeholder="-"
-            placeholderTextColor={areValidReps ? GRAY_COLOR : RED_COLOR}
-          />
-          {exerciseType == "ExerciseOfDuration" && (
-            <Text style={{ color: WHITE_COLOR, fontSize: 18 }}>s</Text>
-          )}
+      <View style={[tableStyles.row, tableStyles.rowItems]}>
+        <View style={[tableStyles.row, { justifyContent: "flex-start", gap: 20 }]}>
+          <Text style={tableStyles.text}>{index + 1}</Text>
+          <View style={[tableStyles.row, { justifyContent: "center", gap: 5, width: 80 }]}>
+            <TextInput
+              maxLength={7}
+              value={numReps}
+              onChangeText={handleChangeText}
+              style={[tableStyles.text, { minWidth: 0 }]}
+              keyboardType="numeric"
+              placeholder="-"
+              placeholderTextColor={areValidReps ? GRAY_COLOR : RED_COLOR}
+            />
+            {exerciseType == "ExerciseOfDuration" && (
+              <Text style={{ color: WHITE_COLOR, fontSize: 18 }}>s</Text>
+            )}
+          </View>
         </View>
       </View>
       {index + 1 == length && index + 1 != 1 && (
         <TouchableOpacity onPress={handledeleteSet}>
-          <Feather name="trash-2" size={22} color="#D9D9D9" />
+          <Feather name="trash-2" color="#D9D9D9" style={[tableStyles.text, { fontSize: 22 }]} />
         </TouchableOpacity>
       )}
     </Animated.View>

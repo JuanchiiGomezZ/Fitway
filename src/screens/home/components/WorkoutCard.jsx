@@ -4,6 +4,7 @@ import { BACKGROUND_COLOR, GRAY_COLOR, ORANGE_COLOR } from "../../../styles/styl
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import CardContainer from "../../../components/CardContainer";
+import { ButtonCircular } from "../../../components/CustomButtons";
 
 export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
   const { muscles, name, id } = data;
@@ -32,12 +33,14 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
             )}
           </View>
         </View>
-        <TouchableOpacity
-          style={styles.trainingButton}
-          onPress={() => navigate("Training", { id })}
-        >
-          <FontAwesome5 name="dumbbell" size={22} color={BACKGROUND_COLOR} />
-        </TouchableOpacity>
+        <ButtonCircular
+          size="l"
+          icon="dumbbell"
+          color={BACKGROUND_COLOR}
+          iconSize={26}
+          action={() => navigate("Training", { id })}
+          disabled={muscles.length < 1}
+        />
       </View>
     </CardContainer>
   );

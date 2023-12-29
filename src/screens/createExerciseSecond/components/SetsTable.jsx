@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Keyboard } from "react-native";
-import React, { useEffect, forwardRef, useImperativeHandle, useRef } from "react";
-import { WHITE_COLOR, ORANGE_DARK_COLOR, ORANGE_COLOR } from "../../../styles/styles";
+import { StyleSheet, Text, View, Keyboard, Dimensions } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { ORANGE_COLOR } from "../../../styles/styles";
 import TableRow from "./TableRow";
 import { useSelector, useDispatch } from "react-redux";
 import { setReps } from "../../../store/slices/newExerciseSlice";
@@ -12,6 +12,9 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { ButtonCircular } from "../../../components/CustomButtons";
+import * as tableStyles from "../../../styles/tableStyles";
+
+const { width } = Dimensions.get("screen");
 
 export default SetsTable = ({ exerciseType }) => {
   const dispatch = useDispatch();
@@ -27,13 +30,13 @@ export default SetsTable = ({ exerciseType }) => {
   const handleAddSet = () => {
     if (length <= 6) {
       dispatch(setReps([...reps, ""]));
-      translateY.value = withSpring(translateY.value + 55, { damping: 7, stiffness: 80 });
+      translateY.value = withSpring(translateY.value + 45, { damping: 7, stiffness: 80 });
     }
   };
 
   const handledeleteSet = () => {
     dispatch(setReps(reps.slice(0, -1)));
-    translateY.value = withSpring(translateY.value - 55, { damping: 7, stiffness: 80 });
+    translateY.value = withSpring(translateY.value - 45, { damping: 7, stiffness: 80 });
   };
 
   const initialMode = useRef(true);
@@ -42,11 +45,16 @@ export default SetsTable = ({ exerciseType }) => {
   }, []);
 
   return (
-    <View style={styles.table}>
-      <View style={styles.head}>
-        <Text style={styles.text}>Sets</Text>
-        <Text style={[styles.text]}>
-          {exerciseType != "ExerciseOfDuration" ? "Reps" : "Duration"}
+    <View style={[{ gap: 10, alignItems: "center" }]}>
+      <View
+        style={[
+          tableStyles.row,
+          { justifyContent: "flex-start", gap: 20, alignSelf: "flex-start" },
+        ]}
+      >
+        <Text style={[tableStyles.text, tableStyles.headText]}>SETS</Text>
+        <Text style={[tableStyles.text, { width: 80 }, tableStyles.headText, {}]}>
+          {exerciseType != "ExerciseOfDuration" ? "REPS" : "DURATION"}
         </Text>
       </View>
       {reps.map((item, index) => (
@@ -62,9 +70,9 @@ export default SetsTable = ({ exerciseType }) => {
         <Animated.View
           entering={initialMode.current ? FadeIn.delay((reps.length + 1) * 100) : FadeIn.delay(150)}
           exiting={FadeOut}
-          style={[animatedStyles, { position: "absolute", top: 200 }]}
+          style={[animatedStyles, { position: "absolute", top: 180 }]}
         >
-          <ButtonCircular action={handleAddSet} icon="plus" size="l" />
+          <ButtonCircular action={handleAddSet} icon="plus" size="m" />
         </Animated.View>
       ) : (
         <Animated.Text entering={FadeIn.delay(150)} exiting={FadeOut} style={styles.maxRepsText}>
@@ -76,34 +84,6 @@ export default SetsTable = ({ exerciseType }) => {
 };
 
 const styles = StyleSheet.create({
-  table: {
-    gap: 10,
-    alignItems: "center",
-  },
-  head: {
-    flexDirection: "row",
-    alignSelf: "flex-start",
-    gap: 35,
-    marginLeft: 5,
-  },
-  text: {
-    color: WHITE_COLOR,
-    fontSize: 20,
-    fontWeight: "500",
-  },
-  addSetBtn: {
-    backgroundColor: ORANGE_DARK_COLOR,
-    height: 40,
-    borderRadius: 5,
-    marginTop: 5,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  addSetBtnText: {
-    color: WHITE_COLOR,
-    fontSize: 15,
-    fontWeight: "500",
-  },
   maxRepsText: {
     color: ORANGE_COLOR,
     fontWeight: "500",

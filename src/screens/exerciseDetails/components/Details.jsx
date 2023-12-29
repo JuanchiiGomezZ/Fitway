@@ -27,7 +27,7 @@ export default Details = ({ id }) => {
   const { name, element, primaryMuscle, Multimedia, exerciseType, description, WorkoutExercise } =
     exerciseData || {};
 
-  const { resTime, reps } = WorkoutExercise || {};
+  const { restTime, reps } = WorkoutExercise || {};
 
   return (
     <>
@@ -59,7 +59,7 @@ export default Details = ({ id }) => {
               <ElementCard
                 icon="timer-outline"
                 title="Rest time"
-                name={convertToMinutes(resTime)}
+                name={convertToMinutes(restTime)}
               />
             </View>
             <TableExercise reps={reps} />

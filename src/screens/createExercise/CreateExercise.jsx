@@ -144,7 +144,7 @@ export default CreateExercise = () => {
         text="Continue"
         action={handleContinue}
         disabled={activeButton}
-        disabledAction={validateData}
+        actionDisabled={validateData}
       />
 
       {pickerMuscle && (
