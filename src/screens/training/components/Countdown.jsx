@@ -4,6 +4,7 @@ import {
   BACKGROUND_COLOR,
   BOX_COLOR,
   GRAY_COLOR,
+  GRAY_LIGHT_COLOR,
   ORANGE_COLOR,
   PADDING_HORIZONTAL,
   WHITE_COLOR,
@@ -81,7 +82,6 @@ export default Countdown = () => {
         <Text style={[styles.countdownText, styles.textSmall]} onPress={() => handleAddTime(15)}>
           +15
         </Text>
-
         <ButtonCircular size="s" icon="forward" action={skipTime} />
       </View>
       <View style={styles.progressContainer}>
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
   },
   textSmall: {
     fontSize: 18,
+    color:GRAY_LIGHT_COLOR
   },
   toolsContainer: {
     width: "90%",

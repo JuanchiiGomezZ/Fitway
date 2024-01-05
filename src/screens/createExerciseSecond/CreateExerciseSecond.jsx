@@ -50,10 +50,10 @@ export default CreateExerciseSecond = ({ route }) => {
 
   return (
     <ScreenContainer paddingBottom={true}>
+      <Header title={route.params.name} action={handleGoBack} />
       <View style={{ gap: 30, flex: 1 }}>
-        <Header title={route.params.name} action={handleGoBack} />
         <RestTimeSlider />
-        <SetsTable exerciseType={route.params.exerciseType} />
+        <SetsTable exerciseType={route.params.exerciseType} initialReps={reps} />
       </View>
 
       <ButtonClassicLong

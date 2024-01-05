@@ -24,4 +24,5 @@ export const newExerciseSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setReps, setRepsValidation, setRestTime, cleanNewExerciseState } = newExerciseSlice.actions;
+export const { setReps, setRepsValidation, setRestTime, cleanNewExerciseState } =
+  newExerciseSlice.actions;

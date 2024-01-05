@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, View, Keyboard } from "react-native";
 
 //HOOKS
-import { useTranslation } from "react-i18next";
 import musclesData from "../../data/muscles.json";
 import elementsData from "../../data/elements.json";
 import { useNavigation } from "@react-navigation/native";
@@ -49,6 +48,8 @@ export default CreateExercise = () => {
     }
     setBottomsheet((prev) => !prev);
   };
+  
+
   const togglePickerExerciseType = (type) => {
     Keyboard.dismiss();
     if (type) {
@@ -59,8 +60,6 @@ export default CreateExercise = () => {
 
   const exerciseGif =
     "https://newlife.com.cy/wp-content/uploads/2019/11/16241301-Dumbbell-Reverse-Bench-Press_Chest_360.gif";
-
-  // const exerciseType = "ExerciseWithWeight";
 
   const handleContinue = () => {
     const newExerciseData = {
@@ -97,7 +96,7 @@ export default CreateExercise = () => {
 
       <View style={styles.contentContainer}>
         <View style={{ width: "95%", gap: 25 }}>
-          <AddImage toggleBottomsheet={toggleBottomsheet} exerciseImg={exerciseImg} />
+          <AddImage toggleBottomsheet={toggleBottomsheet} image={exerciseImg} />
           <ClassicInputWithLabel
             setInputChange={setName}
             inputChange={name}

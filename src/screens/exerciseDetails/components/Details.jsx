@@ -13,8 +13,10 @@ import Loader from "../../../components/Loader";
 import { convertToMinutes } from "../../../helpers/timeFormater";
 import { ButtonCircular } from "../../../components/CustomButtons";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default Details = ({ id }) => {
+  const { navigate } = useNavigation();
   const [exerciseData, setExerciseData] = useState(null);
   const { getExerciseCompleteDetails } = useExercisesStore();
 
@@ -67,7 +69,12 @@ export default Details = ({ id }) => {
         </ScrollView>
       )}
       <View style={styles.editBtn}>
-        <ButtonCircular icon="edit-2" iconFamily={Feather} iconSize={25} />
+        <ButtonCircular
+          icon="edit-2"
+          iconFamily={Feather}
+          iconSize={25}
+          action={() => navigate("EditExercise", exerciseData)}
+        />
       </View>
     </>
   );
@@ -75,8 +82,8 @@ export default Details = ({ id }) => {
 
 const styles = StyleSheet.create({
   image: {
-    width: 120,
-    height: 120,
+    width: 110,
+    height: 110,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
@@ -101,6 +108,6 @@ const styles = StyleSheet.create({
   editBtn: {
     position: "absolute",
     right: 0,
-    bottom: 10,
+    bottom: 20,
   },
 });

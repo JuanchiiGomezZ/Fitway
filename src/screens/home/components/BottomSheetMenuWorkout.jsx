@@ -7,7 +7,6 @@ import { OptionMenu } from "../../../components/CustomButtons";
 import ConfirmationAlert from "../../../components/ConfirmationAlert";
 import useToggle from "../../../hooks/useToggle";
 
-
 export default BottomSheetMenuWorkout = ({ toggleBottomSheet, workoutId }) => {
   const { t } = useTranslation();
   const { deleteWorkout } = useWorkoutsStore();
@@ -30,8 +29,8 @@ export default BottomSheetMenuWorkout = ({ toggleBottomSheet, workoutId }) => {
       </BottomSheetMenu>
       {confirmationAlert && (
         <ConfirmationAlert
-          title="Alert"
-          subTitle="Are you sure you want to delete this workout?"
+          title="Are you sure?"
+          text="This action will delete your workout."
           toggleModal={toggleConfAlert}
           confirmAction={handleDeleteWorkout}
         />

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Keyboard, Dimensions } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { ORANGE_COLOR } from "../../../styles/styles";
 import TableRow from "./TableRow";
@@ -14,11 +14,10 @@ import Animated, {
 import { ButtonCircular } from "../../../components/CustomButtons";
 import * as tableStyles from "../../../styles/tableStyles";
 
-const { width } = Dimensions.get("screen");
-
-export default SetsTable = ({ exerciseType }) => {
+export default SetsTable = ({ exerciseType, initialReps }) => {
   const dispatch = useDispatch();
   const { reps } = useSelector((state) => state.newExercise);
+
   const { length } = reps;
 
   const translateY = useSharedValue(0);
@@ -30,13 +29,13 @@ export default SetsTable = ({ exerciseType }) => {
   const handleAddSet = () => {
     if (length <= 6) {
       dispatch(setReps([...reps, ""]));
-      translateY.value = withSpring(translateY.value + 45, { damping: 7, stiffness: 80 });
+      translateY.value = withSpring(translateY.value + 50, { damping: 7, stiffness: 80 });
     }
   };
 
   const handledeleteSet = () => {
     dispatch(setReps(reps.slice(0, -1)));
-    translateY.value = withSpring(translateY.value - 45, { damping: 7, stiffness: 80 });
+    translateY.value = withSpring(translateY.value - 50, { damping: 7, stiffness: 80 });
   };
 
   const initialMode = useRef(true);
@@ -70,7 +69,10 @@ export default SetsTable = ({ exerciseType }) => {
         <Animated.View
           entering={initialMode.current ? FadeIn.delay((reps.length + 1) * 100) : FadeIn.delay(150)}
           exiting={FadeOut}
-          style={[animatedStyles, { position: "absolute", top: 180 }]}
+          style={[
+            animatedStyles,
+            { position: "absolute", top: 50 * initialReps.length + 30 || 180 },
+          ]}
         >
           <ButtonCircular action={handleAddSet} icon="plus" size="m" />
         </Animated.View>

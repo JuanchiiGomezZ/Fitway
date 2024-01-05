@@ -14,8 +14,8 @@
     "value": "ExerciseWithoutWeight"
   },
   {
-    "id": 3,
-    "name": "Duration + Reps",
+    "id": 3,  
+    "name": "Duration",
     "tags": ["TIME", "REPS"],
     "examples": ["Planks", "Yoga"],
     "value": "ExerciseOfDuration"

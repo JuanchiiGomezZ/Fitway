@@ -1,14 +1,26 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { BACKGROUND_COLOR, GRAY_COLOR, ORANGE_COLOR } from "../../../styles/styles";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import CardContainer from "../../../components/CardContainer";
 import { ButtonCircular } from "../../../components/CustomButtons";
+import { useDispatch } from "react-redux";
+import { toggleTrainingInProgressAlert } from "../../../store/slices/routinesSlice";
+import { storage } from "../../../helpers/storage";
 
 export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
   const { muscles, name, id } = data;
+  const dispatch = useDispatch();
   const { navigate } = useNavigation();
+
+  const handleNavigateTraining = () => {
+    const storedTrainingId = storage.getString("workout_id_training");
+    if (storedTrainingId) {
+      dispatch(toggleTrainingInProgressAlert(id));
+    } else {
+      navigate("Training", { id });
+    }
+  };
 
   return (
     <CardContainer
@@ -38,7 +50,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
           icon="dumbbell"
           color={BACKGROUND_COLOR}
           iconSize={26}
-          action={() => navigate("Training", { id })}
+          action={handleNavigateTraining}
           disabled={muscles.length < 1}
         />
       </View>

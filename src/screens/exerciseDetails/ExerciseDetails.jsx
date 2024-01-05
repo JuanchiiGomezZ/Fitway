@@ -23,10 +23,8 @@ export default ExerciseDetails = ({ route }) => {
   ];
   return (
     <ScreenContainer>
-      <Header margin={false} />
-      <PagerNavigator pages={pages} />
+      <PagerNavigator pages={pages} goBack={true} />
     </ScreenContainer>
   );
 };
 
-const styles = StyleSheet.create({});

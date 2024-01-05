@@ -9,7 +9,6 @@ import Header from "../../components/Header";
 import ExercisesList from "./components/card/ExercisesList";
 import CreateSupersetModal from "./components/CreateSupersetModal";
 import BottomSheetMenuExercise from "./components/BottomSheetMenuExercise";
-import PagerNavigator from "../../components/PagerNavigator";
 import ScreenContainer from "../../components/ScreenContainer";
 import FloatingMenu from "./components/FloatingMenu";
 
@@ -27,18 +26,12 @@ export default WorkoutScreen = ({ route }) => {
     toggleBottomsheet();
   };
 
-  const pages = [
-    {
-      title: "Exercises",
-      component: <ExercisesList workoutId={workoutId} toggleBottomSheet={toggleBottomSheet} />,
-    },
-    { title: "History", component: <></> },
-  ];
+
 
   return (
     <ScreenContainer>
-      <Header title={name} margin={false} />
-      <PagerNavigator pages={pages} />
+      <Header title={name} />
+      <ExercisesList workoutId={workoutId} toggleBottomSheet={toggleBottomSheet} />
       <FloatingMenu />
       {createSuperset && (
         <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />

@@ -27,7 +27,7 @@ import TrainingsLog from "../screens/trainingsLog/TrainingsLog";
 import AddExerciseDetails from "../screens/addExerciseDetails/AddExerciseDetails";
 import WorkoutLogDetails from "../screens/workoutLogDetails.jsx/WorkoutLogDetails";
 import TrainingFinished from "../screens/trainingFinished/TrainingFinished";
-
+import EditExercise from "../screens/editExercise/EditExercise";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -158,6 +158,13 @@ export default Navigation = () => {
               component={TrainingFinished}
               options={{
                 animation: "slide_from_right",
+              }}
+            />
+            <Stack.Screen
+              name="EditExercise"
+              component={EditExercise}
+              options={{
+                animation: "default",
               }}
             />
           </>

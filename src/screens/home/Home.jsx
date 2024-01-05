@@ -7,6 +7,8 @@ import useRoutinesStore from "../../hooks/redux/useRoutinesStore";
 import useToggle from "../../hooks/useToggle";
 import { storage } from "../../helpers/storage";
 import { useMMKVListener } from "react-native-mmkv";
+import { toggleTrainingInProgressAlert } from "../../store/slices/routinesSlice";
+import { useNavigation } from "@react-navigation/native";
 
 /* COMPONENTS */
 import ScreenContainer from "../../components/ScreenContainer";
@@ -17,6 +19,7 @@ import ContentHome from "./components/ContentHome";
 import BottomSheetMenuWorkout from "./components/BottomSheetMenuWorkout";
 import QrModal from "../../components/QrModal";
 import TrainigInProgressModal from "./components/TrainigInProgressModal";
+import ConfirmationAlert from "../../components/ConfirmationAlert";
 
 /* STYLES */
 import { ORANGE_COLOR } from "../../styles/styles";
@@ -25,7 +28,8 @@ import { cleanWorkoutLog } from "../../store/slices/trainingSlice";
 export default HomeScreen = () => {
   const { getUserRoutineDetail, getRoutines } = useRoutinesStore();
   const dispatch = useDispatch();
-  const { activeRoutineId, isLoading, activeRoutineDetails } = useSelector(
+  const { navigate } = useNavigation();
+  const { activeRoutineId, isLoading, activeRoutineDetails, trainingInProgressAlert } = useSelector(
     (state) => state.userRoutines,
   );
   const [configWorkoutModal, setConfigWorkoutModal] = useState(false);
@@ -61,6 +65,12 @@ export default HomeScreen = () => {
     toggleDiscardTrainingAlert();
   };
 
+  const handleTrainingInProgressAlert = () => {
+    dispatch(toggleTrainingInProgressAlert());
+    dispatch(cleanWorkoutLog());
+    navigate("Training", { id: trainingInProgressAlert.workoutId });
+  };
+
   return (
     <ScreenContainer>
       <ScrollView
@@ -86,8 +96,8 @@ export default HomeScreen = () => {
       {discardTrainingAlert && (
         <ConfirmationAlert
           toggleModal={toggleDiscardTrainingAlert}
-          title="Alert"
-          subTitle={"Are you sure you want to discard the training?"}
+          title="Are you sure"
+          text={"This action will discard your training."}
           confirmAction={handleDiscardTraining}
         />
       )}
@@ -98,6 +108,17 @@ export default HomeScreen = () => {
         />
       )}
       {newWorkoutModal && <NewWorkoutModal toggleNewWorkoutModal={toggleNewWorkoutModal} />}
+
+      {trainingInProgressAlert.state && (
+        <ConfirmationAlert
+          toggleModal={() => dispatch(toggleTrainingInProgressAlert())}
+          title="Are you sure?"
+          text={
+            "You have another training in progress. This action will discard your training and start a new one."
+          }
+          confirmAction={handleTrainingInProgressAlert}
+        />
+      )}
     </ScreenContainer>
   );
 };

@@ -48,11 +48,14 @@ export default TrainingMode = ({ route }) => {
     if (activeWorkoutDetails?.workoutId != id) {
       getWorkoutTrainingData(id);
     }
-
     if (!storage.getString("workout_id_training")) storage.set("workout_id_training", id);
     if (!storage.getString("workout_startDate_training"))
       storage.set("workout_startDate_training", new Date().toString());
   }, []);
+
+  useEffect(() => {
+    if (workoutLog) storage.set("workoutLog", JSON.stringify(workoutLog));
+  }, [workoutLog]);
 
   const backAction = () => {
     goBack();
@@ -96,8 +99,8 @@ export default TrainingMode = ({ route }) => {
           {confirmationExitAlert && (
             <ConfirmationAlert
               toggleModal={toggleConfExitAlert}
-              title="Alert"
-              subTitle={"Are you sure you want to discard the training?"}
+              title="Are you sure?"
+              text={"This action will exit and discard your training."}
               confirmAction={backAction}
             />
           )}
@@ -105,9 +108,8 @@ export default TrainingMode = ({ route }) => {
           {confirmExitAlert && (
             <ConfirmationAlert
               toggleModal={() => dispatch(toggleConfirmExitAlert())}
-              title="Alert"
-              subTitle={"Are you sure you want to finish the training?"}
-              text={"You have some empty values."}
+              title="Are you sure?"
+              text={"You have some empty values. This action will end your training."}
               thirdButton={true}
               thirdColor={RED_COLOR}
               thirdTitle={"Discard training"}
