@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
-import ElementCard from "../../../components/ElementCard";
-import { TextAreaWithLabel } from "../../../components/Inputs";
-import exerciseTypeConvert from "../../../helpers/exerciseTypeConvert";
+import ElementCard from "../../../../components/ElementCard";
+import { TextAreaWithLabel } from "../../../../components/Inputs";
+import exerciseTypeConvert from "../../../../helpers/exerciseTypeConvert";
 
 //COMPONENTS
 import TableExercise from "./TableExercise";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { WHITE_COLOR } from "../../../styles/styles";
-import useExercisesStore from "../../../hooks/redux/useExercisesStore";
-import Loader from "../../../components/Loader";
-import { convertToMinutes } from "../../../helpers/timeFormater";
-import { ButtonCircular } from "../../../components/CustomButtons";
+import { WHITE_COLOR } from "../../../../styles/styles";
+import useExercisesStore from "../../../../hooks/redux/useExercisesStore";
+import Loader from "../../../../components/Loader";
+import { convertToMinutes } from "../../../../helpers/timeFormater";
+import { ButtonCircular } from "../../../../components/CustomButtons";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 

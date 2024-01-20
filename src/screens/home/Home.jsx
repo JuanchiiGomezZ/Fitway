@@ -14,10 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import ScreenContainer from "../../components/ScreenContainer";
 import Weekdays from "./components/Weekdays";
 import HeaderHome from "./components/HeaderHome";
-import NewWorkoutModal from "./components/NewWorkoutModal";
 import ContentHome from "./components/ContentHome";
-import BottomSheetMenuWorkout from "./components/BottomSheetMenuWorkout";
-import QrModal from "../../components/QrModal";
 import TrainigInProgressModal from "./components/TrainigInProgressModal";
 import ConfirmationAlert from "../../components/ConfirmationAlert";
 
@@ -29,23 +26,17 @@ export default HomeScreen = () => {
   const { getUserRoutineDetail, getRoutines } = useRoutinesStore();
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
-  const { activeRoutineId, isLoading, activeRoutineDetails, trainingInProgressAlert } = useSelector(
+  const { activeRoutineId, isLoading, trainingInProgressAlert } = useSelector(
     (state) => state.userRoutines,
   );
-  const [configWorkoutModal, setConfigWorkoutModal] = useState(false);
-  const [workoutId, setWorkoutId] = useState(null);
-  const [newWorkoutModal, toggleNewWorkoutModal] = useToggle(false);
-  const [qrModal, toggleQrModal] = useToggle(false);
+
   const [discardTrainingAlert, toggleDiscardTrainingAlert] = useToggle(false);
 
   const [workoutIdInProgress, setWorkoutIdInProgress] = useState(
     storage.getString("workout_id_training"),
   );
 
-  const toggleBottomSheet = (id) => {
-    id && setWorkoutId(id);
-    setConfigWorkoutModal((prev) => !prev);
-  };
+
 
   useMMKVListener(() => {
     //EN REVISION UTILIZAR REDUX + STORAGE O SOLO STORAGE
@@ -85,14 +76,10 @@ export default HomeScreen = () => {
         }
       >
         <Weekdays />
-        <HeaderHome toggleNewWorkoutModal={toggleNewWorkoutModal} toggleQrModal={toggleQrModal} />
-        <ContentHome toggleBottomSheet={toggleBottomSheet} />
+        <HeaderHome />
+        <ContentHome />
       </ScrollView>
 
-      {qrModal && <QrModal code={activeRoutineDetails.codeShare} toggleModal={toggleQrModal} />}
-      {configWorkoutModal && (
-        <BottomSheetMenuWorkout toggleBottomSheet={toggleBottomSheet} workoutId={workoutId} />
-      )}
       {discardTrainingAlert && (
         <ConfirmationAlert
           toggleModal={toggleDiscardTrainingAlert}
@@ -107,7 +94,6 @@ export default HomeScreen = () => {
           toggleDiscardTrainingAlert={toggleDiscardTrainingAlert}
         />
       )}
-      {newWorkoutModal && <NewWorkoutModal toggleNewWorkoutModal={toggleNewWorkoutModal} />}
 
       {trainingInProgressAlert.state && (
         <ConfirmationAlert

@@ -4,7 +4,7 @@ import { AntDesign, Feather } from "@expo/vector-icons";
 import { GRAY_COLOR, ORANGE_COLOR, ORANGE_DARK_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import WorkoutCard from "./WorkoutCard";
 
-export default ContentHome = ({ toggleBottomSheet }) => {
+export default ContentHome = () => {
   const { activeRoutineId, isLoading, activeRoutineWorkouts } = useSelector(
     (state) => state.userRoutines,
   );
@@ -49,7 +49,6 @@ export default ContentHome = ({ toggleBottomSheet }) => {
             key={item.id}
             data={item}
             index={index}
-            toggleBottomSheet={toggleBottomSheet}
           />
         ))}
       </View>

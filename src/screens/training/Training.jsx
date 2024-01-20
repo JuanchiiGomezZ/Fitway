@@ -41,7 +41,7 @@ export default TrainingMode = ({ route }) => {
   } = useSelector((state) => state.training);
   const { id } = route.params;
 
-  const [openWorkout, toggleOpenWorkout] = useToggle(false);
+
   const [confirmationExitAlert, toggleConfExitAlert] = useToggle(false);
 
   useEffect(() => {
@@ -83,10 +83,7 @@ export default TrainingMode = ({ route }) => {
               {workoutLog && <ContentExercise />}
             </View>
           </ScrollView>
-          <BottomBar
-            toggleOpenWorkout={toggleOpenWorkout}
-            toggleConfExitAlert={toggleConfExitAlert}
-          />
+          <BottomBar toggleConfExitAlert={toggleConfExitAlert} />
 
           {exerciseGif && (
             <ExerciseGIF
@@ -95,7 +92,6 @@ export default TrainingMode = ({ route }) => {
             />
           )}
           {countdown.state && <Countdown restTime={30} />}
-          {openWorkout && <ExercisesModal toggleModal={toggleOpenWorkout} />}
           {confirmationExitAlert && (
             <ConfirmationAlert
               toggleModal={toggleConfExitAlert}

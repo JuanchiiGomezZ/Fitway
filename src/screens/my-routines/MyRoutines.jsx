@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, StyleSheet, View, RefreshControl } from "react-native";
 
 //HOOKS
@@ -13,8 +13,7 @@ import Header from "../../components/Header";
 import { ButtonShortIndex } from "../../components/CustomButtons";
 import RoutineCard from "./components/MyRoutineCard";
 import Separator from "../../components/Separator";
-import QrModal from "../../components/QrModal";
-import BottomSheetMenuRoutine from "./components/BottomSheetMenuRoutine";
+
 
 //STYLES
 import { ORANGE_COLOR } from "../../styles/styles";
@@ -25,24 +24,7 @@ export default MyRoutinesScreen = () => {
   const navigation = useNavigation();
   const { getUserRoutines } = useRoutinesStore();
   const { userRoutines, isLoading } = useSelector((state) => state.userRoutines);
-  const [configRoutineModal, setConfigRoutineModal] = useState(false);
-  const [qrModal, setQrModal] = useState(false);
-  const [routineId, setroutineId] = useState(null);
-  const [qrCode, setQrCode] = useState(null);
   const { activeRoutine, disabledRoutines } = userRoutines;
-
-  const toggleBottomSheet = (id, qrCode) => {
-    if (id) {
-      setroutineId(id);
-      setQrCode(qrCode);
-    }
-    setConfigRoutineModal((prev) => !prev);
-  };
-
-  const toggleQrModal = () => {
-    setConfigRoutineModal(false);
-    setQrModal((prev) => !prev);
-  };
 
   return (
     <ScreenContainer>
@@ -79,7 +61,6 @@ export default MyRoutinesScreen = () => {
               <RoutineCard
                 key={activeRoutine?.id}
                 data={activeRoutine}
-                toggleBottomSheet={toggleBottomSheet}
               />
             )}
 
@@ -89,7 +70,6 @@ export default MyRoutinesScreen = () => {
                 <RoutineCard
                   key={item?.id}
                   data={item}
-                  toggleBottomSheet={toggleBottomSheet}
                   index={index}
                 />
               ))}
@@ -97,14 +77,6 @@ export default MyRoutinesScreen = () => {
           </View>
         )}
       </ScrollView>
-      {qrModal && <QrModal toggleModal={toggleQrModal} code={qrCode} />}
-      {configRoutineModal && (
-        <BottomSheetMenuRoutine
-          toggleBottomSheet={toggleBottomSheet}
-          id={routineId}
-          toggleQrModal={toggleQrModal}
-        />
-      )}
     </ScreenContainer>
   );
 };

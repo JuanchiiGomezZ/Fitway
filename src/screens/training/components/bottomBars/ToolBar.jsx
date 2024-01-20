@@ -10,7 +10,7 @@ import {
 } from "../../../../store/slices/trainingSlice";
 import { useNavigation } from "@react-navigation/native";
 
-export default ToolBar = ({ toggleWorkoutModal }) => {
+export default ToolBar = () => {
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
   const { numActiveExercise, activeWorkout, workoutLog } = useSelector((state) => state.training);
@@ -27,7 +27,6 @@ export default ToolBar = ({ toggleWorkoutModal }) => {
     }
   };
 
-  
   const handleFinishWorkout = () => {
     dispatch(toggleConfirmExitAlert());
   };
@@ -46,7 +45,11 @@ export default ToolBar = ({ toggleWorkoutModal }) => {
       />
 
       <View style={[styles.row, { gap: 20 }]}>
-        <ButtonCircular icon="clipboard-list" action={toggleWorkoutModal} size={"m"} />
+        <ButtonCircular
+          icon="clipboard-list"
+          action={() => navigate("ExercisesModal")}
+          size={"m"}
+        />
         <ButtonRounded text="Complete" textWeight="700" action={handleFinishWorkout} />
       </View>
       <ButtonCircular

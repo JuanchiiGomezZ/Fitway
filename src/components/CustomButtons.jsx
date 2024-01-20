@@ -285,11 +285,6 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
 
-  closeIcon: {
-    position: "absolute",
-    top: 5,
-    right: 5,
-  },
   buttonShortIndex: {
     borderColor: ORANGE_COLOR,
     borderWidth: 1,

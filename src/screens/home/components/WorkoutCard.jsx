@@ -26,7 +26,7 @@ export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
     <CardContainer
       action={() => navigate("Workout", { workoutId: id })}
       index={index}
-      configAction={() => toggleBottomSheet(id)}
+      configAction={() => navigate("BottomSheetMenuWorkout", { workoutId: id })}
     >
       <View style={styles.contentContainer}>
         <View style={{ width: "83%", gap: 5 }}>

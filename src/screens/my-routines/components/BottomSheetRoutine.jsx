@@ -5,24 +5,27 @@ import BottomSheetMenu from "../../../components/BottomSheetMenu";
 import { OptionMenu } from "../../../components/CustomButtons";
 import useRoutinesStore from "../../../hooks/redux/useRoutinesStore";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
-export default BottomSheetMenuWorkout = ({ toggleBottomSheet, id, toggleQrModal }) => {
+export default BottomSheetRoutine = ({ route }) => {
+  const { id, codeShare } = route.params || {};
   const { t } = useTranslation();
   const { deleteUserRoutine, toggleActiveRoutine } = useRoutinesStore();
   const { activeRoutineId } = useSelector((state) => state.userRoutines);
+  const { goBack, navigate } = useNavigation();
 
   const handleDeleteRoutine = () => {
     deleteUserRoutine(id);
-    toggleBottomSheet();
+    goBack();
   };
 
   const handleToggleActiveRoutine = (isActive) => {
     toggleActiveRoutine(id, isActive);
-    toggleBottomSheet();
+    goBack();
   };
 
   return (
-    <BottomSheetMenu toggleBottomSheet={toggleBottomSheet}>
+    <BottomSheetMenu>
       {id != activeRoutineId ? (
         <OptionMenu
           text={t("configModal.set-as-active")}
@@ -38,7 +41,11 @@ export default BottomSheetMenuWorkout = ({ toggleBottomSheet, id, toggleQrModal 
           action={() => handleToggleActiveRoutine(false)}
         />
       )}
-      <OptionMenu text={"Share Routine"} icon="share" action={toggleQrModal} />
+      <OptionMenu
+        text={"Share Routine"}
+        icon="share"
+        action={() => navigate("QrModal", { code: codeShare })}
+      />
       <OptionMenu text={t("configModal.edit-routine")} icon="edit-2" />
       <OptionMenu
         text={t("configModal.delete-routine")}

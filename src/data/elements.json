@@ -1,68 +1,84 @@
 [
   {
     "name": "Nothing",
-    "img": "https://i.postimg.cc/zf8bBgfC/Other.png"
+    "img": "https://i.postimg.cc/zf8bBgfC/Other.png",
+    "type": "element"
   },
   {
     "name": "Dumbell",
-    "img": "https://i.postimg.cc/zBfywYK3/Dumbell.webp"
+    "img": "https://i.postimg.cc/zBfywYK3/Dumbell.webp",
+    "type": "element"
   },
   {
     "name": "Olympic bar",
-    "img": "https://i.postimg.cc/fbFjLKQ7/Olympic-Bar.webp"
+    "img": "https://i.postimg.cc/fbFjLKQ7/Olympic-Bar.webp",
+    "type": "element"
   },
   {
     "name": "Ez bar",
-    "img": "https://i.postimg.cc/9FVPr0Kk/EzBar.webp"
+    "img": "https://i.postimg.cc/9FVPr0Kk/EzBar.webp",
+    "type": "element"
   },
   {
     "name": "Fixed bar",
-    "img": "https://i.postimg.cc/y8p0QPxq/FixedBar.webp"
+    "img": "https://i.postimg.cc/y8p0QPxq/FixedBar.webp",
+    "type": "element"
   },
   {
     "name": "Hex bar",
-    "img": "https://i.postimg.cc/90PGLHR1/HexBar.webp"
+    "img": "https://i.postimg.cc/90PGLHR1/HexBar.webp",
+    "type": "element"
   },
   {
     "name": "Roman bar",
-    "img": "https://i.postimg.cc/XJCKyCnR/RomanBar.webp"
+    "img": "https://i.postimg.cc/XJCKyCnR/RomanBar.webp",
+    "type": "element"
   },
   {
     "name": "Straight bar",
-    "img": "https://i.postimg.cc/GtnFPm2H/Straight-Bar.webp"
+    "img": "https://i.postimg.cc/GtnFPm2H/Straight-Bar.webp",
+    "type": "element"
   },
   {
     "name": "Kettlebell",
-    "img": "https://i.postimg.cc/zf7LRGL9/Kettlebell.webp"
+    "img": "https://i.postimg.cc/zf7LRGL9/Kettlebell.webp",
+    "type": "element"
   },
   {
     "name": "Machine",
-    "img": "https://i.postimg.cc/5yYjG5PV/Machine.webp"
+    "img": "https://i.postimg.cc/5yYjG5PV/Machine.webp",
+    "type": "element"
   },
 
   {
     "name": "Pulleys",
-    "img": "https://i.postimg.cc/Hs2w5HCk/Pulleys.webp"
+    "img": "https://i.postimg.cc/Hs2w5HCk/Pulleys.webp",
+    "type": "element"
   },
   {
     "name": "Resistance band",
-    "img": "https://i.postimg.cc/hvkhqJw7/Resistance-Band.webp"
+    "img": "https://i.postimg.cc/hvkhqJw7/Resistance-Band.webp",
+    "type": "element"
   },
 
   {
     "name": "Suspension band",
-    "img": "https://i.postimg.cc/yxKshwD2/Suspesion-Band.jpg"
+    "img": "https://i.postimg.cc/yxKshwD2/Suspesion-Band.jpg",
+    "type": "element"
   },
   {
     "name": "Weight discs",
-    "img": "https://i.postimg.cc/QdFG7X6H/Weight-Discs.jpg"
+    "img": "https://i.postimg.cc/QdFG7X6H/Weight-Discs.jpg",
+    "type": "element"
   },
   {
     "name": "Medicine",
-    "img": "https://i.postimg.cc/L88z37HB/medicine.webp"
+    "img": "https://i.postimg.cc/L88z37HB/medicine.webp",
+    "type": "element"
   },
   {
     "name": "Other",
-    "img": "https://i.postimg.cc/zf8bBgfC/Other.png"
+    "img": "https://i.postimg.cc/zf8bBgfC/Other.png",
+    "type": "element"
   }
 ]

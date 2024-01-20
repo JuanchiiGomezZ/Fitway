@@ -13,7 +13,7 @@ import { ButtonClassicLong } from "../../../components/CustomButtons";
 
 import { ORANGE_COLOR, ORANGE_DARK_COLOR } from "../../../styles/styles";
 
-export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
+export default NewRoutineModal = () => {
   const { t } = useTranslation();
   const { goBack } = useNavigation();
   const { createNewRoutine } = useRoutinesStore();
@@ -27,7 +27,6 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
 
   const handleCreateRoutine = () => {
     createNewRoutine({ name, public: visibilitty });
-    toggleNewRoutineModal();
     goBack();
   };
 
@@ -35,7 +34,6 @@ export default NewRoutineModal = ({ toggleNewRoutineModal }) => {
   return (
     <ModalBase
       short={true}
-      toggleModal={toggleNewRoutineModal}
       title={t("Routines.NewRoutineModal.title")}
     >
       <View style={{ gap: 20 }}>

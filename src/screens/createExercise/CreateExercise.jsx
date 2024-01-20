@@ -1,36 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Keyboard } from "react-native";
 
 //HOOKS
-import musclesData from "../../data/muscles.json";
-import elementsData from "../../data/elements.json";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-import useToggle from "../../hooks/useToggle";
+
 
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import AddImage from "./components/AddImage";
-import BottomsheetImage from "./components/BottomsheetImage";
 import { ClassicInputWithLabel, TextAreaWithLabel } from "../../components/Inputs";
 import ElementCard from "../../components/ElementCard";
-import PickerModal from "./components/PickerModal";
-import ExerciseTypesModal from "./components/ExerciseTypesModal";
 import { ButtonClassicLong } from "../../components/CustomButtons";
 
 //STYLES
 import { WHITE_COLOR } from "../../styles/styles";
 import maxOrder from "../../helpers/maxOrder";
 
-export default CreateExercise = () => {
+export default CreateExercise = ({ route }) => {
   const { navigate } = useNavigation();
   const { workoutExercises } = useSelector((state) => state.workouts);
+  const { type, item, image } = route.params || {};
 
-  const [pickerMuscle, togglePickerMuscle] = useToggle(false);
-  const [pickerElement, togglePickerElement] = useToggle(false);
-  const [pickerExerciseType, setPickerExerciseType] = useState(false);
-  const [bottomsheet, setBottomsheet] = useState(false);
 
   const [exerciseImg, setExerciseImage] = useState(null);
   const [name, setName] = useState("");
@@ -41,22 +33,21 @@ export default CreateExercise = () => {
 
   const [errors, setErrors] = useState({});
 
-  const toggleBottomsheet = (img) => {
-    Keyboard.dismiss();
-    if (img) {
-      setExerciseImage(img);
-    }
-    setBottomsheet((prev) => !prev);
-  };
-  
-
-  const togglePickerExerciseType = (type) => {
-    Keyboard.dismiss();
+  useEffect(() => {
     if (type) {
-      setExerciseType(type);
+      setExerciseType({ value: type.value, name: type.name });
     }
-    setPickerExerciseType((prev) => !prev);
-  };
+
+    if (item?.type == "muscle") {
+      setPrimaryMuscle({ value: item.value, name: item.name, img: item.img });
+    }
+    if (item?.type == "element") {
+      setElement({ value: item.value, name: item.name, img: item.img });
+    }
+    if (image) {
+      setExerciseImage(image);
+    }
+  }, [type, item, image]);
 
   const exerciseGif =
     "https://newlife.com.cy/wp-content/uploads/2019/11/16241301-Dumbbell-Reverse-Bench-Press_Chest_360.gif";
@@ -96,7 +87,7 @@ export default CreateExercise = () => {
 
       <View style={styles.contentContainer}>
         <View style={{ width: "95%", gap: 25 }}>
-          <AddImage toggleBottomsheet={toggleBottomsheet} image={exerciseImg} />
+          <AddImage image={exerciseImg} />
           <ClassicInputWithLabel
             setInputChange={setName}
             inputChange={name}
@@ -116,7 +107,7 @@ export default CreateExercise = () => {
               name={primaryMuscle?.name}
               img={primaryMuscle?.img}
               title="Muscle"
-              action={togglePickerMuscle}
+              action={() => navigate("MusclesModal")}
               isValid={!primaryMuscle?.img && errors.muscle}
             />
             <ElementCard
@@ -125,7 +116,7 @@ export default CreateExercise = () => {
               img={element?.img}
               title="Element"
               reverse={true}
-              action={togglePickerElement}
+              action={() => navigate("ElementsModal")}
               isValid={!element?.img && errors.element}
             />
             <ElementCard
@@ -133,7 +124,7 @@ export default CreateExercise = () => {
               name={null}
               title={exerciseType?.name || "Exercise type"}
               isValid={!exerciseType?.name && errors.exerciseType}
-              action={() => togglePickerExerciseType(null)}
+              action={() => navigate("ExerciseTypesModal")}
             />
           </View>
         </View>
@@ -145,25 +136,6 @@ export default CreateExercise = () => {
         disabled={activeButton}
         actionDisabled={validateData}
       />
-
-      {pickerMuscle && (
-        <PickerModal
-          data={musclesData}
-          type="Muscles"
-          toggleModal={togglePickerMuscle}
-          setSelected={setPrimaryMuscle}
-        />
-      )}
-      {pickerElement && (
-        <PickerModal
-          data={elementsData}
-          type="Elements"
-          toggleModal={togglePickerElement}
-          setSelected={setElement}
-        />
-      )}
-      {pickerExerciseType && <ExerciseTypesModal toggleModal={togglePickerExerciseType} />}
-      {bottomsheet && <BottomsheetImage toggleBottomsheet={toggleBottomsheet} />}
     </ScreenContainer>
   );
 };

@@ -3,13 +3,15 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Feather } from "@expo/vector-icons";
 import { GRAY_COLOR, ORANGE_DARK_COLOR } from "../../../styles/styles";
+import { use } from "i18next";
+import { useNavigation } from "@react-navigation/native";
 
-export default AddImage = ({ toggleBottomsheet, image }) => {
+export default AddImage = ({ image }) => {
   const { t } = useTranslation();
-  // console.log({image});
+  const { navigate } = useNavigation();
 
   return (
-    <TouchableOpacity style={styles.addImageContainer} onPress={() => toggleBottomsheet(null)}>
+    <TouchableOpacity style={styles.addImageContainer} onPress={() => navigate("BottomSheetImage")}>
       {image ? (
         <Image source={{ uri: image }} style={styles.image} />
       ) : (

@@ -5,9 +5,9 @@ import { StyleSheet, Text, View } from "react-native";
 
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import Details from "./components/Details";
+import Details from "./components/details/Details";
 import PagerNavigator from "../../components/PagerNavigator";
+import ExerciseHistory from "./components/history/ExerciseHistory";
 
 //STYLES
 
@@ -17,9 +17,9 @@ export default ExerciseDetails = ({ route }) => {
   const pages = [
     {
       title: "Exercises",
-      component: <Details id={id} />,
+      component: <ExerciseHistory/>,
     },
-    { title: "History", component: <></> },
+    { title: "History", component: <ExerciseHistory/> },
   ];
   return (
     <ScreenContainer>

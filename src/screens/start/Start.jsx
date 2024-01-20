@@ -12,6 +12,7 @@ import Loader from "../../components/Loader";
 import useAuthStore from "../../hooks/redux/useAuthStore";
 
 import { PADDING_HORIZONTAL, GRAY_COLOR, ORANGE_COLOR } from "../../styles/styles";
+import { welcomeStorage } from "../../helpers/storage";
 
 export default StartScreen = () => {
   const { signIn } = useAuthStore();
@@ -39,7 +40,7 @@ export default StartScreen = () => {
           >
             <LogoFitway />
             <View style={styles.bottomContainer}>
-              <ButtonClassicLong text="Continue" />
+              <ButtonClassicLong text="Continue" action={() => welcomeStorage.clearAll()} />
               <ButtonGoogle action={signIn} />
               <View>
                 <Text style={styles.privacyGeneral}>By continuing, I agree to</Text>

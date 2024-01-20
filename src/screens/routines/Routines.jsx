@@ -16,11 +16,10 @@ import FilterRoutineModal from "./components/FilterRoutineModal";
 import Separator from "../../components/Separator";
 import { ButtonRounded } from "../../components/CustomButtons";
 
-
 export default AllRoutinesScreen = ({ route }) => {
   const { t } = useTranslation();
   const { qrQuery } = route.params || "";
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   const [newRoutineModal, setNewRoutineModal] = useState(false);
   const [filterModal, setFilterModal] = useState(false);
 
@@ -40,7 +39,7 @@ export default AllRoutinesScreen = ({ route }) => {
           <ButtonRounded
             text={t("Routines.create-routine")}
             icon={"plus"}
-            action={toggleNewRoutineModal}
+            action={() => navigate("NewRoutineModal")}
           />
         </View>
       </View>

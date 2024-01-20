@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
-import { useTranslation } from "react-i18next";
-import { GRAY_COLOR, GRAY_LIGHT_COLOR, GREEN_COLOR, WHITE_COLOR } from "../../../../styles/styles";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import React from "react";
+import { Image, StyleSheet, Text, View, Pressable } from "react-native";;
+import { GRAY_COLOR,WHITE_COLOR } from "../../../../styles/styles";
+import { Ionicons} from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import MarkIcon from "./MarkIcon";
 
 export default ExerciseSingleCard = ({ data, action, superset, isActive, index }) => {
-  const { t } = useTranslation();
+
   const Exercise = superset ? View : Pressable;
   const { numActiveExercise } = useSelector((state) => state.training);
   return (

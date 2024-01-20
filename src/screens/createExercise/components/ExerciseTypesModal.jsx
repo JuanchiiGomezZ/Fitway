@@ -1,34 +1,43 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, ScrollView, Pressable } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View, Pressable, Keyboard } from "react-native";
 import ModalBase from "../../../components/ModalBase";
 import exerciseTypes from "../../../data/exerciseTypes.json";
 import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import SeparatingLine from "../../../components/SeparatingLine";
+import { useNavigation } from "@react-navigation/native";
 
-export default ExerciseTypesModal = ({ toggleModal }) => {
+export default ExerciseTypesModal = ({ route }) => {
+  const { navigate } = useNavigation();
+
+  const handlePickType = (type) => {
+    Keyboard.dismiss();
+    navigate("CreateExercise", { type });
+  };
+
   return (
-    <ModalBase title="Exercise types" toggleModal={() => toggleModal(null)}>
-      {exerciseTypes.map((type) => (
-        <View key={type.id}>
-          <Pressable
-            style={styles.cardContainer}
-            onPress={() => {
-              toggleModal({ value: type.value, name: type.name });
-            }}
-          >
-            <Text style={styles.nameText}>{type.name}</Text>
-            <Text style={styles.exampleText}>Example: {type.examples.join(", ")}</Text>
-            <View style={styles.tagsContainer}>
-              {type.tags.map((tag, index) => (
-                <Text key={tag} style={styles.tag}>
-                  {tag}
-                </Text>
-              ))}
-            </View>
-          </Pressable>
-          <SeparatingLine />
-        </View>
-      ))}
+    <ModalBase title="Exercise types">
+      <View style={{ marginTop: 20, gap: 13 }}>
+        {exerciseTypes.map((type) => (
+          <>
+            <Pressable
+              style={styles.cardContainer}
+              onPress={() => handlePickType(type)}
+              key={type.id}
+            >
+              <Text style={styles.nameText}>{type.name}</Text>
+              <Text style={styles.exampleText}>Example: {type.examples.join(", ")}</Text>
+              <View style={styles.tagsContainer}>
+                {type.tags.map((tag) => (
+                  <Text key={tag} style={styles.tag}>
+                    {tag}
+                  </Text>
+                ))}
+              </View>
+            </Pressable>
+            <SeparatingLine />
+          </>
+        ))}
+      </View>
     </ModalBase>
   );
 };

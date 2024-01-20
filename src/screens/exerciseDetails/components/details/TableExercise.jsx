@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { BOX_COLOR } from "../../../styles/styles";
-import * as styles from "../../../styles/tableStyles";
+import { BOX_COLOR } from "../../../../styles/styles";
+import * as styles from "../../../../styles/tableStyles";
 const TableExercise = ({ reps }) => {
   return (
     <View style={styles.table}>

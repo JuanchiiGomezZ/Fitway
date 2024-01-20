@@ -28,6 +28,19 @@ import AddExerciseDetails from "../screens/addExerciseDetails/AddExerciseDetails
 import WorkoutLogDetails from "../screens/workoutLogDetails.jsx/WorkoutLogDetails";
 import TrainingFinished from "../screens/trainingFinished/TrainingFinished";
 import EditExercise from "../screens/editExercise/EditExercise";
+import Welcome_1 from "../screens/welcome/Welcome_1";
+import Welcome_2 from "../screens/welcome/Welcome_2";
+import { welcomeStorage } from "../helpers/storage";
+import NewWorkoutModal from "../screens/home/components/NewWorkoutModal";
+import QrModal from "../components/QrModal";
+import BottomSheetMenuWorkout from "../screens/home/components/BottomSheetMenuWorkout";
+import ExerciseTypesModal from "../screens/createExercise/components/ExerciseTypesModal";
+import PickerMuscle from "../screens/createExercise/components/Pickers/PickerMuscle";
+import PickerElement from "../screens/createExercise/components/Pickers/PickerElement";
+import BottomsheetImage from "../screens/createExercise/components/BottomsheetImage";
+import BottomSheetRoutine from "../screens/my-routines/components/BottomSheetRoutine";
+import NewRoutineModal from "../screens/routines/components/NewRoutineModal";
+import ExercisesModal from "../screens/training/components/exercisesModal/ExercisesModal";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -48,6 +61,7 @@ export default Navigation = () => {
       >
         {status == "authenticated" ? (
           <>
+            {/* SCREENS */}
             <Stack.Screen
               name="TabNavigation"
               component={TabNavigator}
@@ -167,9 +181,104 @@ export default Navigation = () => {
                 animation: "default",
               }}
             />
+
+            {/* MODALS */}
+            <Stack.Screen
+              name="NewWorkoutModal"
+              component={NewWorkoutModal}
+              options={{
+                presentation: "transparentModal",
+              }}
+            />
+            <Stack.Screen
+              name="QrModal"
+              component={QrModal}
+              options={{
+                presentation: "transparentModal",
+              }}
+            />
+            <Stack.Screen
+              name="BottomSheetMenuWorkout"
+              component={BottomSheetMenuWorkout}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade_from_bottom",
+              }}
+            />
+            <Stack.Screen
+              name="ExerciseTypesModal"
+              component={ExerciseTypesModal}
+              options={{
+                presentation: "transparentModal",
+              }}
+            />
+            <Stack.Screen
+              name="MusclesModal"
+              component={PickerMuscle}
+              options={{
+                presentation: "transparentModal",
+              }}
+            />
+            <Stack.Screen
+              name="ElementsModal"
+              component={PickerElement}
+              options={{
+                presentation: "transparentModal",
+              }}
+            />
+            <Stack.Screen
+              name="BottomSheetImage"
+              component={BottomsheetImage}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade_from_bottom",
+              }}
+            />
+            <Stack.Screen
+              name="BottomSheetRoutine"
+              component={BottomSheetRoutine}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade_from_bottom",
+              }}
+            />
+            <Stack.Screen
+              name="ExercisesModal"
+              component={ExercisesModal}
+              options={{
+                presentation: "transparentModal",
+              }}
+            />
+            <Stack.Screen
+              name="NewRoutineModal"
+              component={NewRoutineModal}
+              options={{
+                presentation: "transparentModal",
+              }}
+            />
           </>
         ) : (
           <>
+            {/* NOT-AUTHENTICATED */}
+            {!welcomeStorage.getBoolean("welcome") && (
+              <>
+                <Stack.Screen
+                  name="Welcome_1"
+                  component={Welcome_1}
+                  options={{
+                    animation: "slide_from_right",
+                  }}
+                />
+                <Stack.Screen
+                  name="Welcome_2"
+                  component={Welcome_2}
+                  options={{
+                    animation: "slide_from_right",
+                  }}
+                />
+              </>
+            )}
+
             <Stack.Screen
               name="StartScreen"
               component={StartScreen}
@@ -179,8 +288,6 @@ export default Navigation = () => {
             />
           </>
         )}
-
-        {/* NOT-AUTHENTICATED */}
       </Stack.Navigator>
     </NavigationContainer>
   );

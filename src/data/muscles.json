@@ -1,83 +1,103 @@
 [
   {
     "name": "Other",
-    "img": "https://i.postimg.cc/zf8bBgfC/Other.png"
+    "img": "https://i.postimg.cc/zf8bBgfC/Other.png",
+    "type": "muscle"
   },
   {
     "name": "Abdominals",
-    "img": "https://i.postimg.cc/jddgYdhd/Abdominales.jpg"
+    "img": "https://i.postimg.cc/jddgYdhd/Abdominales.jpg",
+    "type": "muscle"
   },
   {
     "name": "Abductors",
-    "img": "https://i.postimg.cc/gkzgvkXb/Aductor.jpg"
+    "img": "https://i.postimg.cc/gkzgvkXb/Aductor.jpg",
+    "type": "muscle"
   },
   {
     "name": "Adductors",
-    "img": "https://i.postimg.cc/ZYFfByqL/Abductors.jpg"
+    "img": "https://i.postimg.cc/ZYFfByqL/Abductors.jpg",
+    "type": "muscle"
   },
   {
     "name": "Biceps",
-    "img": "https://i.postimg.cc/YCvdjnV5/Biceps.jpg"
+    "img": "https://i.postimg.cc/YCvdjnV5/Biceps.jpg",
+    "type": "muscle"
   },
   {
     "name": "Calves",
-    "img": "https://i.postimg.cc/761N2pqL/Calves.jpg"
+    "img": "https://i.postimg.cc/761N2pqL/Calves.jpg",
+    "type": "muscle"
   },
   {
     "name": "Cardio",
-    "img": "https://i.postimg.cc/4yX8dJkP/Cardio.jpg"
+    "img": "https://i.postimg.cc/4yX8dJkP/Cardio.jpg",
+    "type": "muscle"
   },
   {
     "name": "Chest",
-    "img": "https://i.postimg.cc/JnLx61n8/Chest.jpg"
+    "img": "https://i.postimg.cc/JnLx61n8/Chest.jpg",
+    "type": "muscle"
   },
   {
     "name": "Deltoids",
-    "img": "https://i.postimg.cc/wxkfrsLG/Deltoid.jpg"
+    "img": "https://i.postimg.cc/wxkfrsLG/Deltoid.jpg",
+    "type": "muscle"
   },
   {
     "name": "Forearms",
-    "img": "https://i.postimg.cc/q73wkNYy/Forearms.jpg"
+    "img": "https://i.postimg.cc/q73wkNYy/Forearms.jpg",
+    "type": "muscle"
   },
   {
     "name": "Full body",
-    "img": "https://i.postimg.cc/gjD4f177/FullBody.jpg"
+    "img": "https://i.postimg.cc/gjD4f177/FullBody.jpg",
+    "type": "muscle"
   },
   {
     "name": "Glutes",
-    "img": "https://i.postimg.cc/GhXqzwG8/Glutes.jpg"
+    "img": "https://i.postimg.cc/GhXqzwG8/Glutes.jpg",
+    "type": "muscle"
   },
   {
     "name": "Hamstrings",
-    "img": "https://i.postimg.cc/TwV7fKSh/Hamstrings.jpg"
+    "img": "https://i.postimg.cc/TwV7fKSh/Hamstrings.jpg",
+    "type": "muscle"
   },
   {
     "name": "Lats muscle",
-    "img": "https://i.postimg.cc/dVXnP2WJ/Lats-Muscle.jpg"
+    "img": "https://i.postimg.cc/dVXnP2WJ/Lats-Muscle.jpg",
+    "type": "muscle"
   },
   {
     "name": "Obliques",
-    "img": "https://i.postimg.cc/prks5gPH/Obliques.jpg"
+    "img": "https://i.postimg.cc/prks5gPH/Obliques.jpg",
+    "type": "muscle"
   },
 
   {
     "name": "Quadriceps",
-    "img": "https://i.postimg.cc/85gHs1Q3/Quadriceps.jpg"
+    "img": "https://i.postimg.cc/85gHs1Q3/Quadriceps.jpg",
+    "type": "muscle"
   },
   {
     "name": "Shoulders",
-    "img": "https://i.postimg.cc/rw7Q4G2K/Shoulders.jpg"
+    "img": "https://i.postimg.cc/rw7Q4G2K/Shoulders.jpg",
+    "type": "muscle"
   },
   {
     "name": "Trapezius",
-    "img": "https://i.postimg.cc/Hkj3hZ9S/Trapezius.jpg"
+    "img": "https://i.postimg.cc/Hkj3hZ9S/Trapezius.jpg",
+    "type": "muscle"
   },
   {
     "name": "Triceps",
-    "img": "https://i.postimg.cc/k58wvV7w/Triceps.jpg"
+    "img": "https://i.postimg.cc/k58wvV7w/Triceps.jpg",
+    "type": "muscle"
   },
   {
     "name": "Upper back",
-    "img": "https://i.postimg.cc/kX1jJ3jN/Upper-Back.jpg"
+    "img": "https://i.postimg.cc/kX1jJ3jN/Upper-Back.jpg",
+    "type": "muscle"
   }
 ]

@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { WHITE_COLOR, RED_COLOR, ORANGE_COLOR } from "../../../styles/styles";
+import { RED_COLOR } from "../../../styles/styles";
 import BottomSheetMenu from "../../../components/BottomSheetMenu";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
 import { OptionMenu } from "../../../components/CustomButtons";
 import ConfirmationAlert from "../../../components/ConfirmationAlert";
 import useToggle from "../../../hooks/useToggle";
+import { useNavigation } from "@react-navigation/native";
 
-export default BottomSheetMenuWorkout = ({ toggleBottomSheet, workoutId }) => {
+export default BottomSheetMenuWorkout = ({ route }) => {
+  const { workoutId } = route.params;
+  const { goBack } = useNavigation();
   const { t } = useTranslation();
   const { deleteWorkout } = useWorkoutsStore();
   const [confirmationAlert, toggleConfAlert] = useToggle(false);
   const handleDeleteWorkout = () => {
     deleteWorkout(workoutId);
-    toggleBottomSheet();
+    goBack();
   };
 
   return (
     <>
-      <BottomSheetMenu toggleBottomSheet={toggleBottomSheet}>
+      <BottomSheetMenu>
         <OptionMenu text={t("configModal.edit-routine")} icon="edit-2" />
         <OptionMenu
           text={t("configModal.delete-routine")}

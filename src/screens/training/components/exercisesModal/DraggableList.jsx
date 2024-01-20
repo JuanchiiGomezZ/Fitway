@@ -11,17 +11,19 @@ import ExerciseSupersetCard from "./ExerciseSupersetCard";
 import { saveExercises, handleChangeExercise } from "../../../../store/slices/trainingSlice";
 import { ButtonClassicLong } from "../../../../components/CustomButtons";
 import SeparatingLine from "../../../../components/SeparatingLine";
+import { useNavigation } from "@react-navigation/native";
 
-export default DraggableList = ({ toggleModal }) => {
+export default DraggableList = () => {
   const dispatch = useDispatch();
   const ref = useRef(null);
   const { activeWorkout, numActiveExercise } = useSelector((state) => state.training);
   const [data, setData] = useState(activeWorkout);
+  const { goBack } = useNavigation();
 
   const saveOrder = () => {
     dispatch(saveExercises(data));
     dispatch(handleChangeExercise(numActiveExercise));
-    toggleModal();
+    goBack();
   };
 
   const renderItem = ({ item, drag, getIndex }) => {

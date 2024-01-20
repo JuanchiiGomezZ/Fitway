@@ -1,53 +1,48 @@
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { BACKGROUND_COLOR, WHITE_COLOR } from "../styles/styles";
+
 /* COMPONENTS */
 import { CloseModalIcon } from "./CustomButtons";
 import BackdropModals from "./BackdropModals";
 
 /* HOOKS */
-import Animated, { FadeIn, FadeOut, Layout, FadeInDown } from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
 
-export default ModalBase = ({ toggleModal, title, children, short }) => {
+export default ModalBase = ({ title, children }) => {
+  const { goBack } = useNavigation();
   return (
-    <>
-      <BackdropModals toggleModal={toggleModal} />
-      <Animated.View
-        style={[styles.modalContainer, short && { top: "35%", height: "auto" }]}
-        entering={FadeIn}
-        exiting={FadeOut}
-      >
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <BackdropModals toggleModal={goBack} />
+      <View style={[styles.modalContainer]}>
         <View style={styles.head}>
           <Text style={styles.titleModal}>{title}</Text>
-          <CloseModalIcon action={toggleModal} />
+          <CloseModalIcon action={goBack} />
         </View>
         {children}
-      </Animated.View>
-    </>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   modalContainer: {
-    position: "absolute",
-    left: "5%",
-    top: "15%",
-    width: "100%",
-    height: "85%",
+    width: "90%",
     backgroundColor: BACKGROUND_COLOR,
     borderRadius: 10,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
     zIndex: 5,
+    maxHeight: "80%",
   },
   head: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 20,
   },
   titleModal: {
     fontSize: 30,
     color: WHITE_COLOR,
-    fontWeight: "500",
+    fontWeight: "700",
   },
 });

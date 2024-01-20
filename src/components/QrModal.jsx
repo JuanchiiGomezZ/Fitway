@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View,Dimensions } from "react-native";
-import { useTranslation } from "react-i18next";
+import React from "react";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
+
 import {
   BACKGROUND_COLOR,
   BORDER_RADIUS,
@@ -8,77 +8,37 @@ import {
   ORANGE_COLOR,
   WHITE_COLOR,
 } from "../styles/styles";
-import { AntDesign,MaterialCommunityIcons } from "@expo/vector-icons";
-import Animated, { FadeInRight, FadeOutRight } from "react-native-reanimated";
+import { AntDesign } from "@expo/vector-icons";
 import QRCode from "react-native-qrcode-svg";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Clipboard from "expo-clipboard";
-import BackdropModals from "../components/BackdropModals";
+import ModalBase from "./ModalBase";
 
-export default QrModal = ({ toggleModal, code }) => {
+export default QrModal = ({ route }) => {
   const width = Dimensions.get("screen").width;
-  const { t } = useTranslation();
-
+  const { code } = route.params;
   const copyRoutineID = async () => {
     await Clipboard.setStringAsync(code);
   };
 
   return (
-    <>
-      <BackdropModals toggleModal={toggleModal} />
-      <Animated.View style={styles.modalContainer} entering={FadeInRight} exiting={FadeOutRight}>
-        <MaterialCommunityIcons
-          style={styles.closeIcon}
-          name="close-thick"
-          color={GRAY_COLOR}
-          size={20}
-          onPress={toggleModal}
-        />
-        <Text style={styles.title}>Code sharer</Text>
-        <Text style={styles.textSentence}>Scan it on explore screen to share the routine</Text>
-        <View style={styles.qrContainer}>
-          <QRCode value={code} size={width * 0.55} backgroundColor="black" color={WHITE_COLOR} />
+    <ModalBase title={"Code share"}>
+      <View style={styles.qrContainer}>
+        <QRCode value={code} size={width * 0.55} backgroundColor="black" color={WHITE_COLOR} />
+      </View>
+      <TouchableOpacity style={styles.copyContainer} onPress={copyRoutineID}>
+        <View style={styles.codeContainer}>
+          <Text style={styles.codeText}>{code}</Text>
         </View>
-        <TouchableOpacity style={styles.copyContainer} onPress={copyRoutineID}>
-          <View style={styles.codeContainer}>
-            <Text style={styles.codeText}>{code}</Text>
-          </View>
-          <View style={styles.copyBtn}>
-            <AntDesign name="copy1" size={25} color="white" />
-          </View>
-        </TouchableOpacity>
-      </Animated.View>
-    </>
+        <View style={styles.copyBtn}>
+          <AntDesign name="copy1" size={25} color="white" />
+        </View>
+      </TouchableOpacity>
+    </ModalBase>
   );
 };
 
 const styles = StyleSheet.create({
- 
-  modalContainer: {
-    minHeight: 200,
-    width: "100%",
-    position: "absolute",
-    backgroundColor: BACKGROUND_COLOR,
-    top: "25%",
-    left: "5%",
-    borderRadius: BORDER_RADIUS,
-    paddingHorizontal: "5%",
-    paddingTop: 10,
-    paddingBottom: 20,
-    zIndex: 4,
-    alignItems: "center",
-  },
-  closeIcon: {
-    position: "absolute",
-    right: 10,
-    top: 10,
-  },
-  title: {
-    color: WHITE_COLOR,
-    fontSize: 30,
-    fontWeight: "600",
-    textAlign: "center",
-  },
   qrContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -116,7 +76,7 @@ const styles = StyleSheet.create({
     color: GRAY_COLOR,
     fontSize: 22,
     fontWeight: "500",
-    marginLeft:10
+    marginLeft: 10,
   },
   copyBtn: {
     backgroundColor: ORANGE_COLOR,

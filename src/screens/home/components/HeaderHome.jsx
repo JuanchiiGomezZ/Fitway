@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 
-export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
+export default HeaderHome = () => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
   const { activeRoutineDetails, activeRoutineId } = useSelector((state) => state.userRoutines);
@@ -22,7 +22,10 @@ export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
             {activeRoutineDetails && activeRoutineDetails.name}
           </Text>
         </View>
-        <TouchableOpacity style={styles.shareButton} onPress={toggleQrModal}>
+        <TouchableOpacity
+          style={styles.shareButton}
+          onPress={() => navigate("QrModal", { code: activeRoutineDetails.codeShare })}
+        >
           <Feather name="share" size={24} color={WHITE_COLOR} />
         </TouchableOpacity>
       </View>
@@ -31,7 +34,7 @@ export default HeaderHome = ({ toggleNewWorkoutModal, toggleQrModal }) => {
         <ButtonShortIndex
           text={t("Home.new-workout")}
           icon={"clipboard-text"}
-          action={toggleNewWorkoutModal}
+          action={() => navigate("NewWorkoutModal")}
           disabled={!activeRoutineId}
         />
         <ButtonShortIndex

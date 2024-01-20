@@ -1,16 +1,13 @@
-import React, { useRef, useState } from "react";
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { useTranslation } from "react-i18next";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import ModalBase from "../../../../components/ModalBase";
 import DraggableList from "./DraggableList";
 
-export default ExercisesModal = ({ toggleModal }) => {
-  const { t } = useTranslation();
-
+export default ExercisesModal = () => {
   return (
-    <ModalBase title="Exercises" toggleModal={toggleModal}>
+    <ModalBase title="Exercises">
       <View style={styles.container}>
-        <DraggableList toggleModal={toggleModal} />
+        <DraggableList />
       </View>
     </ModalBase>
   );
