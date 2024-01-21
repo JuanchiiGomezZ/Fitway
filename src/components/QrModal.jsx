@@ -40,6 +40,7 @@ export default QrModal = ({ route }) => {
 
 const styles = StyleSheet.create({
   qrContainer: {
+    alignSelf:'center',
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 25,
@@ -85,5 +86,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 3,
     borderBottomRightRadius: 5,
     borderTopRightRadius: 5,
+    position:'relative',
+    left:-3
   },
 });

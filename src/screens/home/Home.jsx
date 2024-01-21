@@ -36,8 +36,6 @@ export default HomeScreen = () => {
     storage.getString("workout_id_training"),
   );
 
-
-
   useMMKVListener(() => {
     //EN REVISION UTILIZAR REDUX + STORAGE O SOLO STORAGE
     setWorkoutIdInProgress(storage.getString("workout_id_training"));
@@ -94,7 +92,6 @@ export default HomeScreen = () => {
           toggleDiscardTrainingAlert={toggleDiscardTrainingAlert}
         />
       )}
-
       {trainingInProgressAlert.state && (
         <ConfirmationAlert
           toggleModal={() => dispatch(toggleTrainingInProgressAlert())}

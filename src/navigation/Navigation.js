@@ -188,6 +188,7 @@ export default Navigation = () => {
               component={NewWorkoutModal}
               options={{
                 presentation: "transparentModal",
+                animation: "fade",
               }}
             />
             <Stack.Screen
@@ -195,6 +196,7 @@ export default Navigation = () => {
               component={QrModal}
               options={{
                 presentation: "transparentModal",
+                animation: "fade",
               }}
             />
             <Stack.Screen
@@ -210,6 +212,7 @@ export default Navigation = () => {
               component={ExerciseTypesModal}
               options={{
                 presentation: "transparentModal",
+                animation: "fade",
               }}
             />
             <Stack.Screen
@@ -217,6 +220,7 @@ export default Navigation = () => {
               component={PickerMuscle}
               options={{
                 presentation: "transparentModal",
+                animation: "fade",
               }}
             />
             <Stack.Screen
@@ -224,6 +228,7 @@ export default Navigation = () => {
               component={PickerElement}
               options={{
                 presentation: "transparentModal",
+                animation: "fade",
               }}
             />
             <Stack.Screen
@@ -247,6 +252,7 @@ export default Navigation = () => {
               component={ExercisesModal}
               options={{
                 presentation: "transparentModal",
+                animation: "fade",
               }}
             />
             <Stack.Screen
@@ -254,6 +260,7 @@ export default Navigation = () => {
               component={NewRoutineModal}
               options={{
                 presentation: "transparentModal",
+                animation: "fade",
               }}
             />
           </>

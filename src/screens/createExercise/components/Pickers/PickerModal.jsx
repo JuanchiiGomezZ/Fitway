@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from "react-native";
-import React, { useState, useEffect } from "react";
-import { ORANGE_DARK_COLOR } from "../../../../styles/styles";
+import { StyleSheet, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import React, { useState } from "react";
 import { ClassicInput } from "../../../../components/Inputs";
 import Animated, { Layout, FadeInDown } from "react-native-reanimated";
 import ModalBase from "../../../../components/ModalBase";
@@ -30,7 +29,7 @@ const PickerModal = ({ data, title }) => {
             >
               <TouchableOpacity
                 style={styles.card}
-                onPress={() => navigate("CreateExercise", {item})}
+                onPress={() => navigate("CreateExercise", { item })}
               >
                 <Image style={styles.image} source={{ uri: item.img }} />
                 <Text style={styles.textName}>{item.name}</Text>

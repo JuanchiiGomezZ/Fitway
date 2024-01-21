@@ -5,8 +5,7 @@ import { Ionicons} from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import MarkIcon from "./MarkIcon";
 
-export default ExerciseSingleCard = ({ data, action, superset, isActive, index }) => {
-
+export default ExerciseSingleCard = ({ data, action, superset, index }) => {
   const Exercise = superset ? View : Pressable;
   const { numActiveExercise } = useSelector((state) => state.training);
   return (

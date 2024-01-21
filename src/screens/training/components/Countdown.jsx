@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import {
   BACKGROUND_COLOR,
   BOX_COLOR,
@@ -24,6 +24,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
 import { setCountdown } from "../../../store/slices/trainingSlice";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default Countdown = () => {
   const { secondsLeft, isTimeOver, start, addTime, skipTime, isPaused } = useCountdown();
@@ -73,6 +74,9 @@ export default Countdown = () => {
   if (!fontsLoaded) return null;
   return (
     <Animated.View style={styles.container} entering={FadeInDown} exiting={FadeOutDown}>
+      <Pressable style={styles.settingsBtn}>
+        <FontAwesome name="cog" size={20} color={GRAY_LIGHT_COLOR} />
+      </Pressable>
       <View style={styles.toolsContainer}>
         <ButtonCircular icon={isPaused ? "play" : "pause"} action={handlePlay} size={"s"} />
         <Text style={[styles.countdownText, styles.textSmall]} onPress={() => handleAddTime(-15)}>
@@ -126,12 +130,22 @@ const styles = StyleSheet.create({
   },
   textSmall: {
     fontSize: 18,
-    color:GRAY_LIGHT_COLOR
+    color: GRAY_LIGHT_COLOR,
   },
   toolsContainer: {
     width: "90%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  settingsBtn: {
+    backgroundColor: BOX_COLOR,
+    position: "absolute",
+    top: -22,
+    width: 30,
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
   },
 });

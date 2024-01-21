@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Keyboard, ScrollView, StyleSheet, View } from "react-native";
 
 //HOOKS & HELPERS
 import { useTranslation } from "react-i18next";
@@ -31,6 +31,11 @@ export default AllRoutinesScreen = ({ route }) => {
     setFilterModal(!filterModal);
   };
 
+  const handleOpenNewRoutineModal = () => {
+    navigate("NewRoutineModal");
+    Keyboard.dismiss();
+  };
+
   return (
     <ScreenContainer>
       <View style={styles.head}>
@@ -39,7 +44,7 @@ export default AllRoutinesScreen = ({ route }) => {
           <ButtonRounded
             text={t("Routines.create-routine")}
             icon={"plus"}
-            action={() => navigate("NewRoutineModal")}
+            action={handleOpenNewRoutineModal}
           />
         </View>
       </View>
