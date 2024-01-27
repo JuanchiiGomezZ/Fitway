@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { GRAY_COLOR, WHITE_COLOR } from "../../../../styles/styles";
 import CardContainer from "../../../../components/CardContainer";
 
-export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, superset }) => {
+export default WorkoutCardSingle = ({ data, index, toggleGIF, superset }) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
   const {
@@ -27,7 +27,11 @@ export default WorkoutCardSingle = ({ data, toggleConfig, index, toggleGIF, supe
   return (
     <CardContainer
       index={index}
-      configAction={!superset ? () => toggleConfig(id, "single") : false}
+      configAction={
+        !superset
+          ? () => navigate("BottomSheetExercise", { exerciseId: id, exerciseType: "single" })
+          : false
+      }
       action={!superset && handleNavigate}
     >
       <View style={styles.row}>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { BACKGROUND_COLOR, BORDER_RADIUS } from "../../../styles/styles";
 import { ClassicInput, Te } from "../../../components/Inputs";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
 import { useNavigation } from "@react-navigation/native";

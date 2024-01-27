@@ -22,7 +22,7 @@ export default ExerciseTypesModal = ({ route }) => {
             <Pressable
               style={styles.cardContainer}
               onPress={() => handlePickType(type)}
-              key={type.id}
+              key={type.value}
             >
               <Text style={styles.nameText}>{type.name}</Text>
               <Text style={styles.exampleText}>Example: {type.examples.join(", ")}</Text>
@@ -34,7 +34,7 @@ export default ExerciseTypesModal = ({ route }) => {
                 ))}
               </View>
             </Pressable>
-            <SeparatingLine />
+            <SeparatingLine key={type.id} />
           </>
         ))}
       </View>

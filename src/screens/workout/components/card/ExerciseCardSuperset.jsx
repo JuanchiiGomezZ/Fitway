@@ -15,7 +15,7 @@ import WorkoutCardSingle from "./ExerciseCardSingle";
 import SeparatingLine from "../../../../components/SeparatingLine";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
-export default WorkoutCardSuperset = ({ data, toggleConfig, index }) => {
+export default WorkoutCardSuperset = ({ data, index }) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
 
@@ -32,7 +32,7 @@ export default WorkoutCardSuperset = ({ data, toggleConfig, index }) => {
     >
       <ConfigButton
         action={() => {
-          toggleConfig(data.id, "superset");
+          navigate("BottomSheetExercise", { exerciseId: data.id, exerciseType: "superset" });
         }}
       />
       {data.Exercises.map((item, index) => (

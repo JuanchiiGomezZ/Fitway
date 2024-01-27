@@ -5,8 +5,9 @@ import ExerciseCardSingle from "./ExerciseCardSingle";
 import ExerciseCardSuperset from "./ExerciseCardSuperset";
 import Loader from "../../../../components/Loader";
 import EmptyWorkout from "../EmptyWorkout";
+import useWorkoutsStore from "../../../../hooks/redux/useWorkoutsStore";
 
-export default ExercisesList = ({ workoutId, toggleBottomSheet }) => {
+export default ExercisesList = ({ workoutId }) => {
   const { workoutDetails, workoutExercises, isLoading } = useSelector((state) => state.workouts);
   const { getWorkoutData } = useWorkoutsStore();
 
@@ -29,14 +30,12 @@ export default ExercisesList = ({ workoutId, toggleBottomSheet }) => {
                   item?.Exercises ? (
                     <ExerciseCardSuperset
                       data={item}
-                      toggleConfig={toggleBottomSheet}
                       index={index}
                       key={item.id}
                     />
                   ) : (
                     <ExerciseCardSingle
                       data={item}
-                      toggleConfig={toggleBottomSheet}
                       index={index}
                       key={item.id}
                     />

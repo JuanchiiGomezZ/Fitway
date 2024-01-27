@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default MyRoutineCard = ({ data, index }) => {
   const { t } = useTranslation();
-  const { id, name, workoutCount, codeShare } = data;
+  const { id, name, WorkoutCounts, codeShare } = data;
   const { navigate } = useNavigation();
 
   return (
@@ -20,7 +20,7 @@ export default MyRoutineCard = ({ data, index }) => {
         <View>
           <View style={styles.row}>
             <Text style={styles.rowTitle}>{t("MyRoutines.workouts") + ": "}</Text>
-            <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutCount}</Text>
+            <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{WorkoutCounts}</Text>
           </View>
         </View>
       </View>

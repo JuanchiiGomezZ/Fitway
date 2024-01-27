@@ -15,7 +15,7 @@ import { ORANGE_COLOR, ORANGE_DARK_COLOR } from "../../../styles/styles";
 
 export default NewRoutineModal = () => {
   const { t } = useTranslation();
-  const { goBack } = useNavigation();
+  const { navigate } = useNavigation();
   const { createNewRoutine } = useRoutinesStore();
   const [name, setName] = useState("");
   const [visibilitty, setVisibilitty] = useState(true);
@@ -25,17 +25,14 @@ export default NewRoutineModal = () => {
     { name: "Public", value: true },
   ];
 
-  const handleCreateRoutine = () => {
-    createNewRoutine({ name, public: visibilitty });
-    goBack();
+  const handleCreateRoutine = async () => {
+    await createNewRoutine({ name, public: visibilitty });
+    navigate("MyRoutines");
   };
 
   const activeButton = name.trim() < 1;
   return (
-    <ModalBase
-      short={true}
-      title={t("Routines.NewRoutineModal.title")}
-    >
+    <ModalBase short={true} title={t("Routines.NewRoutineModal.title")}>
       <View style={{ gap: 20 }}>
         <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />
         <View>

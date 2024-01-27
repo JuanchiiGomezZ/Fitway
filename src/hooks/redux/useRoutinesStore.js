@@ -104,7 +104,7 @@ export default useRoutinesStore = () => {
     dispatch(onChecking());
     try {
       const [workoutsResponse, routineResponse] = await Promise.all([
-        axios.get(`/workout/allWorkouts/${activeRoutineId}`),
+        axios.get(`/workout/show-all-in-routine/${activeRoutineId}`),
         axios.get(`/routine/${activeRoutineId}`),
       ]);
       dispatch(saveActiveRoutineWorkouts(workoutsResponse.data));
@@ -127,7 +127,7 @@ export default useRoutinesStore = () => {
       } else {
         const [routineResponse, workoutsResponse] = await Promise.all([
           axios.get(`/routine/${routineId}`),
-          axios.get(`/workout/allWorkouts/${routineId}`),
+          axios.get(`/workout/show-all-in-routine/${routineId}`),
         ]);
         dispatch(saveActiveRoutineDetails(routineResponse.data));
         dispatch(saveActiveRoutineWorkouts(workoutsResponse.data));

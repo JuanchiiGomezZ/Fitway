@@ -22,11 +22,7 @@ const PickerModal = ({ data, title }) => {
         {data
           .filter((data) => data.name.toLocaleLowerCase().includes(inputChange.toLocaleLowerCase()))
           .map((item, index) => (
-            <Animated.View
-              key={item.name}
-              entering={FadeInDown.delay(70 * index)}
-              layout={Layout.delay(200)}
-            >
+            <Animated.View key={item.name} entering={FadeInDown.delay(70 * index)}>
               <TouchableOpacity
                 style={styles.card}
                 onPress={() => navigate("CreateExercise", { item })}

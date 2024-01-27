@@ -25,7 +25,6 @@ export default AddExerciseDetails = ({ route }) => {
   const { getExerciseDetails } = useExercisesStore();
 
   const [exerciseData, setExerciseData] = useState(null);
-
   const { name, element, primaryMuscle, Multimedia, exerciseType, description } =
     exerciseData || {};
 

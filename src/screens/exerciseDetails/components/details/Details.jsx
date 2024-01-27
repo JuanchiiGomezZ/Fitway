@@ -15,59 +15,45 @@ import { ButtonCircular } from "../../../../components/CustomButtons";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default Details = ({ id }) => {
+export default Details = ({ exerciseData }) => {
   const { navigate } = useNavigation();
-  const [exerciseData, setExerciseData] = useState(null);
-  const { getExerciseCompleteDetails } = useExercisesStore();
 
-  useEffect(() => {
-    getExerciseCompleteDetails(id).then((res) => {
-      setExerciseData(res);
-    });
-  }, []);
-
-  const { name, element, primaryMuscle, Multimedia, exerciseType, description, WorkoutExercise } =
+  const { name, element, primaryMuscle, Multimedia, exerciseType, description, WorkoutExercises } =
     exerciseData || {};
-
-  const { restTime, reps } = WorkoutExercise || {};
-
   return (
     <>
-      {!exerciseData ? (
-        <Loader />
-      ) : (
-        <ScrollView
-          contentContainerStyle={{ alignItems: "center" }}
-          showsVerticalScrollIndicator={false}
-        >
-          {Multimedia?.exerciseImg ? (
-            <Image source={{ uri: Multimedia.exerciseImg }} style={styles.image} />
-          ) : (
-            <View style={[styles.image]}>
-              <MaterialCommunityIcons name="image-off-outline" size={30} color="#545454" />
-            </View>
-          )}
-          <View style={{ width: "95%", gap: 20, paddingBottom: 20 }}>
-            <Text style={styles.exerciseName}>{name}</Text>
-            <TextAreaWithLabel
-              label="Description"
-              inputChange={description ? description : "Empty"}
-              editable={false}
-            />
-            <View style={styles.selectorsContainer}>
-              <ElementCard img={Multimedia?.muscleImg} name={primaryMuscle} title="Muscle" />
-              <ElementCard img={Multimedia?.elementImg} name={element} title="Element" />
-              <ElementCard icon="human-handsup" title={exerciseTypeConvert(exerciseType)} />
-              <ElementCard
-                icon="timer-outline"
-                title="Rest time"
-                name={convertToMinutes(restTime)}
-              />
-            </View>
-            <TableExercise reps={reps} />
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center" }}
+        showsVerticalScrollIndicator={false}
+      >
+        {Multimedia?.exerciseImg ? (
+          <Image source={{ uri: Multimedia.exerciseImg }} style={styles.image} />
+        ) : (
+          <View style={[styles.image]}>
+            <MaterialCommunityIcons name="image-off-outline" size={30} color="#545454" />
           </View>
-        </ScrollView>
-      )}
+        )}
+        <View style={{ width: "95%", gap: 20, paddingBottom: 20 }}>
+          <Text style={styles.exerciseName}>{name}</Text>
+          <TextAreaWithLabel
+            label="Description"
+            inputChange={description ? description : "Empty"}
+            editable={false}
+          />
+          <View style={styles.selectorsContainer}>
+            <ElementCard img={Multimedia?.muscleImg} name={primaryMuscle} title="Muscle" />
+            <ElementCard img={Multimedia?.elementImg} name={element} title="Element" />
+            <ElementCard icon="human-handsup" title={exerciseTypeConvert(exerciseType)} />
+            <ElementCard
+              icon="timer-outline"
+              title="Rest time"
+              name={convertToMinutes(WorkoutExercises[0].restTime)}
+            />
+          </View>
+          <TableExercise reps={WorkoutExercises[0].reps} />
+        </View>
+      </ScrollView>
+
       <View style={styles.editBtn}>
         <ButtonCircular
           icon="edit-2"

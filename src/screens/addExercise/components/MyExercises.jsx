@@ -12,18 +12,17 @@ import Loader from "../../../components/Loader";
 
 export default AllExercises = () => {
   const [userExercises, setUserExercises] = useState(null);
-  const { getUserExsWithoutSelectedWkt } = useExercisesStore();
-  const { isLoading } = useSelector((state) => state.exercises);
+  const { getUserAvilableExercises } = useExercisesStore();
 
   useEffect(() => {
-    getUserExsWithoutSelectedWkt().then((res) => {
+    getUserAvilableExercises().then((res) => {
       setUserExercises(res);
     });
   }, []);
 
   return (
     <>
-      {isLoading || !userExercises ? (
+      {!userExercises ? (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <Loader />
         </View>

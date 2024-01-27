@@ -14,7 +14,6 @@ import { ButtonShortIndex } from "../../components/CustomButtons";
 import RoutineCard from "./components/MyRoutineCard";
 import Separator from "../../components/Separator";
 
-
 //STYLES
 import { ORANGE_COLOR } from "../../styles/styles";
 import EmptyRoutines from "./components/EmptyRoutines";
@@ -25,6 +24,8 @@ export default MyRoutinesScreen = () => {
   const { getUserRoutines } = useRoutinesStore();
   const { userRoutines, isLoading } = useSelector((state) => state.userRoutines);
   const { activeRoutine, disabledRoutines } = userRoutines;
+
+  const emptyRoutines = disabledRoutines.length < 1 && !activeRoutine;
 
   return (
     <ScreenContainer>
@@ -44,7 +45,7 @@ export default MyRoutinesScreen = () => {
           <ButtonShortIndex
             text={t("MyRoutines.filter")}
             icon={"filter-variant-plus"}
-            disabled={disabledRoutines.length < 1 && !activeRoutine}
+            disabled={emptyRoutines}
           />
           <ButtonShortIndex
             text={t("MyRoutines.add-routine")}
@@ -52,26 +53,17 @@ export default MyRoutinesScreen = () => {
             action={() => navigation.navigate("AllRoutines")}
           />
         </View>
-        {disabledRoutines.length < 1 && !activeRoutine ? (
+        {emptyRoutines ? (
           <EmptyRoutines />
         ) : (
           <View style={styles.routinesContainer}>
             <Separator title={t("MyRoutines.active")} />
-            {activeRoutine && (
-              <RoutineCard
-                key={activeRoutine?.id}
-                data={activeRoutine}
-              />
-            )}
+            {activeRoutine && <RoutineCard key={activeRoutine?.id} data={activeRoutine} />}
 
             <Separator title={t("Inactives")} />
             <View style={styles.allRoutines}>
               {disabledRoutines.map((item, index) => (
-                <RoutineCard
-                  key={item?.id}
-                  data={item}
-                  index={index}
-                />
+                <RoutineCard key={item?.id} data={item} index={index} />
               ))}
             </View>
           </View>

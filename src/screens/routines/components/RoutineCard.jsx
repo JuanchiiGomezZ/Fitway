@@ -7,7 +7,7 @@ import CardContainer from "../../../components/CardContainer";
 export default RoutineCard = ({ data, toggleBottomSheet, index }) => {
   const { t } = useTranslation();
 
-  const { id, name, level, workoutsNumber, owner } = data;
+  const { id, name, level, WorkoutNumber, owner } = data;
   return (
     <CardContainer index={index}>
       <CardContainer.Title>{name}</CardContainer.Title>
@@ -18,7 +18,7 @@ export default RoutineCard = ({ data, toggleBottomSheet, index }) => {
         </View>
         <View style={styles.row}>
           <Text style={styles.rowTitle}>{t("MyRoutines.workouts") + ": "}</Text>
-          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{workoutsNumber}</Text>
+          <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{WorkoutNumber}</Text>
         </View>
       </View>
     </CardContainer>

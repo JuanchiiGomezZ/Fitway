@@ -5,7 +5,7 @@ import {
   onSuccess,
 } from "../../store/slices/exercisesSlice";
 import { saveWorkoutExercises } from "../../store/slices/workoutsSlice";
-import maxOrder from "../../helpers/maxOrder";
+
 
 import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +36,6 @@ export default useExercisesStore = () => {
         `/exercise/newExercise/${user.id}/${workoutDetails.workoutId}`,
         exerciseData,
       );
-      console.log(data);
       dispatch(saveWorkoutExercises([...workoutExercises, data]));
     } catch (error) {
       dispatch(onError(error.response.data));
@@ -52,7 +51,6 @@ export default useExercisesStore = () => {
       // dispatch(saveWorkoutExercises([...updateExercises, data]));
       getWorkoutData(workoutDetails.workoutId);
     } catch (error) {
-      console.log(error);
       dispatch(onError(error.response.data));
     }
   };
@@ -67,11 +65,11 @@ export default useExercisesStore = () => {
     }
   };
 
-  const getUserExsWithoutSelectedWkt = async () => {
+  const getUserAvilableExercises = async () => {
     dispatch(onChecking());
     try {
       const { data } = await axios.get(
-        `/exercise/selectExercise/${user.id}/${workoutDetails.workoutId}`,
+        `/exercise/show-available-exercises/${user.id}/${workoutDetails.workoutId}`,
       );
       dispatch(onSuccess());
       return data;
@@ -122,7 +120,7 @@ export default useExercisesStore = () => {
     getAllUserExercises,
     getExerciseDetails,
     addExercise,
-    getUserExsWithoutSelectedWkt,
+    getUserAvilableExercises,
     getExerciseCompleteDetails,
   };
 };

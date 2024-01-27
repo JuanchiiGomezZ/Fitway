@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { toggleTrainingInProgressAlert } from "../../../store/slices/routinesSlice";
 import { storage } from "../../../helpers/storage";
 
-export default WorkoutCard = ({ data, toggleBottomSheet, index }) => {
+export default WorkoutCard = ({ data, index }) => {
   const { muscles, name, id } = data;
   const dispatch = useDispatch();
   const { navigate } = useNavigation();

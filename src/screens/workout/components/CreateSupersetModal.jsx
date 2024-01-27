@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import { GREEN_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import Animated, { FadeIn, FadeOut, FadeInDown } from "react-native-reanimated";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
-import maxOrder from "../../../helpers/maxOrder";
 import { ButtonClassicLong } from "../../../components/CustomButtons";
 import SeparatingLine from "../../../components/SeparatingLine";
+import { useNavigation } from "@react-navigation/native";
 
-export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
+export default CreateSupersetModal = ({ route }) => {
   const { createSuperset } = useExercisesStore();
   const { workoutExercises } = useSelector((state) => state.workouts);
+  const { exerciseId } = route.params || {};
+  const { goBack } = useNavigation();
 
   const [selectedExercises, setSelectedExercises] = useState(new Set([exerciseId]));
 
@@ -31,43 +33,40 @@ export default CreateSupersetModal = ({ exerciseId, toggleModal }) => {
     if (selectedExercises.size > 1) {
       await createSuperset({
         exercisesIds: [...selectedExercises],
-        order: maxOrder(workoutExercises),
       });
-      toggleModal();
+      goBack();
     }
   };
 
   return (
-    <ModalBase title="Create superset" toggleModal={toggleModal}>
-      <ScrollView>
-        <View style={{ gap: 5 }}>
-          {workoutExercises &&
-            workoutExercises.map(
-              (item, index) =>
-                !item?.Exercises && (
-                  <Animated.View key={item.id} entering={FadeInDown.delay(100 * index)}>
-                    <Pressable
-                      style={styles.cardContainer}
-                      onPress={() => handleAddExercise(item.id)}
-                    >
-                      {selectedExercises.has(item.id) && (
-                        <Animated.View style={styles.mark} entering={FadeIn} exiting={FadeOut} />
-                      )}
-                      <Image
-                        source={
-                          item.Multimedia?.exerciseImg
-                            ? { uri: item.Multimedia.exerciseImg }
-                            : require("../../../assets/images/icon.png")
-                        }
-                        style={styles.exerciseImg}
-                      />
-                      <Text style={styles.exerciseText}>{item.name}</Text>
-                    </Pressable>
-                    <SeparatingLine />
-                  </Animated.View>
-                ),
-            )}
-        </View>
+    <ModalBase title="Create superset">
+      <ScrollView contentContainerStyle={{ gap: 5, height: 400 }}>
+        {workoutExercises &&
+          workoutExercises.map(
+            (item, index) =>
+              !item?.Exercises && (
+                <Animated.View key={item.id} entering={FadeInDown.delay(100 * index)}>
+                  <Pressable
+                    style={styles.cardContainer}
+                    onPress={() => handleAddExercise(item.id)}
+                  >
+                    {selectedExercises.has(item.id) && (
+                      <Animated.View style={styles.mark} entering={FadeIn} exiting={FadeOut} />
+                    )}
+                    <Image
+                      source={
+                        item.Multimedia?.exerciseImg
+                          ? { uri: item.Multimedia.exerciseImg }
+                          : require("../../../assets/images/icon.png")
+                      }
+                      style={styles.exerciseImg}
+                    />
+                    <Text style={styles.exerciseText}>{item.name}</Text>
+                  </Pressable>
+                  <SeparatingLine />
+                </Animated.View>
+              ),
+          )}
       </ScrollView>
 
       <ButtonClassicLong

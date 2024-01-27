@@ -41,6 +41,8 @@ import BottomsheetImage from "../screens/createExercise/components/BottomsheetIm
 import BottomSheetRoutine from "../screens/my-routines/components/BottomSheetRoutine";
 import NewRoutineModal from "../screens/routines/components/NewRoutineModal";
 import ExercisesModal from "../screens/training/components/exercisesModal/ExercisesModal";
+import BottomSheetExercise from "../screens/workout/components/BottomSheetExercise";
+import CreateSupersetModal from "../screens/workout/components/CreateSupersetModal";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -258,6 +260,22 @@ export default Navigation = () => {
             <Stack.Screen
               name="NewRoutineModal"
               component={NewRoutineModal}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade",
+              }}
+            />
+            <Stack.Screen
+              name="BottomSheetExercise"
+              component={BottomSheetExercise}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade_from_bottom",
+              }}
+            />
+            <Stack.Screen
+              name="CreateSupersetModal"
+              component={CreateSupersetModal}
               options={{
                 presentation: "transparentModal",
                 animation: "fade",

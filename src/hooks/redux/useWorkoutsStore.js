@@ -13,7 +13,7 @@ export default useWorkoutsStore = () => {
 
   const getWorkoutsActive = async (routineId) => {
     try {
-      const { data } = await axios.get(`/workout/allWorkout/${routineId}`);
+      const { data } = await axios.get(`/workout/show-all-in-routine/${routineId}`);
     } catch (error) {
       console.log(error);
     }
@@ -21,11 +21,10 @@ export default useWorkoutsStore = () => {
 
   const newWorkout = async (name) => {
     try {
-      const { data } = await axios.post(`/workout/newWorkout/${activeRoutineId}`, {
+      const { data } = await axios.post(`/workout/create/${activeRoutineId}`, {
         name,
-        order: maxOrder(activeRoutineWorkouts),
       });
-      dispatch(saveActiveRoutineWorkouts([...activeRoutineWorkouts, data]));
+      dispatch(saveActiveRoutineWorkouts([...activeRoutineWorkouts, { ...data, muscles: [] }]));
       return data;
     } catch (error) {
       dispatch(onError(error.response.data));
@@ -47,7 +46,7 @@ export default useWorkoutsStore = () => {
   const getWorkoutData = async (workoutId) => {
     dispatch(onChecking());
     try {
-      const { data } = await axios.get(`/workout/${workoutId}`);
+      const { data } = await axios.get(`/workout/show-by-id/${workoutId}`);
       const details = {
         routineId: data.RoutineId,
         workoutId: data.id,

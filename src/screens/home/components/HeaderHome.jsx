@@ -34,7 +34,13 @@ export default HeaderHome = () => {
         <ButtonShortIndex
           text={t("Home.new-workout")}
           icon={"clipboard-text"}
-          action={() => navigate("NewWorkoutModal")}
+          action={() =>
+            navigate("NewWorkoutModal", {
+              action: () => {
+                console.log("first");
+              },
+            })
+          }
           disabled={!activeRoutineId}
         />
         <ButtonShortIndex
