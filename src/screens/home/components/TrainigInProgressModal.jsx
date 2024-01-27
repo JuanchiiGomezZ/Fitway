@@ -19,10 +19,10 @@ import { useDispatch } from "react-redux";
 //COMPONENTS
 import { ButtonCircular } from "../../../components/CustomButtons";
 
-export default TrainigInProgressModal = ({ workoutId, toggleDiscardTrainingAlert }) => {
+export default TrainigInProgressModal = ({ workoutId }) => {
   const dispatch = useDispatch();
   const { pause, seconds, isPaused, start } = useTimer();
-  const { navigate } = useNavigation();
+  const { navigate, goBack } = useNavigation();
 
   useEffect(() => {
     const initialDate = storage.getString("workout_startDate_training");
@@ -30,6 +30,12 @@ export default TrainigInProgressModal = ({ workoutId, toggleDiscardTrainingAlert
 
     start(initialTime || 0);
   }, []);
+
+  const handleDiscardTraining = () => {
+    dispatch(cleanWorkoutLog());
+    goBack();
+  };
+
 
   return (
     <Animated.View style={styles.container} entering={FadeInDown} exiting={FadeOutDown}>
@@ -39,7 +45,13 @@ export default TrainigInProgressModal = ({ workoutId, toggleDiscardTrainingAlert
           icon={"times"}
           bgColor={RED_COLOR}
           size={"m"}
-          action={toggleDiscardTrainingAlert}
+          action={() =>
+            navigate("ConfirmationAlert", {
+              title: "Are you sure",
+              text: "This action will discard your training.",
+              confirmAction: handleDiscardTraining,
+            })
+          }
         />
         <Text style={styles.textTimer}>{convertToHourMinutesSeconds(seconds)}</Text>
         <ButtonCircular

@@ -7,7 +7,7 @@ export default function transformarArray(ejercicioArray) {
             id: subEjercicio.id,
             exerciseType: subEjercicio.exerciseType,
             superset: true,
-            stats: subEjercicio.SupersetExercise.reps.map(() => {
+            stats: subEjercicio.SupersetExercises[0].reps.map(() => {
               return {
                 done: false,
                 reps: "",
@@ -20,7 +20,7 @@ export default function transformarArray(ejercicioArray) {
         return {
           id: ejercicio.id,
           exerciseType: ejercicio.exerciseType,
-          stats: ejercicio.WorkoutExercise.reps.map(() => {
+          stats: ejercicio.WorkoutExercises[0].reps.map(() => {
             return {
               done: false,
               reps: "",

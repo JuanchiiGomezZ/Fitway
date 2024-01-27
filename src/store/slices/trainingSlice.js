@@ -13,8 +13,6 @@ export const trainingSlice = createSlice({
     workoutLog: null,
     exerciseGif: null,
     countdown: { state: false, restTime: null },
-    restTimerBottomSheet: { state: false, restTime: null },
-    confirmExitAlert: false,
     isLoading: false,
     error: null,
   },
@@ -25,7 +23,7 @@ export const trainingSlice = createSlice({
     saveActiveWorkoutData: (state, { payload }) => {
       const { details, Exercises } = payload;
 
-      const sortedExercises = sortByOrder(Exercises.Exercises);
+      const sortedExercises = Exercises;
       const storedWorkoutId = storage.getString("workout_id_training");
       const storedWorkoutLog = storage.getString("workoutLog");
       (state.activeWorkoutDetails = details),
@@ -72,16 +70,16 @@ export const trainingSlice = createSlice({
       const exerciseToUpdate = state.activeWorkout.find((exercise) => exercise.id === exerciseId);
       if (exerciseToUpdate) {
         if (exerciseToUpdate?.Exercises) {
-          exerciseToUpdate.Exercises[index].SupersetExercise.restTime = newRestTime;
+          exerciseToUpdate.Exercises[index || 0].SupersetExercises[0].restTime = newRestTime;
         } else {
-          exerciseToUpdate.WorkoutExercise.restTime = newRestTime;
+          exerciseToUpdate.WorkoutExercises[0].restTime = newRestTime;
         }
       }
 
       if (state.activeExercise.Exercises) {
-        state.activeExercise.Exercises[index].SupersetExercise.restTime = newRestTime;
+        state.activeExercise.Exercises[index].SupersetExercises[0].restTime = newRestTime;
       } else {
-        state.activeExercise.WorkoutExercise.restTime = newRestTime;
+        state.activeExercise.WorkoutExercises[0].restTime = newRestTime;
       }
     },
     setCountdown: (state, { payload }) => {
@@ -89,20 +87,6 @@ export const trainingSlice = createSlice({
     },
     toggleExerciseGif: (state, { payload }) => {
       state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
-    },
-    toggleRestTimerBottomSheet: (state, { payload }) => {
-      const { actualRestTime, index } = payload || {};
-
-      state.restTimerBottomSheet.state
-        ? (state.restTimerBottomSheet = { state: false, actualRestTime: null })
-        : (state.restTimerBottomSheet = {
-            state: true,
-            actualRestTime,
-            index,
-          });
-    },
-    toggleConfirmExitAlert: (state, { payload }) => {
-      state.confirmExitAlert = !state.confirmExitAlert;
     },
     onError: (state, { payload }) => {
       console.log(payload), (state.isLoading = false), (state.error = payload || null);
@@ -122,6 +106,4 @@ export const {
   toggleExerciseGif,
   setCountdown,
   setRestTime,
-  toggleRestTimerBottomSheet,
-  toggleConfirmExitAlert,
 } = trainingSlice.actions;

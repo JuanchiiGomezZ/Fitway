@@ -1,21 +1,21 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BORDER_RADIUS, WHITE_COLOR } from "../styles/styles";
 import { CloseModalIcon } from "./CustomButtons";
+import { useNavigation } from "@react-navigation/native";
 
-//COMPONENTS
 
-const { width } = Dimensions.get("screen");
 
-export default BottomSheetModal = ({ toggleModal, children, title }) => {
+export default BottomSheetModal = ({ children, title }) => {
+  const { goBack } = useNavigation();
   return (
     <>
-      <BackdropModals toggleModal={toggleModal} />
+      <BackdropModals toggleModal={goBack} />
       <Animated.View style={styles.modalContainer} entering={SlideInDown} exiting={SlideOutDown}>
         <View style={styles.head}>
           <Text style={styles.headText}>{title}</Text>
-          <CloseModalIcon action={toggleModal} />
+          <CloseModalIcon action={goBack} />
         </View>
         {children}
       </Animated.View>
@@ -25,15 +25,15 @@ export default BottomSheetModal = ({ toggleModal, children, title }) => {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    width: width,
     position: "absolute",
-    backgroundColor: BACKGROUND_COLOR,
     bottom: 0,
-    borderRadius: BORDER_RADIUS,
-    paddingHorizontal: "5%",
-    paddingTop: 10,
-    paddingBottom: 15,
+    width: "100%",
     zIndex: 5,
+    backgroundColor: BACKGROUND_COLOR,
+    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopRightRadius: BORDER_RADIUS,
+    paddingVertical: 15,
+    paddingHorizontal:20
   },
   head: {
     flexDirection: "row",

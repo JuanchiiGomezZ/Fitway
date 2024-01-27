@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import useAuthStore from "../hooks/redux/useAuthStore";
 import useRoutinesStore from "../hooks/redux/useRoutinesStore";
+import { welcomeStorage } from "../helpers/storage";
 
 /* SCREENS */
 import TabNavigator from "./TabNavigator";
@@ -30,19 +31,23 @@ import TrainingFinished from "../screens/trainingFinished/TrainingFinished";
 import EditExercise from "../screens/editExercise/EditExercise";
 import Welcome_1 from "../screens/welcome/Welcome_1";
 import Welcome_2 from "../screens/welcome/Welcome_2";
-import { welcomeStorage } from "../helpers/storage";
 import NewWorkoutModal from "../screens/home/components/NewWorkoutModal";
 import QrModal from "../components/QrModal";
 import BottomSheetMenuWorkout from "../screens/home/components/BottomSheetMenuWorkout";
 import ExerciseTypesModal from "../screens/createExercise/components/ExerciseTypesModal";
-import PickerMuscle from "../screens/createExercise/components/Pickers/PickerMuscle";
-import PickerElement from "../screens/createExercise/components/Pickers/PickerElement";
 import BottomsheetImage from "../screens/createExercise/components/BottomsheetImage";
 import BottomSheetRoutine from "../screens/my-routines/components/BottomSheetRoutine";
 import NewRoutineModal from "../screens/routines/components/NewRoutineModal";
-import ExercisesModal from "../screens/training/components/exercisesModal/ExercisesModal";
+import DraggableExercisesList from "../screens/training/components/exercisesModal/DraggableExercisesList";
 import BottomSheetExercise from "../screens/workout/components/BottomSheetExercise";
 import CreateSupersetModal from "../screens/workout/components/CreateSupersetModal";
+import ConfirmationAlert from "../components/ConfirmationAlert";
+import PickerModal from "../screens/createExercise/components/PickerModal";
+
+import muscles from "../data/muscles.json";
+import elements from "../data/elements.json";
+import BottomSheetRestTimerConfig from "../screens/training/components/BottomSheetRestTimerConfig";
+
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -202,7 +207,7 @@ export default Navigation = () => {
               }}
             />
             <Stack.Screen
-              name="BottomSheetMenuWorkout"
+              name="BottomSheetWorkout"
               component={BottomSheetMenuWorkout}
               options={{
                 presentation: "transparentModal",
@@ -219,19 +224,21 @@ export default Navigation = () => {
             />
             <Stack.Screen
               name="MusclesModal"
-              component={PickerMuscle}
+              component={PickerModal}
               options={{
                 presentation: "transparentModal",
                 animation: "fade",
               }}
+              initialParams={{ title: "Muscle", data: muscles }}
             />
             <Stack.Screen
               name="ElementsModal"
-              component={PickerElement}
+              component={PickerModal}
               options={{
                 presentation: "transparentModal",
                 animation: "fade",
               }}
+              initialParams={{ title: "Elements", data: elements }}
             />
             <Stack.Screen
               name="BottomSheetImage"
@@ -251,7 +258,7 @@ export default Navigation = () => {
             />
             <Stack.Screen
               name="ExercisesModal"
-              component={ExercisesModal}
+              component={DraggableExercisesList}
               options={{
                 presentation: "transparentModal",
                 animation: "fade",
@@ -264,6 +271,7 @@ export default Navigation = () => {
                 presentation: "transparentModal",
                 animation: "fade",
               }}
+              initialParams={{ pepe: "asd" }}
             />
             <Stack.Screen
               name="BottomSheetExercise"
@@ -279,6 +287,22 @@ export default Navigation = () => {
               options={{
                 presentation: "transparentModal",
                 animation: "fade",
+              }}
+            />
+            <Stack.Screen
+              name="ConfirmationAlert"
+              component={ConfirmationAlert}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade",
+              }}
+            />
+            <Stack.Screen
+              name="BottomSheetRestTimerConfig"
+              component={BottomSheetRestTimerConfig}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade_from_bottom",
               }}
             />
           </>

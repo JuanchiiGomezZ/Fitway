@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ORANGE_COLOR, WHITE_COLOR } from "../../../../styles/styles";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import { toggleRestTimerBottomSheet } from "../../../../store/slices/trainingSlice";
 import { convertToMinutes } from "../../../../helpers/timeFormater";
 import TableDuration from "../exerciseTables/duration/TableDuration";
 import TableRepsWithoutWeight from "../exerciseTables/repsWithoutWeight/TableRepsWithoutWeight";
+import { useNavigation } from "@react-navigation/native";
 
 export default ContentExerciseSingle = ({ data, index }) => {
   const dispatch = useDispatch();
@@ -21,25 +21,25 @@ export default ContentExerciseSingle = ({ data, index }) => {
     Multimedia,
     element,
     exerciseType,
-    WorkoutExercise,
-    SupersetExercise,
+    WorkoutExercises,
+    SupersetExercises,
     ExerciseLogs,
   } = data || {};
+  const { navigate } = useNavigation();
 
   const setExerciseGif = () => {
     dispatch(toggleExerciseGif(data.Multimedia?.exerciseGif));
   };
 
   const handleOpenBottomSheetRestTime = () => {
-    dispatch(
-      toggleRestTimerBottomSheet(
-        index >= 0
-          ? {
-              actualRestTime: SupersetExercise?.restTime,
-              index: index,
-            }
-          : { actualRestTime: WorkoutExercise?.restTime },
-      ),
+    navigate(
+      "BottomSheetRestTimerConfig",
+      index >= 0
+        ? {
+            actualRestTime: SupersetExercises?.[0]?.restTime,
+            index: index,
+          }
+        : { actualRestTime: WorkoutExercises?.[0]?.restTime },
     );
   };
 
@@ -48,8 +48,8 @@ export default ContentExerciseSingle = ({ data, index }) => {
       case "ExerciseWithWeight":
         return (
           <TableRepsWithWeight
-            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-            rest={WorkoutExercise?.restTime || SupersetExercise?.restTime}
+            reps={WorkoutExercises?.[0]?.reps || SupersetExercises?.[0]?.reps}
+            rest={WorkoutExercises?.[0]?.restTime || SupersetExercises?.[0]?.restTime}
             id={data.id}
             exerciseLogs={ExerciseLogs[0]}
           />
@@ -57,15 +57,18 @@ export default ContentExerciseSingle = ({ data, index }) => {
       case "ExerciseWithoutWeight":
         return (
           <TableRepsWithoutWeight
-            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-            rest={WorkoutExercise?.restTime || SupersetExercise?.restTime}
+            reps={WorkoutExercises?.[0]?.reps || SupersetExercises?.[0]?.reps}
+            rest={WorkoutExercises?.[0]?.restTime || SupersetExercises?.[0]?.restTime}
             id={data.id}
             exerciseLogs={ExerciseLogs[0]}
           />
         );
       case "ExerciseOfDuration":
         return (
-          <TableDuration reps={WorkoutExercise?.reps || SupersetExercise?.reps} id={data.id} />
+          <TableDuration
+            reps={WorkoutExercises?.[0]?.reps || SupersetExercises?.[0]?.reps}
+            id={data.id}
+          />
         );
       default:
         return null;
@@ -80,7 +83,11 @@ export default ContentExerciseSingle = ({ data, index }) => {
             <TouchableOpacity onPress={setExerciseGif}>
               <Image
                 style={styles.image}
-                source={{ uri: "https://i.blogs.es/85d668/bench-press-1/650_1200.jpg" }}
+                source={
+                  Multimedia.exerciseImg
+                    ? { uri: Multimedia.exerciseImg }
+                    : require("../../../../assets/images/icon_fw_orange.png")
+                }
               />
               {!exerciseGif && (
                 <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.bottomShadow}>
@@ -98,7 +105,10 @@ export default ContentExerciseSingle = ({ data, index }) => {
           >
             <MaterialCommunityIcons name="timer-outline" size={24} color={ORANGE_COLOR} />
             <Text style={styles.resTimerText}>
-              Rest Timer: {convertToMinutes(WorkoutExercise?.restTime || SupersetExercise?.restTime)}
+              Rest Timer:
+              {convertToMinutes(
+                WorkoutExercises?.[0]?.restTime || SupersetExercises?.[0]?.restTime,
+              )}
             </Text>
           </TouchableOpacity>
         </View>

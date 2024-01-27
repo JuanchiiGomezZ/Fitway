@@ -11,15 +11,16 @@ import { useSelector } from "react-redux";
 import Slider from "@react-native-community/slider";
 import { GRAY_COLOR, GRAY_LIGHT_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import { convertToMinutes } from "../../../helpers/timeFormater";
-import { toggleRestTimerBottomSheet } from "../../../store/slices/trainingSlice";
 import { ButtonClassicLong } from "../../../components/CustomButtons";
 import { useFonts } from "expo-font";
+import { useNavigation } from "@react-navigation/native";
 
-export default BottomSheetRestTimerConfig = () => {
-  const { activeExercise, restTimerBottomSheet } = useSelector((state) => state.training);
-  const { actualRestTime, index } = restTimerBottomSheet;
+export default BottomSheetRestTimerConfig = ({ route }) => {
+  const { activeExercise } = useSelector((state) => state.training);
+  const { actualRestTime, index } = route.params;
   const dispatch = useDispatch();
   const [newRestTime, setNewRestTime] = useState(actualRestTime);
+  const { goBack } = useNavigation();
 
   const [fontsLoaded] = useFonts({
     Fugaz: require("../../../assets/fonts/Fugaz.ttf"),
@@ -35,14 +36,11 @@ export default BottomSheetRestTimerConfig = () => {
         index: index,
       }),
     );
-    dispatch(toggleRestTimerBottomSheet());
+    goBack();
   };
 
   return (
-    <BottomSheetModal
-      title={"Rest Timer"}
-      toggleModal={() => dispatch(toggleRestTimerBottomSheet())}
-    >
+    <BottomSheetModal title={"Rest Timer"}>
       <View style={{ gap: 20 }}>
         <View style={{ alignItems: "center" }}>
           <Text style={styles.restText}> {convertToMinutes(newRestTime)}</Text>
@@ -73,6 +71,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginLeft: 3,
     marginBottom: 10,
-    fontFamily:'Fugaz'
+    fontFamily: "Fugaz",
   },
 });

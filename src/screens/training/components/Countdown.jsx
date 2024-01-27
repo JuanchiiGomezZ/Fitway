@@ -25,12 +25,13 @@ import Animated, {
 import { useDispatch, useSelector } from "react-redux";
 import { setCountdown } from "../../../store/slices/trainingSlice";
 import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default Countdown = () => {
   const { secondsLeft, isTimeOver, start, addTime, skipTime, isPaused } = useCountdown();
   const dispatch = useDispatch();
   const { countdown } = useSelector((state) => state.training);
-
+  const { navigate } = useNavigation();
   const [time, setTime] = useState(countdown.restTime || 30);
   const progress = Math.min((secondsLeft * 100) / time, 100);
 
@@ -39,6 +40,10 @@ export default Countdown = () => {
       width: withTiming(`${progress}%`, { duration: 120, easing: Easing.ease }),
     };
   });
+
+  const handleOpenBottomSheetRestTimerConfig = () => {
+    navigate("BottomSheetRestTimerConfig", { actualRestTime: countdown.restTime });
+  };
 
   useEffect(() => {
     start(countdown.restTime);
@@ -74,9 +79,13 @@ export default Countdown = () => {
   if (!fontsLoaded) return null;
   return (
     <Animated.View style={styles.container} entering={FadeInDown} exiting={FadeOutDown}>
-      <Pressable style={styles.settingsBtn}>
-        <FontAwesome name="cog" size={20} color={GRAY_LIGHT_COLOR} />
-      </Pressable>
+      <FontAwesome
+        name="cog"
+        size={20}
+        color={GRAY_LIGHT_COLOR}
+        style={styles.settingsBtn}
+        onPress={handleOpenBottomSheetRestTimerConfig}
+      />
       <View style={styles.toolsContainer}>
         <ButtonCircular icon={isPaused ? "play" : "pause"} action={handlePlay} size={"s"} />
         <Text style={[styles.countdownText, styles.textSmall]} onPress={() => handleAddTime(-15)}>
@@ -141,9 +150,8 @@ const styles = StyleSheet.create({
   settingsBtn: {
     backgroundColor: BOX_COLOR,
     position: "absolute",
-    top: -22,
-    width: 30,
-    height: 30,
+    top: -25,
+    padding: 7,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,

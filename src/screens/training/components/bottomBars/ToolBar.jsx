@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { StyleSheet,  View } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
-import { BACKGROUND_COLOR, GRAY_COLOR } from "../../../../styles/styles";
+import { BACKGROUND_COLOR, GRAY_COLOR, RED_COLOR } from "../../../../styles/styles";
 import { ButtonCircular, ButtonRounded } from "../../../../components/CustomButtons";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  handleChangeExercise,
-  toggleConfirmExitAlert,
-} from "../../../../store/slices/trainingSlice";
+import { handleChangeExercise } from "../../../../store/slices/trainingSlice";
 import { useNavigation } from "@react-navigation/native";
 
 export default ToolBar = () => {
@@ -28,7 +25,23 @@ export default ToolBar = () => {
   };
 
   const handleFinishWorkout = () => {
-    dispatch(toggleConfirmExitAlert());
+    const handleConfirmFinishTraining = () => {
+      navigate("TrainingFinished");
+      dispatch(cleanWorkoutLog());
+    };
+    const backAction = () => {
+      goBack();
+      dispatch(cleanWorkoutLog());
+    };
+    navigate("ConfirmationAlert", {
+      title: "Are you sure?",
+      text: "You have some empty values. This action will end your training.",
+      thirdButton: true,
+      thirdColor: RED_COLOR,
+      thirdTitle: "Discard training",
+      confirmAction: handleConfirmFinishTraining,
+      thirdAction: backAction,
+    });
   };
 
   return (

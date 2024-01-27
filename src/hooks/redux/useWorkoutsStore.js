@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveActiveRoutineWorkouts } from "../../store/slices/routinesSlice";
 import { saveActiveWorkoutData, onLoading } from "../../store/slices/trainingSlice";
 
-import maxOrder from "../../helpers/maxOrder";
-
 export default useWorkoutsStore = () => {
   const dispatch = useDispatch();
   const { activeRoutineId, activeRoutineWorkouts } = useSelector((state) => state.userRoutines);
@@ -67,19 +65,16 @@ export default useWorkoutsStore = () => {
   const getWorkoutTrainingData = async (workoutId) => {
     dispatch(onLoading());
     try {
-      const { data } = await axios.get(`/workout/${workoutId}`);
+      const { data } = await axios.get(`/workout/show-by-id/${workoutId}`);
       const details = {
         routineId: data.RoutineId,
         workoutId: data.id,
         name: data.name,
-        order: data.order,
       };
-      const Exercises = {
-        Exercises:
-          data.SuperSets.length !== 0
-            ? [...data.Exercises, ...data.SuperSets]
-            : [...data.Exercises],
-      };
+
+      const Exercises =
+        data.SuperSets.length !== 0 ? [...data.Exercises, ...data.SuperSets] : data.Exercises;
+
       dispatch(saveActiveWorkoutData({ details, Exercises }));
     } catch (error) {
       dispatch(onError(error.response.data));

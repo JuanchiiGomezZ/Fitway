@@ -5,18 +5,28 @@ import { useNavigation } from "@react-navigation/native";
 import CardContainer from "../../../components/CardContainer";
 import { ButtonCircular } from "../../../components/CustomButtons";
 import { useDispatch } from "react-redux";
-import { toggleTrainingInProgressAlert } from "../../../store/slices/routinesSlice";
 import { storage } from "../../../helpers/storage";
+import { cleanWorkoutLog } from "../../../store/slices/trainingSlice";
 
 export default WorkoutCard = ({ data, index }) => {
   const { muscles, name, id } = data;
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
 
+  const handleTrainingInProgressAlert = () => {
+    dispatch(cleanWorkoutLog());
+    navigate("Training", { id });
+  };
+
   const handleNavigateTraining = () => {
     const storedTrainingId = storage.getString("workout_id_training");
-    if (storedTrainingId) {
-      dispatch(toggleTrainingInProgressAlert(id));
+
+    if (storedTrainingId != id && storedTrainingId) {
+      navigate("ConfirmationAlert", {
+        title: "Are you sure",
+        text: "You have another training in progress. This action will discard the current training and start new one.",
+        confirmAction: handleTrainingInProgressAlert,
+      });
     } else {
       navigate("Training", { id });
     }
@@ -26,7 +36,7 @@ export default WorkoutCard = ({ data, index }) => {
     <CardContainer
       action={() => navigate("Workout", { workoutId: id })}
       index={index}
-      configAction={() => navigate("BottomSheetMenuWorkout", { workoutId: id })}
+      configAction={() => navigate("BottomSheetWorkout", { workoutId: id })}
     >
       <View style={styles.contentContainer}>
         <View style={{ width: "83%", gap: 5 }}>

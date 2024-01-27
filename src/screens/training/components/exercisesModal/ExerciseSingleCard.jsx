@@ -1,13 +1,14 @@
 import React from "react";
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";;
-import { GRAY_COLOR,WHITE_COLOR } from "../../../../styles/styles";
-import { Ionicons} from "@expo/vector-icons";
+import { Image, StyleSheet, Text, View, Pressable } from "react-native";
+import { GRAY_COLOR, WHITE_COLOR } from "../../../../styles/styles";
+import { Ionicons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import MarkIcon from "./MarkIcon";
 
 export default ExerciseSingleCard = ({ data, action, superset, index }) => {
   const Exercise = superset ? View : Pressable;
   const { numActiveExercise } = useSelector((state) => state.training);
+
   return (
     <Exercise
       style={[styles.row, styles.cardContainer, { paddingVertical: superset ? 0 : 6 }]}

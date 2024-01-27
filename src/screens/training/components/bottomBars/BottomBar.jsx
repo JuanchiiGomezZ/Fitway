@@ -16,7 +16,7 @@ import useTimer from "../../hooks/useTimer";
 import ToolBar from "./ToolBar";
 import Timer from "./Timer";
 
-export default BottomBar = ({ toggleConfExitAlert }) => {
+export default BottomBar = () => {
   const timer = useTimer();
   const [bottomBar, toggleBottomBar] = useToggle(false);
 
@@ -56,7 +56,7 @@ export default BottomBar = ({ toggleConfExitAlert }) => {
       {bottomBar ? (
         <ToolBar />
       ) : (
-        <Timer useTimer={timer} toggleConfExitAlert={toggleConfExitAlert} />
+        <Timer useTimer={timer}  />
       )}
     </View>
   );

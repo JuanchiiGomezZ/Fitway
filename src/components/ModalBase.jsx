@@ -15,10 +15,12 @@ export default ModalBase = ({ title, children }) => {
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <BackdropModals toggleModal={goBack} />
       <View style={[styles.modalContainer]}>
-        <View style={styles.head}>
-          <Text style={styles.titleModal}>{title}</Text>
-          <CloseModalIcon action={goBack} />
-        </View>
+        {title && (
+          <View style={styles.head}>
+            <Text style={styles.titleModal}>{title}</Text>
+            <CloseModalIcon action={goBack} />
+          </View>
+        )}
         {children}
       </View>
     </View>

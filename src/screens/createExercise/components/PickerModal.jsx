@@ -1,24 +1,25 @@
 import { StyleSheet, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import React, { useState } from "react";
-import { ClassicInput } from "../../../../components/Inputs";
+import { ClassicInput } from "../../../components/Inputs";
 import Animated, { Layout, FadeInDown } from "react-native-reanimated";
-import ModalBase from "../../../../components/ModalBase";
-import SeparatingLine from "../../../../components/SeparatingLine";
+import ModalBase from "../../../components/ModalBase";
+import SeparatingLine from "../../../components/SeparatingLine";
 import { useNavigation } from "@react-navigation/native";
 
-const PickerModal = ({ data, title }) => {
+const PickerModal = ({ route }) => {
   const [inputChange, setInputChange] = useState("");
   const { navigate } = useNavigation();
-
+  const { data, title } = route.params;
   return (
     <ModalBase title={title}>
       <ClassicInput
         setInputChange={setInputChange}
         inputChange={inputChange}
         placeholder={"Search"}
+        style={{ marginTop: 5 }}
       />
 
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.itemsContainer}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {data
           .filter((data) => data.name.toLocaleLowerCase().includes(inputChange.toLocaleLowerCase()))
           .map((item, index) => (
@@ -40,9 +41,6 @@ const PickerModal = ({ data, title }) => {
 export default PickerModal;
 
 const styles = StyleSheet.create({
-  itemsContainer: {
-    marginTop: 20,
-  },
   card: {
     flexDirection: "row",
     alignItems: "center",

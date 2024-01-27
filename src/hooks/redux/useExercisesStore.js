@@ -104,7 +104,7 @@ export default useExercisesStore = () => {
   const addExercise = async (exerciseData, exerciseId) => {
     try {
       const { data } = await axios.post(
-        `/workout/addExercise/${workoutDetails.workoutId}/${exerciseId}`,
+        `/workout/add-exercise/${workoutDetails.workoutId}/${exerciseId}`,
         exerciseData,
       );
       dispatch(saveWorkoutExercises([...workoutExercises, data]));

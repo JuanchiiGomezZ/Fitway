@@ -9,7 +9,6 @@ export const routinesSlice = createSlice({
     activeRoutineWorkouts: undefined,
     isLoading: false,
     error: null,
-    trainingInProgressAlert: { state: false, workoutId: null },
   },
   reducers: {
     onChecking: (state, { payload }) => {
@@ -33,13 +32,6 @@ export const routinesSlice = createSlice({
     setLoader: (state, { payload }) => {
       state.isLoading = false;
     },
-    toggleTrainingInProgressAlert: (state, { payload }) => {
-      if (state.trainingInProgressAlert.state) {
-        state.trainingInProgressAlert = { state: false, workoutId: null };
-      } else {
-        state.trainingInProgressAlert = { state: true, workoutId: payload };
-      }
-    },
   },
 });
 
@@ -52,5 +44,4 @@ export const {
   saveActiveRoutineDetails,
   setLoader,
   saveActiveRoutineWorkouts,
-  toggleTrainingInProgressAlert,
 } = routinesSlice.actions;

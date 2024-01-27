@@ -8,6 +8,7 @@ import MarkIcon from "./MarkIcon";
 
 export default ExerciseSupersetCard = ({ data, isActive, action, index }) => {
   const { numActiveExercise } = useSelector((state) => state.training);
+
   return (
     <Pressable
       style={[styles.row, styles.cardContainer, { elevation: isActive ? 30 : 0 }]}

@@ -1,53 +1,36 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import BackdropModals from "./BackdropModals";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import {
-  BACKGROUND_COLOR,
-  BORDER_RADIUS,
-  GRAY_COLOR,
-  RED_COLOR,
-  WHITE_COLOR,
-} from "../styles/styles";
+import { StyleSheet, Text, View, LogBox } from "react-native";
+import { BACKGROUND_COLOR, BORDER_RADIUS, GRAY_COLOR, WHITE_COLOR } from "../styles/styles";
 import { ButtonClassicLong } from "./CustomButtons";
+import { useNavigation } from "@react-navigation/native";
+import ModalBase from "./ModalBase";
 
-export default ConfirmationAlert = ({
-  toggleModal,
-  title,
-  text,
-  confirmAction,
-  thirdButton,
-  thirdAction,
-  thirdColor,
-  thirdTitle,
-  navigation,
-}) => {
+LogBox.ignoreLogs(["Non-serializable values were found in the navigation state"]);
+
+export default ConfirmationAlert = ({ route }) => {
+  const { goBack } = useNavigation();
+  const { title, text, confirmAction, thirdButton, thirdAction, thirdColor, thirdTitle } =
+    route.params;
+
   return (
-    <>
-      <BackdropModals toggleModal={toggleModal} />
-      <Animated.View
-        style={[styles.modalContainer, navigation === false && { width: "90%" }]}
-        entering={FadeIn}
-        exiting={FadeOut}
-      >
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.textBody}>{text}</Text>
-        <View style={{ width: "100%", gap: 10, marginTop: 10 }}>
-          <ButtonClassicLong text="Confirm" action={confirmAction} short={true} />
-          {thirdButton && (
-            <ButtonClassicLong
-              text={thirdTitle}
-              action={thirdAction}
-              short={true}
-              transparent={true}
-              color={thirdColor}
-              borderColor={thirdColor}
-            />
-          )}
-          <ButtonClassicLong text="Cancel" action={toggleModal} short={true} transparent={true} />
-        </View>
-      </Animated.View>
-    </>
+    <ModalBase>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.textBody}>{text}</Text>
+      <View style={{ width: "100%", gap: 10, marginTop: 10 }}>
+        <ButtonClassicLong text="Confirm" action={confirmAction} short={true} />
+        {thirdButton && (
+          <ButtonClassicLong
+            text={thirdTitle}
+            action={thirdAction}
+            short={true}
+            transparent={true}
+            color={thirdColor}
+            borderColor={thirdColor}
+          />
+        )}
+        <ButtonClassicLong text="Cancel" action={goBack} short={true} transparent={true} />
+      </View>
+    </ModalBase>
   );
 };
 
@@ -57,7 +40,7 @@ const styles = StyleSheet.create({
     left: "5%",
     top: "40%",
     minHeight: 80,
-    width: "100%",
+    width: "90%",
     backgroundColor: BACKGROUND_COLOR,
     borderRadius: BORDER_RADIUS,
     padding: 20,

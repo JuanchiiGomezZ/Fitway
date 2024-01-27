@@ -19,7 +19,6 @@ export default NewRoutineModal = () => {
   const { createNewRoutine } = useRoutinesStore();
   const [name, setName] = useState("");
   const [visibilitty, setVisibilitty] = useState(true);
-
   const visibilities = [
     { name: "Private", value: false },
     { name: "Public", value: true },

@@ -7,30 +7,30 @@ import {
   RED_COLOR,
   WHITE_COLOR,
 } from "../styles/styles";
-import { Foundation, Feather } from "@expo/vector-icons";
+import { Foundation } from "@expo/vector-icons";
 import { RequiredErrorWithText } from "./RequiredError";
 
-export const ClassicInput = ({ setInputChange, placeholder, inputChange }) => {
+export const ClassicInput = ({ setInputChange, inputChange, ...props }) => {
   return (
     <TextInput
-      style={styles.input}
-      value={inputChange}
-      placeholder={placeholder}
+      {...props}
+      style={[styles.input, props.style]}
       placeholderTextColor={GRAY_COLOR}
+      value={inputChange}
       onChangeText={(e) => {
         setInputChange(e);
       }}
     />
   );
 };
-export const GrayInput = ({ setInputChange, placeholder, inputChange, label }) => {
+export const GrayInput = ({ setInputChange, inputChange, label, ...props }) => {
   return (
     <View style={styles.inputLabel}>
       <Text style={styles.labelText}>{label}</Text>
       <TextInput
-        style={styles.grayInput}
+        {...props}
+        style={[styles.grayInput, props.style]}
         value={inputChange}
-        placeholder={placeholder}
         placeholderTextColor={GRAY_COLOR}
         onChangeText={(e) => {
           setInputChange(e);
@@ -39,13 +39,13 @@ export const GrayInput = ({ setInputChange, placeholder, inputChange, label }) =
     </View>
   );
 };
-export const SearchInput = ({ inputChange, setInputChange, placeholder, onEnterPress }) => {
+export const SearchInput = ({ inputChange, setInputChange, onEnterPress, ...props }) => {
   return (
     <View style={styles.searchContainer}>
       <TextInput
-        style={styles.searchInput}
+        {...props}
+        style={[styles.searchInput, props.style]}
         value={inputChange}
-        placeholder={placeholder}
         placeholderTextColor={GRAY_COLOR}
         onChangeText={(e) => setInputChange(e)}
         onSubmitEditing={onEnterPress}
@@ -57,10 +57,10 @@ export const SearchInput = ({ inputChange, setInputChange, placeholder, onEnterP
 
 export const ClassicInputWithLabel = ({
   setInputChange,
-  placeholder,
   inputChange,
   label,
   isValid,
+  ...props
 }) => {
   return (
     <View>
@@ -70,9 +70,9 @@ export const ClassicInputWithLabel = ({
       </View>
 
       <TextInput
-        style={[styles.input, isValid && { borderColor: RED_COLOR }]}
+        {...props}
+        style={[styles.input, isValid && { borderColor: RED_COLOR }, props.style]}
         value={inputChange}
-        placeholder={placeholder}
         placeholderTextColor={GRAY_COLOR}
         onChangeText={(e) => {
           setInputChange(e);
@@ -81,14 +81,14 @@ export const ClassicInputWithLabel = ({
     </View>
   );
 };
-export const TextAreaWithLabel = ({ setInputChange, placeholder, inputChange, label, editable }) => {
+export const TextAreaWithLabel = ({ setInputChange, inputChange, label, editable, ...props }) => {
   return (
     <View>
       <Text style={styles.labelText}>{label}</Text>
       <TextInput
-        style={[styles.input, styles.textArea, { marginTop: 4 }]}
+        {...props}
+        style={[styles.input, styles.textArea, { marginTop: 4 }, props.style]}
         value={inputChange}
-        placeholder={placeholder}
         placeholderTextColor={GRAY_COLOR}
         multiline={true}
         numberOfLines={3}
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   input: {
     borderColor: "transparent",
     fontSize: 17,
-    color: "white",
+    color: WHITE_COLOR,
     fontWeight: "500",
     width: "100%",
     borderBottomWidth: 1.5,
