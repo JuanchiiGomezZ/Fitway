@@ -3,7 +3,7 @@ import Constants from "expo-constants";
 export const ORANGE_COLOR = "#FC7019"; // #FC7019 || #5037E9 || #DBFF4A
 export const WHITE_COLOR = "#FFFFFF";
 export const BACKGROUND_COLOR = "#131313";
-export const GRAY_COLOR = "#9D9D9D";
+export const GRAY_COLOR = "#9D9D9D"; //#9D9D9D
 export const GRAY_LIGHT_COLOR = "#A9A9A9";
 export const GRAY_DARK_COLOR = "#363636";
 export const BOX_COLOR = "#282828"; //#212123

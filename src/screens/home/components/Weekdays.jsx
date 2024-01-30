@@ -33,7 +33,7 @@ export default Weekdays = () => {
       {initialWeekDaysArr.map((item, index) => (
         <View style={styles.dayContainer} key={item.name}>
           <View style={[styles.day, item.today && styles.activeDay]}>
-            <Text style={styles.dayText} adjustsFontSizeToFit={true}>
+            <Text style={styles.dayText} adjustsFontSizeToFit>
               {item.name}
             </Text>
           </View>

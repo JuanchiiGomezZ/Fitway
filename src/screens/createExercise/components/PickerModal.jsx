@@ -16,7 +16,7 @@ const PickerModal = ({ route }) => {
         setInputChange={setInputChange}
         inputChange={inputChange}
         placeholder={"Search"}
-        style={{ marginTop: 5 }}
+        style={{ marginTop: 5, marginBottom: 10 }}
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -44,16 +44,16 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 15,
-    marginVertical: 12,
+    gap: 10,
+    marginVertical: 10,
   },
   textName: {
     color: "white",
     fontSize: 20,
   },
   image: {
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     borderRadius: 25,
   },
 });

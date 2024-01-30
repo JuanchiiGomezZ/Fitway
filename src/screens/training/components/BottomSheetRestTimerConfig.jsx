@@ -58,7 +58,7 @@ export default BottomSheetRestTimerConfig = ({ route }) => {
             thumbTintColor={WHITE_COLOR}
           />
         </View>
-        <ButtonClassicLong text={"Save"} short={true} action={handleSaveNewTime} />
+        <ButtonClassicLong text={"Save"} short action={handleSaveNewTime} />
       </View>
     </BottomSheetModal>
   );

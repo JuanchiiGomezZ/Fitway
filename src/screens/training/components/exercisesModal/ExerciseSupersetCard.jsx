@@ -16,7 +16,7 @@ export default ExerciseSupersetCard = ({ data, isActive, action, index }) => {
     >
       <View style={{ gap: 5 }}>
         {data.Exercises.map((item) => (
-          <ExerciseCardSingle data={item} superset={true} key={item.id} />
+          <ExerciseCardSingle data={item} superset key={item.id} />
         ))}
       </View>
       <View style={[styles.row, { gap: 5 }]}>

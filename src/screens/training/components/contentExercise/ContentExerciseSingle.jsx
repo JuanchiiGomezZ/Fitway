@@ -117,9 +117,9 @@ export default ContentExerciseSingle = ({ data, index }) => {
             title="Muscle"
             name={primaryMuscle}
             img={Multimedia?.muscleImg}
-            reverse={true}
+            reverse
           />
-          <ElementCard title="Element" name={element} img={Multimedia?.elementImg} reverse={true} />
+          <ElementCard title="Element" name={element} img={Multimedia?.elementImg} reverse />
         </View>
       </View>
       {tableExerciseSelector()}

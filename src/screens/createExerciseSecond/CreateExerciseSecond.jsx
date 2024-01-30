@@ -49,7 +49,7 @@ export default CreateExerciseSecond = ({ route }) => {
   const activeButton = !reps.every((rep) => rep.trim());
 
   return (
-    <ScreenContainer paddingBottom={true}>
+    <ScreenContainer paddingBottom>
       <Header title={route.params.name} action={handleGoBack} />
       <View style={{ gap: 30, flex: 1 }}>
         <RestTimeSlider />

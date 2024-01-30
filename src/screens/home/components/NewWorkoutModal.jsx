@@ -24,7 +24,7 @@ export default NewRoutineModal = () => {
   const activeButton = name.trim() < 1;
 
   return (
-    <ModalBase title="New Workout" short={true}>
+    <ModalBase title="New Workout">
       <View style={{ gap: 20 }}>
         <ClassicInput
           setInputChange={setName}
@@ -34,7 +34,7 @@ export default NewRoutineModal = () => {
 
         <ButtonClassicLong
           text={t("global.continue")}
-          short={true}
+          short
           action={handleNewWorkout}
           disabled={activeButton}
         />

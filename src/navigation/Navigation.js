@@ -49,6 +49,7 @@ import elements from "../data/elements.json";
 import BottomSheetRestTimerConfig from "../screens/training/components/BottomSheetRestTimerConfig";
 import FilterExerciseBottomSheet from "../screens/addExercise/AllExercises/components/filterExercise/FilterExerciseBottomSheet";
 import FilterRoutineBottomSheet from "../screens/routines/components/FilterRoutineBottomSheet";
+import PickerMultipleModal from "../screens/addExercise/AllExercises/components/PickerMultipleModal";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -318,6 +319,14 @@ export default Navigation = () => {
               options={{
                 presentation: "transparentModal",
                 animation: "fade_from_bottom",
+              }}
+            />
+            <Stack.Screen
+              name="PickerMultipleModal"
+              component={PickerMultipleModal}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade",
               }}
             />
           </>

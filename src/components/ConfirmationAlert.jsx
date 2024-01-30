@@ -17,18 +17,18 @@ export default ConfirmationAlert = ({ route }) => {
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.textBody}>{text}</Text>
       <View style={{ width: "100%", gap: 10, marginTop: 10 }}>
-        <ButtonClassicLong text="Confirm" action={confirmAction} short={true} />
+        <ButtonClassicLong text="Confirm" action={confirmAction} short />
         {thirdButton && (
           <ButtonClassicLong
             text={thirdTitle}
             action={thirdAction}
-            short={true}
-            transparent={true}
+            short
+            transparent
             color={thirdColor}
             borderColor={thirdColor}
           />
         )}
-        <ButtonClassicLong text="Cancel" action={goBack} short={true} transparent={true} />
+        <ButtonClassicLong text="Cancel" action={goBack} short transparent />
       </View>
     </ModalBase>
   );

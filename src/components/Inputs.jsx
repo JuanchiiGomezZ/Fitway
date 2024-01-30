@@ -90,7 +90,7 @@ export const TextAreaWithLabel = ({ setInputChange, inputChange, label, editable
         style={[styles.input, styles.textArea, { marginTop: 4 }, props.style]}
         value={inputChange}
         placeholderTextColor={GRAY_COLOR}
-        multiline={true}
+        multiline
         numberOfLines={3}
         editable={editable}
         textAlignVertical="top"

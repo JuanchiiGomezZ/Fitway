@@ -6,7 +6,7 @@ import { GRAY_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import SeparatingLine from "../../../components/SeparatingLine";
 import { useNavigation } from "@react-navigation/native";
 
-export default ExerciseTypesModal = ({ route }) => {
+export default ExerciseTypesModal = () => {
   const { navigate } = useNavigation();
 
   const handlePickType = (type) => {

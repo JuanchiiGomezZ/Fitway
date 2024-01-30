@@ -34,7 +34,7 @@ export default TrainingFinished = () => {
 
   if (!fontsLoaded) return null;
   return (
-    <ScreenContainer paddingBottom={true}>
+    <ScreenContainer paddingBottom>
       <View style={styles.contentContainer}>
         <Text style={styles.congrats}>CONGRATULATIONS!</Text>
         <Text style={styles.subTitle}>You completed today's workout!</Text>

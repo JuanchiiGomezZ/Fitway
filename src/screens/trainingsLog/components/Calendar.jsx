@@ -60,7 +60,7 @@ export default CustomCalendar = () => {
         "2023-12-06": { selected: true, marked: true },
         "2023-12-04": { selected: true, marked: true },
       }}
-      hideExtraDays={true}
+      hideExtraDays
       displayLoadingIndicator={false}
       onMonthChange={onMonthChange}
       disableArrowRight={currentMonth}

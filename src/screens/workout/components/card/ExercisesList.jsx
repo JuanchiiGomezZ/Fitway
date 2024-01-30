@@ -6,6 +6,7 @@ import ExerciseCardSuperset from "./ExerciseCardSuperset";
 import Loader from "../../../../components/Loader";
 import EmptyWorkout from "../EmptyWorkout";
 import useWorkoutsStore from "../../../../hooks/redux/useWorkoutsStore";
+import FloatingMenu from "../FloatingMenu";
 
 export default ExercisesList = ({ workoutId }) => {
   const { workoutDetails, workoutExercises, isLoading } = useSelector((state) => state.workouts);
@@ -24,25 +25,20 @@ export default ExercisesList = ({ workoutId }) => {
           {!workoutExercises[0] ? (
             <EmptyWorkout />
           ) : (
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <View style={styles.container}>
-                {workoutExercises.map((item, index) =>
-                  item?.Exercises ? (
-                    <ExerciseCardSuperset
-                      data={item}
-                      index={index}
-                      key={item.id}
-                    />
-                  ) : (
-                    <ExerciseCardSingle
-                      data={item}
-                      index={index}
-                      key={item.id}
-                    />
-                  ),
-                )}
-              </View>
-            </ScrollView>
+            <>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.container}>
+                  {workoutExercises.map((item, index) =>
+                    item?.Exercises ? (
+                      <ExerciseCardSuperset data={item} index={index} key={item.id} />
+                    ) : (
+                      <ExerciseCardSingle data={item} index={index} key={item.id} />
+                    ),
+                  )}
+                </View>
+              </ScrollView>
+              <FloatingMenu />
+            </>
           )}
         </>
       )}

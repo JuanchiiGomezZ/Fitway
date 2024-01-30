@@ -52,7 +52,7 @@ export default RowRepsWithoutWeight = ({
         placeholder={exerciseReps}
         placeholderTextColor={GRAY_LIGHT_COLOR} //"#626262"
         cursorColor={GRAY_LIGHT_COLOR}
-        clearTextOnFocus={true}
+        clearTextOnFocus
         onChangeText={(value) => handleChange(index, "reps", value)}
         defaultValue={done || reps ? reps : ""}
       />

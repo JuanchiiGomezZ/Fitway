@@ -37,7 +37,7 @@ export default WorkoutCardSuperset = ({ data, index }) => {
       />
       {data.Exercises.map((item, index) => (
         <View key={item.id}>
-          <WorkoutCardSingle data={item} superset={true} />
+          <WorkoutCardSingle data={item} superset />
           {index < data.Exercises.length - 1 && (
             <SeparatingLine color={ORANGE_DARK_COLOR} width={"95%"} />
           )}

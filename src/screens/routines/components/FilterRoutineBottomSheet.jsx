@@ -40,7 +40,7 @@ export default FilterRoutineBottomSheet = ({ toggleModal }) => {
         <View style={{ width: "32%" }}>
           <ButtonClassicLong
             text={t("Routines.FilterRoutineModal.clear-filters")}
-            short={true}
+            short
             color={ORANGE_COLOR}
             bgColor={WHITE_COLOR}
           />
@@ -49,7 +49,7 @@ export default FilterRoutineBottomSheet = ({ toggleModal }) => {
           <ButtonClassicLong
             text={t("Routines.FilterRoutineModal.apply")}
             action={toggleModal}
-            short={true}
+            short
           />
         </View>
       </View>

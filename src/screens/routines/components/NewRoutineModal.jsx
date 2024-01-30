@@ -31,7 +31,7 @@ export default NewRoutineModal = () => {
 
   const activeButton = name.trim() < 1;
   return (
-    <ModalBase short={true} title={t("Routines.NewRoutineModal.title")}>
+    <ModalBase short title={t("Routines.NewRoutineModal.title")}>
       <View style={{ gap: 20 }}>
         <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />
         <View>
@@ -61,7 +61,7 @@ export default NewRoutineModal = () => {
           text={"Continue"}
           disabled={activeButton}
           action={handleCreateRoutine}
-          short={true}
+          short
         />
       </View>
     </ModalBase>

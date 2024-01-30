@@ -9,7 +9,7 @@ import Header from "../../components/Header";
 import ExercisesList from "./components/card/ExercisesList";
 import CreateSupersetModal from "./components/CreateSupersetModal";
 import ScreenContainer from "../../components/ScreenContainer";
-import FloatingMenu from "./components/FloatingMenu";
+
 
 export default WorkoutScreen = ({ route }) => {
   const { workoutId } = route.params || {};
@@ -27,7 +27,6 @@ export default WorkoutScreen = ({ route }) => {
     <ScreenContainer>
       <Header title={name} />
       <ExercisesList workoutId={workoutId} />
-      <FloatingMenu />
       {createSuperset && (
         <CreateSupersetModal exerciseId={exerciseId.id} toggleModal={toggleCreateSuperset} />
       )}

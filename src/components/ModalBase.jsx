@@ -9,12 +9,12 @@ import BackdropModals from "./BackdropModals";
 /* HOOKS */
 import { useNavigation } from "@react-navigation/native";
 
-export default ModalBase = ({ title, children }) => {
+export default ModalBase = ({ title, children, ...props }) => {
   const { goBack } = useNavigation();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <BackdropModals toggleModal={goBack} />
-      <View style={[styles.modalContainer]}>
+      <View style={[styles.modalContainer, props.style]}>
         {title && (
           <View style={styles.head}>
             <Text style={styles.titleModal}>{title}</Text>

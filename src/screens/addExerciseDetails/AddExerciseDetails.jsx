@@ -49,7 +49,7 @@ export default AddExerciseDetails = ({ route }) => {
   };
 
   return (
-    <ScreenContainer paddingBottom={true}>
+    <ScreenContainer paddingBottom>
       {!exerciseData ? (
         <Loader />
       ) : (

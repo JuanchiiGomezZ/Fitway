@@ -5,7 +5,6 @@ import { StyleSheet, View, Keyboard } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
-
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
@@ -22,7 +21,6 @@ export default CreateExercise = ({ route }) => {
   const { navigate } = useNavigation();
   const { workoutExercises } = useSelector((state) => state.workouts);
   const { type, item, image } = route.params || {};
-
 
   const [exerciseImg, setExerciseImage] = useState(null);
   const [name, setName] = useState("");
@@ -82,7 +80,7 @@ export default CreateExercise = ({ route }) => {
   const activeButton = name.trim() == "" || !primaryMuscle || !element || !exerciseType;
 
   return (
-    <ScreenContainer paddingBottom={true}>
+    <ScreenContainer paddingBottom>
       <Header title={"Create Exercise"} />
 
       <View style={styles.contentContainer}>
@@ -115,7 +113,7 @@ export default CreateExercise = ({ route }) => {
               name={element?.name}
               img={element?.img}
               title="Element"
-              reverse={true}
+              reverse
               action={() => navigate("ElementsModal")}
               isValid={!element?.img && errors.element}
             />
@@ -124,7 +122,7 @@ export default CreateExercise = ({ route }) => {
               name={null}
               title={exerciseType?.name || "Exercise type"}
               isValid={!exerciseType?.name && errors.exerciseType}
-              action={() => navigate("ExerciseTypesModal")}
+              action={() => navigate("ExerciseTypesModal", { navigateTo: "CreateExercise" })}
             />
           </View>
         </View>

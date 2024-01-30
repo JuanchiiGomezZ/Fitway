@@ -47,7 +47,7 @@ export default ProfileScreen = () => {
             optionName={t("Profile.measurements")}
             iconType={"Ionicons"}
             iconName={"body"}
-            showArrow={true}
+            showArrow
             action={() => {
               console.log(user.id);
             }}
@@ -56,13 +56,13 @@ export default ProfileScreen = () => {
             optionName={t("Profile.my-exercises")}
             iconType={"FontAwesome5"}
             iconName={"clipboard-list"}
-            showArrow={true}
+            showArrow
           />
           <ProfileOption
             optionName={t("Profile.settings")}
             iconType={"FontAwesome"}
             iconName={"gear"}
-            showArrow={true}
+            showArrow
             action={() => navigation.navigate("Settings")}
           />
           <ProfileOption
