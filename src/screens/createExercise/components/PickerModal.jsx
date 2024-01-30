@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import React, { useState } from "react";
 import { ClassicInput } from "../../../components/Inputs";
-import Animated, { Layout, FadeInDown } from "react-native-reanimated";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import ModalBase from "../../../components/ModalBase";
 import SeparatingLine from "../../../components/SeparatingLine";
 import { useNavigation } from "@react-navigation/native";

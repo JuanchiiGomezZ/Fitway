@@ -4,7 +4,7 @@ import PagerView from "react-native-pager-view";
 import { ORANGE_COLOR, WHITE_COLOR } from "../styles/styles";
 import Header from "./Header";
 
-const PagerNavigator = ({ pages, goBack }) => {
+const PagerNavigator = ({ pages, goBack, ...props }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const ref = useRef();
 
@@ -14,7 +14,7 @@ const PagerNavigator = ({ pages, goBack }) => {
 
   return (
     <>
-      <View style={styles.paginatorContainer}>
+      <View style={[styles.paginatorContainer, props.style]}>
         {goBack && (
           <View style={{ position: "absolute", left: 0, alignSelf: "center" }}>
             <Header margin={false} />
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   inactive: {
     color: "gray",
-    borderBottomWidth: 0,
+    borderBottomColor: "transparent",
   },
   pager: {
     flex: 1,

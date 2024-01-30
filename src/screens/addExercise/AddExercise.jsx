@@ -8,13 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
-import SearchBar from "./components/SearchBar";
 import { ButtonRounded } from "../../components/CustomButtons";
-import AllExercises from "./components/AllExercises";
-import MyExercises from "./components/MyExercises";
+import AllExercises from "./AllExercises/AllExercises";
+import MyExercises from "./MyExercises/MyExercises";
 
 //STYLES
-import { BACKGROUND_COLOR, PADDING_HORIZONTAL, PADDING_TOP } from "../../styles/styles";
 import PagerNavigator from "../../components/PagerNavigator";
 
 export default AddExercise = () => {
@@ -30,16 +28,15 @@ export default AddExercise = () => {
     <ScreenContainer>
       <View>
         <View style={styles.row}>
-          <Header title={"Exercises"} />
+          <Header title={"Exercises"} margin={false} />
           <ButtonRounded
             text={"Create Exercise"}
             icon={"plus"}
             action={() => navigate("CreateExercise")}
           />
         </View>
-        <SearchBar />
       </View>
-      <PagerNavigator pages={pages} />
+      <PagerNavigator pages={pages} style={{ marginTop: 20, marginBottom: 20 }} />
     </ScreenContainer>
   );
 };

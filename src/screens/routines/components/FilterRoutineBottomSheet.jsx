@@ -7,14 +7,14 @@ import { ButtonClassicLong } from "../../../components/CustomButtons";
 import BottomSheetModal from "../../../components/BottomSheetModal";
 import Slider from "@react-native-community/slider";
 
-export default FilterRoutineModal = ({ toggleModal }) => {
+export default FilterRoutineBottomSheet = ({ toggleModal }) => {
   const { t } = useTranslation();
   const [workouts, setWorkouts] = useState(0);
   const [creator, setCreator] = useState(null);
-  const creators = ["FITWAY", "Community"];
+  const creators = ["LIFTWAY", "Community"];
 
   return (
-    <BottomSheetModal toggleModal={toggleModal} title={t("Routines.FilterRoutineModal.title")}>
+    <BottomSheetModal title={t("Routines.FilterRoutineModal.title")}>
       <View>
         <Text style={styles.optionName}>Workouts: {workouts} </Text>
         <Slider
@@ -37,19 +37,19 @@ export default FilterRoutineModal = ({ toggleModal }) => {
       />
 
       <View style={styles.buttonsContainer}>
-        <View style={{ width: "65%" }}>
-          <ButtonClassicLong
-            text={t("Routines.FilterRoutineModal.apply")}
-            action={toggleModal}
-            short={true}
-          />
-        </View>
         <View style={{ width: "32%" }}>
           <ButtonClassicLong
             text={t("Routines.FilterRoutineModal.clear-filters")}
             short={true}
             color={ORANGE_COLOR}
             bgColor={WHITE_COLOR}
+          />
+        </View>
+        <View style={{ width: "65%" }}>
+          <ButtonClassicLong
+            text={t("Routines.FilterRoutineModal.apply")}
+            action={toggleModal}
+            short={true}
           />
         </View>
       </View>

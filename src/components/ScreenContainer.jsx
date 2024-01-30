@@ -7,9 +7,11 @@ import {
   WHITE_COLOR,
 } from "../styles/styles";
 
-const ScreenContainer = ({ children, paddingBottom }) => {
+const ScreenContainer = ({ children, paddingBottom, ...props }) => {
   return (
-    <View style={[styles.container, paddingBottom && { paddingBottom: PADDING_BOTTOM }]}>
+    <View
+      style={[styles.container, paddingBottom && { paddingBottom: PADDING_BOTTOM }, props.style]}
+    >
       {children}
     </View>
   );

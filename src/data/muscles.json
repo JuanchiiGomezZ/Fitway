@@ -2,102 +2,122 @@
   {
     "name": "Other",
     "img": "https://i.postimg.cc/zf8bBgfC/Other.png",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Abdominals",
     "img": "https://i.postimg.cc/jddgYdhd/Abdominales.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Abductors",
     "img": "https://i.postimg.cc/gkzgvkXb/Aductor.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Adductors",
     "img": "https://i.postimg.cc/ZYFfByqL/Abductors.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Biceps",
     "img": "https://i.postimg.cc/YCvdjnV5/Biceps.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Calves",
     "img": "https://i.postimg.cc/761N2pqL/Calves.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Cardio",
     "img": "https://i.postimg.cc/4yX8dJkP/Cardio.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Chest",
     "img": "https://i.postimg.cc/JnLx61n8/Chest.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Deltoids",
     "img": "https://i.postimg.cc/wxkfrsLG/Deltoid.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Forearms",
     "img": "https://i.postimg.cc/q73wkNYy/Forearms.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Full body",
     "img": "https://i.postimg.cc/gjD4f177/FullBody.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Glutes",
     "img": "https://i.postimg.cc/GhXqzwG8/Glutes.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Hamstrings",
     "img": "https://i.postimg.cc/TwV7fKSh/Hamstrings.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Lats muscle",
     "img": "https://i.postimg.cc/dVXnP2WJ/Lats-Muscle.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Obliques",
     "img": "https://i.postimg.cc/prks5gPH/Obliques.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
 
   {
     "name": "Quadriceps",
     "img": "https://i.postimg.cc/85gHs1Q3/Quadriceps.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Shoulders",
     "img": "https://i.postimg.cc/rw7Q4G2K/Shoulders.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Trapezius",
     "img": "https://i.postimg.cc/Hkj3hZ9S/Trapezius.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Triceps",
     "img": "https://i.postimg.cc/k58wvV7w/Triceps.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   },
   {
     "name": "Upper back",
     "img": "https://i.postimg.cc/kX1jJ3jN/Upper-Back.jpg",
-    "type": "muscle"
+    "type": "muscle",
+    "checked": false
   }
 ]

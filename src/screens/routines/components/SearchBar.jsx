@@ -5,7 +5,7 @@ import { SearchInput } from "../../../components/Inputs";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
-export default SearchBar = ({ toggleFilterModal, qrQuery }) => {
+export default SearchBar = ({  qrQuery }) => {
   const navigation = useNavigation();
   const [querySearch, setQerySearch] = useState("");
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ export default SearchBar = ({ toggleFilterModal, qrQuery }) => {
         size={26}
         color="white"
         style={{ transform: [{ rotate: "90deg" }] }}
-        onPress={toggleFilterModal}
+        onPress={()=>navigation.navigate("FilterRoutineBottomSheet")}
       />
     </View>
   );

@@ -47,7 +47,8 @@ import PickerModal from "../screens/createExercise/components/PickerModal";
 import muscles from "../data/muscles.json";
 import elements from "../data/elements.json";
 import BottomSheetRestTimerConfig from "../screens/training/components/BottomSheetRestTimerConfig";
-
+import FilterExerciseBottomSheet from "../screens/addExercise/AllExercises/components/filterExercise/FilterExerciseBottomSheet";
+import FilterRoutineBottomSheet from "../screens/routines/components/FilterRoutineBottomSheet";
 
 const Stack = createNativeStackNavigator();
 export default Navigation = () => {
@@ -271,7 +272,6 @@ export default Navigation = () => {
                 presentation: "transparentModal",
                 animation: "fade",
               }}
-              initialParams={{ pepe: "asd" }}
             />
             <Stack.Screen
               name="BottomSheetExercise"
@@ -300,6 +300,21 @@ export default Navigation = () => {
             <Stack.Screen
               name="BottomSheetRestTimerConfig"
               component={BottomSheetRestTimerConfig}
+              options={{
+                presentation: "transparentModal",
+                animation: "fade_from_bottom",
+              }}
+            />
+            <Stack.Screen
+              name="FilterExerciseBottomSheet"
+              component={FilterExerciseBottomSheet}
+              options={{
+                animation: "slide_from_bottom",
+              }}
+            />
+            <Stack.Screen
+              name="FilterRoutineBottomSheet"
+              component={FilterRoutineBottomSheet}
               options={{
                 presentation: "transparentModal",
                 animation: "fade_from_bottom",

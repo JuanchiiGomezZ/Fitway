@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingLeft: 15,
     paddingRight: 5,
-    width: "89%",
+    width: "91%",
     paddingVertical: 5,
   },
   iconSearch: {

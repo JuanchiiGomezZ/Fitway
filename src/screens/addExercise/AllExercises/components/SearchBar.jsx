@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { MaterialIcons, Entypo } from "@expo/vector-icons";
-import { SearchInput } from "../../../components/Inputs";
+import { Entypo } from "@expo/vector-icons";
+import { SearchInput } from "../../../../components/Inputs";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
 export default SearchBar = () => {
-  const navigation = useNavigation();
   const [querySearch, setQerySearch] = useState("");
   const { t } = useTranslation();
+  const { navigate } = useNavigation();
 
   return (
     <View style={styles.searchBarContainer}>
@@ -22,6 +22,9 @@ export default SearchBar = () => {
         size={26}
         color="white"
         style={{ transform: [{ rotate: "90deg" }] }}
+        onPress={() => {
+          navigate("FilterExerciseBottomSheet");
+        }}
       />
     </View>
   );
@@ -33,6 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     gap: 10,
-    marginBottom: 20,
+    marginBottom: 50,
   },
 });

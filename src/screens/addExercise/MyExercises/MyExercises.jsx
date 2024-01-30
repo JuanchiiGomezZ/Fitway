@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
 //HOOKS
-import AddExerciseCard from "./AddExerciseCard";
+import AddExerciseCard from "../components/AddExerciseCard";
 import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 
 //COMPONENTS

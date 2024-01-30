@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
-import Animated, {
-  Easing,
-  useSharedValue,
-  withSpring,
-  withTiming,
-  useAnimatedStyle,
-  interpolate,
-  Extrapolate,
-} from "react-native-reanimated";
+import Animated, { useSharedValue, withSpring, useAnimatedStyle } from "react-native-reanimated";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { GRAY_COLOR } from "../../../../styles/styles";
 import useToggle from "../../../../hooks/useToggle";
@@ -53,11 +45,7 @@ export default BottomBar = () => {
           onPress={handlePress}
         />
       </Animated.View>
-      {bottomBar ? (
-        <ToolBar />
-      ) : (
-        <Timer useTimer={timer}  />
-      )}
+      {bottomBar ? <ToolBar /> : <Timer useTimer={timer} />}
     </View>
   );
 };

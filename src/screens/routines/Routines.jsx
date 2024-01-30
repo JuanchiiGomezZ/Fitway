@@ -11,8 +11,6 @@ import Header from "../../components/Header";
 import ScreenContainer from "../../components/ScreenContainer";
 import SearchBar from "./components/SearchBar";
 import RoutineCard from "./components/RoutineCard";
-import NewRoutineModal from "./components/NewRoutineModal";
-import FilterRoutineModal from "./components/FilterRoutineModal";
 import Separator from "../../components/Separator";
 import { ButtonRounded } from "../../components/CustomButtons";
 
@@ -20,16 +18,8 @@ export default AllRoutinesScreen = ({ route }) => {
   const { t } = useTranslation();
   const { qrQuery } = route.params || "";
   const { navigate } = useNavigation();
-  const [newRoutineModal, setNewRoutineModal] = useState(false);
-  const [filterModal, setFilterModal] = useState(false);
 
-  const toggleNewRoutineModal = () => {
-    setNewRoutineModal(!newRoutineModal);
-  };
 
-  const toggleFilter = () => {
-    setFilterModal(!filterModal);
-  };
 
   const handleOpenNewRoutineModal = () => {
     navigate("NewRoutineModal");
@@ -49,7 +39,7 @@ export default AllRoutinesScreen = ({ route }) => {
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <SearchBar toggleFilterModal={toggleFilter} qrQuery={qrQuery} />
+        <SearchBar  qrQuery={qrQuery} />
         <Separator title={"FITWAY"} />
         <View style={styles.cardsContainer}>
           {routinesTest.map((item, index) => (
@@ -57,9 +47,6 @@ export default AllRoutinesScreen = ({ route }) => {
           ))}
         </View>
       </ScrollView>
-
-      {newRoutineModal && <NewRoutineModal toggleNewRoutineModal={toggleNewRoutineModal} />}
-      {filterModal && <FilterRoutineModal toggleModal={toggleFilter} />}
     </ScreenContainer>
   );
 };
