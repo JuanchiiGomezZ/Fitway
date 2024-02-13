@@ -15,14 +15,14 @@ export default ExercisesList = ({ workoutId }) => {
   useEffect(() => {
     workoutId != workoutDetails.workoutId && getWorkoutData(workoutId || workoutDetails.workoutId);
   }, []);
-
+  // console.log(isLoading);
   return (
     <>
       {isLoading || !workoutExercises ? (
         <Loader />
       ) : (
         <>
-          {!workoutExercises[0] ? (
+          {!workoutExercises ? (
             <EmptyWorkout />
           ) : (
             <>

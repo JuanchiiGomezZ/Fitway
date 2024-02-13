@@ -7,14 +7,14 @@ import ContentExerciseSuperset from "./ContentExerciseSuperset";
 
 export default ContentExercise = () => {
   const { t } = useTranslation();
-  const { activeExercise } = useSelector((state) => state.training);
+  const { activeTrainingExercise, countdown } = useSelector((state) => state.training);
 
   return (
-    <View style={{ marginTop: 30 }}>
-      {activeExercise.Exercises ? (
-        <ContentExerciseSuperset data={activeExercise} />
+    <View style={[{ marginTop: 30 }, countdown.state && { marginBottom: 80 }]}>
+      {activeTrainingExercise.Exercises ? (
+        <ContentExerciseSuperset data={activeTrainingExercise} />
       ) : (
-        <ContentExerciseSingle data={activeExercise} />
+        <ContentExerciseSingle data={activeTrainingExercise} />
       )}
     </View>
   );

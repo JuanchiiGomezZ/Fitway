@@ -16,7 +16,7 @@ import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
 
 export default BottomSheetRestTimerConfig = ({ route }) => {
-  const { activeExercise } = useSelector((state) => state.training);
+  const { activeTrainingExercise } = useSelector((state) => state.training);
   const { actualRestTime, index } = route.params;
   const dispatch = useDispatch();
   const [newRestTime, setNewRestTime] = useState(actualRestTime);
@@ -31,7 +31,7 @@ export default BottomSheetRestTimerConfig = ({ route }) => {
   const handleSaveNewTime = () => {
     dispatch(
       setRestTime({
-        exerciseId: activeExercise.id,
+        exerciseId: activeTrainingExercise.id,
         newRestTime,
         index: index,
       }),

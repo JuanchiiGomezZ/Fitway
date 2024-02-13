@@ -21,8 +21,8 @@ export default ContentExerciseSingle = ({ data, index }) => {
     Multimedia,
     element,
     exerciseType,
-    WorkoutExercises,
-    SupersetExercises,
+    WorkoutExercise,
+    SupersetExercise,
     ExerciseLogs,
   } = data || {};
   const { navigate } = useNavigation();
@@ -36,10 +36,10 @@ export default ContentExerciseSingle = ({ data, index }) => {
       "BottomSheetRestTimerConfig",
       index >= 0
         ? {
-            actualRestTime: SupersetExercises?.[0]?.restTime,
+            actualRestTime: SupersetExercise?.restTime,
             index: index,
           }
-        : { actualRestTime: WorkoutExercises?.[0]?.restTime },
+        : { actualRestTime: WorkoutExercise?.restTime },
     );
   };
 
@@ -48,8 +48,8 @@ export default ContentExerciseSingle = ({ data, index }) => {
       case "ExerciseWithWeight":
         return (
           <TableRepsWithWeight
-            reps={WorkoutExercises?.[0]?.reps || SupersetExercises?.[0]?.reps}
-            rest={WorkoutExercises?.[0]?.restTime || SupersetExercises?.[0]?.restTime}
+            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
+            rest={WorkoutExercise?.restTime || SupersetExercise?.restTime}
             id={data.id}
             exerciseLogs={ExerciseLogs[0]}
           />
@@ -57,8 +57,8 @@ export default ContentExerciseSingle = ({ data, index }) => {
       case "ExerciseWithoutWeight":
         return (
           <TableRepsWithoutWeight
-            reps={WorkoutExercises?.[0]?.reps || SupersetExercises?.[0]?.reps}
-            rest={WorkoutExercises?.[0]?.restTime || SupersetExercises?.[0]?.restTime}
+            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
+            rest={WorkoutExercise?.restTime || SupersetExercise?.restTime}
             id={data.id}
             exerciseLogs={ExerciseLogs[0]}
           />
@@ -66,7 +66,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
       case "ExerciseOfDuration":
         return (
           <TableDuration
-            reps={WorkoutExercises?.[0]?.reps || SupersetExercises?.[0]?.reps}
+            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
             id={data.id}
           />
         );
@@ -107,7 +107,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
             <Text style={styles.resTimerText}>
               Rest Timer:
               {convertToMinutes(
-                WorkoutExercises?.[0]?.restTime || SupersetExercises?.[0]?.restTime,
+                WorkoutExercise?.restTime || SupersetExercise?.restTime,
               )}
             </Text>
           </TouchableOpacity>

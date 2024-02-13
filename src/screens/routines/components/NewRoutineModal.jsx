@@ -33,7 +33,13 @@ export default NewRoutineModal = () => {
   return (
     <ModalBase short title={t("Routines.NewRoutineModal.title")}>
       <View style={{ gap: 20 }}>
-        <ClassicInput setInputChange={setName} inputChange={name} placeholder={"Routine name"} />
+        <ClassicInput
+          setInputChange={setName}
+          inputChange={name}
+          placeholder={"Routine name"}
+          autoFocus
+          autoCapitalize={"sentences"}
+        />
         <View>
           <Text style={styles.subtitle}>{t("Routines.NewRoutineModal.choose-visibility")}:</Text>
           <View style={styles.tagsContainer}>

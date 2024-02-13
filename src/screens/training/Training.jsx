@@ -4,6 +4,7 @@ import { View, ScrollView } from "react-native";
 //HOOKS
 import { useDispatch, useSelector } from "react-redux";
 import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
+import useTrainingStore from "../../hooks/redux/useTrainingStore";
 import { toggleExerciseGif } from "../../store/slices/trainingSlice";
 import { storage } from "../../helpers/storage";
 
@@ -15,17 +16,17 @@ import ProgressBar from "./components/ProgressBar";
 import ContentExercise from "./components/contentExercise/ContentExercise";
 import BottomBar from "./components/bottomBars/BottomBar";
 import ExerciseGIF from "../../components/ExerciseGIF";
-import BottomSheetRestTimerConfig from "./components/BottomSheetRestTimerConfig";
+
 
 export default TrainingMode = ({ route }) => {
   const dispatch = useDispatch();
-  const { getWorkoutTrainingData } = useWorkoutsStore();
+  const { getTrainingData } = useTrainingStore();
   const {
     isLoading,
-    activeExercise,
-    activeWorkoutDetails,
+    activeTrainingExercise,
+    activeTrainingDetails,
     numActiveExercise,
-    activeWorkout,
+    trainingExercises,
     exerciseGif,
     workoutLog,
     countdown,
@@ -33,8 +34,8 @@ export default TrainingMode = ({ route }) => {
   const { id } = route.params;
 
   useEffect(() => {
-    if (activeWorkoutDetails?.workoutId != id) {
-      getWorkoutTrainingData(id);
+    if (activeTrainingDetails?.workoutId != id) {
+      getTrainingData(id);
     }
     if (!storage.getString("workout_id_training")) storage.set("workout_id_training", id);
     if (!storage.getString("workout_startDate_training"))
@@ -45,17 +46,19 @@ export default TrainingMode = ({ route }) => {
     if (workoutLog) storage.set("workoutLog", JSON.stringify(workoutLog));
   }, [workoutLog]);
 
+
+  
   return (
     <ScreenContainer>
-      {isLoading || !activeExercise ? (
+      {isLoading || !activeTrainingExercise ? (
         <Loader />
       ) : (
         <>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ paddingBottom: 80 }}>
               <ProgressBar
-                activeExercise={numActiveExercise}
-                totalExercises={activeWorkout.length}
+                activeTrainingExercise={numActiveExercise}
+                totalExercises={trainingExercises.length}
               />
               {workoutLog && <ContentExercise />}
             </View>

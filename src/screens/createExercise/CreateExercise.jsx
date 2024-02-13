@@ -55,7 +55,7 @@ export default CreateExercise = ({ route }) => {
       name,
       description,
       exerciseImg,
-      primaryMuscle: primaryMuscle?.name,
+      muscles: [primaryMuscle?.name],
       muscleImg: primaryMuscle?.img,
       element: element?.name,
       elementImg: element?.img,

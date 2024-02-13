@@ -6,7 +6,6 @@ import {
 } from "../../store/slices/exercisesSlice";
 import { saveWorkoutExercises } from "../../store/slices/workoutsSlice";
 
-
 import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -36,15 +35,17 @@ export default useExercisesStore = () => {
         `/exercise/newExercise/${user.id}/${workoutDetails.workoutId}`,
         exerciseData,
       );
+      console.log(data)
       dispatch(saveWorkoutExercises([...workoutExercises, data]));
     } catch (error) {
-      dispatch(onError(error.response.data));
+      dispatch(onError(error.response.data || error.message));
     }
   };
 
   const createSuperset = async (body) => {
     try {
       const { data } = await axios.post(`/superset/newSuperset/${workoutDetails.workoutId}`, body);
+      console.log(data);
       // const updateExercises = workoutExercises.filter(
       //   (element) => !exercisesIds.includes(element.id),
       // );

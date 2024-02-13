@@ -5,6 +5,7 @@ import { ScrollView, Text, View } from "react-native";
 import AddExerciseCard from "../components/AddExerciseCard";
 import { WHITE_COLOR } from "../../../styles/styles";
 import Loader from "../../../components/Loader";
+import FilterBar from "./components/FilterBar";
 import SearchBar from "./components/SearchBar";
 
 //COMPONENTS
@@ -22,6 +23,7 @@ export default AllExercises = () => {
       ) : (
         <ScrollView>
           <SearchBar />
+          <FilterBar />
           {userExercises?.length > 0 ? (
             <View style={{ gap: 7 }}>
               {userExercises.map((item, index) => (

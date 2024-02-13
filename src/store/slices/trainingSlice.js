@@ -7,9 +7,9 @@ export const trainingSlice = createSlice({
   name: "training",
   initialState: {
     numActiveExercise: 0,
-    activeWorkout: [],
-    activeExercise: undefined,
-    activeWorkoutDetails: undefined,
+    trainingExercises: [],
+    activeTrainingExercise: undefined,
+    activeTrainingDetails: undefined,
     workoutLog: null,
     exerciseGif: null,
     countdown: { state: false, restTime: null },
@@ -20,15 +20,16 @@ export const trainingSlice = createSlice({
     onLoading: (state, { payload }) => {
       (state.isLoading = true), (state.error = null);
     },
-    saveActiveWorkoutData: (state, { payload }) => {
+    saveActiveTrainingData: (state, { payload }) => {
       const { details, Exercises } = payload;
 
       const sortedExercises = Exercises;
       const storedWorkoutId = storage.getString("workout_id_training");
       const storedWorkoutLog = storage.getString("workoutLog");
-      (state.activeWorkoutDetails = details),
-        (state.activeWorkout = sortedExercises),
-        (state.activeExercise = sortedExercises[0]);
+
+      (state.activeTrainingDetails = details),
+        (state.trainingExercises = sortedExercises),
+        (state.activeTrainingExercise = sortedExercises[0]);
       if (storedWorkoutId == details.workoutId && storedWorkoutLog) {
         state.workoutLog = JSON.parse(storedWorkoutLog);
       } else {
@@ -38,13 +39,15 @@ export const trainingSlice = createSlice({
       state.isLoading = false;
     },
     handleChangeExercise: (state, { payload }) => {
-      (state.activeExercise = state.activeWorkout[payload]), (state.numActiveExercise = payload);
+      (state.activeTrainingExercise = state.trainingExercises[payload]),
+        (state.numActiveExercise = payload);
     },
     setActiveExercise: (state, { payload }) => {
-      (state.activeExercise = state.activeWorkout[payload]), (state.numActiveExercise = payload);
+      (state.activeTrainingExercise = state.trainingExercises[payload]),
+        (state.numActiveExercise = payload);
     },
     saveExercises: (state, { payload }) => {
-      state.activeWorkout = payload;
+      state.trainingExercises = payload;
     },
     handleLogChange: (state, { payload }) => {
       const { id, index, field, value } = payload;
@@ -61,25 +64,27 @@ export const trainingSlice = createSlice({
         storage.delete("workoutLog"),
         (state.workoutLog = null),
         (state.numActiveExercise = 0),
-        (state.activeExercise = undefined),
-        (state.activeWorkoutDetails = undefined);
+        (state.activeTrainingExercise = undefined),
+        (state.activeTrainingDetails = undefined);
     },
     setRestTime: (state, { payload }) => {
       const { exerciseId, newRestTime, index } = payload;
 
-      const exerciseToUpdate = state.activeWorkout.find((exercise) => exercise.id === exerciseId);
+      const exerciseToUpdate = state.trainingExercises.find(
+        (exercise) => exercise.id === exerciseId,
+      );
       if (exerciseToUpdate) {
         if (exerciseToUpdate?.Exercises) {
-          exerciseToUpdate.Exercises[index || 0].SupersetExercises[0].restTime = newRestTime;
+          exerciseToUpdate.Exercises[index || 0].SupersetExercise.restTime = newRestTime;
         } else {
-          exerciseToUpdate.WorkoutExercises[0].restTime = newRestTime;
+          exerciseToUpdate.WorkoutExercise.restTime = newRestTime;
         }
       }
 
-      if (state.activeExercise.Exercises) {
-        state.activeExercise.Exercises[index].SupersetExercises[0].restTime = newRestTime;
+      if (state.activeTrainingExercise.Exercises) {
+        state.activeTrainingExercise.Exercises[index].SupersetExercise.restTime = newRestTime;
       } else {
-        state.activeExercise.WorkoutExercises[0].restTime = newRestTime;
+        state.activeTrainingExercise.WorkoutExercise.restTime = newRestTime;
       }
     },
     setCountdown: (state, { payload }) => {
@@ -89,14 +94,17 @@ export const trainingSlice = createSlice({
       state.exerciseGif ? (state.exerciseGif = null) : (state.exerciseGif = payload);
     },
     onError: (state, { payload }) => {
-      console.log(payload), (state.isLoading = false), (state.error = payload || null);
+      console.log(payload), (state.isLoading = false), (state.error = payload);
+    },
+    onSuccessfulRequest: (state, { payload }) => {
+      console.log("pepe"), (state.isLoading = false), (state.error = null);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  saveActiveWorkoutData,
+  saveActiveTrainingData,
   onLoading,
   setActiveExercise,
   handleChangeExercise,
@@ -106,4 +114,6 @@ export const {
   toggleExerciseGif,
   setCountdown,
   setRestTime,
+  onSuccessfulRequest,
+  onError,
 } = trainingSlice.actions;

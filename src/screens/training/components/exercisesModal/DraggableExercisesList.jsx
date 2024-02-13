@@ -18,8 +18,8 @@ import { View, StyleSheet } from "react-native";
 export default DraggableExercisesList = () => {
   const dispatch = useDispatch();
   const ref = useRef(null);
-  const { activeWorkout, numActiveExercise } = useSelector((state) => state.training);
-  const [data, setData] = useState(activeWorkout);
+  const { trainingExercises, numActiveExercise } = useSelector((state) => state.training);
+  const [data, setData] = useState(trainingExercises);
   const { goBack } = useNavigation();
 
   const saveOrder = () => {
@@ -27,7 +27,7 @@ export default DraggableExercisesList = () => {
     dispatch(handleChangeExercise(numActiveExercise));
     goBack();
   };
-  // console.log(activeWorkout[0]);
+  // console.log(trainingExercises[0]);
   const renderItem = ({ item, drag, getIndex }) => {
     const { isActive } = useOnCellActiveAnimation();
 
@@ -58,7 +58,7 @@ export default DraggableExercisesList = () => {
             data={data}
             keyExtractor={(item) => {
               // item?.Order?.position;
-              item.id;
+              return item.id;
             }}
             ref={ref}
             onDragEnd={({ data }) => setData(data)}
@@ -73,8 +73,8 @@ export default DraggableExercisesList = () => {
 
 const styles = StyleSheet.create({
   exercisesContainer: {
-    height:380,
-    marginTop:10,
-    marginBottom:26
+    height: 380,
+    marginTop: 10,
+    marginBottom: 26,
   },
 });

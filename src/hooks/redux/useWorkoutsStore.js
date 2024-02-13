@@ -1,9 +1,7 @@
 import { onChecking, onError, saveWorkoutData } from "../../store/slices/workoutsSlice";
 import axios from "../../api/axios";
 import { useDispatch, useSelector } from "react-redux";
-
 import { saveActiveRoutineWorkouts } from "../../store/slices/routinesSlice";
-import { saveActiveWorkoutData, onLoading } from "../../store/slices/trainingSlice";
 
 export default useWorkoutsStore = () => {
   const dispatch = useDispatch();
@@ -49,12 +47,9 @@ export default useWorkoutsStore = () => {
         routineId: data.RoutineId,
         workoutId: data.id,
         name: data.name,
-        order: data.order,
       };
       const Exercises =
-        data.SuperSets.length != 0
-          ? { Exercises: [...data.Exercises, ...data.SuperSets] }
-          : { Exercises: [...data.Exercises] };
+        data.SuperSets.length !== 0 ? [...data.Exercises, ...data.SuperSets] : data.Exercises;
 
       dispatch(saveWorkoutData({ details, Exercises }));
     } catch (error) {
@@ -62,24 +57,5 @@ export default useWorkoutsStore = () => {
     }
   };
 
-  const getWorkoutTrainingData = async (workoutId) => {
-    dispatch(onLoading());
-    try {
-      const { data } = await axios.get(`/workout/show-by-id/${workoutId}`);
-      const details = {
-        routineId: data.RoutineId,
-        workoutId: data.id,
-        name: data.name,
-      };
-
-      const Exercises =
-        data.SuperSets.length !== 0 ? [...data.Exercises, ...data.SuperSets] : data.Exercises;
-
-      dispatch(saveActiveWorkoutData({ details, Exercises }));
-    } catch (error) {
-      dispatch(onError(error.response.data));
-    }
-  };
-
-  return { newWorkout, deleteWorkout, getWorkoutsActive, getWorkoutData, getWorkoutTrainingData };
+  return { newWorkout, deleteWorkout, getWorkoutsActive, getWorkoutData };
 };

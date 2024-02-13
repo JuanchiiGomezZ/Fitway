@@ -34,11 +34,10 @@ export default useRoutinesStore = () => {
   const createNewRoutine = async (newRoutineData) => {
     try {
       const { data } = await axios.post(`/routine/newRoutine/${user.id}`, newRoutineData);
-      console.log(data);
       dispatch(
         saveRoutines({
           ...userRoutines,
-          disabledRoutines: [...disabledRoutines, { ...data, workoutCount: 0 }],
+          disabledRoutines: [...disabledRoutines, { ...data, WorkoutCounts: 0 }],
         }),
       );
     } catch (error) {

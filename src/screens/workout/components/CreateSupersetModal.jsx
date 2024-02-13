@@ -8,6 +8,7 @@ import useExercisesStore from "../../../hooks/redux/useExercisesStore";
 import { ButtonClassicLong } from "../../../components/CustomButtons";
 import SeparatingLine from "../../../components/SeparatingLine";
 import { useNavigation } from "@react-navigation/native";
+import maxOrder from "../../../helpers/maxOrder";
 
 export default CreateSupersetModal = ({ route }) => {
   const { createSuperset } = useExercisesStore();
@@ -33,6 +34,7 @@ export default CreateSupersetModal = ({ route }) => {
     if (selectedExercises.size > 1) {
       await createSuperset({
         exercisesIds: [...selectedExercises],
+        position: maxOrder(workoutExercises),
       });
       goBack();
     }

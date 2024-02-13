@@ -11,7 +11,7 @@ export default WorkoutCardSingle = ({ data, index, toggleGIF, superset }) => {
   const {
     name,
     element,
-    primaryMuscle,
+    muscles,
     id,
     Multimedia,
     exerciseType,
@@ -47,7 +47,7 @@ export default WorkoutCardSingle = ({ data, index, toggleGIF, superset }) => {
           <View style={styles.infoContainer}>
             <View>
               <Text style={[styles.text]}>{element}</Text>
-              <Text style={[styles.text, styles.muscle]}>{primaryMuscle}</Text>
+              <Text style={[styles.text, styles.muscle]}>{muscles[0]}</Text>
             </View>
             {reps && (
               <View style={{ alignItems: "flex-end" }}>

@@ -26,7 +26,7 @@ export default MyRoutinesScreen = () => {
   const { activeRoutine, disabledRoutines } = userRoutines;
 
   const emptyRoutines = disabledRoutines.length < 1 && !activeRoutine;
-
+  console.log(activeRoutine);
   return (
     <ScreenContainer>
       <Header title={t("MyRoutines.title")} />

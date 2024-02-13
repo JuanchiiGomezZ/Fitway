@@ -18,7 +18,7 @@ import { useNavigation } from "@react-navigation/native";
 export default Details = ({ exerciseData }) => {
   const { navigate } = useNavigation();
 
-  const { name, element, primaryMuscle, Multimedia, exerciseType, description, WorkoutExercises } =
+  const { name, element, primaryMuscle, Multimedia, exerciseType, description, WorkoutExercise } =
     exerciseData || {};
   return (
     <>
@@ -47,10 +47,10 @@ export default Details = ({ exerciseData }) => {
             <ElementCard
               icon="timer-outline"
               title="Rest time"
-              name={convertToMinutes(WorkoutExercises[0].restTime)}
+              name={convertToMinutes(WorkoutExercise.restTime)}
             />
           </View>
-          <TableExercise reps={WorkoutExercises[0].reps} />
+          <TableExercise reps={WorkoutExercise.reps} />
         </View>
       </ScrollView>
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { ClassicInput, Te } from "../../../components/Inputs";
 import useWorkoutsStore from "../../../hooks/redux/useWorkoutsStore";
@@ -30,6 +30,8 @@ export default NewRoutineModal = () => {
           setInputChange={setName}
           inputChange={name}
           placeholder={t("Home.workout-name")}
+          autoFocus
+          autoCapitalize={"sentences"}
         />
 
         <ButtonClassicLong
@@ -42,16 +44,3 @@ export default NewRoutineModal = () => {
     </ModalBase>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  title: {
-    color: "white",
-    fontSize: 22,
-    fontWeight: "500",
-  },
-});

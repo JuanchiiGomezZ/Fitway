@@ -1,19 +1,23 @@
 import React from "react";
-import { StyleSheet,  View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, GRAY_COLOR, RED_COLOR } from "../../../../styles/styles";
 import { ButtonCircular, ButtonRounded } from "../../../../components/CustomButtons";
 import { useDispatch, useSelector } from "react-redux";
-import { handleChangeExercise } from "../../../../store/slices/trainingSlice";
+import { cleanWorkoutLog, handleChangeExercise } from "../../../../store/slices/trainingSlice";
 import { useNavigation } from "@react-navigation/native";
+import useTrainingStore from "../../../../hooks/redux/useTrainingStore";
 
 export default ToolBar = () => {
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
-  const { numActiveExercise, activeWorkout, workoutLog } = useSelector((state) => state.training);
+  const { numActiveExercise, trainingExercises, workoutLog } = useSelector(
+    (state) => state.training,
+  );
+  const { newTrainingLog } = useTrainingStore();
 
   const handleNextExercise = () => {
-    if (activeWorkout.length > numActiveExercise + 1) {
+    if (trainingExercises.length > numActiveExercise + 1) {
       dispatch(handleChangeExercise(numActiveExercise + 1));
     }
   };
@@ -33,15 +37,21 @@ export default ToolBar = () => {
       goBack();
       dispatch(cleanWorkoutLog());
     };
-    navigate("ConfirmationAlert", {
-      title: "Are you sure?",
-      text: "You have some empty values. This action will end your training.",
-      thirdButton: true,
-      thirdColor: RED_COLOR,
-      thirdTitle: "Discard training",
-      confirmAction: handleConfirmFinishTraining,
-      thirdAction: backAction,
+    newTrainingLog().then((res) => {
+
+      if (res) {
+        handleConfirmFinishTraining();
+      }
     });
+    // navigate("ConfirmationAlert", {
+    //   title: "Are you sure?",
+    //   text: "You have some empty values. This action will end your training.",
+    //   thirdButton: true,
+    //   thirdColor: RED_COLOR,
+    //   thirdTitle: "Discard training",
+    //   confirmAction: handleConfirmFinishTraining,
+    //   thirdAction: backAction,
+    // });
   };
 
   return (
@@ -69,7 +79,7 @@ export default ToolBar = () => {
         icon="angle-double-right"
         action={handleNextExercise}
         size={"m"}
-        disabled={activeWorkout.length == numActiveExercise + 1 && GRAY_COLOR}
+        disabled={trainingExercises.length == numActiveExercise + 1 && GRAY_COLOR}
       />
     </Animated.View>
   );

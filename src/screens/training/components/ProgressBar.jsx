@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from "react-native";
 import Animated, { Easing, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 
-const ProgressBar = ({ activeExercise, totalExercises }) => {
-  const progress = (activeExercise * 100) / totalExercises;
+const ProgressBar = ({ activeTrainingExercise, totalExercises }) => {
+  const progress = (activeTrainingExercise * 100) / totalExercises;
 
 
   const animatedWidth = useAnimatedStyle(() => {
@@ -21,7 +21,7 @@ const ProgressBar = ({ activeExercise, totalExercises }) => {
       <View
         style={[styles.progressCircle]}
       >
-        <Text style={styles.progressNumber}>{activeExercise}</Text>
+        <Text style={styles.progressNumber}>{activeTrainingExercise}</Text>
       </View>
       <View style={[styles.progressCircle, { position: "absolute", right: 0 }]}>
         <Text style={styles.progressNumber}>{totalExercises}</Text>

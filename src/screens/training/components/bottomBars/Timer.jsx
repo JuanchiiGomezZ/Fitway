@@ -15,8 +15,8 @@ export default Timer = ({ useTimer }) => {
   const [fontsLoaded] = useFonts({
     Fugaz: require("../../../../assets/fonts/Fugaz.ttf"),
   });
-  const { navigate } = useNavigation();
-  const { dispatch } = useDispatch();
+  const { navigate, goBack } = useNavigation();
+  const dispatch = useDispatch();
   useEffect(() => {
     const initialDate = storage.getString("workout_startDate_training");
     const initialTime = Math.round((new Date() - new Date(initialDate)) / 1000);

@@ -14,7 +14,6 @@ export default TableRepsWithWeight = ({ reps, id, exerciseLogs, rest }) => {
   const handleChange = (index, field, value) => {
     dispatch(handleLogChange({ id, index, field, value }));
   };
-
   return (
     <View style={styles.table}>
       <View style={styles.row}>
