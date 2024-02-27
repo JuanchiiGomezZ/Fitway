@@ -8,14 +8,14 @@ import { useFonts } from "expo-font";
 import { storage } from "../../../../helpers/storage";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import { cleanWorkoutLog } from "../../../../store/slices/trainingSlice";
+import { cleanTrainingLog } from "../../../../store/slices/trainingSlice";
 
 export default Timer = ({ useTimer }) => {
   const { pause, seconds, isPaused, start } = useTimer;
   const [fontsLoaded] = useFonts({
     Fugaz: require("../../../../assets/fonts/Fugaz.ttf"),
   });
-  const { navigate, goBack } = useNavigation();
+  const { navigate, goBack, canGoBack } = useNavigation();
   const dispatch = useDispatch();
   useEffect(() => {
     const initialDate = storage.getString("workout_startDate_training");
@@ -24,8 +24,9 @@ export default Timer = ({ useTimer }) => {
   }, []);
 
   const backAction = () => {
+    dispatch(cleanTrainingLog());
     goBack();
-    dispatch(cleanWorkoutLog());
+    goBack();
   };
 
   if (!fontsLoaded) return null;

@@ -58,7 +58,7 @@ export const trainingSlice = createSlice({
         newState[indexExercise].stats[index][field] = value;
       }
     },
-    cleanWorkoutLog: (state, { payload }) => {
+    cleanTrainingLog: (state, { payload }) => {
       storage.delete("workout_id_training"),
         storage.delete("workout_startDate_training"),
         storage.delete("workoutLog"),
@@ -97,7 +97,7 @@ export const trainingSlice = createSlice({
       console.log(payload), (state.isLoading = false), (state.error = payload);
     },
     onSuccessfulRequest: (state, { payload }) => {
-      console.log("pepe"), (state.isLoading = false), (state.error = null);
+      (state.isLoading = false), (state.error = null);
     },
   },
 });
@@ -109,7 +109,7 @@ export const {
   setActiveExercise,
   handleChangeExercise,
   handleLogChange,
-  cleanWorkoutLog,
+  cleanTrainingLog,
   saveExercises,
   toggleExerciseGif,
   setCountdown,

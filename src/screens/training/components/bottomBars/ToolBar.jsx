@@ -4,13 +4,13 @@ import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, GRAY_COLOR, RED_COLOR } from "../../../../styles/styles";
 import { ButtonCircular, ButtonRounded } from "../../../../components/CustomButtons";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanWorkoutLog, handleChangeExercise } from "../../../../store/slices/trainingSlice";
+import { cleanTrainingLog, handleChangeExercise } from "../../../../store/slices/trainingSlice";
 import { useNavigation } from "@react-navigation/native";
 import useTrainingStore from "../../../../hooks/redux/useTrainingStore";
 
 export default ToolBar = () => {
   const dispatch = useDispatch();
-  const { navigate } = useNavigation();
+  const { navigate, goBack } = useNavigation();
   const { numActiveExercise, trainingExercises, workoutLog } = useSelector(
     (state) => state.training,
   );
@@ -30,28 +30,28 @@ export default ToolBar = () => {
 
   const handleFinishWorkout = () => {
     const handleConfirmFinishTraining = () => {
-      navigate("TrainingFinished");
-      dispatch(cleanWorkoutLog());
+      newTrainingLog().then((res) => {
+        if (res) {
+          navigate("TrainingFinished");
+        } else {
+          console.log("ERROR");
+        }
+      });
+      dispatch(cleanTrainingLog());
     };
     const backAction = () => {
       goBack();
-      dispatch(cleanWorkoutLog());
+      dispatch(cleanTrainingLog());
     };
-    newTrainingLog().then((res) => {
-
-      if (res) {
-        handleConfirmFinishTraining();
-      }
+    navigate("ConfirmationAlert", {
+      title: "Are you sure?",
+      text: "You have some empty values. This action will end your training.",
+      thirdButton: true,
+      thirdColor: RED_COLOR,
+      thirdTitle: "Discard training",
+      thirdAction: backAction,
+      confirmAction: handleConfirmFinishTraining,
     });
-    // navigate("ConfirmationAlert", {
-    //   title: "Are you sure?",
-    //   text: "You have some empty values. This action will end your training.",
-    //   thirdButton: true,
-    //   thirdColor: RED_COLOR,
-    //   thirdTitle: "Discard training",
-    //   confirmAction: handleConfirmFinishTraining,
-    //   thirdAction: backAction,
-    // });
   };
 
   return (

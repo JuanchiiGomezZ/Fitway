@@ -14,7 +14,7 @@ import useTimer from "../../training/hooks/useTimer";
 import { convertToHourMinutesSeconds } from "../../../helpers/timeFormater";
 import { useNavigation } from "@react-navigation/native";
 import { storage } from "../../../helpers/storage";
-import { cleanWorkoutLog } from "../../../store/slices/trainingSlice";
+import { cleanTrainingLog } from "../../../store/slices/trainingSlice";
 import { useDispatch } from "react-redux";
 //COMPONENTS
 import { ButtonCircular } from "../../../components/CustomButtons";
@@ -32,7 +32,7 @@ export default TrainigInProgressModal = ({ workoutId }) => {
   }, []);
 
   const handleDiscardTraining = () => {
-    dispatch(cleanWorkoutLog());
+    dispatch(cleanTrainingLog());
     goBack();
   };
 

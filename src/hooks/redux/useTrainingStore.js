@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   onLoading,
   onError,
-  cleanWorkoutLog,
+  cleanTrainingLog,
   onSuccessfulRequest,
   saveActiveTrainingData,
 } from "../../store/slices/trainingSlice";
@@ -11,9 +11,8 @@ import { storage } from "../../helpers/storage";
 
 export default useTrainingStore = () => {
   const dispatch = useDispatch();
-  const { workoutLog, activeTrainingDetails, activeTrainingExercise, numActiveExercise } = useSelector(
-    (state) => state.training,
-  );
+  const { workoutLog, activeTrainingDetails, activeTrainingExercise, numActiveExercise } =
+    useSelector((state) => state.training);
 
   const newTrainingLog = async () => {
     const date = storage.getString("workout_startDate_training");
@@ -23,10 +22,12 @@ export default useTrainingStore = () => {
       time: "3876",
       data: workoutLog,
     };
-
     try {
       dispatch(onLoading());
-      const { data } = await axios.post(`/logs/newLogs/${activeTrainingDetails.workoutId}`, bodyReq);
+      const { data } = await axios.post(
+        `/logs/newLogs/${activeTrainingDetails.workoutId}`,
+        bodyReq,
+      );
       dispatch(onSuccessfulRequest());
       return data;
     } catch (error) {

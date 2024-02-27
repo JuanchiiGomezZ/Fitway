@@ -65,10 +65,7 @@ export default ContentExerciseSingle = ({ data, index }) => {
         );
       case "ExerciseOfDuration":
         return (
-          <TableDuration
-            reps={WorkoutExercise?.reps || SupersetExercise?.reps}
-            id={data.id}
-          />
+          <TableDuration reps={WorkoutExercise?.reps || SupersetExercise?.reps} id={data.id} />
         );
       default:
         return null;
@@ -106,19 +103,12 @@ export default ContentExerciseSingle = ({ data, index }) => {
             <MaterialCommunityIcons name="timer-outline" size={24} color={ORANGE_COLOR} />
             <Text style={styles.resTimerText}>
               Rest Timer:
-              {convertToMinutes(
-                WorkoutExercise?.restTime || SupersetExercise?.restTime,
-              )}
+              {" " + convertToMinutes(WorkoutExercise?.restTime || SupersetExercise?.restTime)}
             </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.cardsContainer}>
-          <ElementCard
-            title="Muscle"
-            name={primaryMuscle}
-            img={Multimedia?.muscleImg}
-            reverse
-          />
+          <ElementCard title="Muscle" name={primaryMuscle} img={Multimedia?.muscleImg} reverse />
           <ElementCard title="Element" name={element} img={Multimedia?.elementImg} reverse />
         </View>
       </View>

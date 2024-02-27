@@ -46,7 +46,7 @@ export default TrainingMode = ({ route }) => {
     if (workoutLog) storage.set("workoutLog", JSON.stringify(workoutLog));
   }, [workoutLog]);
 
-
+// console.log(activeTrainingDetails?.workoutId)
   
   return (
     <ScreenContainer>

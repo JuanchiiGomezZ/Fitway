@@ -6,7 +6,7 @@ import CardContainer from "../../../components/CardContainer";
 import { ButtonCircular } from "../../../components/CustomButtons";
 import { useDispatch } from "react-redux";
 import { storage } from "../../../helpers/storage";
-import { cleanWorkoutLog } from "../../../store/slices/trainingSlice";
+import { cleanTrainingLog } from "../../../store/slices/trainingSlice";
 
 export default WorkoutCard = ({ data, index }) => {
   const { muscles, name, id } = data;
@@ -14,7 +14,7 @@ export default WorkoutCard = ({ data, index }) => {
   const { navigate } = useNavigation();
 
   const handleTrainingInProgressAlert = () => {
-    dispatch(cleanWorkoutLog());
+    dispatch(cleanTrainingLog());
     navigate("Training", { id });
   };
 
