@@ -43,6 +43,7 @@ import BottomSheetExercise from "../screens/workout/components/BottomSheetExerci
 import CreateSupersetModal from "../screens/workout/components/CreateSupersetModal";
 import ConfirmationAlert from "../components/ConfirmationAlert";
 import PickerModal from "../screens/createExercise/components/PickerModal";
+import ReorderExercises from "../screens/reorderExercises/ReorderExercises";
 
 import muscles from "../data/muscles.json";
 import elements from "../data/elements.json";
@@ -354,7 +355,7 @@ export default Navigation = () => {
 
             <Stack.Screen
               name="StartScreen"
-              component={StartScreen}
+              component={StartScreen} //ReorderExercises
               options={{
                 animation: "default",
               }}
