@@ -4,8 +4,7 @@ import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BORDER_RADIUS, WHITE_COLOR } from "../styles/styles";
 import { CloseModalIcon } from "./CustomButtons";
 import { useNavigation } from "@react-navigation/native";
-
-
+import Row from "./Row";
 
 export default BottomSheetModal = ({ children, title }) => {
   const { goBack } = useNavigation();
@@ -13,10 +12,10 @@ export default BottomSheetModal = ({ children, title }) => {
     <>
       <BackdropModals toggleModal={goBack} />
       <Animated.View style={styles.modalContainer} entering={SlideInDown} exiting={SlideOutDown}>
-        <View style={styles.head}>
+        <Row style={{ justifyContent: "space-between", marginBottom: 10 }}>
           <Text style={styles.headText}>{title}</Text>
           <CloseModalIcon action={goBack} />
-        </View>
+        </Row>
         {children}
       </Animated.View>
     </>
@@ -33,13 +32,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: BORDER_RADIUS,
     borderTopRightRadius: BORDER_RADIUS,
     paddingVertical: 15,
-    paddingHorizontal:20
-  },
-  head: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 10,
+    paddingHorizontal: 20,
   },
   headText: {
     color: WHITE_COLOR,
