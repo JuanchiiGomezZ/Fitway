@@ -3,14 +3,14 @@ import { PADDING_BOTTOM, PADDING_HORIZONTAL, PADDING_TOP } from "../styles/style
 import useActiveColors from "../hooks/useActiveColor";
 
 const ScreenContainer = ({ children, paddingBottom, ...props }) => {
-  const activeColors = useActiveColors();
+  const { background } = useActiveColors();
   return (
     <View
       style={[
         styles.container,
         paddingBottom && { paddingBottom: PADDING_BOTTOM },
         props.style,
-        { backgroundColor: activeColors.background },
+        { backgroundColor: background },
       ]}
     >
       {children}

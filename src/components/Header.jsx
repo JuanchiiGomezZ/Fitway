@@ -5,8 +5,8 @@ import { useNavigation } from "@react-navigation/native";
 import { WHITE_COLOR } from "../styles/styles";
 import Row from "../components/Row";
 
-export default Header = ({ title, margin, action }) => {
-  const { goBack, navigate } = useNavigation();
+export default Header = ({ title, action, ...props }) => {
+  const { goBack } = useNavigation();
 
   const handleRoute = () => {
     if (!action) {
@@ -17,7 +17,7 @@ export default Header = ({ title, margin, action }) => {
   };
 
   return (
-    <Row style={[margin !== false && { marginBottom: 20 }]}>
+    <Row style={[{ marginBottom: 20 }, props.style]}>
       <TouchableOpacity style={styles.btnContainer} onPress={handleRoute}>
         <FontAwesome5 name="arrow-alt-circle-left" size={32} color="white" />
       </TouchableOpacity>

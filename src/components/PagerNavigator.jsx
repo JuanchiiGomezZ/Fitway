@@ -18,7 +18,7 @@ const PagerNavigator = ({ pages, goBack, ...props }) => {
       <Row style={[styles.paginatorContainer, props.style]}>
         {goBack && (
           <View style={{ position: "absolute", left: 0, alignSelf: "center" }}>
-            <Header margin={false} />
+            <Header style={{ margin: 0 }} />
           </View>
         )}
         <Row style={{ gap: 30 }}>

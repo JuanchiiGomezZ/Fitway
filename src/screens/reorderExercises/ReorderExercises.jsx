@@ -7,7 +7,7 @@ import useActiveColors from "../../hooks/useActiveColor";
 
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
-import { ThemeContext } from "../../Context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 export default ReorderExercises = () => {
   const { t } = useTranslation();
@@ -28,4 +28,3 @@ export default ReorderExercises = () => {
   );
 };
 
-const styles = StyleSheet.create({});

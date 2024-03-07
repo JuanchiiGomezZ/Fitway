@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { store } from "./src/store/store";
 import { Provider } from "react-redux";
-import { ThemeContext } from "./src/Context/ThemeContext";
+import { ThemeContext } from "./src/context/ThemeContext";
 import { welcomeStorage } from "./src/helpers/storage";
 
 const App = () => {

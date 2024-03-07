@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { BORDER_RADIUS, BOX_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../styles/styles";
 import CardContainer from "../../../components/CardContainer";
+import Row from "../../../components/Row";
 
 export default RoutineCard = ({ data, toggleBottomSheet, index }) => {
   const { t } = useTranslation();
@@ -12,14 +13,14 @@ export default RoutineCard = ({ data, toggleBottomSheet, index }) => {
     <CardContainer index={index}>
       <CardContainer.Title>{name}</CardContainer.Title>
       <View>
-        <View style={styles.row}>
+        <Row>
           <Text style={styles.rowTitle}>{t("MyRoutines.level") + ": "}</Text>
           <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{level}</Text>
-        </View>
-        <View style={styles.row}>
+        </Row>
+        <Row>
           <Text style={styles.rowTitle}>{t("MyRoutines.workouts") + ": "}</Text>
           <Text style={[styles.rowTitle, { color: ORANGE_COLOR }]}>{WorkoutNumber}</Text>
-        </View>
+        </Row>
       </View>
     </CardContainer>
   );
@@ -32,10 +33,6 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS,
     padding: 10,
     gap: 5,
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
   },
   rowTitle: {
     color: WHITE_COLOR,

@@ -28,7 +28,7 @@ export default AddExercise = () => {
     <ScreenContainer>
       <View>
         <View style={styles.row}>
-          <Header title={"Exercises"} margin={false} />
+          <Header title={"Exercises"} style={{ marginBottom: 0 }} />
           <ButtonRounded
             text={"Create Exercise"}
             icon={"plus"}
