@@ -3,10 +3,18 @@ import { StyleSheet, Pressable, Text, Image } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { BORDER_RADIUS, BOX_COLOR, WHITE_COLOR } from "../styles/styles";
 import { ConfigButton } from "./CustomButtons";
+import Box from "@/theme/components/Box";
 
-const CardContainer = ({ children, action, index, configAction }) => {
-  const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
+interface CardContainerProps {
+  children: React.ReactNode;
+  action?: () => void;
+  index: number;
+  configAction?: () => void;
+}
 
+interface TitleProps {}
+const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
+const CardContainer = ({ children, action, index, configAction }: CardContainerProps) => {
   const initialMode = useRef(true);
 
   useEffect(() => {
@@ -15,13 +23,13 @@ const CardContainer = ({ children, action, index, configAction }) => {
 
   return (
     <AnimatedTouchable
-      style={styles.cardContainer}
-      entering={initialMode.current && FadeInDown.delay(100 * index)}
-      // exiting={ FadeOut} // GHOSTING AL CAMBIAR DE WORKOUT
+      entering={initialMode.current ? FadeInDown.delay(100 * index) : FadeInDown}
       onPress={action ? action : () => {}}
     >
-      {configAction && <ConfigButton action={configAction} />}
-      {children}
+      <Box bg="secondary1000" borderRadius="m" py="space4" px="space6">
+        {configAction && <ConfigButton action={configAction} />}
+        {children}
+      </Box>
     </AnimatedTouchable>
   );
 };
@@ -40,7 +48,7 @@ const TitleSmall = ({ children, ...props }) => (
 );
 CardContainer.TitleSmall = TitleSmall;
 
-const CardImage = ({ img }) => (
+const CardImage = ({ img }: { img: string }) => (
   <Image
     source={img ? { uri: img } : require("../assets/images/icon_fw_dark.png")}
     style={styles.cardImage}

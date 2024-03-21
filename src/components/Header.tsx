@@ -8,7 +8,6 @@ import { ThemeProps } from "@/theme";
 
 interface HeaderProps extends ThemeProps {
   title: string;
-  style?: any;
 }
 
 const Header = ({ title, ...props }: HeaderProps) => {

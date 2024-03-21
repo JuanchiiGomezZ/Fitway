@@ -9,6 +9,8 @@
     "format": "prettier --write \"src/**/*.js\""
   },
   "dependencies": {
+    "@expo-google-fonts/fugaz-one": "^0.2.3",
+    "@expo-google-fonts/inter": "^0.2.3",
     "@react-native-community/slider": "4.4.2",
     "@react-native-google-signin/google-signin": "^10.0.1",
     "@react-navigation/bottom-tabs": "^6.5.8",
@@ -29,6 +31,8 @@
     "expo-localization": "~14.3.0",
     "expo-status-bar": "~1.6.0",
     "i18next": "^23.5.1",
+    "install": "^0.13.0",
+    "npx": "^10.2.2",
     "react": "18.2.0",
     "react-i18next": "^13.2.2",
     "react-native": "0.72.6",

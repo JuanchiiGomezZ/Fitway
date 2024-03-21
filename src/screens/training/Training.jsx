@@ -3,7 +3,6 @@ import { View, ScrollView } from "react-native";
 
 //HOOKS
 import { useDispatch, useSelector } from "react-redux";
-import useWorkoutsStore from "../../hooks/redux/useWorkoutsStore";
 import useTrainingStore from "../../hooks/redux/useTrainingStore";
 import { toggleExerciseGif } from "../../store/slices/trainingSlice";
 import { storage } from "../../helpers/storage";

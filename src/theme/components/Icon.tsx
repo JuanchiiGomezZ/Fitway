@@ -6,12 +6,13 @@ import { BoxProps, useTheme } from "@shopify/restyle";
 import Box from "./Box";
 
 export interface IconProps extends BoxProps<ThemeProps> {
-  name: typeof AntDesign.defaultProps
+  name: typeof AntDesign.defaultProps;
   size: keyof ThemeProps["sizes"];
   color: keyof ThemeProps["colors"];
+  onPress?: () => void;
 }
 
-export const Icon = ({ name, size, color, ...props }: IconProps) => {
+export const Icon = ({ name, size, color, onPress, ...props }: IconProps) => {
   const { colors, sizes } = useTheme();
   return (
     <Box {...props}>
@@ -19,6 +20,7 @@ export const Icon = ({ name, size, color, ...props }: IconProps) => {
         name={name || "exclamationcircle"}
         size={sizes[size] || 16}
         color={colors[color] || "red"}
+        onPress={onPress}
       />
     </Box>
   );

@@ -45,7 +45,7 @@ export default BottomBar = () => {
           onPress={handlePress}
         />
       </Animated.View>
-      {bottomBar ? <ToolBar /> : <Timer useTimer={timer} />}
+      {bottomBar ? <ToolBar /> : <Timer {...timer} />}
     </View>
   );
 };

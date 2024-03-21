@@ -7,6 +7,7 @@ import useExercisesStore from "../../hooks/redux/useExercisesStore";
 
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
+import Box from "../../theme/components/Box";
 import Loader from "../../components/Loader";
 import ElementCard from "../../components/ElementCard";
 import Header from "../../components/Header";
@@ -49,7 +50,7 @@ export default AddExerciseDetails = ({ route }) => {
   };
 
   return (
-    <ScreenContainer paddingBottom>
+    <ScreenContainer pb="space10">
       {!exerciseData ? (
         <Loader />
       ) : (

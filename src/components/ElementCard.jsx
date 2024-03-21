@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { GRAY_COLOR, ORANGE_COLOR, RED_COLOR, WHITE_COLOR } from "../styles/styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RequiredErrorIcon } from "./RequiredError";
-import Row from "./Row";
 
 export default ElementCard = ({ title, name, img, reverse, action, icon, isValid }) => {
   return (

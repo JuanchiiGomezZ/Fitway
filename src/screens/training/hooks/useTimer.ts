@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import useElapsedTimeOnBackground from "./useElapsedTimeOnBackground";
 
-export default useTimer = () => {
+const useTimer = () => {
   const { elapsedTime } = useElapsedTimeOnBackground();
-  const [seconds, setSeconds] = useState(0);
-  const [isPaused, setIsPaused] = useState(true);
+  const [seconds, setSeconds] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(true);
 
   useEffect(() => {
     if (isPaused) return;
@@ -20,11 +20,11 @@ export default useTimer = () => {
     setIsPaused((prev) => !prev);
   };
 
-  const updateTimer = (elapsedTime) => {
+  const updateTimer = (elapsedTime: number) => {
     if (!isPaused) setSeconds((prev) => prev + elapsedTime);
   };
 
-  const start = (initialTime) => {
+  const start = (initialTime: number) => {
     setSeconds(initialTime);
     pause();
   };
@@ -35,3 +35,5 @@ export default useTimer = () => {
 
   return { pause, seconds, isPaused, start };
 };
+
+export default useTimer;

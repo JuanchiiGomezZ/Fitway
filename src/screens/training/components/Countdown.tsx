@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import {
   BACKGROUND_COLOR,
   BOX_COLOR,
@@ -9,9 +9,9 @@ import {
   PADDING_HORIZONTAL,
   WHITE_COLOR,
 } from "../../../styles/styles";
-
+import Text from "@/theme/components/Text";
+import Box from "@/theme/components/Box";
 //HOOKS
-import { useFonts } from "expo-font";
 import { ButtonCircular } from "../../../components/CustomButtons";
 import useCountdown from "../hooks/useCountdown";
 import { convertToMinutesSeconds } from "../../../helpers/timeFormater";
@@ -26,8 +26,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCountdown } from "../../../store/slices/trainingSlice";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-
-export default Countdown = () => {
+import Icon from "@/theme/components/Icon";
+import Row from "@/theme/components/Row";
+const Countdown = () => {
   const { secondsLeft, isTimeOver, start, addTime, skipTime, isPaused } = useCountdown();
   const dispatch = useDispatch();
   const { countdown } = useSelector((state) => state.training);
@@ -49,11 +50,7 @@ export default Countdown = () => {
     start(countdown.restTime);
   }, [countdown.restTime]);
 
-  const [fontsLoaded] = useFonts({
-    Fugaz: require("../../../assets/fonts/Fugaz.ttf"),
-  });
-
-  const handleAddTime = (extraTime) => {
+  const handleAddTime = (extraTime: number) => {
     setTime((prev) => {
       if (prev + extraTime > 1) {
         return prev + extraTime;
@@ -76,82 +73,73 @@ export default Countdown = () => {
     }
   }, [isTimeOver]);
 
-  if (!fontsLoaded) return null;
   return (
-    <Animated.View style={styles.container} entering={FadeInDown} exiting={FadeOutDown}>
-      <FontAwesome
-        name="cog"
-        size={20}
-        color={GRAY_LIGHT_COLOR}
-        style={styles.settingsBtn}
-        onPress={handleOpenBottomSheetRestTimerConfig}
-      />
-      <View style={styles.toolsContainer}>
-        <ButtonCircular icon={isPaused ? "play" : "pause"} action={handlePlay} size={"s"} />
-        <Text style={[styles.countdownText, styles.textSmall]} onPress={() => handleAddTime(-15)}>
-          -15
-        </Text>
-        <Text style={styles.countdownText}>{convertToMinutesSeconds(secondsLeft)}</Text>
-        <Text style={[styles.countdownText, styles.textSmall]} onPress={() => handleAddTime(15)}>
-          +15
-        </Text>
-        <ButtonCircular size="s" icon="forward" action={skipTime} />
-      </View>
-      <View style={styles.progressContainer}>
-        <Animated.View style={[styles.progress, animatedWidth]} />
-      </View>
+    <Animated.View entering={FadeInDown} exiting={FadeOutDown}>
+      <Box
+        width="100%"
+        borderWidth={1.5}
+        borderColor="secondary500"
+        borderRadius="s"
+        bg="secondary1000"
+        justifyContent="center"
+        alignItems="center"
+        position="absolute"
+        bottom={100}
+        left={10}
+        py="space5"
+      >
+        {/* <Icon
+          name="setting"
+          color="secondary400"
+          size="size10"
+          bg="secondary1000"
+          justifyContent="center"
+          alignItems="center"
+          borderRadius="full"
+          top={-25}
+          bottom={7}
+          onPress={handleOpenBottomSheetRestTimerConfig}
+          position="absolute"
+        /> */}
+        <FontAwesome
+          name="cog"
+          size={20}
+          color={GRAY_LIGHT_COLOR}
+          style={styles.settingsBtn}
+          onPress={handleOpenBottomSheetRestTimerConfig}
+        />
+        <Row width="90%" justifyContent="space-between">
+          <ButtonCircular icon={isPaused ? "play" : "pause"} action={handlePlay} size="s" />
+          <Text variant="bodyMSecondary" color="secondary400" onPress={() => handleAddTime(-15)}>
+            -15
+          </Text>
+          <Text variant="bodyMSecondary">{convertToMinutesSeconds(secondsLeft)}</Text>
+          <Text variant="bodyMSecondary" color="secondary400" onPress={() => handleAddTime(15)}>
+            +15
+          </Text>
+          <ButtonCircular size="s" icon="forward" action={skipTime} />
+        </Row>
+        <Box width="90%" height={7} bg="background" borderRadius="full" mt="space5">
+          <Animated.View style={[styles.progress, animatedWidth]} />
+        </Box>
+      </Box>
     </Animated.View>
   );
 };
 
+export default Countdown;
+
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    borderWidth: 1.5,
-    borderColor: GRAY_COLOR,
-    position: "absolute",
-    bottom: 100,
-    left: PADDING_HORIZONTAL,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: BOX_COLOR,
-    paddingVertical: 10,
-    borderRadius: 5,
-  },
-  progressContainer: {
-    width: "90%",
-    height: 7,
-    backgroundColor: BACKGROUND_COLOR,
-    borderRadius: 5,
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 10,
-  },
   progress: {
     height: 7,
     borderRadius: 5,
     backgroundColor: ORANGE_COLOR,
   },
-  countdownText: {
-    color: WHITE_COLOR,
-    fontFamily: "Fugaz",
-    fontSize: 25,
-  },
-  textSmall: {
-    fontSize: 18,
-    color: GRAY_LIGHT_COLOR,
-  },
-  toolsContainer: {
-    width: "90%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
   settingsBtn: {
     backgroundColor: BOX_COLOR,
     position: "absolute",
     top: -25,
-    padding: 7,
+    padding: 5,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,

@@ -269,10 +269,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
 
-  textBold: {
-    fontWeight: "700",
-  },
-
   iconImg: {
     width: 22,
     height: 22,

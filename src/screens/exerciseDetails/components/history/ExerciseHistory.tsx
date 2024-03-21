@@ -1,13 +1,16 @@
 import { View, Text } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
-import { GRAY_LIGHT_COLOR, ORANGE_COLOR, WHITE_COLOR } from "../../../../styles/styles";
+import { GRAY_LIGHT_COLOR, WHITE_COLOR } from "../../../../styles/styles";
 import originalData from "../data.json";
 import TableExercise from "./components/TableExercise";
 import { FlatList } from "react-native-gesture-handler";
-import Row from "../../../../components/Row";
+import Row from "@/theme/components/Row";
 import { Feather } from "@expo/vector-icons";
+import { useTheme } from "@shopify/restyle";
+import { ThemeProps } from "@/theme";
 
-export default ExerciseHistory = () => {
+const ExerciseHistory = () => {
+  const { colors } = useTheme<ThemeProps>();
   return (
     <View>
       <FlatList
@@ -15,7 +18,7 @@ export default ExerciseHistory = () => {
         renderItem={({ item }) => <TableExercise data={item} />}
         ListHeaderComponent={
           <View style={{ gap: 5 }}>
-            <Row style={{ justifyContent: "space-between" }}>
+            <Row>
               <Text
                 style={{
                   color: WHITE_COLOR,
@@ -28,13 +31,15 @@ export default ExerciseHistory = () => {
               <Feather name="refresh-ccw" size={20} color={GRAY_LIGHT_COLOR} />
             </Row>
             <LineChart
-              color={ORANGE_COLOR}
-              dataPointsColor={WHITE_COLOR}
-              xAxisLabelTextStyle={{ color: WHITE_COLOR }}
-              yAxisTextStyle={{ color: WHITE_COLOR }}
+              color={colors.primary500}
+              dataPointsColor={colors.primary100}
+              focusedDataPointColor={colors.primary300}
+              stripColor={colors.primary200}
+              xAxisLabelTextStyle={{ color: colors.primary50 }}
+              yAxisTextStyle={{ color: colors.primary50 }}
               hideRules
               data={formatByMaxWeight(originalData.ExerciseLogs)}
-              textColor1={WHITE_COLOR}
+              textColor1={colors.primary50}
               textShiftY={20}
               textShiftX={10}
               textFontSize1={15}
@@ -53,14 +58,15 @@ export default ExerciseHistory = () => {
   );
 };
 
-function formatDate(dateString) {
+export default ExerciseHistory;
+function formatDate(dateString: string) {
   const date = new Date(dateString);
   const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
   return formattedDate;
 }
 
-function formatByMaxWeight(data) {
-  function getMaxWeight(stats) {
+function formatByMaxWeight(data: any) {
+  function getMaxWeight(stats: any) {
     const weights = stats
       .filter((stat) => !isNaN(stat.weight))
       .map((stat) => parseFloat(stat.weight));
@@ -85,7 +91,7 @@ function formatByMaxWeight(data) {
   return formattedData;
 }
 
-function formatByVolume(data) {
+function formatByVolume(data: any) {
   const barData = data.reduce((acc, item) => {
     const validStats = item.stats.filter(
       (stat) => Number(stat.reps) > 0 || Number(stat.weight) > 0,

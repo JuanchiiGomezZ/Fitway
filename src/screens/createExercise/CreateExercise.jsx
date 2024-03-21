@@ -80,7 +80,7 @@ export default CreateExercise = ({ route }) => {
   const activeButton = name.trim() == "" || !primaryMuscle || !element || !exerciseType;
 
   return (
-    <ScreenContainer paddingBottom>
+    <ScreenContainer pb="space10">
       <Header title={"Create Exercise"} />
 
       <View style={styles.contentContainer}>
