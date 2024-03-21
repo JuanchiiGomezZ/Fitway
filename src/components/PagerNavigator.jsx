@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import PagerView from "react-native-pager-view";
 import { ORANGE_COLOR, WHITE_COLOR } from "../styles/styles";
 import Header from "./Header";
+import Row from "./Row";
 
 const PagerNavigator = ({ pages, goBack, ...props }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -14,13 +15,13 @@ const PagerNavigator = ({ pages, goBack, ...props }) => {
 
   return (
     <>
-      <View style={[styles.paginatorContainer, props.style]}>
+      <Row style={[styles.paginatorContainer, props.style]}>
         {goBack && (
           <View style={{ position: "absolute", left: 0, alignSelf: "center" }}>
-            <Header margin={false} />
+            <Header style={{ margin: 0 }} />
           </View>
         )}
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 30 }}>
+        <Row style={{ gap: 30 }}>
           {pages.map((page, index) => (
             <TouchableOpacity key={index} onPress={() => ref.current?.setPage(index)}>
               <Text style={[styles.page, currentPage != index && styles.inactive]}>
@@ -28,8 +29,8 @@ const PagerNavigator = ({ pages, goBack, ...props }) => {
               </Text>
             </TouchableOpacity>
           ))}
-        </View>
-      </View>
+        </Row>
+      </Row>
 
       <View style={{ flex: 1 }}>
         <PagerView style={styles.pager} ref={ref} initialPage={0} onPageSelected={onPageSelected}>
@@ -46,7 +47,6 @@ const PagerNavigator = ({ pages, goBack, ...props }) => {
 
 const styles = StyleSheet.create({
   paginatorContainer: {
-    flexDirection: "row",
     justifyContent: "center",
     marginBottom: 20,
     marginTop: 10,

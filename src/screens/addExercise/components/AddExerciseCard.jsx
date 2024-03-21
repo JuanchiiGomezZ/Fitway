@@ -16,7 +16,7 @@ import { AntDesign } from "@expo/vector-icons";
 export default AddExerciseCard = ({ data, index }) => {
   const { navigate } = useNavigation();
 
-  const { name, element, primaryMuscle, id, Multimedia } = data || {};
+  const { name, element, muscles, id, Multimedia } = data || {};
 
   return (
     <CardContainer index={index} action={() => navigate("AddExerciseDetails", { id })}>
@@ -27,7 +27,7 @@ export default AddExerciseCard = ({ data, index }) => {
           <View style={styles.infoContainer}>
             <View>
               <Text style={[styles.text]}>{element}</Text>
-              <Text style={[styles.text, styles.muscle]}>{primaryMuscle}</Text>
+              <Text style={[styles.text, styles.muscle]}>{muscles[0]}</Text>
             </View>
           </View>
         </View>
@@ -69,5 +69,4 @@ const styles = StyleSheet.create({
     width: 5,
     backgroundColor: GREEN_COLOR,
   },
-
 });

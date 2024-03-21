@@ -1,0 +1,333 @@
+{
+  "id": "43f6272d-d9c4-4e75-9e2b-19bb37751931",
+  "Multimedia": {
+    "id": "60eacaca-0d22-49be-beb0-3574b58280da",
+    "exerciseImg": null,
+    "muscleImg": "https://i.postimg.cc/jddgYdhd/Abdominales.jpg",
+    "elementImg": "https://i.postimg.cc/zBfywYK3/Dumbell.webp",
+    "exerciseGif": "https://newlife.com.cy/wp-content/uploads/2019/11/16241301-Dumbbell-Reverse-Bench-Press_Chest_360.gif",
+    "MultimediaId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+  },
+  "ExerciseLogs": [
+    {
+      "id": "120ecddd-38f6-4b60-8fd8-69a3cb3d3846",
+      "stats": [
+        {
+          "reps": "",
+          "weight": ""
+        },
+        {
+          "reps": "",
+          "weight": ""
+        },
+        {
+          "reps": "",
+          "weight": ""
+        }
+      ],
+      "createdAt": "2024-02-13T14:22:35.796Z",
+      "updatedAt": "2024-02-13T14:22:35.796Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "86b055bb-5d8d-4e48-926d-587dbc622094",
+      "stats": [
+        {
+          "reps": "",
+          "weight": ""
+        },
+        {
+          "reps": "",
+          "weight": ""
+        },
+        {
+          "reps": "",
+          "weight": ""
+        }
+      ],
+      "createdAt": "2024-02-13T14:41:50.968Z",
+      "updatedAt": "2024-02-13T14:41:50.968Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "1d855bb4-b8f8-43c9-9e69-d54f9976ce35",
+      "stats": [
+        {
+          "reps": "11",
+          "weight": "12"
+        },
+        {
+          "reps": "15",
+          "weight": "12"
+        },
+        {
+          "reps": "10",
+          "weight": "20"
+        }
+      ],
+      "createdAt": "2024-02-13T14:49:35.393Z",
+      "updatedAt": "2024-02-13T14:49:35.393Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "727464da-21a1-4e4d-b76c-591e23c61e29",
+      "stats": [
+        {
+          "reps": "11",
+          "weight": "12"
+        },
+        {
+          "reps": "15",
+          "weight": "12"
+        },
+        {
+          "reps": "10",
+          "weight": "22"
+        }
+      ],
+      "createdAt": "2024-02-13T14:51:03.595Z",
+      "updatedAt": "2024-02-13T14:51:03.595Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "82a76570-8203-41de-b420-fdae08b96407",
+      "stats": [
+        {
+          "reps": "11",
+          "weight": "12"
+        },
+        {
+          "reps": "15",
+          "weight": "12"
+        },
+        {
+          "reps": "10",
+          "weight": "22"
+        }
+      ],
+      "createdAt": "2024-02-13T14:53:13.909Z",
+      "updatedAt": "2024-02-13T14:53:13.909Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "61bec1cb-2b6b-4c21-97eb-c31b0af2745e",
+      "stats": [
+        {
+          "reps": "11",
+          "weight": "12"
+        },
+        {
+          "reps": "15",
+          "weight": "12"
+        },
+        {
+          "reps": "10",
+          "weight": "22"
+        }
+      ],
+      "createdAt": "2024-02-13T14:59:29.969Z",
+      "updatedAt": "2024-02-13T14:59:29.969Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "d01b3084-3b9d-4d98-8ff5-3f1830c9c490",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        }
+      ],
+      "createdAt": "2024-02-13T15:00:22.831Z",
+      "updatedAt": "2024-02-13T15:00:22.831Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "e7d4a607-a9df-4b93-b2f7-a0ad11d041ea",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        }
+      ],
+      "createdAt": "2024-02-13T15:01:54.810Z",
+      "updatedAt": "2024-02-13T15:01:54.810Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "ad213486-b4e3-4aab-b633-6a967a80c6ef",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "2"
+        }
+      ],
+      "createdAt": "2024-02-13T15:05:57.518Z",
+      "updatedAt": "2024-02-13T15:05:57.518Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "c7f8fa98-464d-4712-b59b-26b4b6fb30bd",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "2"
+        }
+      ],
+      "createdAt": "2024-02-13T15:08:41.123Z",
+      "updatedAt": "2024-02-13T15:08:41.123Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "0455eb33-ea69-4ab1-b5b3-54bae7d4e07f",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "2"
+        }
+      ],
+      "createdAt": "2024-02-13T15:09:04.089Z",
+      "updatedAt": "2024-02-13T15:09:04.089Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "c79cdbd8-cff8-4154-b7bf-c7f8bff050c2",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "2"
+        }
+      ],
+      "createdAt": "2024-02-13T15:10:36.881Z",
+      "updatedAt": "2024-02-13T15:10:36.881Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "f3c5c333-1a33-4a73-bee9-9d08eb0bdce2",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "12"
+        },
+        {
+          "reps": "12",
+          "weight": "2"
+        }
+      ],
+      "createdAt": "2024-02-13T15:13:45.670Z",
+      "updatedAt": "2024-02-13T15:13:45.670Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "360b7763-1d5a-4b81-b536-7fad668feed2",
+      "stats": [
+        {
+          "reps": "",
+          "weight": ""
+        },
+        {
+          "reps": "",
+          "weight": ""
+        },
+        {
+          "reps": "",
+          "weight": ""
+        }
+      ],
+      "createdAt": "2024-02-13T15:15:48.119Z",
+      "updatedAt": "2024-02-13T15:15:48.119Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "9b85c45a-6595-4202-918b-f2ccd16f219b",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "15"
+        },
+        {
+          "reps": "12",
+          "weight": "15"
+        },
+        {
+          "reps": "12",
+          "weight": "15"
+        }
+      ],
+      "createdAt": "2024-02-13T15:25:41.455Z",
+      "updatedAt": "2024-02-13T15:25:41.455Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    },
+    {
+      "id": "11deeced-106e-4498-87cf-1ac23b805e23",
+      "stats": [
+        {
+          "reps": "12",
+          "weight": "15"
+        },
+        {
+          "reps": "12",
+          "weight": "15"
+        },
+        {
+          "reps": "12",
+          "weight": "15"
+        }
+      ],
+      "createdAt": "2024-02-16T20:36:33.995Z",
+      "updatedAt": "2024-02-16T20:36:33.995Z",
+      "ExerciseId": "43f6272d-d9c4-4e75-9e2b-19bb37751931"
+    }
+  ]
+}

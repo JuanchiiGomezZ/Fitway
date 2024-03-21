@@ -25,7 +25,7 @@ export default NewRoutineModal = () => {
 
   return (
     <ModalBase title="New Workout">
-      <View style={{ gap: 20 }}>
+      <View style={{ gap: 35, marginTop: 10 }}>
         <ClassicInput
           setInputChange={setName}
           inputChange={name}

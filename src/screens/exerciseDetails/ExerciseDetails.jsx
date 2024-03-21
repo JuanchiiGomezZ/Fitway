@@ -2,18 +2,21 @@ import React, { useEffect, useState } from "react";
 
 //HOOKS
 import useExercisesStore from "../../hooks/redux/useExercisesStore";
-
+import { useSelector } from "react-redux";
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
 import Details from "./components/details/Details";
 import PagerNavigator from "../../components/PagerNavigator";
 import ExerciseHistory from "./components/history/ExerciseHistory";
 import Loader from "../../components/Loader";
+import { Text } from "react-native";
+import ErrorAnnouncement from "../../components/ErrorAnnouncement";
 
 export default ExerciseDetails = ({ route }) => {
   const { id } = route.params;
   const [exerciseData, setExerciseData] = useState(null);
   const { getExerciseCompleteDetails } = useExercisesStore();
+  const { error } = useSelector((state) => state.exercises);
 
   useEffect(() => {
     getExerciseCompleteDetails(id).then((res) => {
@@ -30,7 +33,11 @@ export default ExerciseDetails = ({ route }) => {
   ];
   return (
     <ScreenContainer>
-      {!exerciseData ? <Loader/> : <PagerNavigator pages={pages}  goBack />}
+      {error ? (
+        <ErrorAnnouncement />
+      ) : (
+        <>{exerciseData ? <PagerNavigator pages={pages} goBack/> : <Loader />}</>
+      )}
     </ScreenContainer>
   );
 };

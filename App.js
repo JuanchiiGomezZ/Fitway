@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native";
 import Navigation from "./src/navigation/Navigation";
 import { StatusBar } from "expo-status-bar";

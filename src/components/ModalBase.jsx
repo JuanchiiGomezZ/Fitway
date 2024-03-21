@@ -5,6 +5,7 @@ import { BACKGROUND_COLOR, WHITE_COLOR } from "../styles/styles";
 /* COMPONENTS */
 import { CloseModalIcon } from "./CustomButtons";
 import BackdropModals from "./BackdropModals";
+import Row from "./Row";
 
 /* HOOKS */
 import { useNavigation } from "@react-navigation/native";
@@ -16,10 +17,10 @@ export default ModalBase = ({ title, children, ...props }) => {
       <BackdropModals toggleModal={goBack} />
       <View style={[styles.modalContainer, props.style]}>
         {title && (
-          <View style={styles.head}>
+          <Row style={{ justifyContent: "space-between" }}>
             <Text style={styles.titleModal}>{title}</Text>
             <CloseModalIcon action={goBack} />
-          </View>
+          </Row>
         )}
         {children}
       </View>
@@ -36,11 +37,6 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     zIndex: 5,
     maxHeight: "80%",
-  },
-  head: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
   },
   titleModal: {
     fontSize: 30,

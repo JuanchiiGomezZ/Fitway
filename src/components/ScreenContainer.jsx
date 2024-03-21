@@ -1,12 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import {
-  BACKGROUND_COLOR,
-  PADDING_BOTTOM,
-  PADDING_HORIZONTAL,
-  PADDING_TOP,
-  WHITE_COLOR,
-} from "../styles/styles";
-
+import { PADDING_BOTTOM, PADDING_HORIZONTAL, PADDING_TOP } from "../styles/styles";
+import { BACKGROUND_COLOR } from "../styles/styles";
 const ScreenContainer = ({ children, paddingBottom, ...props }) => {
   return (
     <View
@@ -22,8 +16,8 @@ export default ScreenContainer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
     paddingHorizontal: PADDING_HORIZONTAL,
     paddingTop: PADDING_TOP,
+    backgroundColor: BACKGROUND_COLOR,
   },
 });
