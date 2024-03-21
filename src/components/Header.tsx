@@ -3,28 +3,27 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { WHITE_COLOR } from "../styles/styles";
-import Row from "../components/Row";
+import Row from "@/theme/components/Row";
+import { ThemeProps } from "@/theme";
 
-export default Header = ({ title, action, ...props }) => {
+interface HeaderProps extends ThemeProps {
+  title: string;
+  style?: any;
+}
+
+const Header = ({ title, ...props }: HeaderProps) => {
   const { goBack } = useNavigation();
 
-  const handleRoute = () => {
-    if (!action) {
-      goBack();
-    } else {
-      action();
-    }
-  };
-
   return (
-    <Row style={[{ marginBottom: 20 }, props.style]}>
-      <TouchableOpacity style={styles.btnContainer} onPress={handleRoute}>
+    <Row mb="space10" {...props}>
+      <TouchableOpacity style={styles.btnContainer} onPress={goBack}>
         <FontAwesome5 name="arrow-alt-circle-left" size={32} color="white" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
     </Row>
   );
 };
+export default Header;
 
 const styles = StyleSheet.create({
   btnContainer: {

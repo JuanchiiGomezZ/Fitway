@@ -25,7 +25,8 @@
       "softwareKeyboardLayoutMode": "pan"
     },
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": true,
+      "tsconfigPaths": true
     },
     "plugins": [
       [
