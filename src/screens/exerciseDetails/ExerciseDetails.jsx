@@ -36,7 +36,7 @@ export default ExerciseDetails = ({ route }) => {
       {error ? (
         <ErrorAnnouncement />
       ) : (
-        <>{exerciseData ? <PagerNavigator pages={pages} /> : <Loader />}</>
+        <>{exerciseData ? <PagerNavigator pages={pages} goBack/> : <Loader />}</>
       )}
     </ScreenContainer>
   );

@@ -3,7 +3,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "extends": "expo/tsconfig.base",
@@ -12,5 +12,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "src/screens/exerciseDetails/components/history/components/TableExercise.jsx"  ]
 }
