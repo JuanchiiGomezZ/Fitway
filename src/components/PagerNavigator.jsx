@@ -33,7 +33,13 @@ const PagerNavigator = ({ pages, goBack, ...props }) => {
       </Row>
 
       <View style={{ flex: 1 }}>
-        <PagerView style={styles.pager} ref={ref} initialPage={0} onPageSelected={onPageSelected}>
+        <PagerView
+          style={styles.pager}
+          ref={ref}
+          initialPage={0}
+          onPageSelected={onPageSelected}
+          scrollEnabled={false}
+        >
           {pages.map((page, index) => (
             <View key={index + 1} style={{ flex: 1 }}>
               {page.component}

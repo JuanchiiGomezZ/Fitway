@@ -1,11 +1,3 @@
-const fontWeights = {
-  regular: "400",
-  medium: "500",
-  semiBold: "600",
-  bold: "700",
-  extraBold: "800",
-};
-
 const fontFamilies = {
   regular: "Inter_400Regular",
   medium: "Inter_500Medium",
@@ -56,6 +48,10 @@ export const textVariants = {
     fontFamily: fontFamilies.regular,
   },
 
+  bodyMSemiBold: {
+    fontSize: 16,
+    fontFamily: fontFamilies.semiBold,
+  },
   bodyMMedium: {
     fontSize: 16,
     fontFamily: fontFamilies.medium,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 import ElementCard from "../../../../components/ElementCard";
 import { TextAreaWithLabel } from "../../../../components/Inputs";
@@ -8,8 +8,6 @@ import exerciseTypeConvert from "../../../../helpers/exerciseTypeConvert";
 import TableExercise from "./TableExercise";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { WHITE_COLOR } from "../../../../styles/styles";
-import useExercisesStore from "../../../../hooks/redux/useExercisesStore";
-import Loader from "../../../../components/Loader";
 import { convertToMinutes } from "../../../../helpers/timeFormater";
 import { ButtonCircular } from "../../../../components/CustomButtons";
 import { Feather } from "@expo/vector-icons";
@@ -18,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 export default Details = ({ exerciseData }) => {
   const { navigate } = useNavigation();
 
-  const { name, element, primaryMuscle, Multimedia, exerciseType, description, WorkoutExercise } =
+  const { name, element, muscles, Multimedia, exerciseType, description, WorkoutExercise } =
     exerciseData || {};
   return (
     <>
@@ -41,7 +39,7 @@ export default Details = ({ exerciseData }) => {
             editable={false}
           />
           <View style={styles.selectorsContainer}>
-            <ElementCard img={Multimedia?.muscleImg} name={primaryMuscle} title="Muscle" />
+            <ElementCard img={Multimedia?.muscleImg} name={muscles[0]} title="Muscle" />
             <ElementCard img={Multimedia?.elementImg} name={element} title="Element" />
             <ElementCard icon="human-handsup" title={exerciseTypeConvert(exerciseType)} />
             <ElementCard

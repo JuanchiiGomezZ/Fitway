@@ -1,10 +1,11 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
 import { GRAY_LIGHT_COLOR, WHITE_COLOR } from "../../../../styles/styles";
 import originalData from "../data.json";
 import TableExercise from "./components/TableExercise";
 import { FlatList } from "react-native-gesture-handler";
 import Row from "@/theme/components/Row";
+import Text from "@/theme/components/Text";
 import { Feather } from "@expo/vector-icons";
 import { useTheme } from "@shopify/restyle";
 import { ThemeProps } from "@/theme";
@@ -18,16 +19,8 @@ const ExerciseHistory = () => {
         renderItem={({ item }) => <TableExercise data={item} />}
         ListHeaderComponent={
           <View style={{ gap: 5 }}>
-            <Row>
-              <Text
-                style={{
-                  color: WHITE_COLOR,
-                  fontSize: 25,
-                  fontWeight: "700",
-                }}
-              >
-                Stats (Max weight)
-              </Text>
+            <Row justifyContent="space-between">
+              <Text variant="headingM">Stats (Max weight)</Text>
               <Feather name="refresh-ccw" size={20} color={GRAY_LIGHT_COLOR} />
             </Row>
             <LineChart

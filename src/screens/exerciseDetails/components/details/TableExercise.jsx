@@ -1,24 +1,23 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
-import { BOX_COLOR } from "../../../../styles/styles";
 import * as styles from "../../../../styles/tableStyles";
+import { TableRow, TableHead, TableBodyText, TableContainer } from "../../../../components/Table";
+import Row from "../../../../theme/components/Row";
+import { FlatList } from "react-native-gesture-handler";
 const TableExercise = ({ reps }) => {
   return (
-    <View style={styles.table}>
-      <View style={[styles.row, { justifyContent: "flex-start", gap: 20 }]}>
-        <Text style={[styles.text, styles.headText]}>SETS</Text>
-        <Text style={[styles.text, styles.longItem, styles.headText]}>REPS</Text>
-      </View>
-      {reps.map((item, index) => (
-        <View
-          style={[styles.row, styles.rowItems, { justifyContent: "flex-start", gap: 20 }]}
-          key={index}
-        >
-          <Text style={styles.text}>{index + 1}</Text>
-          <Text style={[styles.text, styles.longItem]}>{item}</Text>
-        </View>
+    <TableContainer>
+      <Row g="space10">
+        <TableHead text="SETS" />
+        <TableHead text="REPS" />
+      </Row>
+      {reps.map((rep, index) => (
+        <TableRow g="space10" key={index}>
+          <TableBodyText text={index + 1} />
+          <TableBodyText text={rep} />
+        </TableRow>
       ))}
-    </View>
+    </TableContainer>
   );
 };
 
