@@ -5,7 +5,8 @@ import { BACKDROP_COLOR } from "../styles/styles";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-export default BackdropModals = ({ toggleModal }) => {
+type BackdropModalsProps = { toggleModal: () => void };
+const BackdropModals = ({ toggleModal }: BackdropModalsProps) => {
   return (
     <AnimatedPressable
       style={styles.backdrop}
@@ -15,6 +16,7 @@ export default BackdropModals = ({ toggleModal }) => {
     />
   );
 };
+export default BackdropModals;
 
 const styles = StyleSheet.create({
   backdrop: {

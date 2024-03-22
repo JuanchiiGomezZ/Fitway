@@ -5,8 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { WHITE_COLOR } from "../styles/styles";
 import Row from "@/theme/components/Row";
 import { ThemeProps } from "@/theme";
+import { BoxProps } from "@shopify/restyle";
 
-interface HeaderProps extends ThemeProps {
+interface HeaderProps extends BoxProps<ThemeProps> {
   title: string;
 }
 

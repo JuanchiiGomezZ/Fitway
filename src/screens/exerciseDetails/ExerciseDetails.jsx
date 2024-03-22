@@ -27,7 +27,7 @@ export default ExerciseDetails = ({ route }) => {
   const pages = [
     {
       title: "Exercises",
-      component: <Details exerciseData={exerciseData} />,
+      component: <Details {...exerciseData} />,
     },
     { title: "History", component: <ExerciseHistory exercsieLogs={[]} /> },
   ];

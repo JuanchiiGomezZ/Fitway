@@ -13,11 +13,17 @@ import { ButtonCircular } from "../../../../components/CustomButtons";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default Details = ({ exerciseData }) => {
+export default Details = ({
+  name,
+  element,
+  primaryMuscle,
+  Multimedia,
+  exerciseType,
+  description,
+  WorkoutExercise,
+}) => {
   const { navigate } = useNavigation();
 
-  const { name, element, muscles, Multimedia, exerciseType, description, WorkoutExercise } =
-    exerciseData || {};
   return (
     <>
       <ScrollView
@@ -39,7 +45,7 @@ export default Details = ({ exerciseData }) => {
             editable={false}
           />
           <View style={styles.selectorsContainer}>
-            <ElementCard img={Multimedia?.muscleImg} name={muscles[0]} title="Muscle" />
+            <ElementCard img={Multimedia?.muscleImg} name={primaryMuscle} title="Muscle" />
             <ElementCard img={Multimedia?.elementImg} name={element} title="Element" />
             <ElementCard icon="human-handsup" title={exerciseTypeConvert(exerciseType)} />
             <ElementCard

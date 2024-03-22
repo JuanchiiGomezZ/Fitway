@@ -1,19 +1,17 @@
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import React from "react";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import Text from "../../theme/components/Text";
 //HOOKS
 import { useTranslation } from "react-i18next";
 
 //COMPONENTS
 import ScreenContainer from "../../components/ScreenContainer";
 import Calendar from "./components/Calendar";
-import Header from "../../components/Header";
-import Subtitle from "../../components/Subtitle";
 import { ORANGE_COLOR } from "../../styles/styles";
 import WorkoutLogCard from "./components/WorkoutLogCard";
 import Empty from "./components/Empty";
 import { useNavigation } from "@react-navigation/native";
-import TitleScreen from "../../components/TitleScreen";
+
 
 export default TrainingsLog = () => {
   const { t } = useTranslation();
@@ -26,12 +24,12 @@ export default TrainingsLog = () => {
 
   return (
     <ScreenContainer>
-      <TitleScreen title={"Trainings log"} />
+      <Text variant="headingXL">Training Logs</Text>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ gap: 20 }}>
         <Calendar />
         <View style={{ gap: 10 }}>
           <View style={styles.row}>
-            <Subtitle title={"Workouts"} />
+            <Text variant="headingL">Workouts</Text>
             <TouchableOpacity>
               <Text style={styles.showMoreText}>Show More</Text>
             </TouchableOpacity>
