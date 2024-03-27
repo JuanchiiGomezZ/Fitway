@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import Animated, { SlideInDown, SlideOutDown } from "react-native-reanimated";
 import { BACKGROUND_COLOR, BORDER_RADIUS, WHITE_COLOR } from "../styles/styles";
 import { CloseModalIcon } from "./CustomButtons";
@@ -12,7 +12,7 @@ export default BottomSheetModal = ({ children, title }) => {
     <>
       <BackdropModals toggleModal={goBack} />
       <Animated.View style={styles.modalContainer} entering={SlideInDown} exiting={SlideOutDown}>
-        <Row style={{ justifyContent: "space-between", marginBottom: 10 }}>
+        <Row justifyContent="space-between" mb="space5">
           <Text style={styles.headText}>{title}</Text>
           <CloseModalIcon action={goBack} />
         </Row>
